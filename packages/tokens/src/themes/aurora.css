@@ -1,0 +1,28 @@
+/*
+ * Tema Aurora — apenas valores de marca.
+ * Origem: Portal-Aurora tailwind.config.ts (escala primary laranja) traduzida
+ * para tokens semânticos. A escala 50..900 NÃO é reproduzida: hover/active
+ * viram tokens (--primary-hover). Sidebar escura derivada das classes slate
+ * de components/layout/Sidebar.tsx.
+ */
+:root:not([data-brand]),
+:root[data-brand="aurora"],
+[data-brand="aurora"] {
+	--primary: #f97316; /* primary-500 */
+	--primary-foreground: oklch(0.985 0 0);
+	--primary-hover: #ea580c; /* primary-600 */
+	--ring: #f97316;
+
+	--brand-primary: #f97316;
+	--brand-hover: #ea580c;
+	--brand-accent: #fb923c; /* primary-400 */
+
+	--sidebar: #0f172a; /* slate-900 */
+	--sidebar-foreground: oklch(0.9 0.01 250);
+	--sidebar-primary: #f97316;
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.28 0.03 255);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: #fb923c;
+}

@@ -1,0 +1,12 @@
+{
+	"name": "@grupo/tokens",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Tokens semânticos e temas por marca do Núcleo de Portais do Grupo",
+	"exports": {
+		"./index.css": "./src/index.css",
+		"./base.css": "./src/base.css",
+		"./themes/supertrans.css": "./src/themes/supertrans.css",
+		"./themes/aurora.css": "./src/themes/aurora.css"
+	}
+}

@@ -1,0 +1,55 @@
+import { Meta, Title, Subtitle } from "@storybook/addon-docs/blocks";
+
+<Meta title="Comece agora" />
+
+<Title>Núcleo de Portais do Grupo</Title>
+
+<Subtitle>Design system, tokens, blocks e padrões compartilhados dos portais do grupo.</Subtitle>
+
+## O que é
+
+O Núcleo de Portais é a base oficial para criação, padronização e evolução dos portais das empresas do grupo. Não é uma biblioteca da Supertrans nem uma cópia do Aurora — é a curadoria do melhor dos dois, mantida como plataforma.
+
+## Pacotes
+
+| Pacote | Camada | Conteúdo |
+|---|---|---|
+| `@grupo/tokens` | 0 | tokens semânticos + temas por marca (CSS puro) |
+| `@grupo/ui` | 1 | 26 primitives (Base UI + Tailwind v4 + cva) |
+| `@grupo/blocks` | 2 | composições genéricas: DataTable, PageHeader, Pagination, ConfirmDialog... |
+
+## Instalação (produtos)
+
+```sh
+pnpm add @grupo/tokens @grupo/ui @grupo/blocks
+```
+
+```css
+/* entrada CSS do produto */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@grupo/tokens/base.css";
+@import "@grupo/tokens/themes/supertrans.css"; /* UM tema por produto */
+@source "../node_modules/@grupo/ui/src";
+@source "../node_modules/@grupo/blocks/src";
+```
+
+## Temas
+
+Marcas são CSS, nunca props: os componentes usam apenas tokens semânticos (`bg-primary`, `text-muted-foreground`) e cada marca redefine as CSS variables via `[data-brand]`. Marcas disponíveis: **Supertrans** e **Aurora** — alterne pela toolbar "Marca" acima. Detalhes em *Fundações → Tokens*.
+
+## Regras principais
+
+- Não usar cores hardcoded em componentes (hex só em `packages/tokens/src/themes/`).
+- Não colocar domínio de negócio nos packages compartilhados.
+- Não usar Radix (Base UI é o primitivo headless oficial).
+- Não importar arquivos dos portais.
+- Todo componente compartilhado deve ter story, validada nas duas marcas.
+
+## Qualidade
+
+Este Storybook é o quality gate do núcleo: **accessibility checks** (painel Accessibility em cada story), **visual tests** (addon Chromatic; nuvem requer `CHROMATIC_PROJECT_TOKEN`), **component tests** (addon Vitest — stories rodam como testes em Chromium headless) e esta **documentação MDX**. Fluxo completo: `docs/architecture/quality-gates.md` no repositório.
+
+## Para agentes de IA
+
+Comece por `AGENTS.md` e `ai/context/00-read-first.md` no repositório. Workflows de criação de componente/block em `ai/workflows/`.

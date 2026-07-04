@@ -1,0 +1,26 @@
+/*
+ * Tema Supertrans — apenas valores de marca.
+ * Origem: portal-supertrans globals.css (:root) + navy do sidebar
+ * (#001e2b, hoje hardcoded em admin/sidebar.tsx — aqui promovido a token).
+ */
+:root:not([data-brand]),
+:root[data-brand="supertrans"],
+[data-brand="supertrans"] {
+	--primary: #00526b;
+	--primary-foreground: oklch(0.985 0 0);
+	--primary-hover: #005a75;
+	--ring: #00526b;
+
+	--brand-primary: #00526b;
+	--brand-hover: #005a75;
+	--brand-accent: #3caec4;
+
+	--sidebar: #001e2b;
+	--sidebar-foreground: oklch(0.95 0 0);
+	--sidebar-primary: #00526b;
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.3 0.02 220);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: #3caec4;
+}

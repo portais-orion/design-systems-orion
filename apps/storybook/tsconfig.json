@@ -1,0 +1,4 @@
+{
+	"extends": "@grupo/tsconfig/react-library.json",
+	"include": [".storybook", "stories", "src"]
+}

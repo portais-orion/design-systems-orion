@@ -1,0 +1,63 @@
+{
+	"name": "@grupo/blocks",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Composições genéricas do Núcleo de Portais (Camada 2) — dados por props, sem domínio.",
+	"sideEffects": false,
+	"exports": {
+		".": "./src/index.ts",
+		"./code-badge": "./src/code-badge/index.ts",
+		"./confirm-dialog": "./src/confirm-dialog/index.ts",
+		"./empty-state": "./src/empty-state/index.ts",
+		"./error-state": "./src/error-state/index.ts",
+		"./filter-pill": "./src/filter-pill/index.ts",
+		"./page-header": "./src/page-header/index.ts",
+		"./pagination": "./src/pagination/index.ts",
+		"./search-bar": "./src/search-bar/index.ts",
+		"./status-cards": "./src/status-cards/index.ts",
+		"./status-dot": "./src/status-dot/index.ts",
+		"./table-skeleton-rows": "./src/table-skeleton-rows/index.ts",
+		"./data-table": "./src/data-table/index.ts",
+		"./loading-overlay": "./src/loading-overlay/index.ts",
+		"./content-card": "./src/content-card/index.ts",
+		"./dashboard-page-layout": "./src/dashboard-page-layout/index.ts",
+		"./detail-page-layout": "./src/detail-page-layout/index.ts",
+		"./field-group": "./src/field-group/index.ts",
+		"./form-actions": "./src/form-actions/index.ts",
+		"./form-field": "./src/form-field/index.ts",
+		"./form-message": "./src/form-message/index.ts",
+		"./form-page-layout": "./src/form-page-layout/index.ts",
+		"./form-section": "./src/form-section/index.ts",
+		"./list-page-layout": "./src/list-page-layout/index.ts",
+		"./page-layout": "./src/page-layout/index.ts",
+		"./section-header": "./src/section-header/index.ts",
+		"./app-shell": "./src/app-shell/index.ts",
+		"./breadcrumbs": "./src/breadcrumbs/index.ts",
+		"./navigation": "./src/navigation/index.ts",
+		"./sidebar": "./src/sidebar/index.ts"
+	},
+	"scripts": {
+		"build": "tsc --noEmit",
+		"typecheck": "tsc --noEmit",
+		"lint": "biome check src"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"dependencies": {
+		"@grupo/ui": "workspace:*",
+		"lucide-react": "^1.16.0",
+		"@tanstack/react-table": "^8.20.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@grupo/tsconfig": "workspace:*",
+		"@types/react": "^19.0.0",
+		"react": "^19.0.0",
+		"typescript": "^5.7.3",
+		"@storybook/react": "^10.4.1",
+		"storybook": "^10.4.1",
+		"react-dom": "^19.0.0"
+	}
+}

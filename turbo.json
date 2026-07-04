@@ -1,0 +1,25 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"ui": "tui",
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**", "storybook-static/**"]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		},
+		"lint": {},
+		"typecheck": {
+			"dependsOn": ["^typecheck"]
+		},
+		"storybook": {
+			"cache": false,
+			"persistent": true
+		},
+		"build-storybook": {
+			"outputs": ["storybook-static/**"]
+		}
+	}
+}

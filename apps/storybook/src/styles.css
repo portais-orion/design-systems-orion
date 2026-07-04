@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@grupo/tokens/index.css";
+
+/* Tailwind precisa escanear as classes usadas nos packages compartilhados */
+@source "../../../packages/ui/src";
+@source "../../../packages/blocks/src";
+@source "../stories";
