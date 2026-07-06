@@ -1,5 +1,18 @@
 # @portais-orion/blocks
 
+## 0.3.0
+
+### Minor Changes
+
+- Novos blocos para o padrão visual CRUD (gaps documentados na adoção do Supertrans):
+
+  - `CrudModalHeader` — cabeçalho de modal (ícone tonalizado + título + subtítulo + badges) para criar/editar/detalhe.
+  - `FiltersCard` — card de filtros colapsável (título + toggle Mostrar/Ocultar + slot de controles + footer "Limpar filtros").
+  - `LauncherCard` — card de lançador de módulo (ícone + título + descrição + CTA), com estado clicável opcional.
+
+  Presentational, sem domínio/rota/Next. `StatusCards` (faixa de resumo) já existia; `CrudTableFooter`
+  não foi criado (coberto pela paginação embutida do `DataTable`).
+
 ## 0.2.1
 
 ### Patch Changes

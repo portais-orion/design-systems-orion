@@ -2,12 +2,8 @@
 	"name": "@portais-orion/tokens",
 	"version": "0.1.1",
 	"description": "Tokens semânticos e temas por marca do Núcleo de Portais do Grupo",
-	"sideEffects": [
-		"*.css"
-	],
-	"files": [
-		"dist"
-	],
+	"sideEffects": ["*.css"],
+	"files": ["dist"],
 	"scripts": {
 		"build": "node scripts/build-tokens.mjs",
 		"prepack": "node scripts/build-tokens.mjs"

@@ -57,9 +57,8 @@ const PROCESSOS: Processo[] = Array.from({ length: 12 }).map((_, i) => ({
 	id: `p-${i + 1}`,
 	codigo: `PRC-${String(i + 1).padStart(3, "0")}`,
 	descricao:
-		["Conferência de documentos", "Registro de entrada", "Análise técnica", "Liberação"][
-			i % 4
-		] ?? "Conferência de documentos",
+		["Conferência de documentos", "Registro de entrada", "Análise técnica", "Liberação"][i % 4] ??
+		"Conferência de documentos",
 	responsavel: ["Ana Souza", "Carlos Lima", "Beatriz Nunes"][i % 3] ?? "Ana Souza",
 	status: (["pendente", "em_andamento", "concluido", "bloqueado"] as const)[i % 4] ?? "pendente",
 	quantidade: (i + 1) * 3,

@@ -10,17 +10,15 @@ import { defineConfig } from "tsup";
 export default defineConfig({
 	entry: ["src/index.ts", "src/*/index.ts"],
 	format: ["esm"],
+	// Emite .mjs + .d.mts (casa com scripts/gen-dist-exports.mjs).
+	outExtension() {
+		return { js: ".mjs" };
+	},
 	dts: true,
 	outDir: "dist",
 	clean: true,
 	splitting: true,
 	treeshake: true,
 	sourcemap: false,
-	external: [
-		"react",
-		"react-dom",
-		"@portais-orion/ui",
-		"@tanstack/react-table",
-		"lucide-react",
-	],
+	external: ["react", "react-dom", "@portais-orion/ui", "@tanstack/react-table", "lucide-react"],
 });

@@ -10,6 +10,10 @@ import { defineConfig } from "tsup";
 export default defineConfig({
 	entry: ["src/index.ts", "src/*/index.ts"],
 	format: ["esm"],
+	// Emite .mjs + .d.mts (casa com scripts/gen-dist-exports.mjs).
+	outExtension() {
+		return { js: ".mjs" };
+	},
 	dts: true,
 	outDir: "dist",
 	clean: true,
