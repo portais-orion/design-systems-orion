@@ -3,7 +3,7 @@
 import { Menu } from "lucide-react";
 import * as React from "react";
 
-import { Button, Sheet, SheetContent, SheetTitle, SheetTrigger, cn } from "@grupo/ui";
+import { Button, Sheet, SheetContent, SheetTitle, SheetTrigger, cn } from "@portais-orion/ui";
 
 import { Breadcrumbs } from "../breadcrumbs";
 import { Sidebar } from "../sidebar";
@@ -11,13 +11,13 @@ import type { AppShellProps } from "./app-shell.types";
 
 /*
  * Chrome oficial dos portais: sidebar lateral + barra de breadcrumbs no topo
- * do conteúdo + miolo (page layouts da Sprint 5). SEM header/topbar fixo —
+ * do conteúdo + miolo (page layouts da Sprint 5). SEM header/topbar fixo �
  * padrão do grupo (AdminShell do Supertrans).
  *
  * Responsividade: no desktop (md+) a sidebar é fixa lateral; abaixo de md
  * ela desaparece e um botão minimalista na barra de breadcrumbs abre a MESMA
  * navegação num Sheet (drawer à esquerda). O shell não conhece rotas,
- * sessão ou permissões — renderLink e canAccessItem são injetados.
+ * sessão ou permissões � renderLink e canAccessItem são injetados.
  */
 export function AppShell({
 	brand,

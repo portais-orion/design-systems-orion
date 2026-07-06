@@ -1,4 +1,4 @@
-import { Button } from "@grupo/ui";
+import { Button } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { FormSection } from "../form-section";
 import { ContentCard } from "./content-card";
@@ -45,10 +45,10 @@ export const NestedSections: Story = {
 		<ContentCard className="w-[32rem]" title="Configurações">
 			<div className="space-y-6">
 				<FormSection title="Geral">
-					<p className="text-sm text-muted-foreground">Campos gerais…</p>
+					<p className="text-sm text-muted-foreground">Campos gerais⬦</p>
 				</FormSection>
 				<FormSection title="Avançado">
-					<p className="text-sm text-muted-foreground">Campos avançados…</p>
+					<p className="text-sm text-muted-foreground">Campos avançados⬦</p>
 				</FormSection>
 			</div>
 		</ContentCard>

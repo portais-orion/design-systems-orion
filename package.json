@@ -17,7 +17,9 @@
 		"changeset": "changeset",
 		"check:pureza": "node scripts/check-purity.mjs",
 		"test:storybook": "pnpm --filter @nucleo/storybook test-storybook",
-		"chromatic": "pnpm --filter @nucleo/storybook chromatic"
+		"chromatic": "pnpm --filter @nucleo/storybook chromatic",
+		"pack:all": "pnpm --filter ./packages/tokens --filter ./packages/ui --filter ./packages/blocks exec npm pack",
+		"publish:packages": "pnpm --filter ./packages/tokens --filter ./packages/ui --filter ./packages/blocks publish --no-git-checks"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

@@ -1,10 +1,10 @@
-import { Button } from "@grupo/ui";
+import { Button } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
 /*
  * Comparativo lado a lado: o MESMO componente sob os dois temas,
- * via [data-brand] em containers — prova de que a marca é CSS, não prop.
+ * via [data-brand] em containers � prova de que a marca é CSS, não prop.
  */
 const meta: Meta = {
 	title: "Núcleo/Comparativo de Marcas",

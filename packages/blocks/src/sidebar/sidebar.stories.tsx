@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, Badge } from "@grupo/ui";
+import { Avatar, AvatarFallback, Badge } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { FileText, FolderOpen, Home, Lock, LogOut, Settings, Users } from "lucide-react";
 import * as React from "react";
@@ -22,7 +22,7 @@ const meta: Meta<typeof Sidebar> = {
 export default meta;
 type Story = StoryObj<typeof Sidebar>;
 
-const Marca = () => <span className="text-sm font-bold tracking-wide">NÚCLEO</span>;
+const Marca = () => <span className="text-sm font-bold tracking-wide">N�aCLEO</span>;
 
 const NAV: NavigationItem[] = [
 	{ id: "inicio", label: "Início", href: "#", icon: Home },

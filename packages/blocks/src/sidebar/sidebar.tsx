@@ -3,7 +3,7 @@
 import { ChevronDown } from "lucide-react";
 import * as React from "react";
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, cn } from "@grupo/ui";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, cn } from "@portais-orion/ui";
 
 import {
 	type NavigationItem,
@@ -14,13 +14,13 @@ import {
 import type { SidebarProps } from "./sidebar.types";
 
 /*
- * Sidebar oficial do grupo — estrutura visual do Supertrans (tokens
+ * Sidebar oficial do grupo � estrutura visual do Supertrans (tokens
  * sidebar-*, tooltip em collapsed, auto-open do submenu ativo) + UX de
  * colapso/submenu do Aurora. Navegação por dados; link e visibilidade
  * injetados (renderLink / canAccessItem).
  *
  * Decisões (documentadas em app-shell.md):
- * - SidebarItem/Group/Submenu/CollapseButton são INTERNOS — a API pública é
+ * - SidebarItem/Group/Submenu/CollapseButton são INTERNOS � a API pública é
  *   dirigida por dados; exportar peças soltas incentivaria montagens
  *   divergentes entre portais.
  * - Grupo estático = item sem href com meta.group === true (label de seção,
@@ -121,7 +121,7 @@ function SidebarEntry({
 	const hasActiveChild = containsActiveItem(item, activeItemId) && item.id !== activeItemId;
 	const [open, setOpen] = React.useState(hasActiveChild);
 	React.useEffect(() => {
-		// auto-open (aditivo) quando um filho vira ativo — nunca fecha sozinho
+		// auto-open (aditivo) quando um filho vira ativo � nunca fecha sozinho
 		if (hasActiveChild) setOpen(true);
 	}, [hasActiveChild]);
 

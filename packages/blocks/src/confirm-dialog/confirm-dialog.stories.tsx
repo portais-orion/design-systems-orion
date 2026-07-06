@@ -1,4 +1,4 @@
-import { Button } from "@grupo/ui";
+import { Button } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { ConfirmDialog } from "./confirm-dialog";
@@ -62,7 +62,7 @@ function DemoErro() {
 				open={open}
 				onOpenChange={setOpen}
 				title="Processar registro?"
-				description="Esta confirmação sempre falha — o diálogo deve permanecer aberto."
+				description="Esta confirmação sempre falha � o diálogo deve permanecer aberto."
 				onConfirm={() => new Promise((_, reject) => setTimeout(reject, 800))}
 			/>
 		</>

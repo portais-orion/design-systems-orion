@@ -1,10 +1,10 @@
 import type * as React from "react";
 
-import { cn } from "@grupo/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
  * Recriado a partir da API do Portal-Aurora ui/DataTable/PageHeader.tsx,
- * tokenizado (text-gray-900 → text-foreground) e com `eyebrow` opcional.
+ * tokenizado (text-gray-900 �  text-foreground) e com `eyebrow` opcional.
  * Sem breadcrumb e sem dependência de rota, por decisão da sprint.
  */
 export type PageHeaderProps = {

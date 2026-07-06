@@ -1,4 +1,4 @@
-import { Badge, Button, Tabs, TabsContent, TabsList, TabsTrigger } from "@grupo/ui";
+import { Badge, Button, Tabs, TabsContent, TabsList, TabsTrigger } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { CodeBadge } from "../code-badge";
 import { ContentCard } from "../content-card";

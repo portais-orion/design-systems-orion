@@ -1,4 +1,4 @@
 {
-	"extends": "@grupo/tsconfig/react-library.json",
+	"extends": "@portais-orion/tsconfig/react-library.json",
 	"include": [".storybook", "stories", "src"]
 }

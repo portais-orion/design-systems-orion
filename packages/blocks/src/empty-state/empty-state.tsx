@@ -1,7 +1,7 @@
 import { FolderOpen } from "lucide-react";
 import type * as React from "react";
 
-import { cn } from "@grupo/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
  * Origem: portal-supertrans gestao-cadastros/shared.tsx (EmptyState).

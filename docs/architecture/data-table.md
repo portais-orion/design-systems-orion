@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Bloco oficial do grupo para listagens administrativas e operacionais — o primeiro componente "melhor dos dois": API e requisitos do Portal-Aurora, markup/tokens do Núcleo (origem Supertrans), TanStack Table como motor.
+Bloco oficial do grupo para listagens administrativas e operacionais � o primeiro componente "melhor dos dois": API e requisitos do Portal-Aurora, markup/tokens do Núcleo (origem Supertrans), TanStack Table como motor.
 
 ## Princípios
 
@@ -30,7 +30,7 @@ Dados por props (nunca busca); estados embutidos com defaults e slots; nada do T
 
 ## Tipos
 
-`DataTableColumn<T>` (id, header, accessorKey | accessorFn | cell, align, width, className, headerClassName, sortable), `DataTablePagination`, `DataTableSorting`, `DataTableProps<T>` — exportados de `@grupo/blocks/data-table`. Tipos do TanStack não são reexportados; se um caso avançado precisar, será exposto futuramente como API avançada documentada.
+`DataTableColumn<T>` (id, header, accessorKey | accessorFn | cell, align, width, className, headerClassName, sortable), `DataTablePagination`, `DataTableSorting`, `DataTableProps<T>` � exportados de `@supertrans-transportes/blocks/data-table`. Tipos do TanStack não são reexportados; se um caso avançado precisar, será exposto futuramente como API avançada documentada.
 
 ## Estados suportados
 
@@ -45,7 +45,7 @@ Opcional; renderiza o block `Pagination` abaixo do container quando presente. Es
 
 ## Sorting
 
-Controlado e **server-side first**: coluna com `sortable: true` ganha header clicável (ícones chevron, `aria-sort`); o clique chama `onSortChange(sortBy, sortOrder)` alternando asc/desc; o DataTable **não ordena dados internamente** (TanStack em `manualSorting`). Sorting client-side automático ficou fora desta sprint (deliberado) — quem quiser ordenar no cliente ordena o array antes de passar (ver story WithSorting).
+Controlado e **server-side first**: coluna com `sortable: true` ganha header clicável (ícones chevron, `aria-sort`); o clique chama `onSortChange(sortBy, sortOrder)` alternando asc/desc; o DataTable **não ordena dados internamente** (TanStack em `manualSorting`). Sorting client-side automático ficou fora desta sprint (deliberado) � quem quiser ordenar no cliente ordena o array antes de passar (ver story WithSorting).
 
 ## Ações por linha
 
@@ -53,7 +53,7 @@ Slot `actions(row, index)` adiciona coluna final (header `sr-only`, alinhada à 
 
 ## Toolbar
 
-`toolbar` é área de composição acima da tabela (borda inferior própria) — SearchBar/FilterPills/botões entram por fora; o DataTable não conhece busca nem filtros. FilterBar completo é sprint futura.
+`toolbar` é área de composição acima da tabela (borda inferior própria) � SearchBar/FilterPills/botões entram por fora; o DataTable não conhece busca nem filtros. FilterBar completo é sprint futura.
 
 ## Seleção futura
 
@@ -63,7 +63,7 @@ Não implementada (escopo). Caminho previsto (o motor TanStack já suporta):
 selection={{ selectedRowIds, onSelectionChange, getRowId }}
 ```
 
-Coluna de checkbox à esquerda usando o Checkbox do @grupo/ui, `aria-selected` na linha e integração com `getRowDisabled`.
+Coluna de checkbox à esquerda usando o Checkbox do @supertrans-transportes/ui, `aria-selected` na linha e integração com `getRowDisabled`.
 
 ## Validação contra os portais atuais
 
@@ -72,7 +72,7 @@ Coluna de checkbox à esquerda usando o Checkbox do @grupo/ui, `aria-selected` n
 | Aurora | `ui/DataTable/DataTable.tsx` (base de 32 telas) | `Column<T>` com render, `keyExtractor`, loading/erro/vazio embutidos, paginação com `limitOptions`, `onRowClick`, `rowClassName`, `align` | Sim | API pública espelha e amplia (accessorKey/Fn, width, sortable) |
 | Aurora | `pages/estoque/components/TableEstoque.tsx` | colunas numéricas alinhadas à direita; formatação pt-BR; linha de sumário/totais | Sim | `align: "right"` + `footer` slot (story DenseOperationalExample) |
 | Aurora | `pages/fornecedor/listaFornecedores/SupplierList.tsx` | `rowClassName` condicional + `onRowClick` para detalhe | Sim | ambos com variante fn |
-| Aurora | `pages/inspecao-container/InspecaoContainerDashboard.tsx` | cards de status filtram a listagem acima da tabela | Sim (composição) | StatusCards + DataTable compostos na tela (story AuroraInspiredExample) — não acoplado |
+| Aurora | `pages/inspecao-container/InspecaoContainerDashboard.tsx` | cards de status filtram a listagem acima da tabela | Sim (composição) | StatusCards + DataTable compostos na tela (story AuroraInspiredExample) � não acoplado |
 | Aurora | `ui/Pagination.tsx` | "Exibir N / Mostrando X a Y de Z"; reset p/ página 1 ao trocar limite | Sim | herdado do block Pagination (Sprint 2) |
 | Supertrans | `gestao-cadastros/clients-view.tsx` (+4 views irmãs) | skeleton de linhas no loading; empty com ação; error com retry; pills de filtro acima da tabela | Sim | TableSkeletonRows/EmptyState(+emptyAction)/ErrorState(+errorAction)/toolbar |
 | Supertrans | `configurador/modules/module-table.tsx` | ordenação (localeCompare pt-BR); ações por linha com stopPropagation; badges/status por célula | Parcial/Sim | sorting controlado (client-side = chamador ordena); actions com stopPropagation nativo |
@@ -84,4 +84,4 @@ Sorting client-side automático; seleção de linhas; virtualização; column re
 
 ## Exemplos
 
-12 stories em `Blocks/DataTable` — incluindo os exemplos compostos inspirados nas telas reais dos dois portais (dados genéricos "Processo").
+12 stories em `Blocks/DataTable` � incluindo os exemplos compostos inspirados nas telas reais dos dois portais (dados genéricos "Processo").

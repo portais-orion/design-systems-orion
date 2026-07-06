@@ -1,20 +1,20 @@
-# AGENTS.md — Núcleo de Portais do Grupo
+# AGENTS.md � Núcleo de Portais do Grupo
 
-Ponto de entrada único para agentes de IA. Contexto detalhado vive em `ai/` — carregue apenas o que a tarefa pedir (ver `ai/context/00-read-first.md`).
+Ponto de entrada único para agentes de IA. Contexto detalhado vive em `ai/` � carregue apenas o que a tarefa pedir (ver `ai/context/00-read-first.md`).
 
 ## Natureza do projeto
 
-Este projeto é o **Núcleo de Portais do Grupo**, não uma biblioteca específica da Supertrans ou do Aurora. É a plataforma interna para design system compartilhado, tokens/temas por empresa, Storybook oficial, documentação arquitetural e estrutura de desenvolvimento assistido por agentes. Produtos (portais) vivem em repositórios separados e consomem os packages daqui por versão.
+Este projeto é o **Núcleo de Portais do Grupo**, não uma biblioteca específica da Supertrans ou do Aurora. �0 a plataforma interna para design system compartilhado, tokens/temas por empresa, Storybook oficial, documentação arquitetural e estrutura de desenvolvimento assistido por agentes. Produtos (portais) vivem em repositórios separados e consomem os packages daqui por versão.
 
 ## Estrutura
 
 ```
 apps/storybook/        Storybook oficial (toolbar de marca Supertrans/Aurora)
-packages/tokens/       @grupo/tokens — base.css + themes/{supertrans,aurora}.css
-packages/ui/           @grupo/ui — primitives (Base UI + Tailwind v4 + cva)
-packages/blocks/       @grupo/blocks — composições (vazio na Sprint 0)
-packages/tsconfig/     @grupo/tsconfig
-packages/biome-config/ @grupo/biome-config
+packages/tokens/       @supertrans-transportes/tokens � base.css + themes/{supertrans,aurora}.css
+packages/ui/           @supertrans-transportes/ui � primitives (Base UI + Tailwind v4 + cva)
+packages/blocks/       @supertrans-transportes/blocks � composições (vazio na Sprint 0)
+packages/tsconfig/     @supertrans-transportes/tsconfig
+packages/biome-config/ @supertrans-transportes/biome-config
 docs/adr/              decisões de arquitetura (fonte de verdade)
 docs/architecture/     overview, packages, theming, camadas, storybook, migração
 ai/                    context, rules, workflows, skills, prompts, examples, checklists
@@ -48,11 +48,11 @@ pnpm chromatic          # visual tests na nuvem (requer CHROMATIC_PROJECT_TOKEN)
 ## O que NUNCA fazer
 
 - Alterar os repositórios `portal-supertrans` ou `Portal-Aurora` a partir de tarefas deste repo.
-- Usar `@radix-ui/*` (ADR 0004 — Base UI é o único headless; `render`, não `asChild`).
-- Criar `tailwind.config.ts` (ADR 0003 — Tailwind v4 é CSS-first).
-- Copiar código Radix/TW3 do Aurora — recriar seguindo `ai/workflows/recreate-from-aurora.md`.
+- Usar `@radix-ui/*` (ADR 0004 � Base UI é o único headless; `render`, não `asChild`).
+- Criar `tailwind.config.ts` (ADR 0003 � Tailwind v4 é CSS-first).
+- Copiar código Radix/TW3 do Aurora � recriar seguindo `ai/workflows/recreate-from-aurora.md`.
 - Adicionar block sem 2+ consumidores reais previstos (regra dos dois usos).
-- Contornar uma ADR; conflito → parar e reportar.
+- Contornar uma ADR; conflito �  parar e reportar.
 - Declarar sucesso sem executar `pnpm check && pnpm typecheck && pnpm build`.
 
 ## Onde buscar contexto
@@ -63,7 +63,7 @@ pnpm chromatic          # visual tests na nuvem (requer CHROMATIC_PROJECT_TOKEN)
 | Componente | `ai/context/03-component-rules.md` + `ai/rules/components.md` + `ai/workflows/create-component.md` |
 | Tokens/tema | `ai/context/04-token-rules.md` + `ai/rules/tokens.md` + `ai/workflows/add-brand-theme.md` |
 | Block | `ai/rules/blocks.md` + `ai/workflows/create-block.md` |
-| Decisão/arquitetura | `ai/context/02-current-decisions.md` → `docs/adr/` |
+| Decisão/arquitetura | `ai/context/02-current-decisions.md` �  `docs/adr/` |
 | Migração dos portais | `ai/context/05-*.md`, `ai/context/06-*.md` |
 
 ## Como criar componentes
@@ -81,3 +81,19 @@ Seguir `ai/context/04-token-rules.md`. Token novo entra no `@theme inline` do ba
 ## Como evitar acoplamento com domínio
 
 Teste rápido de `ai/rules/no-domain-in-shared-packages.md`: "este código faria sentido num terceiro portal de outra empresa criado amanhã?" Se não, é Camada 3 e fica no produto. Dados por props, conteúdo por slots, integrações por providers injetados.
+
+## Skill oficial de adoção
+
+A skill oficial para adotar/migrar telas de portais ao Núcleo `@portais-orion` vive AQUI (fonte de verdade):
+
+```txt
+ai/skills/portais-orion-adoption/SKILL.md
+```
+
+Ela pode ser exposta globalmente (para outros projetos consumirem) via link simbólico, sem duplicar o arquivo:
+
+```txt
+C:\Users\marce\.portais-orion\skills\portais-orion-adoption\  ->  C:\projetos\nucleo-portais\ai\skills\portais-orion-adoption\
+```
+
+Edite SEMPRE a fonte oficial acima; o link global reflete automaticamente. Guia de consumo por novos portais: `docs/adoption/consumer-setup.md`.

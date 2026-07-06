@@ -1,8 +1,8 @@
-# Sprint 6 — Resultado
+# Sprint 6 � Resultado
 
 ## Resumo
 
-Chrome oficial dos portais entregue no `@grupo/blocks`: tipos de navegação, `Breadcrumbs`, `Sidebar` e `AppShell` — estrutura visual do Supertrans (tokens `sidebar-*`, tooltips em collapsed) + UX de colapso/submenu do Aurora, com link e visibilidade 100% injetados (`renderLink`/`canAccessItem`). 24 stories novas de chrome, incluindo as 4 integradas com os layouts da Sprint 5, e 4 play functions. Storybook: 215 → **239 stories**. Zero Next.js/router/permissão real no núcleo; nenhum portal alterado; validações e pureza verdes. Com esta sprint, o núcleo está completo para a **Sprint 7 — Supertrans consome**.
+Chrome oficial dos portais entregue no `@supertrans-transportes/blocks`: tipos de navegação, `Breadcrumbs`, `Sidebar` e `AppShell` � estrutura visual do Supertrans (tokens `sidebar-*`, tooltips em collapsed) + UX de colapso/submenu do Aurora, com link e visibilidade 100% injetados (`renderLink`/`canAccessItem`). 24 stories novas de chrome, incluindo as 4 integradas com os layouts da Sprint 5, e 4 play functions. Storybook: 215 �  **239 stories**. Zero Next.js/router/permissão real no núcleo; nenhum portal alterado; validações e pureza verdes. Com esta sprint, o núcleo está completo para a **Sprint 7 � Supertrans consome**.
 
 ## Tipos de navegação criados
 
@@ -14,7 +14,7 @@ Chrome oficial dos portais entregue no `@grupo/blocks`: tipos de navegação, `B
 
 ## Sidebar
 
-w-64/w-16 com transição; colapso controlado e não controlado (`useControllableCollapsed`); brand/footer por slots; grupos estáticos (`meta.group === true`, label de seção uppercase) e submenus expansíveis (`aria-expanded`, chevron, **auto-open aditivo** quando um filho está ativo — padrão do Supertrans); item ativo com `aria-current` e `bg-sidebar-primary`; disabled; badges (ocultos em collapsed); tooltip por item quando collapsed; botão de colapso integrado (Recolher/Expandir com aria-label). 9 stories.
+w-64/w-16 com transição; colapso controlado e não controlado (`useControllableCollapsed`); brand/footer por slots; grupos estáticos (`meta.group === true`, label de seção uppercase) e submenus expansíveis (`aria-expanded`, chevron, **auto-open aditivo** quando um filho está ativo � padrão do Supertrans); item ativo com `aria-current` e `bg-sidebar-primary`; disabled; badges (ocultos em collapsed); tooltip por item quando collapsed; botão de colapso integrado (Recolher/Expandir com aria-label). 9 stories.
 
 ## AppShell
 
@@ -22,7 +22,7 @@ Sidebar (desktop, `hidden md:block`) + barra h-12 com breadcrumbs (e o botão mo
 
 ## API final
 
-Conforme seções 7–10 do plano, sem desvios de assinatura. `SidebarItem/SidebarGroup/SidebarSubmenu/SidebarCollapseButton` ficaram **internos** (decisão documentada: API dirigida por dados; exportar peças soltas incentivaria montagens divergentes entre portais).
+Conforme seções 7�10 do plano, sem desvios de assinatura. `SidebarItem/SidebarGroup/SidebarSubmenu/SidebarCollapseButton` ficaram **internos** (decisão documentada: API dirigida por dados; exportar peças soltas incentivaria montagens divergentes entre portais).
 
 ## renderLink / canAccessItem
 
@@ -30,7 +30,7 @@ Conforme seções 7–10 do plano, sem desvios de assinatura. `SidebarItem/Sideb
 
 ## Responsividade
 
-Desktop: sidebar fixa. Abaixo de `md`: sidebar some e um botão minimalista na barra de breadcrumbs abre a mesma navegação num `Sheet` esquerdo (fecha ao clicar em link). Story `MobileNavigation` com viewport mobile do Storybook. Limitações documentadas: sem flyout de submenu em collapsed (clicar no pai expande a sidebar — Sprint 8) e sem swipe no drawer.
+Desktop: sidebar fixa. Abaixo de `md`: sidebar some e um botão minimalista na barra de breadcrumbs abre a mesma navegação num `Sheet` esquerdo (fecha ao clicar em link). Story `MobileNavigation` com viewport mobile do Storybook. Limitações documentadas: sem flyout de submenu em collapsed (clicar no pai expande a sidebar � Sprint 8) e sem swipe no drawer.
 
 ## Stories adicionadas (24)
 
@@ -58,20 +58,20 @@ Novos: `packages/blocks/src/{navigation,breadcrumbs,sidebar,app-shell}/` (12 arq
 ## Validações executadas
 
 ```
-pnpm install          → Done in 1s (zero deps novas)
-pnpm check            → Checked 210 files. No fixes applied (verde)
-pnpm typecheck        → 3 successful, 3 total
-pnpm build            → 3 successful, 3 total
-pnpm build:storybook  → completed successfully (239 stories)
-pnpm check:pureza     → OK — nenhum vazamento encontrado
-pnpm storybook (dev)  → HTTP 200
-pnpm test:storybook   → não roda no sandbox (sem browsers Playwright);
+pnpm install          �  Done in 1s (zero deps novas)
+pnpm check            �  Checked 210 files. No fixes applied (verde)
+pnpm typecheck        �  3 successful, 3 total
+pnpm build            �  3 successful, 3 total
+pnpm build:storybook  �  completed successfully (239 stories)
+pnpm check:pureza     �  OK � nenhum vazamento encontrado
+pnpm storybook (dev)  �  HTTP 200
+pnpm test:storybook   �  não roda no sandbox (sem browsers Playwright);
                         localmente: playwright install chromium + pnpm test:storybook
 ```
 
 ## Resultado do check de pureza
 
-Verde — confirma zero `next/`, zero portais, zero data-fetching nos packages.
+Verde � confirma zero `next/`, zero portais, zero data-fetching nos packages.
 
 ## Problemas encontrados
 
@@ -79,10 +79,10 @@ Nenhum bloqueio; typecheck verde na primeira execução.
 
 ## Decisões tomadas
 
-1. Subcomponentes da Sidebar internos (não exportados) — documentado.
+1. Subcomponentes da Sidebar internos (não exportados) � documentado.
 2. Grupo vs submenu pela forma: `meta.group === true` sem href = grupo estático; children sem meta.group = submenu.
-3. Collapsed conservador: clicar num pai de submenu expande a sidebar (flyout → Sprint 8).
-4. Auto-open de submenu é aditivo (nunca fecha sozinho) — comportamento herdado do Supertrans.
+3. Collapsed conservador: clicar num pai de submenu expande a sidebar (flyout �  Sprint 8).
+4. Auto-open de submenu é aditivo (nunca fecha sozinho) � comportamento herdado do Supertrans.
 5. Botão mobile vive na barra de breadcrumbs (sem topbar novo); drawer reusa a MESMA Sidebar dentro do Sheet.
 6. Em collapsed, grupos viram separadores visuais com os filhos em ícone.
 
@@ -96,4 +96,4 @@ Flyout de submenu em collapsed (Sprint 8); UserMenu/notificações/busca global;
 
 ## Próxima sprint recomendada
 
-**Sprint 7 — Supertrans consome o Núcleo**: primeiro consumo real — re-exports de `@grupo/ui` em `components/ui/*`, `@grupo/tokens` no globals.css e, oportunisticamente, o AppShell com `renderLink` de Next Link e `canAccessItem` sobre o `usePermissions` existente.
+**Sprint 7 � Supertrans consome o Núcleo**: primeiro consumo real � re-exports de `@supertrans-transportes/ui` em `components/ui/*`, `@supertrans-transportes/tokens` no globals.css e, oportunisticamente, o AppShell com `renderLink` de Next Link e `canAccessItem` sobre o `usePermissions` existente.

@@ -5,8 +5,8 @@ import "../src/styles.css";
 /*
  * Toolbar global de marca: todo componente do Núcleo deve ser validado
  * nas duas marcas. O decorator aplica data-brand no <html>, então os
- * temas de @grupo/tokens resolvem as CSS variables da marca ativa.
- * Nenhum provider de app real (Auth, Query) é usado aqui — o Storybook
+ * temas de @portais-orion/tokens resolvem as CSS variables da marca ativa.
+ * Nenhum provider de app real (Auth, Query) é usado aqui � o Storybook
  * do Núcleo é independente dos portais.
  */
 const withBrand: Decorator = (Story, context) => {

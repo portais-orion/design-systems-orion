@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@grupo/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
  * Grid responsivo de campos (1 coluna no mobile). Origem do padrão:

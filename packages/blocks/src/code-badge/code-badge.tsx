@@ -1,9 +1,9 @@
 import type * as React from "react";
 
-import { cn } from "@grupo/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
- * Origem: portal-supertrans shared.tsx (CodeBadge) — tokenizado (o original
+ * Origem: portal-supertrans shared.tsx (CodeBadge) â€” tokenizado (o original
  * usava #3caec4/#00526b) e com children livre em vez de prop `code`.
  */
 export type CodeBadgeProps = {

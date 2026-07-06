@@ -6,7 +6,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from "@grupo/ui";
+} from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Download, Eye, MoreHorizontal, Pencil, Plus, Trash2 } from "lucide-react";
 import * as React from "react";
@@ -28,7 +28,7 @@ const meta: Meta<typeof DataTable> = {
 export default meta;
 type Story = StoryObj<typeof DataTable>;
 
-// ── dados genéricos ──────────────────────────────────────────────────────────
+// ���� dados genéricos ��������������������������������������������������������������������������������������������������������������������
 
 type Processo = {
 	id: string;
@@ -57,8 +57,9 @@ const PROCESSOS: Processo[] = Array.from({ length: 12 }).map((_, i) => ({
 	id: `p-${i + 1}`,
 	codigo: `PRC-${String(i + 1).padStart(3, "0")}`,
 	descricao:
-		["Conferência de documentos", "Registro de entrada", "Análise técnica", "Liberação"][i % 4] ??
-		"Conferência de documentos",
+		["Conferência de documentos", "Registro de entrada", "Análise técnica", "Liberação"][
+			i % 4
+		] ?? "Conferência de documentos",
 	responsavel: ["Ana Souza", "Carlos Lima", "Beatriz Nunes"][i % 3] ?? "Ana Souza",
 	status: (["pendente", "em_andamento", "concluido", "bloqueado"] as const)[i % 4] ?? "pendente",
 	quantidade: (i + 1) * 3,
@@ -84,7 +85,7 @@ const columns: DataTableColumn<Processo>[] = [
 	},
 ];
 
-// ── stories ──────────────────────────────────────────────────────────────────
+// ���� stories ������������������������������������������������������������������������������������������������������������������������������������
 
 export const Default: Story = {
 	render: () => (

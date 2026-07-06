@@ -8,7 +8,7 @@ import {
 	TabsContent,
 	TabsList,
 	TabsTrigger,
-} from "@grupo/ui";
+} from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { CheckCircle, Clock, Download, FileText, Pencil, Plus } from "lucide-react";
 import * as React from "react";
@@ -31,7 +31,7 @@ import { StatusCards } from "../status-cards";
 import { StatusDot } from "../status-dot";
 
 /*
- * Páginas completas genéricas — demonstram o encaixe oficial dos blocks.
+ * Páginas completas genéricas � demonstram o encaixe oficial dos blocks.
  * Dados neutros ("Registro/Processo"); nenhuma API, rota ou permissão.
  */
 const meta: Meta = {
@@ -199,10 +199,10 @@ export const FormPageExample: StoryObj = {
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
-		// submete vazio → erro aparece
+		// submete vazio �  erro aparece
 		await userEvent.click(canvas.getByRole("button", { name: "Salvar" }));
 		await waitFor(() => expect(canvas.getByText("O nome é obrigatório")).toBeVisible());
-		// preenche → erro some
+		// preenche �  erro some
 		await userEvent.type(canvas.getByLabelText(/Nome/), "Registro demo");
 		await userEvent.click(canvas.getByRole("button", { name: "Salvar" }));
 		await waitFor(() => expect(canvas.queryByText("O nome é obrigatório")).toBeNull());
@@ -286,7 +286,7 @@ export const DashboardPageExample: StoryObj = {
 			}
 			content={
 				<div className="grid gap-6 lg:grid-cols-2">
-					<ContentCard title="Últimos registros">
+					<ContentCard title="�altimos registros">
 						<DataTable
 							data={REGISTROS.slice(0, 5)}
 							columns={[

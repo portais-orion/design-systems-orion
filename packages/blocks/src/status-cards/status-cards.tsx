@@ -2,7 +2,7 @@
 
 import type * as React from "react";
 
-import { Card, cn } from "@grupo/ui";
+import { Card, cn } from "@portais-orion/ui";
 
 /*
  * Recriado a partir do Portal-Aurora ui/DataTable/StatusCards.tsx.

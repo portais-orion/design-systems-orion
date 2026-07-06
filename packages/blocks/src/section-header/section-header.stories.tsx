@@ -1,4 +1,4 @@
-import { Button } from "@grupo/ui";
+import { Button } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { SectionHeader } from "./section-header";
 

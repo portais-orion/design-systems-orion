@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@grupo/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
  * Mensagem de apoio/validação de formulário. Origem do padrão: os

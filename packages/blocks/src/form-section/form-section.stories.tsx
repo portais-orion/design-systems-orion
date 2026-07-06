@@ -1,4 +1,4 @@
-import { Button, Input } from "@grupo/ui";
+import { Button, Input } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { FormField } from "../form-field";
 import { FormSection } from "./form-section";

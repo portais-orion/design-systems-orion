@@ -1,7 +1,6 @@
 {
-	"name": "@grupo/blocks",
-	"version": "0.0.1",
-	"private": true,
+	"name": "@portais-orion/blocks",
+	"version": "0.2.1",
 	"description": "Composições genéricas do Núcleo de Portais (Camada 2) — dados por props, sem domínio.",
 	"sideEffects": false,
 	"exports": {
@@ -36,28 +35,163 @@
 		"./navigation": "./src/navigation/index.ts",
 		"./sidebar": "./src/sidebar/index.ts"
 	},
+	"files": [
+		"dist"
+	],
 	"scripts": {
-		"build": "tsc --noEmit",
+		"build": "tsup",
 		"typecheck": "tsc --noEmit",
 		"lint": "biome check src"
 	},
 	"peerDependencies": {
+		"@tanstack/react-table": "^8.20.0",
+		"lucide-react": "^1.16.0",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0"
 	},
 	"dependencies": {
-		"@grupo/ui": "workspace:*",
-		"lucide-react": "^1.16.0",
-		"@tanstack/react-table": "^8.20.0"
+		"@portais-orion/ui": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "restricted",
+		"registry": "https://npm.pkg.github.com",
+		"main": "./dist/index.mjs",
+		"module": "./dist/index.mjs",
+		"types": "./dist/index.d.mts",
+		"exports": {
+			".": {
+				"types": "./dist/index.d.mts",
+				"import": "./dist/index.mjs"
+			},
+			"./code-badge": {
+				"types": "./dist/code-badge/index.d.mts",
+				"import": "./dist/code-badge/index.mjs"
+			},
+			"./confirm-dialog": {
+				"types": "./dist/confirm-dialog/index.d.mts",
+				"import": "./dist/confirm-dialog/index.mjs"
+			},
+			"./empty-state": {
+				"types": "./dist/empty-state/index.d.mts",
+				"import": "./dist/empty-state/index.mjs"
+			},
+			"./error-state": {
+				"types": "./dist/error-state/index.d.mts",
+				"import": "./dist/error-state/index.mjs"
+			},
+			"./filter-pill": {
+				"types": "./dist/filter-pill/index.d.mts",
+				"import": "./dist/filter-pill/index.mjs"
+			},
+			"./page-header": {
+				"types": "./dist/page-header/index.d.mts",
+				"import": "./dist/page-header/index.mjs"
+			},
+			"./pagination": {
+				"types": "./dist/pagination/index.d.mts",
+				"import": "./dist/pagination/index.mjs"
+			},
+			"./search-bar": {
+				"types": "./dist/search-bar/index.d.mts",
+				"import": "./dist/search-bar/index.mjs"
+			},
+			"./status-cards": {
+				"types": "./dist/status-cards/index.d.mts",
+				"import": "./dist/status-cards/index.mjs"
+			},
+			"./status-dot": {
+				"types": "./dist/status-dot/index.d.mts",
+				"import": "./dist/status-dot/index.mjs"
+			},
+			"./table-skeleton-rows": {
+				"types": "./dist/table-skeleton-rows/index.d.mts",
+				"import": "./dist/table-skeleton-rows/index.mjs"
+			},
+			"./data-table": {
+				"types": "./dist/data-table/index.d.mts",
+				"import": "./dist/data-table/index.mjs"
+			},
+			"./loading-overlay": {
+				"types": "./dist/loading-overlay/index.d.mts",
+				"import": "./dist/loading-overlay/index.mjs"
+			},
+			"./content-card": {
+				"types": "./dist/content-card/index.d.mts",
+				"import": "./dist/content-card/index.mjs"
+			},
+			"./dashboard-page-layout": {
+				"types": "./dist/dashboard-page-layout/index.d.mts",
+				"import": "./dist/dashboard-page-layout/index.mjs"
+			},
+			"./detail-page-layout": {
+				"types": "./dist/detail-page-layout/index.d.mts",
+				"import": "./dist/detail-page-layout/index.mjs"
+			},
+			"./field-group": {
+				"types": "./dist/field-group/index.d.mts",
+				"import": "./dist/field-group/index.mjs"
+			},
+			"./form-actions": {
+				"types": "./dist/form-actions/index.d.mts",
+				"import": "./dist/form-actions/index.mjs"
+			},
+			"./form-field": {
+				"types": "./dist/form-field/index.d.mts",
+				"import": "./dist/form-field/index.mjs"
+			},
+			"./form-message": {
+				"types": "./dist/form-message/index.d.mts",
+				"import": "./dist/form-message/index.mjs"
+			},
+			"./form-page-layout": {
+				"types": "./dist/form-page-layout/index.d.mts",
+				"import": "./dist/form-page-layout/index.mjs"
+			},
+			"./form-section": {
+				"types": "./dist/form-section/index.d.mts",
+				"import": "./dist/form-section/index.mjs"
+			},
+			"./list-page-layout": {
+				"types": "./dist/list-page-layout/index.d.mts",
+				"import": "./dist/list-page-layout/index.mjs"
+			},
+			"./page-layout": {
+				"types": "./dist/page-layout/index.d.mts",
+				"import": "./dist/page-layout/index.mjs"
+			},
+			"./section-header": {
+				"types": "./dist/section-header/index.d.mts",
+				"import": "./dist/section-header/index.mjs"
+			},
+			"./app-shell": {
+				"types": "./dist/app-shell/index.d.mts",
+				"import": "./dist/app-shell/index.mjs"
+			},
+			"./breadcrumbs": {
+				"types": "./dist/breadcrumbs/index.d.mts",
+				"import": "./dist/breadcrumbs/index.mjs"
+			},
+			"./navigation": {
+				"types": "./dist/navigation/index.d.mts",
+				"import": "./dist/navigation/index.mjs"
+			},
+			"./sidebar": {
+				"types": "./dist/sidebar/index.d.mts",
+				"import": "./dist/sidebar/index.mjs"
+			}
+		}
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@grupo/tsconfig": "workspace:*",
-		"@types/react": "^19.0.0",
-		"react": "^19.0.0",
-		"typescript": "^5.7.3",
+		"@portais-orion/tsconfig": "workspace:*",
 		"@storybook/react": "^10.4.1",
+		"@tanstack/react-table": "^8.20.0",
+		"@types/react": "^19.0.0",
+		"lucide-react": "^1.16.0",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
 		"storybook": "^10.4.1",
-		"react-dom": "^19.0.0"
+		"tsup": "^8.3.5",
+		"typescript": "^5.7.3"
 	}
 }

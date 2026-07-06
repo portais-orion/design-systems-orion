@@ -6,14 +6,14 @@ import { Meta, Title } from "@storybook/addon-docs/blocks";
 
 ## Modelo
 
-Duas camadas em `@grupo/tokens`:
+Duas camadas em `@portais-orion/tokens`:
 
-1. **`base.css`** — o mapeamento semântico (`@theme inline` do Tailwind v4) + defaults neutros. Não contém nenhuma cor de marca.
-2. **`themes/<marca>.css`** — somente valores de identidade da marca (primary, hover, accent, sidebar), aplicados via CSS variables.
+1. **`base.css`** � o mapeamento semântico (`@theme inline` do Tailwind v4) + defaults neutros. Não contém nenhuma cor de marca.
+2. **`themes/<marca>.css`** � somente valores de identidade da marca (primary, hover, accent, sidebar), aplicados via CSS variables.
 
 ## Seletor de tema
 
-Cada tema define exatamente três seletores (nunca `:root, [data-brand]` simples — empata especificidade e o último import venceria sempre):
+Cada tema define exatamente três seletores (nunca `:root, [data-brand]` simples � empata especificidade e o último import venceria sempre):
 
 ```css
 :root:not([data-brand]),          /* fallback sem marca definida        */
@@ -28,21 +28,21 @@ Cada tema define exatamente três seletores (nunca `:root, [data-brand]` simples
 | **supertrans** | azul petróleo | mais claro | ciano | navy |
 | **aurora** | laranja | mais escuro | laranja claro | slate |
 
-Use a toolbar **Marca** deste Storybook, ou a story *Núcleo → Comparativo de Marcas* para ver as duas lado a lado.
+Use a toolbar **Marca** deste Storybook, ou a story *Núcleo �  Comparativo de Marcas* para ver as duas lado a lado.
 
 ## Uso nos produtos
 
 ```css
-@import "@grupo/tokens/base.css";
-@import "@grupo/tokens/themes/aurora.css";  /* UM tema por produto */
+@import "@portais-orion/tokens/base.css";
+@import "@portais-orion/tokens/themes/aurora.css";  /* UM tema por produto */
 ```
 
-Ambientes multi-marca (como este Storybook) importam `@grupo/tokens/index.css` e controlam a marca por `data-brand` no elemento raiz.
+Ambientes multi-marca (como este Storybook) importam `@portais-orion/tokens/index.css` e controlam a marca por `data-brand` no elemento raiz.
 
 ## Regras
 
-- **Proibido** hex em componentes — hex existe apenas dentro de `packages/tokens/src/themes/`.
-- **Proibido** classes de marca (`orange-*`, `blue-*`, `primary-600`) — use `bg-primary`, `bg-primary-hover`, `text-muted-foreground`, `border-border`.
+- **Proibido** hex em componentes � hex existe apenas dentro de `packages/tokens/src/themes/`.
+- **Proibido** classes de marca (`orange-*`, `blue-*`, `primary-600`) � use `bg-primary`, `bg-primary-hover`, `text-muted-foreground`, `border-border`.
 - Variações de cor são tokens (`--primary-hover`), nunca escala numérica.
 - Token novo: mapeie no `@theme` do base.css, dê default neutro em `:root` e defina o valor em **todos** os temas (tema incompleto quebra a outra marca silenciosamente).
 - Marca nova = um arquivo `themes/<marca>.css` (workflow `ai/workflows/add-brand-theme.md`).

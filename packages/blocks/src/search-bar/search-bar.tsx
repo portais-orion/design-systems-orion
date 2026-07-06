@@ -3,7 +3,7 @@
 import { Search, X } from "lucide-react";
 import * as React from "react";
 
-import { Input, cn } from "@grupo/ui";
+import { Input, cn } from "@portais-orion/ui";
 
 /*
  * Recriado a partir do Portal-Aurora ui/DataTable/SearchBar.tsx, com API

@@ -1,12 +1,31 @@
 {
-	"name": "@grupo/tokens",
-	"version": "0.0.1",
-	"private": true,
+	"name": "@portais-orion/tokens",
+	"version": "0.1.1",
 	"description": "Tokens semânticos e temas por marca do Núcleo de Portais do Grupo",
+	"sideEffects": [
+		"*.css"
+	],
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "node scripts/build-tokens.mjs",
+		"prepack": "node scripts/build-tokens.mjs"
+	},
 	"exports": {
 		"./index.css": "./src/index.css",
 		"./base.css": "./src/base.css",
 		"./themes/supertrans.css": "./src/themes/supertrans.css",
 		"./themes/aurora.css": "./src/themes/aurora.css"
+	},
+	"publishConfig": {
+		"access": "restricted",
+		"registry": "https://npm.pkg.github.com",
+		"exports": {
+			"./index.css": "./dist/index.css",
+			"./base.css": "./dist/base.css",
+			"./themes/supertrans.css": "./dist/themes/supertrans.css",
+			"./themes/aurora.css": "./dist/themes/aurora.css"
+		}
 	}
 }

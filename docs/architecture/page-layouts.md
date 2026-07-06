@@ -10,19 +10,19 @@ Base: `header` + conteúdo (pilha space-y-6, padding p-6) + `footer`; `maxWidth:
 
 ## ListPageLayout
 
-`header` → `stats` → `toolbar` + `filters` → `content` (DataTable) → `footer`. A tela liga busca→dados; o layout só posiciona.
+`header` �  `stats` �  `toolbar` + `filters` �  `content` (DataTable) �  `footer`. A tela liga busca� dados; o layout só posiciona.
 
 ## FormPageLayout
 
-`form` (slot único — o `<form>` é do consumidor) contido em max-w-3xl, ou grid com `aside` (20rem) quando presente.
+`form` (slot único � o `<form>` é do consumidor) contido em max-w-3xl, ou grid com `aside` (20rem) quando presente.
 
 ## DetailPageLayout
 
-`summary` → `tabs` → `content`, com `aside` opcional. Compatível com Tabs do @grupo/ui.
+`summary` �  `tabs` �  `content`, com `aside` opcional. Compatível com Tabs do @supertrans-transportes/ui.
 
 ## DashboardPageLayout
 
-`stats` → `content` (grid livre) + `aside` opcional. Sem chart específico (lib de gráficos ainda não decidida — ADR pendente).
+`stats` �  `content` (grid livre) + `aside` opcional. Sem chart específico (lib de gráficos ainda não decidida � ADR pendente).
 
 ## Auxiliares
 

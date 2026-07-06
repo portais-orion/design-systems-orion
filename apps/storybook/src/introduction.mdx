@@ -14,24 +14,24 @@ O Núcleo de Portais é a base oficial para criação, padronização e evoluç�
 
 | Pacote | Camada | Conteúdo |
 |---|---|---|
-| `@grupo/tokens` | 0 | tokens semânticos + temas por marca (CSS puro) |
-| `@grupo/ui` | 1 | 26 primitives (Base UI + Tailwind v4 + cva) |
-| `@grupo/blocks` | 2 | composições genéricas: DataTable, PageHeader, Pagination, ConfirmDialog... |
+| `@portais-orion/tokens` | 0 | tokens semânticos + temas por marca (CSS puro) |
+| `@portais-orion/ui` | 1 | 26 primitives (Base UI + Tailwind v4 + cva) |
+| `@portais-orion/blocks` | 2 | composições genéricas: DataTable, PageHeader, Pagination, ConfirmDialog... |
 
 ## Instalação (produtos)
 
 ```sh
-pnpm add @grupo/tokens @grupo/ui @grupo/blocks
+pnpm add @portais-orion/tokens @portais-orion/ui @portais-orion/blocks
 ```
 
 ```css
 /* entrada CSS do produto */
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@grupo/tokens/base.css";
-@import "@grupo/tokens/themes/supertrans.css"; /* UM tema por produto */
-@source "../node_modules/@grupo/ui/src";
-@source "../node_modules/@grupo/blocks/src";
+@import "@portais-orion/tokens/base.css";
+@import "@portais-orion/tokens/themes/supertrans.css"; /* UM tema por produto */
+@source "../node_modules/@portais-orion/ui/src";
+@source "../node_modules/@portais-orion/blocks/src";
 ```
 
 ## Temas
