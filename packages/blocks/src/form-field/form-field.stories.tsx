@@ -41,12 +41,7 @@ export const WithDescription: Story = {
 
 export const WithError: Story = {
 	render: () => (
-		<FormField
-			label="E-mail"
-			htmlFor="ff-mail"
-			error="Formato de e-mail inválido"
-			className="w-72"
-		>
+		<FormField label="E-mail" htmlFor="ff-mail" error="Formato de e-mail inválido" className="w-72">
 			<Input id="ff-mail" aria-invalid aria-describedby="ff-mail-error" defaultValue="abc@" />
 		</FormField>
 	),

@@ -1,6 +1,6 @@
 {
 	"name": "@portais-orion/blocks",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"description": "Composições genéricas do Núcleo de Portais (Camada 2) — dados por props, sem domínio.",
 	"sideEffects": false,
 	"exports": {
@@ -33,7 +33,10 @@
 		"./app-shell": "./src/app-shell/index.ts",
 		"./breadcrumbs": "./src/breadcrumbs/index.ts",
 		"./navigation": "./src/navigation/index.ts",
-		"./sidebar": "./src/sidebar/index.ts"
+		"./sidebar": "./src/sidebar/index.ts",
+		"./crud-modal-header": "./src/crud-modal-header/index.ts",
+		"./filters-card": "./src/filters-card/index.ts",
+		"./launcher-card": "./src/launcher-card/index.ts"
 	},
 	"files": [
 		"dist"
@@ -178,6 +181,18 @@
 			"./sidebar": {
 				"types": "./dist/sidebar/index.d.mts",
 				"import": "./dist/sidebar/index.mjs"
+			},
+			"./crud-modal-header": {
+				"types": "./dist/crud-modal-header/index.d.mts",
+				"import": "./dist/crud-modal-header/index.mjs"
+			},
+			"./filters-card": {
+				"types": "./dist/filters-card/index.d.mts",
+				"import": "./dist/filters-card/index.mjs"
+			},
+			"./launcher-card": {
+				"types": "./dist/launcher-card/index.d.mts",
+				"import": "./dist/launcher-card/index.mjs"
 			}
 		}
 	},
