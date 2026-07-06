@@ -1,0 +1,55 @@
+# Sprint 7.5 — Publicação dos pacotes do Núcleo no GitHub Packages.
+# Manual (workflow_dispatch), dry-run por padrão. NÃO publica em push.
+#
+# Pré-requisitos:
+#   - Scope dos pacotes == owner do repo (hoje: @mateusarcestr). Rode o runbook de
+#     rename (docs/architecture/package-distribution.md) ANTES do primeiro publish real.
+#   - GITHUB_TOKEN do job tem `packages: write` (definido em permissions abaixo).
+name: Release packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Só empacota (pnpm pack:all), sem publicar"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com
+          scope: "@mateusarcestr"
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Quality gates
+        run: |
+          pnpm check
+          pnpm typecheck
+          pnpm build
+          pnpm check:pureza
+
+      - name: Pack (dry-run)
+        if: ${{ inputs.dry-run }}
+        run: pnpm pack:all
+
+      - name: Publish
+        if: ${{ !inputs.dry-run }}
+        run: pnpm publish:packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

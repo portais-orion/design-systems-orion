@@ -1,7 +1,6 @@
 {
 	"name": "@grupo/blocks",
-	"version": "0.0.1",
-	"private": true,
+	"version": "0.1.0",
 	"description": "Composições genéricas do Núcleo de Portais (Camada 2) — dados por props, sem domínio.",
 	"sideEffects": false,
 	"exports": {
@@ -36,28 +35,35 @@
 		"./navigation": "./src/navigation/index.ts",
 		"./sidebar": "./src/sidebar/index.ts"
 	},
+	"files": ["src"],
 	"scripts": {
 		"build": "tsc --noEmit",
 		"typecheck": "tsc --noEmit",
 		"lint": "biome check src"
 	},
 	"peerDependencies": {
+		"@tanstack/react-table": "^8.20.0",
+		"lucide-react": "^1.16.0",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0"
 	},
 	"dependencies": {
-		"@grupo/ui": "workspace:*",
-		"lucide-react": "^1.16.0",
-		"@tanstack/react-table": "^8.20.0"
+		"@grupo/ui": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "restricted",
+		"registry": "https://npm.pkg.github.com"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@grupo/tsconfig": "workspace:*",
-		"@types/react": "^19.0.0",
-		"react": "^19.0.0",
-		"typescript": "^5.7.3",
 		"@storybook/react": "^10.4.1",
+		"@tanstack/react-table": "^8.20.0",
+		"@types/react": "^19.0.0",
+		"lucide-react": "^1.16.0",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
 		"storybook": "^10.4.1",
-		"react-dom": "^19.0.0"
+		"typescript": "^5.7.3"
 	}
 }

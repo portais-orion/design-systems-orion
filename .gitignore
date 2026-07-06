@@ -6,3 +6,8 @@ storybook-static/
 .DS_Store
 .env
 .env.local
+
+# Sprint 7.5 — empacotamento/distribuição
+.npmrc
+.tmp/
+*.tgz

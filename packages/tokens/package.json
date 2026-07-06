@@ -1,12 +1,17 @@
 {
 	"name": "@grupo/tokens",
-	"version": "0.0.1",
-	"private": true,
+	"version": "0.1.0",
 	"description": "Tokens semânticos e temas por marca do Núcleo de Portais do Grupo",
+	"sideEffects": ["*.css"],
+	"files": ["src"],
 	"exports": {
 		"./index.css": "./src/index.css",
 		"./base.css": "./src/base.css",
 		"./themes/supertrans.css": "./src/themes/supertrans.css",
 		"./themes/aurora.css": "./src/themes/aurora.css"
+	},
+	"publishConfig": {
+		"access": "restricted",
+		"registry": "https://npm.pkg.github.com"
 	}
 }

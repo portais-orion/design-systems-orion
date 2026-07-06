@@ -1,0 +1,7 @@
+# Modelo de .npmrc COM autenticação — NUNCA commite o arquivo real com token.
+# Copie para ~/.npmrc (recomendado) ou exporte GITHUB_PACKAGES_TOKEN no ambiente.
+#
+# O token precisa de scope read:packages (instalar) e/ou write:packages (publicar).
+# PAT classic: https://github.com/settings/tokens
+@mateusarcestr:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_PACKAGES_TOKEN}
