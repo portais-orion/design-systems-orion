@@ -1,5 +1,5 @@
-import { Table, TableBody, TableHead, TableHeader, TableRow } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@supertrans-transportes/ui";
 import { TableSkeletonRows } from "./table-skeleton-rows";
 
 const meta: Meta<typeof TableSkeletonRows> = {
@@ -16,7 +16,7 @@ export const Default: Story = {
 		<Table>
 			<TableHeader>
 				<TableRow>
-					<TableHead>Código</TableHead>
+					<TableHead>CÃ³digo</TableHead>
 					<TableHead>Nome</TableHead>
 					<TableHead>Status</TableHead>
 					<TableHead>Criado em</TableHead>

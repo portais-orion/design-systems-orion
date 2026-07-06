@@ -1,5 +1,5 @@
-import { Button } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "@supertrans-transportes/ui";
 import { RefreshCw } from "lucide-react";
 import { ErrorState } from "./error-state";
 
@@ -26,7 +26,7 @@ export const ComRetry: Story = {
 
 export const TextoCustomizado: Story = {
 	args: {
-		title: "Falha ao processar a solicitação",
+		title: "Falha ao processar a solicitaÃ§Ã£o",
 		description: "O servidor demorou para responder.",
 	},
 };

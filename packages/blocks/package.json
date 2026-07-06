@@ -1,7 +1,7 @@
 {
-	"name": "@grupo/blocks",
+	"name": "@supertrans-transportes/blocks",
 	"version": "0.1.0",
-	"description": "Composições genéricas do Núcleo de Portais (Camada 2) — dados por props, sem domínio.",
+	"description": "ComposiÃ§Ãµes genÃ©ricas do NÃºcleo de Portais (Camada 2) â€” dados por props, sem domÃ­nio.",
 	"sideEffects": false,
 	"exports": {
 		".": "./src/index.ts",
@@ -48,7 +48,7 @@
 		"react-dom": "^19.0.0"
 	},
 	"dependencies": {
-		"@grupo/ui": "workspace:*"
+		"@supertrans-transportes/ui": "workspace:*"
 	},
 	"publishConfig": {
 		"access": "restricted",
@@ -56,7 +56,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@grupo/tsconfig": "workspace:*",
+		"@supertrans-transportes/tsconfig": "workspace:*",
 		"@storybook/react": "^10.4.1",
 		"@tanstack/react-table": "^8.20.0",
 		"@types/react": "^19.0.0",

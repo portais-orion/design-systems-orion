@@ -1,8 +1,15 @@
 import type * as React from "react";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, cn } from "@grupo/ui";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+	cn,
+} from "@supertrans-transportes/ui";
 
-/* Card de conteúdo com cabeçalho/ações — estrutura comum de painéis. */
+/* Card de conteÃºdo com cabeÃ§alho/aÃ§Ãµes â€” estrutura comum de painÃ©is. */
 export type ContentCardProps = {
 	title?: React.ReactNode;
 	description?: React.ReactNode;

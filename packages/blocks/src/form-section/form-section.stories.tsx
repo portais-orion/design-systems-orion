@@ -1,5 +1,5 @@
-import { Button, Input } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button, Input } from "@supertrans-transportes/ui";
 import { FormField } from "../form-field";
 import { FormSection } from "./form-section";
 
@@ -17,7 +17,7 @@ const Campos = () => (
 		<FormField label="Nome" htmlFor="fs-nome">
 			<Input id="fs-nome" />
 		</FormField>
-		<FormField label="Código" htmlFor="fs-cod">
+		<FormField label="CÃ³digo" htmlFor="fs-cod">
 			<Input id="fs-cod" />
 		</FormField>
 	</>
@@ -35,7 +35,7 @@ export const WithDescription: Story = {
 	render: () => (
 		<FormSection
 			title="Dados gerais"
-			description="Informações principais do registro."
+			description="InformaÃ§Ãµes principais do registro."
 			className="w-96"
 		>
 			<Campos />
@@ -46,7 +46,7 @@ export const WithDescription: Story = {
 export const WithActions: Story = {
 	render: () => (
 		<FormSection
-			title="Endereços"
+			title="EndereÃ§os"
 			actions={
 				<Button variant="outline" size="sm">
 					Adicionar
@@ -65,7 +65,7 @@ export const MultipleSections: Story = {
 			<FormSection title="Dados gerais">
 				<Campos />
 			</FormSection>
-			<FormSection title="Configurações" description="Ajustes opcionais.">
+			<FormSection title="ConfiguraÃ§Ãµes" description="Ajustes opcionais.">
 				<Campos />
 			</FormSection>
 		</div>

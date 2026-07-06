@@ -1,5 +1,5 @@
-import { Button } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "@supertrans-transportes/ui";
 import { Inbox, SearchX } from "lucide-react";
 import { EmptyState } from "./empty-state";
 
@@ -22,7 +22,7 @@ export const Default: Story = {
 export const ComAcao: Story = {
 	args: {
 		title: "Nenhum item cadastrado",
-		description: "Cadastre o primeiro item para começar.",
+		description: "Cadastre o primeiro item para comeÃ§ar.",
 		icon: Inbox,
 		action: <Button size="sm">Novo registro</Button>,
 	},

@@ -1,30 +1,30 @@
-# Componentes — estado atual do @grupo/ui
+# Componentes â€” estado atual do @supertrans-transportes/ui
 
 Atualizado na Sprint 1.
 
 ## Implementados (28 + cn)
 
-| Componente | Origem | Base UI | Observações |
+| Componente | Origem | Base UI | ObservaÃ§Ãµes |
 |---|---|---|---|
-| button | Sprint 0 (Supertrans) | `button` | referência de padrão |
-| input, label, textarea, card, badge, skeleton, table | Extração Supertrans | — (nativos) | badge: variants `brand`/`origin-*` removidas (domínio); `tinted`/`success`/`warning` tokenizadas |
-| checkbox, select, dialog, tooltip, avatar | Extração Supertrans | `checkbox`, `select`, `dialog`, `tooltip`, `avatar` | `bg-white` → `bg-background` |
-| switch, tabs, separator, dropdown-menu, alert-dialog | Recriação (API do Aurora) | `switch`, `tabs`, `separator`, `menu`, `alert-dialog` | nomes públicos padrão shadcn p/ facilitar migração |
-| alert | Recriação (API do Aurora) | — (`role="alert"`) | variants: default, destructive, info |
-| popover, radio-group, scroll-area | Recriação (API do Aurora; Sprint 4) | `popover`, `radio-group`+`radio`, `scroll-area` | fecham o inventário Radix de baixo risco |
-| combobox, multi-select | Recriação (API do plano; Sprint 4.1) | `combobox` (single/multiple) | MultiSelect único substitui multi-select + GroupedMultiSelect do Aurora; ver advanced-inputs.md |
-| sheet, accordion, progress, spinner | Novos (padrão shadcn/Base UI; Sprint 4) | `dialog`, `accordion`, `progress`, — | sheet com side left/right/top/bottom; progress com indeterminate |
+| button | Sprint 0 (Supertrans) | `button` | referÃªncia de padrÃ£o |
+| input, label, textarea, card, badge, skeleton, table | ExtraÃ§Ã£o Supertrans | â€” (nativos) | badge: variants `brand`/`origin-*` removidas (domÃ­nio); `tinted`/`success`/`warning` tokenizadas |
+| checkbox, select, dialog, tooltip, avatar | ExtraÃ§Ã£o Supertrans | `checkbox`, `select`, `dialog`, `tooltip`, `avatar` | `bg-white` â†’ `bg-background` |
+| switch, tabs, separator, dropdown-menu, alert-dialog | RecriaÃ§Ã£o (API do Aurora) | `switch`, `tabs`, `separator`, `menu`, `alert-dialog` | nomes pÃºblicos padrÃ£o shadcn p/ facilitar migraÃ§Ã£o |
+| alert | RecriaÃ§Ã£o (API do Aurora) | â€” (`role="alert"`) | variants: default, destructive, info |
+| popover, radio-group, scroll-area | RecriaÃ§Ã£o (API do Aurora; Sprint 4) | `popover`, `radio-group`+`radio`, `scroll-area` | fecham o inventÃ¡rio Radix de baixo risco |
+| combobox, multi-select | RecriaÃ§Ã£o (API do plano; Sprint 4.1) | `combobox` (single/multiple) | MultiSelect Ãºnico substitui multi-select + GroupedMultiSelect do Aurora; ver advanced-inputs.md |
+| sheet, accordion, progress, spinner | Novos (padrÃ£o shadcn/Base UI; Sprint 4) | `dialog`, `accordion`, `progress`, â€” | sheet com side left/right/top/bottom; progress com indeterminate |
 
-## Blocks (@grupo/blocks)
+## Blocks (@supertrans-transportes/blocks)
 
-11 blocks desde a Sprint 2 — ver `docs/architecture/blocks.md`.
+11 blocks desde a Sprint 2 â€” ver `docs/architecture/blocks.md`.
 
 ## Adiados
 
-Inventário do Aurora 100% coberto. Command permanece não-público por decisão (advanced-inputs.md).
+InventÃ¡rio do Aurora 100% coberto. Command permanece nÃ£o-pÃºblico por decisÃ£o (advanced-inputs.md).
 
-## Convenções
+## ConvenÃ§Ãµes
 
-- Animações usam classes do `tw-animate-css` — consumidores devem importar `tw-animate-css` no CSS de entrada (o Storybook do núcleo já importa).
-- Subpath exports disponíveis: `@grupo/ui/button`, `@grupo/ui/dialog`, etc.
+- AnimaÃ§Ãµes usam classes do `tw-animate-css` â€” consumidores devem importar `tw-animate-css` no CSS de entrada (o Storybook do nÃºcleo jÃ¡ importa).
+- Subpath exports disponÃ­veis: `@supertrans-transportes/ui/button`, `@supertrans-transportes/ui/dialog`, etc.
 - Regras completas: `ai/rules/components.md`.

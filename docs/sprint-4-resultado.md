@@ -1,28 +1,28 @@
-# Sprint 4 — Resultado
+# Sprint 4 â€” Resultado
 
 ## Resumo
 
-Cobertura do `@grupo/ui` ampliada de 19 para **26 primitives** (+popover, radio-group, scroll-area, sheet, accordion, progress, spinner), `LoadingOverlay` criado no `@grupo/blocks`, e spike de inputs avançados concluído com decisão documentada. Storybook: **133 stories** (+34). Todas as validações e o check de pureza verdes. Nenhum portal alterado.
+Cobertura do `@supertrans-transportes/ui` ampliada de 19 para **26 primitives** (+popover, radio-group, scroll-area, sheet, accordion, progress, spinner), `LoadingOverlay` criado no `@supertrans-transportes/blocks`, e spike de inputs avanÃ§ados concluÃ­do com decisÃ£o documentada. Storybook: **133 stories** (+34). Todas as validaÃ§Ãµes e o check de pureza verdes. Nenhum portal alterado.
 
-## Componentes implementados em @grupo/ui
+## Componentes implementados em @supertrans-transportes/ui
 
 | Componente | Primitivo Base UI | Notas |
 |---|---|---|
-| Popover | `popover` (Positioner+Popup) | `render` prop (não asChild); align/sideOffset |
-| RadioGroup | `radio-group` + `radio` | superfície shadcn (RadioGroup+RadioGroupItem); controlado |
+| Popover | `popover` (Positioner+Popup) | `render` prop (nÃ£o asChild); align/sideOffset |
+| RadioGroup | `radio-group` + `radio` | superfÃ­cie shadcn (RadioGroup+RadioGroupItem); controlado |
 | ScrollArea | `scroll-area` | vertical+horizontal, thumb tokenizado, Corner |
 | Sheet | `dialog` (reuso) | cva `side`: right/left/top/bottom; overlay; esc/click-fora |
-| Accordion | `accordion` | `type="single"|"multiple"` → prop `multiple`; chevron via `data-panel-open` |
+| Accordion | `accordion` | `type="single"|"multiple"` â†’ prop `multiple`; chevron via `data-panel-open` |
 | Progress | `progress` | ARIA pelo primitivo; `value={null}` = indeterminate |
-| Spinner | — (Loader2 + cva) | com label → `role="status"`; sem → `aria-hidden` |
+| Spinner | â€” (Loader2 + cva) | com label â†’ `role="status"`; sem â†’ `aria-hidden` |
 
-## Blocks implementados em @grupo/blocks
+## Blocks implementados em @supertrans-transportes/blocks
 
-**LoadingOverlay** — compõe `Spinner`; children permanecem montados; `aria-busy`; overlay com `bg-background/60` + blur; interação livre quando `loading=false`. Story WithTable demonstra sobre o DataTable.
+**LoadingOverlay** â€” compÃµe `Spinner`; children permanecem montados; `aria-busy`; overlay com `bg-background/60` + blur; interaÃ§Ã£o livre quando `loading=false`. Story WithTable demonstra sobre o DataTable.
 
-## Componentes avançados analisados / Decisão
+## Componentes avanÃ§ados analisados / DecisÃ£o
 
-`docs/architecture/advanced-inputs.md`: **nenhum implementado nesta sprint** (deliberado — MultiSelect é o componente com mais estados da lib e merece sprint dedicada; custo de espera baixo pois nenhum portal consome o núcleo ainda). Decisões travadas: **MultiSelect único** (multi-select + grouped-multi-select convergem — 19 telas do Aurora migram para o mesmo componente, grupos detectados pela forma de `options`); **Combobox** como irmão de popup compartilhado; **Command NÃO vira componente público** por ora (no Aurora é só motor interno do multi-select); **cmdk descartado** (Base UI 1.5 tem `combobox`/`autocomplete`/`Select multiple` nativos; o command do Aurora acopla cmdk a tipos Radix). Plano da Sprint 4.1: Combobox → MultiSelect → stories com os 3 maiores casos reais do Aurora.
+`docs/architecture/advanced-inputs.md`: **nenhum implementado nesta sprint** (deliberado â€” MultiSelect Ã© o componente com mais estados da lib e merece sprint dedicada; custo de espera baixo pois nenhum portal consome o nÃºcleo ainda). DecisÃµes travadas: **MultiSelect Ãºnico** (multi-select + grouped-multi-select convergem â€” 19 telas do Aurora migram para o mesmo componente, grupos detectados pela forma de `options`); **Combobox** como irmÃ£o de popup compartilhado; **Command NÃƒO vira componente pÃºblico** por ora (no Aurora Ã© sÃ³ motor interno do multi-select); **cmdk descartado** (Base UI 1.5 tem `combobox`/`autocomplete`/`Select multiple` nativos; o command do Aurora acopla cmdk a tipos Radix). Plano da Sprint 4.1: Combobox â†’ MultiSelect â†’ stories com os 3 maiores casos reais do Aurora.
 
 ## Estrutura final adicionada
 
@@ -38,40 +38,40 @@ Subpath exports adicionados nos dois package.json; barrels atualizados.
 
 34 novas (total 133): Popover (Default, WithForm, WithCustomWidth, SupertransBrand, AuroraBrand), RadioGroup (Default, Disabled, Horizontal, WithDescriptions), ScrollArea (Vertical, Horizontal, LongList, InsideCard), Sheet (Right, Left, Bottom, WithFormContent, ScrollableContent), Accordion (Single, Multiple, WithLongContent, DisabledItem), Progress (Default, DifferentValues, Indeterminate, WithLabel), Spinner (Default, Sizes, WithLabel, InsideButton), LoadingOverlay (Default, WithCard, WithTable, WithoutLabel).
 
-## Documentação criada/atualizada
+## DocumentaÃ§Ã£o criada/atualizada
 
-`advanced-inputs.md` (novo), `components.md` (26 primitives), `blocks.md` (+LoadingOverlay), `ai/rules/components.md` (aprendizados Base UI: radio module, prop `multiple`, `data-panel-open`, spinner a11y), README (nota "rode `pnpm install` após cada sync de sprint"), changeset minor duplo.
+`advanced-inputs.md` (novo), `components.md` (26 primitives), `blocks.md` (+LoadingOverlay), `ai/rules/components.md` (aprendizados Base UI: radio module, prop `multiple`, `data-panel-open`, spinner a11y), README (nota "rode `pnpm install` apÃ³s cada sync de sprint"), changeset minor duplo.
 
-## Validações executadas
+## ValidaÃ§Ãµes executadas
 
 ```
-pnpm install          → Done in 1s (sem deps novas)
-pnpm check            → Checked 148 files. No fixes applied (verde)
-pnpm typecheck        → 3 successful, 3 total
-pnpm build            → 3 successful, 3 total
-pnpm build:storybook  → completed successfully (133 stories)
-pnpm check:pureza     → OK — nenhum vazamento encontrado
-pnpm storybook (dev)  → HTTP 200
+pnpm install          â†’ Done in 1s (sem deps novas)
+pnpm check            â†’ Checked 148 files. No fixes applied (verde)
+pnpm typecheck        â†’ 3 successful, 3 total
+pnpm build            â†’ 3 successful, 3 total
+pnpm build:storybook  â†’ completed successfully (133 stories)
+pnpm check:pureza     â†’ OK â€” nenhum vazamento encontrado
+pnpm storybook (dev)  â†’ HTTP 200
 ```
 
 ## Problemas encontrados
 
-1. Accordion: a prop desta versão do Base UI é `multiple`, não `openMultiple` (docs internas divergiam) — corrigido e registrado na rule.
-2. `className` do Root do Base UI aceita função `(state) => string`, conflitando com `cn()` — wrapper tipa `className?: string`.
-3. Biome useSemanticElements no `role="status"` do Spinner — suprimido com justificativa (não existe elemento nativo para live region de status).
+1. Accordion: a prop desta versÃ£o do Base UI Ã© `multiple`, nÃ£o `openMultiple` (docs internas divergiam) â€” corrigido e registrado na rule.
+2. `className` do Root do Base UI aceita funÃ§Ã£o `(state) => string`, conflitando com `cn()` â€” wrapper tipa `className?: string`.
+3. Biome useSemanticElements no `role="status"` do Spinner â€” suprimido com justificativa (nÃ£o existe elemento nativo para live region de status).
 
-## Decisões tomadas
+## DecisÃµes tomadas
 
-Sheet reusa o Dialog primitivo (nunca criar drawer paralelo); Spinner sem label é `aria-hidden`; Progress indeterminate por `value` ausente; stories de marca explícitas no Popover conforme pedido (as demais usam a toolbar).
+Sheet reusa o Dialog primitivo (nunca criar drawer paralelo); Spinner sem label Ã© `aria-hidden`; Progress indeterminate por `value` ausente; stories de marca explÃ­citas no Popover conforme pedido (as demais usam a toolbar).
 
 ## O que ficou fora
 
 Combobox/Command/MultiSelect/GroupedMultiSelect (Sprint 4.1, plano pronto); FormField/FormSection, AppShell/Sidebar/Breadcrumb, templates (sprints posteriores conforme roadmap).
 
-## Pendências
+## PendÃªncias
 
-a11y automatizada e visual regression (recorrente desde a Sprint 0 — recomendo resolver ANTES da adoção pelo Supertrans); CI para check:pureza; validação de teclado dos novos overlays feita manualmente via stories.
+a11y automatizada e visual regression (recorrente desde a Sprint 0 â€” recomendo resolver ANTES da adoÃ§Ã£o pelo Supertrans); CI para check:pureza; validaÃ§Ã£o de teclado dos novos overlays feita manualmente via stories.
 
-## Próxima sprint recomendada
+## PrÃ³xima sprint recomendada
 
-**Sprint 4.1 (curta) — Combobox + MultiSelect** seguindo `advanced-inputs.md`, fechando 100% do inventário de primitives do Aurora. Em seguida, **Sprint 5 — Supertrans consome o núcleo**, que é o primeiro teste real de tudo que foi construído.
+**Sprint 4.1 (curta) â€” Combobox + MultiSelect** seguindo `advanced-inputs.md`, fechando 100% do inventÃ¡rio de primitives do Aurora. Em seguida, **Sprint 5 â€” Supertrans consome o nÃºcleo**, que Ã© o primeiro teste real de tudo que foi construÃ­do.

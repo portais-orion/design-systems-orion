@@ -1,12 +1,12 @@
 import { FolderOpen } from "lucide-react";
 import type * as React from "react";
 
-import { cn } from "@grupo/ui";
+import { cn } from "@supertrans-transportes/ui";
 
 /*
  * Origem: portal-supertrans gestao-cadastros/shared.tsx (EmptyState).
- * Generalizado: textos e ação viraram props/slot (a versão original tinha
- * textos fixos e callbacks de domínio onClear/onNew).
+ * Generalizado: textos e aÃ§Ã£o viraram props/slot (a versÃ£o original tinha
+ * textos fixos e callbacks de domÃ­nio onClear/onNew).
  */
 export type EmptyStateProps = {
 	title: string;

@@ -1,5 +1,5 @@
-import { Button } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "@supertrans-transportes/ui";
 import { Download, Plus } from "lucide-react";
 import { PageHeader } from "./page-header";
 
@@ -38,11 +38,11 @@ export const ComAcoes: Story = {
 
 export const ComEyebrow: Story = {
 	args: {
-		eyebrow: "Operações",
+		eyebrow: "OperaÃ§Ãµes",
 		title: "Painel de acompanhamento",
 	},
 };
 
 export const SomenteTitulo: Story = {
-	args: { title: "Configurações" },
+	args: { title: "ConfiguraÃ§Ãµes" },
 };

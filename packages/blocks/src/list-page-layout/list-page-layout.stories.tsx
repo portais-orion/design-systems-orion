@@ -1,5 +1,5 @@
-import { Button } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "@supertrans-transportes/ui";
 import { Clock, FileText, Plus } from "lucide-react";
 import * as React from "react";
 import { DataTable } from "../data-table";
@@ -89,7 +89,7 @@ export const WithFilters: Story = {
 			filters={
 				<>
 					<FilterPill label="Status" value="Ativo" onRemove={() => {}} />
-					<FilterPill label="Período" value="Jul/2026" onRemove={() => {}} />
+					<FilterPill label="PerÃ­odo" value="Jul/2026" onRemove={() => {}} />
 				</>
 			}
 			content={<Tabela />}

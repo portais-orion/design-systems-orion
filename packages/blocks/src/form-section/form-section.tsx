@@ -1,9 +1,9 @@
 import type * as React from "react";
 
-import { Separator, cn } from "@grupo/ui";
+import { Separator, cn } from "@supertrans-transportes/ui";
 
 /*
- * Agrupamento visual de campos. Origem do padrão: seções com título +
+ * Agrupamento visual de campos. Origem do padrÃ£o: seÃ§Ãµes com tÃ­tulo +
  * space-y dos forms do Supertrans e das telas de cadastro do Aurora.
  */
 export type FormSectionProps = {

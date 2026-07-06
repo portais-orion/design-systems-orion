@@ -1,7 +1,7 @@
 {
-	"name": "@grupo/tokens",
+	"name": "@supertrans-transportes/tokens",
 	"version": "0.1.0",
-	"description": "Tokens semânticos e temas por marca do Núcleo de Portais do Grupo",
+	"description": "Tokens semÃ¢nticos e temas por marca do NÃºcleo de Portais do Grupo",
 	"sideEffects": ["*.css"],
 	"files": ["src"],
 	"exports": {

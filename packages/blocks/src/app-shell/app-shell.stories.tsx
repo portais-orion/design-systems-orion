@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, Badge, Button, Input } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Avatar, AvatarFallback, Badge, Button, Input } from "@supertrans-transportes/ui";
 import {
 	CheckCircle,
 	Clock,
@@ -39,10 +39,10 @@ const meta: Meta<typeof AppShell> = {
 export default meta;
 type Story = StoryObj<typeof AppShell>;
 
-const Marca = () => <span className="text-sm font-bold tracking-wide">NÚCLEO</span>;
+const Marca = () => <span className="text-sm font-bold tracking-wide">NÃšCLEO</span>;
 
 const NAV: NavigationItem[] = [
-	{ id: "inicio", label: "Início", href: "#", icon: Home },
+	{ id: "inicio", label: "InÃ­cio", href: "#", icon: Home },
 	{ id: "registros", label: "Registros", href: "#", icon: FileText },
 	{
 		id: "cadastros",
@@ -55,16 +55,16 @@ const NAV: NavigationItem[] = [
 	},
 	{
 		id: "usuarios",
-		label: "Usuários",
+		label: "UsuÃ¡rios",
 		href: "#",
 		icon: Users,
 		meta: { requiredPermission: "admin.only" },
 	},
-	{ id: "config", label: "Configurações", href: "#", icon: Settings },
+	{ id: "config", label: "ConfiguraÃ§Ãµes", href: "#", icon: Settings },
 ];
 
 const TRILHA = [
-	{ label: "Início", href: "#" },
+	{ label: "InÃ­cio", href: "#" },
 	{ label: "Registros", current: true },
 ];
 
@@ -92,7 +92,7 @@ const REGISTROS: Registro[] = Array.from({ length: 7 }).map((_, i) => ({
 	qtd: (i + 1) * 4,
 }));
 const COLS = [
-	{ header: "Código", cell: (r: Registro) => <CodeBadge>{r.codigo}</CodeBadge>, width: 110 },
+	{ header: "CÃ³digo", cell: (r: Registro) => <CodeBadge>{r.codigo}</CodeBadge>, width: 110 },
 	{ header: "Nome", accessorKey: "nome" as const },
 	{
 		header: "Status",
@@ -107,8 +107,8 @@ const COLS = [
 ];
 
 const Miolo = () => (
-	<ContentCard title="Conteúdo" className="m-6">
-		<p className="text-sm text-muted-foreground">O miolo da página entra como children.</p>
+	<ContentCard title="ConteÃºdo" className="m-6">
+		<p className="text-sm text-muted-foreground">O miolo da pÃ¡gina entra como children.</p>
 	</ContentCard>
 );
 
@@ -157,7 +157,7 @@ export const WithFilteredNavigation: Story = {
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
 		await waitFor(() => expect(canvas.getByText("Registros")).toBeVisible());
-		await expect(canvas.queryByText("Usuários")).toBeNull();
+		await expect(canvas.queryByText("UsuÃ¡rios")).toBeNull();
 	},
 };
 
@@ -194,7 +194,7 @@ export const MobileNavigation: Story = {
 	),
 };
 
-// ── Stories integradas (Parte H) ─────────────────────────────────────────────
+// â”€â”€ Stories integradas (Parte H) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export const AppShellWithListPage: Story = {
 	render: function Lista() {
@@ -278,7 +278,7 @@ export const AppShellWithFormPage: Story = {
 								<FormField label="Nome" htmlFor="as-nome" required>
 									<Input id="as-nome" />
 								</FormField>
-								<FormField label="Código" htmlFor="as-cod">
+								<FormField label="CÃ³digo" htmlFor="as-cod">
 									<Input id="as-cod" />
 								</FormField>
 							</FieldGroup>
@@ -335,7 +335,7 @@ export const AppShellWithDashboardPage: Story = {
 			brand={<Marca />}
 			navigation={NAV}
 			activeItemId="inicio"
-			breadcrumbs={[{ label: "Início", current: true }]}
+			breadcrumbs={[{ label: "InÃ­cio", current: true }]}
 		>
 			<DashboardPageLayout
 				header={<PageHeader title="Painel operacional" />}
@@ -344,23 +344,23 @@ export const AppShellWithDashboardPage: Story = {
 						items={[
 							{ label: "Total", value: 128, icon: FileText },
 							{ label: "Pendentes", value: 12, icon: Clock, tone: "warning" },
-							{ label: "Concluídos", value: 98, icon: CheckCircle, tone: "success" },
+							{ label: "ConcluÃ­dos", value: 98, icon: CheckCircle, tone: "success" },
 						]}
 						columns={3}
 					/>
 				}
 				content={
 					<div className="grid gap-6 lg:grid-cols-2">
-						<ContentCard title="Últimos registros">
+						<ContentCard title="Ãšltimos registros">
 							<DataTable
 								data={REGISTROS.slice(0, 5)}
 								columns={COLS.slice(0, 2)}
 								keyExtractor={(r) => r.id}
 							/>
 						</ContentCard>
-						<ContentCard title="Distribuição">
+						<ContentCard title="DistribuiÃ§Ã£o">
 							<div className="flex h-64 items-center justify-center rounded bg-muted/40 text-sm text-muted-foreground">
-								área reservada para gráfico
+								Ã¡rea reservada para grÃ¡fico
 							</div>
 						</ContentCard>
 					</div>

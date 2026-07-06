@@ -11,12 +11,12 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	Button,
-} from "@grupo/ui";
+} from "@supertrans-transportes/ui";
 
 /*
  * Recriado a partir da API do Portal-Aurora ui/ConfirmDialog.tsx, sobre o
- * AlertDialog do @grupo/ui. Diferença deliberada em relação ao original:
- * fecha somente quando onConfirm resolve; se lançar/rejeitar, permanece
+ * AlertDialog do @supertrans-transportes/ui. DiferenÃ§a deliberada em relaÃ§Ã£o ao original:
+ * fecha somente quando onConfirm resolve; se lanÃ§ar/rejeitar, permanece
  * aberto (o original fechava mesmo com erro em voo).
  */
 export type ConfirmDialogVariant = "default" | "danger";
@@ -53,7 +53,7 @@ export function ConfirmDialog({
 			await onConfirm();
 			onOpenChange(false);
 		} catch {
-			// mantém aberto; o chamador é responsável por exibir o erro (toast etc.)
+			// mantÃ©m aberto; o chamador Ã© responsÃ¡vel por exibir o erro (toast etc.)
 		} finally {
 			setPending(false);
 		}

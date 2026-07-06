@@ -1,5 +1,5 @@
-import { Avatar, AvatarFallback, Badge } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Avatar, AvatarFallback, Badge } from "@supertrans-transportes/ui";
 import { FileText, FolderOpen, Home, Lock, LogOut, Settings, Users } from "lucide-react";
 import * as React from "react";
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";
@@ -22,10 +22,10 @@ const meta: Meta<typeof Sidebar> = {
 export default meta;
 type Story = StoryObj<typeof Sidebar>;
 
-const Marca = () => <span className="text-sm font-bold tracking-wide">NÚCLEO</span>;
+const Marca = () => <span className="text-sm font-bold tracking-wide">NÃšCLEO</span>;
 
 const NAV: NavigationItem[] = [
-	{ id: "inicio", label: "Início", href: "#", icon: Home },
+	{ id: "inicio", label: "InÃ­cio", href: "#", icon: Home },
 	{ id: "registros", label: "Registros", href: "#", icon: FileText },
 	{
 		id: "cadastros",
@@ -36,8 +36,8 @@ const NAV: NavigationItem[] = [
 			{ id: "cadastros-categorias", label: "Categorias", href: "#" },
 		],
 	},
-	{ id: "usuarios", label: "Usuários", href: "#", icon: Users },
-	{ id: "config", label: "Configurações", href: "#", icon: Settings },
+	{ id: "usuarios", label: "UsuÃ¡rios", href: "#", icon: Users },
+	{ id: "config", label: "ConfiguraÃ§Ãµes", href: "#", icon: Settings },
 ];
 
 export const Default: Story = {
@@ -55,13 +55,13 @@ export const WithGroups: Story = {
 		navigation: [
 			{
 				id: "g-operacao",
-				label: "Operação",
+				label: "OperaÃ§Ã£o",
 				meta: { group: true },
 				children: NAV.slice(0, 3),
 			},
 			{
 				id: "g-admin",
-				label: "Administração",
+				label: "AdministraÃ§Ã£o",
 				meta: { group: true },
 				children: NAV.slice(3),
 			},
@@ -87,10 +87,10 @@ export const WithBadges: Story = {
 	args: {
 		brand: <Marca />,
 		navigation: [
-			{ id: "inicio", label: "Início", href: "#", icon: Home },
+			{ id: "inicio", label: "InÃ­cio", href: "#", icon: Home },
 			{
 				id: "pendencias",
-				label: "Pendências",
+				label: "PendÃªncias",
 				href: "#",
 				icon: FileText,
 				badge: <Badge variant="destructive">12</Badge>,
@@ -128,7 +128,7 @@ export const WithFooter: Story = {
 					<AvatarFallback>MA</AvatarFallback>
 				</Avatar>
 				<div className="min-w-0 flex-1 leading-tight">
-					<p className="truncate text-xs font-semibold">Usuário Exemplo</p>
+					<p className="truncate text-xs font-semibold">UsuÃ¡rio Exemplo</p>
 					<p className="truncate text-[0.65rem] text-sidebar-foreground/60">Administrador</p>
 				</div>
 				<button

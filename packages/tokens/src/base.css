@@ -1,7 +1,7 @@
 /*
- * @grupo/tokens — base.css
- * Mapeamento semântico (Tailwind v4 CSS-first). NÃO contém valores de marca.
- * Valores de marca vivem em themes/<marca>.css e são resolvidos por CSS variables
+ * @supertrans-transportes/tokens â€” base.css
+ * Mapeamento semÃ¢ntico (Tailwind v4 CSS-first). NÃƒO contÃ©m valores de marca.
+ * Valores de marca vivem em themes/<marca>.css e sÃ£o resolvidos por CSS variables
  * via :root (fallback) e [data-brand="<marca>"].
  * Origem do mapeamento: portal-supertrans apps/web/src/app/globals.css (@theme inline).
  */
@@ -52,7 +52,7 @@
 }
 
 /*
- * Defaults neutros (não dependem de marca). Cada tema de marca redefine
+ * Defaults neutros (nÃ£o dependem de marca). Cada tema de marca redefine
  * apenas os tokens de identidade (primary, ring, brand-*, sidebar-*).
  */
 :root {

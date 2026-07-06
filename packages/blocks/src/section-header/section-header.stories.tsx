@@ -1,5 +1,5 @@
-import { Button } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "@supertrans-transportes/ui";
 import { SectionHeader } from "./section-header";
 
 const meta: Meta<typeof SectionHeader> = {
@@ -10,9 +10,9 @@ const meta: Meta<typeof SectionHeader> = {
 export default meta;
 type Story = StoryObj<typeof SectionHeader>;
 
-export const Default: Story = { args: { title: "Histórico" } };
+export const Default: Story = { args: { title: "HistÃ³rico" } };
 export const WithDescription: Story = {
-	args: { title: "Histórico", description: "Eventos recentes do registro." },
+	args: { title: "HistÃ³rico", description: "Eventos recentes do registro." },
 };
 export const WithActions: Story = {
 	args: {

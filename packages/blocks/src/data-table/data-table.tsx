@@ -10,7 +10,15 @@ import {
 import { ChevronDown, ChevronUp, ChevronsUpDown } from "lucide-react";
 import * as React from "react";
 
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, cn } from "@grupo/ui";
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+	cn,
+} from "@supertrans-transportes/ui";
 
 import { EmptyState } from "../empty-state";
 import { ErrorState } from "../error-state";
@@ -19,13 +27,13 @@ import { TableSkeletonRows } from "../table-skeleton-rows";
 import type { DataTableColumn, DataTableProps } from "./data-table.types";
 
 /*
- * DataTable — bloco oficial de listagem do grupo ("melhor dos dois"):
- * API e requisitos: Portal-Aurora (ui/DataTable — Column<T>, keyExtractor,
- *   estados embutidos, paginação, onRowClick, alinhamento, 32 telas reais).
- * Markup/stack: Núcleo (ui/Table do Supertrans, tokens, TW4) + blocks
+ * DataTable â€” bloco oficial de listagem do grupo ("melhor dos dois"):
+ * API e requisitos: Portal-Aurora (ui/DataTable â€” Column<T>, keyExtractor,
+ *   estados embutidos, paginaÃ§Ã£o, onRowClick, alinhamento, 32 telas reais).
+ * Markup/stack: NÃºcleo (ui/Table do Supertrans, tokens, TW4) + blocks
  *   TableSkeletonRows/EmptyState/ErrorState/Pagination.
  * Motor interno: TanStack Table (getCoreRowModel; sorting controlado/manual).
- * O consumidor comum usa apenas DataTableColumn<T> — nada do TanStack vaza.
+ * O consumidor comum usa apenas DataTableColumn<T> â€” nada do TanStack vaza.
  */
 
 const ACTIONS_COL_ID = "__actions";
@@ -77,7 +85,7 @@ export function DataTable<TData>({
 				cell: (ctx) =>
 					col.cell
 						? col.cell(ctx.row.original, ctx.row.index)
-						: ((ctx.getValue() as React.ReactNode) ?? "—"),
+						: ((ctx.getValue() as React.ReactNode) ?? "â€”"),
 				enableSorting: col.sortable === true,
 				meta: col,
 			};
@@ -85,7 +93,7 @@ export function DataTable<TData>({
 		if (actions) {
 			defs.push({
 				id: ACTIONS_COL_ID,
-				header: () => <span className="sr-only">Ações</span>,
+				header: () => <span className="sr-only">AÃ§Ãµes</span>,
 				cell: (ctx) => actions(ctx.row.original, ctx.row.index),
 				enableSorting: false,
 				meta: { align: "right" } as DataTableColumn<TData>,

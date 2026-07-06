@@ -1,5 +1,5 @@
-import { Button, Input } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button, Input } from "@supertrans-transportes/ui";
 import { fn } from "storybook/test";
 import { ContentCard } from "../content-card";
 import { FieldGroup } from "../field-group";
@@ -25,7 +25,7 @@ const Formulario = ({ sticky = false }: { sticky?: boolean }) => (
 				<FormField label="Nome" htmlFor="fp-nome" required>
 					<Input id="fp-nome" />
 				</FormField>
-				<FormField label="Código" htmlFor="fp-cod">
+				<FormField label="CÃ³digo" htmlFor="fp-cod">
 					<Input id="fp-cod" />
 				</FormField>
 			</FieldGroup>
@@ -55,7 +55,7 @@ export const WithAside: Story = {
 			form={<Formulario />}
 			aside={
 				<ContentCard title="Dicas">
-					<p className="text-sm text-muted-foreground">O código não pode ser alterado depois.</p>
+					<p className="text-sm text-muted-foreground">O cÃ³digo nÃ£o pode ser alterado depois.</p>
 				</ContentCard>
 			}
 		/>
@@ -73,12 +73,12 @@ export const MultipleSections: Story = {
 							<FormField label="Nome" htmlFor="fpm-1">
 								<Input id="fpm-1" />
 							</FormField>
-							<FormField label="Código" htmlFor="fpm-2">
+							<FormField label="CÃ³digo" htmlFor="fpm-2">
 								<Input id="fpm-2" />
 							</FormField>
 						</FieldGroup>
 					</FormSection>
-					<FormSection title="Contato" description="Informações opcionais.">
+					<FormSection title="Contato" description="InformaÃ§Ãµes opcionais.">
 						<FieldGroup>
 							<FormField label="E-mail" htmlFor="fpm-3">
 								<Input id="fpm-3" />

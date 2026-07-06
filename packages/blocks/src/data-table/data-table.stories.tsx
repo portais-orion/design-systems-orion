@@ -1,3 +1,4 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import {
 	Badge,
 	Button,
@@ -6,8 +7,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from "@grupo/ui";
-import type { Meta, StoryObj } from "@storybook/react";
+} from "@supertrans-transportes/ui";
 import { Download, Eye, MoreHorizontal, Pencil, Plus, Trash2 } from "lucide-react";
 import * as React from "react";
 import { CodeBadge } from "../code-badge";
@@ -28,7 +28,7 @@ const meta: Meta<typeof DataTable> = {
 export default meta;
 type Story = StoryObj<typeof DataTable>;
 
-// ── dados genéricos ──────────────────────────────────────────────────────────
+// â”€â”€ dados genÃ©ricos â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 type Processo = {
 	id: string;
@@ -47,7 +47,7 @@ const STATUS_LABEL: Record<
 > = {
 	pendente: { label: "Pendente", tone: "warning" },
 	em_andamento: { label: "Em andamento", tone: "info" },
-	concluido: { label: "Concluído", tone: "success" },
+	concluido: { label: "ConcluÃ­do", tone: "success" },
 	bloqueado: { label: "Bloqueado", tone: "danger" },
 };
 
@@ -57,8 +57,9 @@ const PROCESSOS: Processo[] = Array.from({ length: 12 }).map((_, i) => ({
 	id: `p-${i + 1}`,
 	codigo: `PRC-${String(i + 1).padStart(3, "0")}`,
 	descricao:
-		["Conferência de documentos", "Registro de entrada", "Análise técnica", "Liberação"][i % 4] ??
-		"Conferência de documentos",
+		["ConferÃªncia de documentos", "Registro de entrada", "AnÃ¡lise tÃ©cnica", "LiberaÃ§Ã£o"][
+			i % 4
+		] ?? "ConferÃªncia de documentos",
 	responsavel: ["Ana Souza", "Carlos Lima", "Beatriz Nunes"][i % 3] ?? "Ana Souza",
 	status: (["pendente", "em_andamento", "concluido", "bloqueado"] as const)[i % 4] ?? "pendente",
 	quantidade: (i + 1) * 3,
@@ -67,9 +68,9 @@ const PROCESSOS: Processo[] = Array.from({ length: 12 }).map((_, i) => ({
 }));
 
 const columns: DataTableColumn<Processo>[] = [
-	{ header: "Código", cell: (row) => <CodeBadge>{row.codigo}</CodeBadge>, width: 110 },
-	{ header: "Descrição", accessorKey: "descricao" },
-	{ header: "Responsável", accessorKey: "responsavel" },
+	{ header: "CÃ³digo", cell: (row) => <CodeBadge>{row.codigo}</CodeBadge>, width: 110 },
+	{ header: "DescriÃ§Ã£o", accessorKey: "descricao" },
+	{ header: "ResponsÃ¡vel", accessorKey: "responsavel" },
 	{
 		header: "Status",
 		cell: (row) => (
@@ -84,7 +85,7 @@ const columns: DataTableColumn<Processo>[] = [
 	},
 ];
 
-// ── stories ──────────────────────────────────────────────────────────────────
+// â”€â”€ stories â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export const Default: Story = {
 	render: () => (
@@ -129,7 +130,7 @@ export const ErrorStory: Story = {
 			columns={columns}
 			keyExtractor={(r: Processo) => r.id}
 			isError
-			errorTitle="Não foi possível carregar os processos"
+			errorTitle="NÃ£o foi possÃ­vel carregar os processos"
 			errorDescription="Tente novamente em alguns instantes."
 			errorAction={
 				<Button variant="outline" size="sm">
@@ -174,7 +175,7 @@ export const WithActions: Story = {
 				<DropdownMenu>
 					<DropdownMenuTrigger
 						render={
-							<Button variant="ghost" size="icon-sm" aria-label={`Ações de ${row.codigo}`}>
+							<Button variant="ghost" size="icon-sm" aria-label={`AÃ§Ãµes de ${row.codigo}`}>
 								<MoreHorizontal />
 							</Button>
 						}
@@ -237,7 +238,7 @@ export const WithToolbar: Story = {
 							onChange={setBusca}
 							placeholder="Buscar processo..."
 						/>
-						<FilterPill label="Período" value="Jun/2026" onRemove={() => {}} />
+						<FilterPill label="PerÃ­odo" value="Jun/2026" onRemove={() => {}} />
 					</div>
 				}
 				emptyTitle="Nenhum resultado para a busca"
@@ -250,16 +251,16 @@ export const WithSorting: Story = {
 	render: function Ordenavel() {
 		const [sortBy, setSortBy] = React.useState<string>("codigo");
 		const [sortOrder, setSortOrder] = React.useState<"asc" | "desc">("asc");
-		// sorting é controlado (server-side na prática); aqui simulamos externamente
+		// sorting Ã© controlado (server-side na prÃ¡tica); aqui simulamos externamente
 		const dados = [...PROCESSOS.slice(0, 8)].sort((a, b) => {
 			const va = String(a[sortBy as keyof Processo] ?? "");
 			const vb = String(b[sortBy as keyof Processo] ?? "");
 			return sortOrder === "asc" ? va.localeCompare(vb, "pt-BR") : vb.localeCompare(va, "pt-BR");
 		});
 		const cols: DataTableColumn<Processo>[] = [
-			{ id: "codigo", header: "Código", accessorKey: "codigo", sortable: true, width: 110 },
-			{ id: "descricao", header: "Descrição", accessorKey: "descricao", sortable: true },
-			{ id: "responsavel", header: "Responsável", accessorKey: "responsavel", sortable: true },
+			{ id: "codigo", header: "CÃ³digo", accessorKey: "codigo", sortable: true, width: 110 },
+			{ id: "descricao", header: "DescriÃ§Ã£o", accessorKey: "descricao", sortable: true },
+			{ id: "responsavel", header: "ResponsÃ¡vel", accessorKey: "responsavel", sortable: true },
 			{ header: "Qtd.", accessorKey: "quantidade", align: "right" },
 		];
 		return (
@@ -316,7 +317,7 @@ export const SupertransInspiredExample: Story = {
 			<div className="space-y-4">
 				<PageHeader
 					title="Cadastro de registros"
-					description="Tabela administrativa com código, status binário e ações."
+					description="Tabela administrativa com cÃ³digo, status binÃ¡rio e aÃ§Ãµes."
 					actions={
 						<Button>
 							<Plus /> Novo registro
@@ -326,10 +327,10 @@ export const SupertransInspiredExample: Story = {
 				<DataTable
 					data={PROCESSOS.slice((page - 1) * 5, page * 5)}
 					columns={[
-						{ header: "Código", cell: (r) => <CodeBadge>{r.codigo}</CodeBadge>, width: 110 },
+						{ header: "CÃ³digo", cell: (r) => <CodeBadge>{r.codigo}</CodeBadge>, width: 110 },
 						{ header: "Nome", accessorKey: "descricao" },
 						{
-							header: "Situação",
+							header: "SituaÃ§Ã£o",
 							cell: (r) =>
 								r.status === "concluido" ? (
 									<StatusDot tone="success" label="Ativo" />
@@ -387,11 +388,11 @@ export const AuroraInspiredExample: Story = {
 							active: status === "Em andamento",
 						},
 						{
-							label: "Concluído",
+							label: "ConcluÃ­do",
 							value: contagem("concluido"),
 							tone: "success",
-							onClick: () => setStatus("Concluído"),
-							active: status === "Concluído",
+							onClick: () => setStatus("ConcluÃ­do"),
+							active: status === "ConcluÃ­do",
 						},
 					]}
 				/>

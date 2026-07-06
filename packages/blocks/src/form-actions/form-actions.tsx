@@ -1,11 +1,11 @@
 import type * as React from "react";
 
-import { cn } from "@grupo/ui";
+import { cn } from "@supertrans-transportes/ui";
 
 /*
- * Barra de ações de formulário (salvar/cancelar/extra). Origem do padrão:
+ * Barra de aÃ§Ãµes de formulÃ¡rio (salvar/cancelar/extra). Origem do padrÃ£o:
  * footers repetidos com justify-end nos forms dos dois portais.
- * Slots apenas — nunca cria botões nem textos.
+ * Slots apenas â€” nunca cria botÃµes nem textos.
  */
 export type FormActionsProps = {
 	primary?: React.ReactNode;

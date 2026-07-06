@@ -1,12 +1,12 @@
 import type * as React from "react";
 
-import { cn } from "@grupo/ui";
+import { cn } from "@supertrans-transportes/ui";
 
 import { PageLayout } from "../page-layout";
 
 /*
- * Layout de página de criar/editar. Largura contida (padrão max-w-3xl do
- * Supertrans) com aside opcional. Não cria <form> nem conhece RHF.
+ * Layout de pÃ¡gina de criar/editar. Largura contida (padrÃ£o max-w-3xl do
+ * Supertrans) com aside opcional. NÃ£o cria <form> nem conhece RHF.
  */
 export type FormPageLayoutProps = {
 	header?: React.ReactNode;

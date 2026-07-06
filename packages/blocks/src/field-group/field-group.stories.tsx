@@ -1,5 +1,5 @@
-import { Input, Textarea } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Input, Textarea } from "@supertrans-transportes/ui";
 import { FormField } from "../form-field";
 import { FieldGroup } from "./field-group";
 
@@ -55,7 +55,7 @@ export const WithMixedFields: Story = {
 		<FieldGroup columns={2} className="w-[36rem]">
 			{campo(1)}
 			{campo(2)}
-			<FormField label="Observações" htmlFor="fg-obs" className="sm:col-span-2">
+			<FormField label="ObservaÃ§Ãµes" htmlFor="fg-obs" className="sm:col-span-2">
 				<Textarea id="fg-obs" rows={3} />
 			</FormField>
 		</FieldGroup>

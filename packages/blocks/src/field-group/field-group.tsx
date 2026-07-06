@@ -1,9 +1,9 @@
 import type * as React from "react";
 
-import { cn } from "@grupo/ui";
+import { cn } from "@supertrans-transportes/ui";
 
 /*
- * Grid responsivo de campos (1 coluna no mobile). Origem do padrão:
+ * Grid responsivo de campos (1 coluna no mobile). Origem do padrÃ£o:
  * grid-cols-2/3 gap-4 dos forms dos dois portais.
  */
 export type FieldGroupProps = {

@@ -1,5 +1,5 @@
-import { Button, Card, CardContent, CardHeader, CardTitle } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button, Card, CardContent, CardHeader, CardTitle } from "@supertrans-transportes/ui";
 import * as React from "react";
 import { DataTable } from "../data-table";
 import { LoadingOverlay } from "./loading-overlay";
@@ -26,7 +26,7 @@ function Demo({ label }: { label?: string }) {
 						<CardTitle>Resumo</CardTitle>
 					</CardHeader>
 					<CardContent className="text-sm text-muted-foreground">
-						Conteúdo permanece montado sob o overlay.
+						ConteÃºdo permanece montado sob o overlay.
 					</CardContent>
 				</Card>
 			</LoadingOverlay>

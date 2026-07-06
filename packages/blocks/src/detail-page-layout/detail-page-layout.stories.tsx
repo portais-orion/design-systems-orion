@@ -1,5 +1,12 @@
-import { Badge, Button, Tabs, TabsContent, TabsList, TabsTrigger } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import {
+	Badge,
+	Button,
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@supertrans-transportes/ui";
 import { CodeBadge } from "../code-badge";
 import { ContentCard } from "../content-card";
 import { PageHeader } from "../page-header";
@@ -36,11 +43,11 @@ const Abas = () => (
 	<Tabs defaultValue="geral">
 		<TabsList>
 			<TabsTrigger value="geral">Geral</TabsTrigger>
-			<TabsTrigger value="historico">Histórico</TabsTrigger>
+			<TabsTrigger value="historico">HistÃ³rico</TabsTrigger>
 		</TabsList>
 		<TabsContent value="geral">
 			<ContentCard>
-				<p className="text-sm text-muted-foreground">Conteúdo da aba Geral.</p>
+				<p className="text-sm text-muted-foreground">ConteÃºdo da aba Geral.</p>
 			</ContentCard>
 		</TabsContent>
 		<TabsContent value="historico">
@@ -57,7 +64,7 @@ export const Default: Story = {
 			header={<Cabecalho />}
 			content={
 				<ContentCard>
-					<p className="text-sm text-muted-foreground">Conteúdo do detalhe.</p>
+					<p className="text-sm text-muted-foreground">ConteÃºdo do detalhe.</p>
 				</ContentCard>
 			}
 		/>
@@ -76,7 +83,7 @@ export const WithAside: Story = {
 			summary={<Resumo />}
 			tabs={<Abas />}
 			aside={
-				<ContentCard title="Ações rápidas">
+				<ContentCard title="AÃ§Ãµes rÃ¡pidas">
 					<div className="grid gap-2">
 						<Button variant="outline" size="sm">
 							Duplicar

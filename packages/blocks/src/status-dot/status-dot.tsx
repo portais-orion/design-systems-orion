@@ -1,8 +1,8 @@
-import { cn } from "@grupo/ui";
+import { cn } from "@supertrans-transportes/ui";
 
 /*
- * Indicador de status por tom semântico. Origem conceitual: StatusDot do
- * portal-supertrans (que era binário Ativo/Inativo com textos fixos) —
+ * Indicador de status por tom semÃ¢ntico. Origem conceitual: StatusDot do
+ * portal-supertrans (que era binÃ¡rio Ativo/Inativo com textos fixos) â€”
  * generalizado para tons + label livre.
  */
 export type StatusTone = "default" | "success" | "warning" | "danger" | "info" | "muted";

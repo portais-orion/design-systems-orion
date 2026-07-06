@@ -3,11 +3,11 @@ import React from "react";
 import "../src/styles.css";
 
 /*
- * Toolbar global de marca: todo componente do Núcleo deve ser validado
- * nas duas marcas. O decorator aplica data-brand no <html>, então os
- * temas de @grupo/tokens resolvem as CSS variables da marca ativa.
- * Nenhum provider de app real (Auth, Query) é usado aqui — o Storybook
- * do Núcleo é independente dos portais.
+ * Toolbar global de marca: todo componente do NÃºcleo deve ser validado
+ * nas duas marcas. O decorator aplica data-brand no <html>, entÃ£o os
+ * temas de @supertrans-transportes/tokens resolvem as CSS variables da marca ativa.
+ * Nenhum provider de app real (Auth, Query) Ã© usado aqui â€” o Storybook
+ * do NÃºcleo Ã© independente dos portais.
  */
 const withBrand: Decorator = (Story, context) => {
 	const brand = (context.globals.brand as string) ?? "supertrans";
@@ -41,10 +41,10 @@ const preview: Preview = {
 	parameters: {
 		options: {
 			storySort: {
-				order: ["Ínicio", "Fundações", "UI", "Blocks", "Núcleo"],
+				order: ["Ãnicio", "FundaÃ§Ãµes", "UI", "Blocks", "NÃºcleo"],
 			},
 		},
-		// 'todo' mostra violações no painel sem falhar o teste; 'error' falha no vitest
+		// 'todo' mostra violaÃ§Ãµes no painel sem falhar o teste; 'error' falha no vitest
 		a11y: { test: "todo" },
 		controls: {
 			matchers: {

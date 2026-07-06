@@ -1,9 +1,9 @@
-# Sprint 7.5 — Publicação dos pacotes do Núcleo no GitHub Packages.
-# Manual (workflow_dispatch), dry-run por padrão. NÃO publica em push.
+# Sprint 7.5 â€” PublicaÃ§Ã£o dos pacotes do NÃºcleo no GitHub Packages.
+# Manual (workflow_dispatch), dry-run por padrÃ£o. NÃƒO publica em push.
 #
-# Pré-requisitos:
+# PrÃ©-requisitos:
 #   - Repo transferido para a org SuperTrans-Transportes (scope == owner == @supertrans-transportes).
-#   - Rode o runbook de rename @grupo → @supertrans-transportes
+#   - Rode o runbook de rename @supertrans-transportes â†’ @supertrans-transportes
 #     (docs/architecture/package-distribution.md) ANTES do primeiro publish real.
 #   - GITHUB_TOKEN do job tem `packages: write` (definido em permissions abaixo).
 name: Release packages
@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       dry-run:
-        description: "Só empacota (pnpm pack:all), sem publicar"
+        description: "SÃ³ empacota (pnpm pack:all), sem publicar"
         type: boolean
         default: true
 

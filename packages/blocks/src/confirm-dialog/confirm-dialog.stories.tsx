@@ -1,5 +1,5 @@
-import { Button } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "@supertrans-transportes/ui";
 import * as React from "react";
 import { ConfirmDialog } from "./confirm-dialog";
 
@@ -22,8 +22,8 @@ function DemoDefault() {
 			<ConfirmDialog
 				open={open}
 				onOpenChange={setOpen}
-				title="Confirmar aprovação"
-				description="O item será enviado para a próxima etapa."
+				title="Confirmar aprovaÃ§Ã£o"
+				description="O item serÃ¡ enviado para a prÃ³xima etapa."
 				confirmLabel="Aprovar"
 				onConfirm={() => {}}
 			/>
@@ -42,7 +42,7 @@ function DemoDanger() {
 				open={open}
 				onOpenChange={setOpen}
 				title="Excluir registro?"
-				description="Esta ação não poderá ser desfeita."
+				description="Esta aÃ§Ã£o nÃ£o poderÃ¡ ser desfeita."
 				confirmLabel="Excluir"
 				variant="danger"
 				onConfirm={() => new Promise((r) => setTimeout(r, 1200))}
@@ -62,7 +62,7 @@ function DemoErro() {
 				open={open}
 				onOpenChange={setOpen}
 				title="Processar registro?"
-				description="Esta confirmação sempre falha — o diálogo deve permanecer aberto."
+				description="Esta confirmaÃ§Ã£o sempre falha â€” o diÃ¡logo deve permanecer aberto."
 				onConfirm={() => new Promise((_, reject) => setTimeout(reject, 800))}
 			/>
 		</>

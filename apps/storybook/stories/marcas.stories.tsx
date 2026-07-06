@@ -1,13 +1,13 @@
-import { Button } from "@grupo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Button } from "@supertrans-transportes/ui";
 import React from "react";
 
 /*
  * Comparativo lado a lado: o MESMO componente sob os dois temas,
- * via [data-brand] em containers — prova de que a marca é CSS, não prop.
+ * via [data-brand] em containers â€” prova de que a marca Ã© CSS, nÃ£o prop.
  */
 const meta: Meta = {
-	title: "Núcleo/Comparativo de Marcas",
+	title: "NÃºcleo/Comparativo de Marcas",
 };
 
 export default meta;
@@ -15,9 +15,9 @@ export default meta;
 function Amostra() {
 	return (
 		<div className="flex flex-wrap items-center gap-2">
-			<Button>Primário</Button>
+			<Button>PrimÃ¡rio</Button>
 			<Button variant="outline">Outline</Button>
-			<Button variant="secondary">Secundário</Button>
+			<Button variant="secondary">SecundÃ¡rio</Button>
 			<Button variant="destructive">Destrutivo</Button>
 			<Button variant="ghost">Ghost</Button>
 			<Button variant="link">Link</Button>
