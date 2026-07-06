@@ -26,7 +26,7 @@ function Demo({ label }: { label?: string }) {
 						<CardTitle>Resumo</CardTitle>
 					</CardHeader>
 					<CardContent className="text-sm text-muted-foreground">
-						ConteÃºdo permanece montado sob o overlay.
+						Conteúdo permanece montado sob o overlay.
 					</CardContent>
 				</Card>
 			</LoadingOverlay>

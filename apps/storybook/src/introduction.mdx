@@ -2,23 +2,23 @@ import { Meta, Title, Subtitle } from "@storybook/addon-docs/blocks";
 
 <Meta title="Comece agora" />
 
-<Title>NÃºcleo de Portais do Grupo</Title>
+<Title>Núcleo de Portais do Grupo</Title>
 
-<Subtitle>Design system, tokens, blocks e padrÃµes compartilhados dos portais do grupo.</Subtitle>
+<Subtitle>Design system, tokens, blocks e padrões compartilhados dos portais do grupo.</Subtitle>
 
-## O que Ã©
+## O que é
 
-O NÃºcleo de Portais Ã© a base oficial para criaÃ§Ã£o, padronizaÃ§Ã£o e evoluÃ§Ã£o dos portais das empresas do grupo. NÃ£o Ã© uma biblioteca da Supertrans nem uma cÃ³pia do Aurora â€” Ã© a curadoria do melhor dos dois, mantida como plataforma.
+O Núcleo de Portais é a base oficial para criação, padronização e evolução dos portais das empresas do grupo. Não é uma biblioteca da Supertrans nem uma cópia do Aurora — é a curadoria do melhor dos dois, mantida como plataforma.
 
 ## Pacotes
 
-| Pacote | Camada | ConteÃºdo |
+| Pacote | Camada | Conteúdo |
 |---|---|---|
-| `@portais-orion/tokens` | 0 | tokens semÃ¢nticos + temas por marca (CSS puro) |
+| `@portais-orion/tokens` | 0 | tokens semânticos + temas por marca (CSS puro) |
 | `@portais-orion/ui` | 1 | 26 primitives (Base UI + Tailwind v4 + cva) |
-| `@portais-orion/blocks` | 2 | composiÃ§Ãµes genÃ©ricas: DataTable, PageHeader, Pagination, ConfirmDialog... |
+| `@portais-orion/blocks` | 2 | composições genéricas: DataTable, PageHeader, Pagination, ConfirmDialog... |
 
-## InstalaÃ§Ã£o (produtos)
+## Instalação (produtos)
 
 ```sh
 pnpm add @portais-orion/tokens @portais-orion/ui @portais-orion/blocks
@@ -36,20 +36,20 @@ pnpm add @portais-orion/tokens @portais-orion/ui @portais-orion/blocks
 
 ## Temas
 
-Marcas sÃ£o CSS, nunca props: os componentes usam apenas tokens semÃ¢nticos (`bg-primary`, `text-muted-foreground`) e cada marca redefine as CSS variables via `[data-brand]`. Marcas disponÃ­veis: **Supertrans** e **Aurora** â€” alterne pela toolbar "Marca" acima. Detalhes em *FundaÃ§Ãµes â†’ Tokens*.
+Marcas são CSS, nunca props: os componentes usam apenas tokens semânticos (`bg-primary`, `text-muted-foreground`) e cada marca redefine as CSS variables via `[data-brand]`. Marcas disponíveis: **Supertrans** e **Aurora** — alterne pela toolbar "Marca" acima. Detalhes em *Fundações → Tokens*.
 
 ## Regras principais
 
-- NÃ£o usar cores hardcoded em componentes (hex sÃ³ em `packages/tokens/src/themes/`).
-- NÃ£o colocar domÃ­nio de negÃ³cio nos packages compartilhados.
-- NÃ£o usar Radix (Base UI Ã© o primitivo headless oficial).
-- NÃ£o importar arquivos dos portais.
+- Não usar cores hardcoded em componentes (hex só em `packages/tokens/src/themes/`).
+- Não colocar domínio de negócio nos packages compartilhados.
+- Não usar Radix (Base UI é o primitivo headless oficial).
+- Não importar arquivos dos portais.
 - Todo componente compartilhado deve ter story, validada nas duas marcas.
 
 ## Qualidade
 
-Este Storybook Ã© o quality gate do nÃºcleo: **accessibility checks** (painel Accessibility em cada story), **visual tests** (addon Chromatic; nuvem requer `CHROMATIC_PROJECT_TOKEN`), **component tests** (addon Vitest â€” stories rodam como testes em Chromium headless) e esta **documentaÃ§Ã£o MDX**. Fluxo completo: `docs/architecture/quality-gates.md` no repositÃ³rio.
+Este Storybook é o quality gate do núcleo: **accessibility checks** (painel Accessibility em cada story), **visual tests** (addon Chromatic; nuvem requer `CHROMATIC_PROJECT_TOKEN`), **component tests** (addon Vitest — stories rodam como testes em Chromium headless) e esta **documentação MDX**. Fluxo completo: `docs/architecture/quality-gates.md` no repositório.
 
 ## Para agentes de IA
 
-Comece por `AGENTS.md` e `ai/context/00-read-first.md` no repositÃ³rio. Workflows de criaÃ§Ã£o de componente/block em `ai/workflows/`.
+Comece por `AGENTS.md` e `ai/context/00-read-first.md` no repositório. Workflows de criação de componente/block em `ai/workflows/`.

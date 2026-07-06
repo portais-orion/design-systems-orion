@@ -4,10 +4,10 @@ import React from "react";
 
 /*
  * Comparativo lado a lado: o MESMO componente sob os dois temas,
- * via [data-brand] em containers â€” prova de que a marca Ã© CSS, nÃ£o prop.
+ * via [data-brand] em containers � prova de que a marca é CSS, não prop.
  */
 const meta: Meta = {
-	title: "NÃºcleo/Comparativo de Marcas",
+	title: "Núcleo/Comparativo de Marcas",
 };
 
 export default meta;
@@ -15,9 +15,9 @@ export default meta;
 function Amostra() {
 	return (
 		<div className="flex flex-wrap items-center gap-2">
-			<Button>PrimÃ¡rio</Button>
+			<Button>Primário</Button>
 			<Button variant="outline">Outline</Button>
-			<Button variant="secondary">SecundÃ¡rio</Button>
+			<Button variant="secondary">Secundário</Button>
 			<Button variant="destructive">Destrutivo</Button>
 			<Button variant="ghost">Ghost</Button>
 			<Button variant="link">Link</Button>

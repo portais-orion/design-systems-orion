@@ -8,8 +8,8 @@ import { Input, cn } from "@portais-orion/ui";
 /*
  * Recriado a partir do Portal-Aurora ui/DataTable/SearchBar.tsx, com API
  * controlada (value/onChange) em vez de submit imperativo. Debounce
- * implementado: onDebouncedChange dispara debounceMs (default 300ms) apÃ³s a
- * Ãºltima digitaÃ§Ã£o; onChange dispara a cada tecla.
+ * implementado: onDebouncedChange dispara debounceMs (default 300ms) após a
+ * última digitação; onChange dispara a cada tecla.
  */
 export type SearchBarProps = {
 	value: string;

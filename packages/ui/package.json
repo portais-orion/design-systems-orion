@@ -1,7 +1,7 @@
 {
 	"name": "@portais-orion/ui",
-	"version": "0.1.0",
-	"description": "Primitives compartilhadas do NÃºcleo de Portais do Grupo (Base UI + Tailwind v4 + cva)",
+	"version": "0.2.1",
+	"description": "Primitives compartilhadas do Núcleo de Portais do Grupo (Base UI + Tailwind v4 + cva)",
 	"sideEffects": false,
 	"exports": {
 		".": "./src/index.ts",
@@ -34,9 +34,11 @@
 		"./combobox": "./src/combobox/index.ts",
 		"./multi-select": "./src/multi-select/index.ts"
 	},
-	"files": ["src"],
+	"files": [
+		"dist"
+	],
 	"scripts": {
-		"build": "tsc --noEmit",
+		"build": "tsup",
 		"typecheck": "tsc --noEmit",
 		"lint": "biome check src"
 	},
@@ -53,7 +55,128 @@
 	},
 	"publishConfig": {
 		"access": "restricted",
-		"registry": "https://npm.pkg.github.com"
+		"registry": "https://npm.pkg.github.com",
+		"main": "./dist/index.mjs",
+		"module": "./dist/index.mjs",
+		"types": "./dist/index.d.mts",
+		"exports": {
+			".": {
+				"types": "./dist/index.d.mts",
+				"import": "./dist/index.mjs"
+			},
+			"./alert": {
+				"types": "./dist/alert/index.d.mts",
+				"import": "./dist/alert/index.mjs"
+			},
+			"./alert-dialog": {
+				"types": "./dist/alert-dialog/index.d.mts",
+				"import": "./dist/alert-dialog/index.mjs"
+			},
+			"./avatar": {
+				"types": "./dist/avatar/index.d.mts",
+				"import": "./dist/avatar/index.mjs"
+			},
+			"./badge": {
+				"types": "./dist/badge/index.d.mts",
+				"import": "./dist/badge/index.mjs"
+			},
+			"./button": {
+				"types": "./dist/button/index.d.mts",
+				"import": "./dist/button/index.mjs"
+			},
+			"./card": {
+				"types": "./dist/card/index.d.mts",
+				"import": "./dist/card/index.mjs"
+			},
+			"./checkbox": {
+				"types": "./dist/checkbox/index.d.mts",
+				"import": "./dist/checkbox/index.mjs"
+			},
+			"./dialog": {
+				"types": "./dist/dialog/index.d.mts",
+				"import": "./dist/dialog/index.mjs"
+			},
+			"./dropdown-menu": {
+				"types": "./dist/dropdown-menu/index.d.mts",
+				"import": "./dist/dropdown-menu/index.mjs"
+			},
+			"./input": {
+				"types": "./dist/input/index.d.mts",
+				"import": "./dist/input/index.mjs"
+			},
+			"./label": {
+				"types": "./dist/label/index.d.mts",
+				"import": "./dist/label/index.mjs"
+			},
+			"./select": {
+				"types": "./dist/select/index.d.mts",
+				"import": "./dist/select/index.mjs"
+			},
+			"./separator": {
+				"types": "./dist/separator/index.d.mts",
+				"import": "./dist/separator/index.mjs"
+			},
+			"./skeleton": {
+				"types": "./dist/skeleton/index.d.mts",
+				"import": "./dist/skeleton/index.mjs"
+			},
+			"./switch": {
+				"types": "./dist/switch/index.d.mts",
+				"import": "./dist/switch/index.mjs"
+			},
+			"./table": {
+				"types": "./dist/table/index.d.mts",
+				"import": "./dist/table/index.mjs"
+			},
+			"./tabs": {
+				"types": "./dist/tabs/index.d.mts",
+				"import": "./dist/tabs/index.mjs"
+			},
+			"./textarea": {
+				"types": "./dist/textarea/index.d.mts",
+				"import": "./dist/textarea/index.mjs"
+			},
+			"./tooltip": {
+				"types": "./dist/tooltip/index.d.mts",
+				"import": "./dist/tooltip/index.mjs"
+			},
+			"./accordion": {
+				"types": "./dist/accordion/index.d.mts",
+				"import": "./dist/accordion/index.mjs"
+			},
+			"./popover": {
+				"types": "./dist/popover/index.d.mts",
+				"import": "./dist/popover/index.mjs"
+			},
+			"./progress": {
+				"types": "./dist/progress/index.d.mts",
+				"import": "./dist/progress/index.mjs"
+			},
+			"./radio-group": {
+				"types": "./dist/radio-group/index.d.mts",
+				"import": "./dist/radio-group/index.mjs"
+			},
+			"./scroll-area": {
+				"types": "./dist/scroll-area/index.d.mts",
+				"import": "./dist/scroll-area/index.mjs"
+			},
+			"./sheet": {
+				"types": "./dist/sheet/index.d.mts",
+				"import": "./dist/sheet/index.mjs"
+			},
+			"./spinner": {
+				"types": "./dist/spinner/index.d.mts",
+				"import": "./dist/spinner/index.mjs"
+			},
+			"./combobox": {
+				"types": "./dist/combobox/index.d.mts",
+				"import": "./dist/combobox/index.mjs"
+			},
+			"./multi-select": {
+				"types": "./dist/multi-select/index.d.mts",
+				"import": "./dist/multi-select/index.mjs"
+			}
+		}
 	},
 	"devDependencies": {
 		"@base-ui/react": "^1.5.0",
@@ -67,6 +190,7 @@
 		"react-dom": "^19.0.0",
 		"storybook": "^10.4.1",
 		"tailwind-merge": "^3.6.0",
+		"tsup": "^8.3.5",
 		"typescript": "^5.7.3"
 	}
 }

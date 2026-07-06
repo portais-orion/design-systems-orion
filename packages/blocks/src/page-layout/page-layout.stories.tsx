@@ -14,8 +14,8 @@ export default meta;
 type Story = StoryObj<typeof PageLayout>;
 
 const Conteudo = () => (
-	<ContentCard title="Bloco de conteÃºdo">
-		<p className="text-sm text-muted-foreground">Qualquer conteÃºdo de pÃ¡gina.</p>
+	<ContentCard title="Bloco de conteúdo">
+		<p className="text-sm text-muted-foreground">Qualquer conteúdo de página.</p>
 	</ContentCard>
 );
 
@@ -30,7 +30,7 @@ export const WithFooter: Story = {
 	render: () => (
 		<PageLayout
 			header={<PageHeader title="Registros" />}
-			footer={<p className="text-xs text-muted-foreground">Atualizado hÃ¡ 5 minutos</p>}
+			footer={<p className="text-xs text-muted-foreground">Atualizado há 5 minutos</p>}
 		>
 			<Conteudo />
 		</PageLayout>
@@ -38,7 +38,7 @@ export const WithFooter: Story = {
 };
 export const NarrowContent: Story = {
 	render: () => (
-		<PageLayout maxWidth="screen-xl" header={<PageHeader title="ConfiguraÃ§Ãµes" />}>
+		<PageLayout maxWidth="screen-xl" header={<PageHeader title="Configurações" />}>
 			<Conteudo />
 		</PageLayout>
 	),
@@ -47,7 +47,7 @@ export const FullWidth: Story = {
 	render: () => (
 		<PageLayout
 			maxWidth="none"
-			header={<PageHeader title="Painel" actions={<Button>AÃ§Ã£o</Button>} />}
+			header={<PageHeader title="Painel" actions={<Button>Ação</Button>} />}
 		>
 			<Conteudo />
 		</PageLayout>

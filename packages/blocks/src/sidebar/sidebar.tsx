@@ -14,22 +14,22 @@ import {
 import type { SidebarProps } from "./sidebar.types";
 
 /*
- * Sidebar oficial do grupo â€” estrutura visual do Supertrans (tokens
+ * Sidebar oficial do grupo � estrutura visual do Supertrans (tokens
  * sidebar-*, tooltip em collapsed, auto-open do submenu ativo) + UX de
- * colapso/submenu do Aurora. NavegaÃ§Ã£o por dados; link e visibilidade
+ * colapso/submenu do Aurora. Navegação por dados; link e visibilidade
  * injetados (renderLink / canAccessItem).
  *
- * DecisÃµes (documentadas em app-shell.md):
- * - SidebarItem/Group/Submenu/CollapseButton sÃ£o INTERNOS â€” a API pÃºblica Ã©
- *   dirigida por dados; exportar peÃ§as soltas incentivaria montagens
+ * Decisões (documentadas em app-shell.md):
+ * - SidebarItem/Group/Submenu/CollapseButton são INTERNOS � a API pública é
+ *   dirigida por dados; exportar peças soltas incentivaria montagens
  *   divergentes entre portais.
- * - Grupo estÃ¡tico = item sem href com meta.group === true (label de seÃ§Ã£o,
- *   filhos sempre visÃ­veis). Submenu expansÃ­vel = item com children sem
+ * - Grupo estático = item sem href com meta.group === true (label de seção,
+ *   filhos sempre visíveis). Submenu expansível = item com children sem
  *   meta.group.
- * - Em collapsed, submenus nÃ£o expandem: clicar no pai reabre a sidebar
- *   (versÃ£o conservadora; refinamento fica para a Sprint 8).
- * - SEM botÃ£o de colapso embutido (decisÃ£o pÃ³s-Sprint 6, referÃªncia visual
- *   Supertrans): colapso Ã© controlado pelo portal via collapsed/onCollapsedChange.
+ * - Em collapsed, submenus não expandem: clicar no pai reabre a sidebar
+ *   (versão conservadora; refinamento fica para a Sprint 8).
+ * - SEM botão de colapso embutido (decisão pós-Sprint 6, referência visual
+ *   Supertrans): colapso é controlado pelo portal via collapsed/onCollapsedChange.
  */
 
 const defaultRenderLink: RenderLink = ({ href, children, className, ...props }) => (
@@ -121,7 +121,7 @@ function SidebarEntry({
 	const hasActiveChild = containsActiveItem(item, activeItemId) && item.id !== activeItemId;
 	const [open, setOpen] = React.useState(hasActiveChild);
 	React.useEffect(() => {
-		// auto-open (aditivo) quando um filho vira ativo â€” nunca fecha sozinho
+		// auto-open (aditivo) quando um filho vira ativo � nunca fecha sozinho
 		if (hasActiveChild) setOpen(true);
 	}, [hasActiveChild]);
 
@@ -298,7 +298,7 @@ export function Sidebar({
 						{brand}
 					</div>
 				)}
-				<nav aria-label="NavegaÃ§Ã£o principal" className="flex-1 space-y-1 overflow-y-auto p-2">
+				<nav aria-label="Navegação principal" className="flex-1 space-y-1 overflow-y-auto p-2">
 					{items.map((item) => (
 						<SidebarEntry
 							key={item.id}

@@ -10,9 +10,9 @@ const meta: Meta<typeof SectionHeader> = {
 export default meta;
 type Story = StoryObj<typeof SectionHeader>;
 
-export const Default: Story = { args: { title: "HistÃ³rico" } };
+export const Default: Story = { args: { title: "Histórico" } };
 export const WithDescription: Story = {
-	args: { title: "HistÃ³rico", description: "Eventos recentes do registro." },
+	args: { title: "Histórico", description: "Eventos recentes do registro." },
 };
 export const WithActions: Story = {
 	args: {

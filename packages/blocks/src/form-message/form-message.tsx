@@ -3,8 +3,8 @@ import type * as React from "react";
 import { cn } from "@portais-orion/ui";
 
 /*
- * Mensagem de apoio/validaÃ§Ã£o de formulÃ¡rio. Origem do padrÃ£o: os
- * `text-xs text-destructive` repetidos Ã  mÃ£o nos forms do Supertrans.
+ * Mensagem de apoio/validação de formulário. Origem do padrão: os
+ * `text-xs text-destructive` repetidos à mão nos forms do Supertrans.
  */
 export type FormMessageTone = "default" | "error" | "warning" | "success";
 

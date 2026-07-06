@@ -38,11 +38,11 @@ export const ComAcoes: Story = {
 
 export const ComEyebrow: Story = {
 	args: {
-		eyebrow: "OperaÃ§Ãµes",
+		eyebrow: "Operações",
 		title: "Painel de acompanhamento",
 	},
 };
 
 export const SomenteTitulo: Story = {
-	args: { title: "ConfiguraÃ§Ãµes" },
+	args: { title: "Configurações" },
 };

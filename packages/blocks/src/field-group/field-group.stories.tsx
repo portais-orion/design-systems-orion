@@ -55,7 +55,7 @@ export const WithMixedFields: Story = {
 		<FieldGroup columns={2} className="w-[36rem]">
 			{campo(1)}
 			{campo(2)}
-			<FormField label="ObservaÃ§Ãµes" htmlFor="fg-obs" className="sm:col-span-2">
+			<FormField label="Observações" htmlFor="fg-obs" className="sm:col-span-2">
 				<Textarea id="fg-obs" rows={3} />
 			</FormField>
 		</FieldGroup>

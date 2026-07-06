@@ -14,14 +14,14 @@ export default meta;
 type Story = StoryObj<typeof FormField>;
 
 const opcoes = [
-	{ label: "OpÃ§Ã£o 1", value: "1" },
-	{ label: "OpÃ§Ã£o 2", value: "2" },
+	{ label: "Opção 1", value: "1" },
+	{ label: "Opção 2", value: "2" },
 ];
 
 export const Default: Story = {
 	render: () => (
 		<FormField label="Nome" htmlFor="ff-nome" className="w-72">
-			<Input id="ff-nome" placeholder="Nome de exibiÃ§Ã£o" />
+			<Input id="ff-nome" placeholder="Nome de exibição" />
 		</FormField>
 	),
 };
@@ -29,9 +29,9 @@ export const Default: Story = {
 export const WithDescription: Story = {
 	render: () => (
 		<FormField
-			label="CÃ³digo"
+			label="Código"
 			htmlFor="ff-cod"
-			description="Identificador Ãºnico, sem espaÃ§os."
+			description="Identificador único, sem espaços."
 			className="w-72"
 		>
 			<Input id="ff-cod" aria-describedby="ff-cod-description" />
@@ -44,7 +44,7 @@ export const WithError: Story = {
 		<FormField
 			label="E-mail"
 			htmlFor="ff-mail"
-			error="Formato de e-mail invÃ¡lido"
+			error="Formato de e-mail inválido"
 			className="w-72"
 		>
 			<Input id="ff-mail" aria-invalid aria-describedby="ff-mail-error" defaultValue="abc@" />
@@ -62,7 +62,7 @@ export const Required: Story = {
 
 export const WithTextarea: Story = {
 	render: () => (
-		<FormField label="ObservaÃ§Ãµes" htmlFor="ff-obs" className="w-96">
+		<FormField label="Observações" htmlFor="ff-obs" className="w-96">
 			<Textarea id="ff-obs" rows={3} />
 		</FormField>
 	),
@@ -98,7 +98,7 @@ export const WithMultiSelect: Story = {
 
 export const WithCheckbox: Story = {
 	render: () => (
-		<FormField htmlFor="ff-ativo" description="Registros inativos nÃ£o aparecem nas listagens.">
+		<FormField htmlFor="ff-ativo" description="Registros inativos não aparecem nas listagens.">
 			<div className="flex items-center gap-2">
 				<Checkbox id="ff-ativo" defaultChecked onCheckedChange={fn()} />
 				<label htmlFor="ff-ativo" className="text-sm">

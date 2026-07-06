@@ -3,7 +3,7 @@ import type * as React from "react";
 import { cn } from "@portais-orion/ui";
 
 /*
- * Grid responsivo de campos (1 coluna no mobile). Origem do padrÃ£o:
+ * Grid responsivo de campos (1 coluna no mobile). Origem do padrão:
  * grid-cols-2/3 gap-4 dos forms dos dois portais.
  */
 export type FieldGroupProps = {

@@ -6,9 +6,9 @@ import { Card, cn } from "@portais-orion/ui";
 
 /*
  * Recriado a partir do Portal-Aurora ui/DataTable/StatusCards.tsx.
- * DiferenÃ§as: itens por props com tons semÃ¢nticos (o original recebia
- * bgColor/textColor como strings de classe); clique Ã© opcional por item
- * (no original todo card era botÃ£o de filtro).
+ * Diferenças: itens por props com tons semânticos (o original recebia
+ * bgColor/textColor como strings de classe); clique é opcional por item
+ * (no original todo card era botão de filtro).
  */
 export type StatusCardTone = "default" | "success" | "warning" | "danger" | "info" | "muted";
 

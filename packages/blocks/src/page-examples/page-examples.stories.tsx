@@ -31,11 +31,11 @@ import { StatusCards } from "../status-cards";
 import { StatusDot } from "../status-dot";
 
 /*
- * PÃ¡ginas completas genÃ©ricas â€” demonstram o encaixe oficial dos blocks.
- * Dados neutros ("Registro/Processo"); nenhuma API, rota ou permissÃ£o.
+ * Páginas completas genéricas � demonstram o encaixe oficial dos blocks.
+ * Dados neutros ("Registro/Processo"); nenhuma API, rota ou permissão.
  */
 const meta: Meta = {
-	title: "Blocks/Exemplos de PÃ¡gina",
+	title: "Blocks/Exemplos de Página",
 	parameters: { layout: "fullscreen" },
 };
 export default meta;
@@ -94,12 +94,12 @@ export const ListPageExample: StoryObj = {
 					/>
 				}
 				toolbar={<SearchBar className="w-72" value={busca} onChange={setBusca} />}
-				filters={<FilterPill label="PerÃ­odo" value="Jul/2026" onRemove={fn()} />}
+				filters={<FilterPill label="Período" value="Jul/2026" onRemove={fn()} />}
 				content={
 					<DataTable
 						data={dados.slice((page - 1) * 5, page * 5)}
 						columns={[
-							{ header: "CÃ³digo", cell: (r) => <CodeBadge>{r.codigo}</CodeBadge>, width: 110 },
+							{ header: "Código", cell: (r) => <CodeBadge>{r.codigo}</CodeBadge>, width: 110 },
 							{ header: "Nome", accessorKey: "nome" },
 							{
 								header: "Status",
@@ -139,14 +139,14 @@ export const FormPageExample: StoryObj = {
 						onSubmit={(e) => {
 							e.preventDefault();
 							if (!nome.trim()) {
-								setErros({ nome: "O nome Ã© obrigatÃ³rio" });
+								setErros({ nome: "O nome é obrigatório" });
 								return;
 							}
 							setErros({});
 							salvar({ nome, categoria, tags });
 						}}
 					>
-						<FormSection title="Dados gerais" description="InformaÃ§Ãµes principais do registro.">
+						<FormSection title="Dados gerais" description="Informações principais do registro.">
 							<FieldGroup columns={2}>
 								<FormField label="Nome" htmlFor="ex-nome" required error={erros.nome}>
 									<Input
@@ -175,7 +175,7 @@ export const FormPageExample: StoryObj = {
 										className="w-full"
 										options={[
 											{ label: "Urgente", value: "urgente" },
-											{ label: "RevisÃ£o", value: "revisao" },
+											{ label: "Revisão", value: "revisao" },
 											{ label: "Interno", value: "interno" },
 										]}
 										value={tags}
@@ -199,13 +199,13 @@ export const FormPageExample: StoryObj = {
 	},
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
-		// submete vazio â†’ erro aparece
+		// submete vazio �  erro aparece
 		await userEvent.click(canvas.getByRole("button", { name: "Salvar" }));
-		await waitFor(() => expect(canvas.getByText("O nome Ã© obrigatÃ³rio")).toBeVisible());
-		// preenche â†’ erro some
+		await waitFor(() => expect(canvas.getByText("O nome é obrigatório")).toBeVisible());
+		// preenche �  erro some
 		await userEvent.type(canvas.getByLabelText(/Nome/), "Registro demo");
 		await userEvent.click(canvas.getByRole("button", { name: "Salvar" }));
-		await waitFor(() => expect(canvas.queryByText("O nome Ã© obrigatÃ³rio")).toBeNull());
+		await waitFor(() => expect(canvas.queryByText("O nome é obrigatório")).toBeNull());
 	},
 };
 
@@ -237,13 +237,13 @@ export const DetailPageExample: StoryObj = {
 				<Tabs defaultValue="itens">
 					<TabsList>
 						<TabsTrigger value="itens">Itens</TabsTrigger>
-						<TabsTrigger value="historico">HistÃ³rico</TabsTrigger>
+						<TabsTrigger value="historico">Histórico</TabsTrigger>
 					</TabsList>
 					<TabsContent value="itens">
 						<DataTable
 							data={REGISTROS.slice(0, 4)}
 							columns={[
-								{ header: "CÃ³digo", cell: (r) => <CodeBadge>{r.codigo}</CodeBadge> },
+								{ header: "Código", cell: (r) => <CodeBadge>{r.codigo}</CodeBadge> },
 								{ header: "Nome", accessorKey: "nome" },
 								{ header: "Qtd.", accessorKey: "qtd", align: "right" },
 							]}
@@ -279,14 +279,14 @@ export const DashboardPageExample: StoryObj = {
 					items={[
 						{ label: "Total", value: 128, icon: FileText },
 						{ label: "Pendentes", value: 12, icon: Clock, tone: "warning" },
-						{ label: "ConcluÃ­dos", value: 98, icon: CheckCircle, tone: "success" },
+						{ label: "Concluídos", value: 98, icon: CheckCircle, tone: "success" },
 					]}
 					columns={3}
 				/>
 			}
 			content={
 				<div className="grid gap-6 lg:grid-cols-2">
-					<ContentCard title="Ãšltimos registros">
+					<ContentCard title="�altimos registros">
 						<DataTable
 							data={REGISTROS.slice(0, 5)}
 							columns={[
@@ -296,9 +296,9 @@ export const DashboardPageExample: StoryObj = {
 							keyExtractor={(r) => r.id}
 						/>
 					</ContentCard>
-					<ContentCard title="DistribuiÃ§Ã£o">
+					<ContentCard title="Distribuição">
 						<div className="flex h-64 items-center justify-center rounded bg-muted/40 text-sm text-muted-foreground">
-							Ã¡rea reservada para grÃ¡fico
+							área reservada para gráfico
 						</div>
 					</ContentCard>
 				</div>

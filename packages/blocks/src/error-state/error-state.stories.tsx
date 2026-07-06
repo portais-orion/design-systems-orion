@@ -26,7 +26,7 @@ export const ComRetry: Story = {
 
 export const TextoCustomizado: Story = {
 	args: {
-		title: "Falha ao processar a solicitaÃ§Ã£o",
+		title: "Falha ao processar a solicitação",
 		description: "O servidor demorou para responder.",
 	},
 };

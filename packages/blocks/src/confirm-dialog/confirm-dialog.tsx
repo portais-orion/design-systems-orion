@@ -15,8 +15,8 @@ import {
 
 /*
  * Recriado a partir da API do Portal-Aurora ui/ConfirmDialog.tsx, sobre o
- * AlertDialog do @portais-orion/ui. DiferenÃ§a deliberada em relaÃ§Ã£o ao original:
- * fecha somente quando onConfirm resolve; se lanÃ§ar/rejeitar, permanece
+ * AlertDialog do @portais-orion/ui. Diferença deliberada em relação ao original:
+ * fecha somente quando onConfirm resolve; se lançar/rejeitar, permanece
  * aberto (o original fechava mesmo com erro em voo).
  */
 export type ConfirmDialogVariant = "default" | "danger";
@@ -53,7 +53,7 @@ export function ConfirmDialog({
 			await onConfirm();
 			onOpenChange(false);
 		} catch {
-			// mantÃ©m aberto; o chamador Ã© responsÃ¡vel por exibir o erro (toast etc.)
+			// mantém aberto; o chamador é responsável por exibir o erro (toast etc.)
 		} finally {
 			setPending(false);
 		}

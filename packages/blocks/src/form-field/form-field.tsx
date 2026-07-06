@@ -6,14 +6,14 @@ import { FormMessage } from "../form-message";
 import type { FormFieldProps } from "./form-field.types";
 
 /*
- * Padroniza o trio label + controle + mensagem repetido Ã  mÃ£o em todos os
- * forms do Supertrans (space-y-1.5 / text-xs text-destructive). AgnÃ³stico de
+ * Padroniza o trio label + controle + mensagem repetido à mão em todos os
+ * forms do Supertrans (space-y-1.5 / text-xs text-destructive). Agnóstico de
  * form library: `error` chega por prop (RHF: errors.campo?.message).
  *
- * a11y: quando `htmlFor` Ã© informado, description/error recebem ids
+ * a11y: quando `htmlFor` é informado, description/error recebem ids
  * `<htmlFor>-description` / `<htmlFor>-error`. Conecte no controle:
  *   <Input id="nome" aria-describedby="nome-description nome-error" />
- * (a conexÃ£o Ã© responsabilidade do consumidor â€” o FormField nÃ£o clona filhos).
+ * (a conexão é responsabilidade do consumidor � o FormField não clona filhos).
  */
 export function FormField({
 	label,

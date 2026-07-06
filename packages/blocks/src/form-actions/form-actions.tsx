@@ -3,9 +3,9 @@ import type * as React from "react";
 import { cn } from "@portais-orion/ui";
 
 /*
- * Barra de aÃ§Ãµes de formulÃ¡rio (salvar/cancelar/extra). Origem do padrÃ£o:
+ * Barra de ações de formulário (salvar/cancelar/extra). Origem do padrão:
  * footers repetidos com justify-end nos forms dos dois portais.
- * Slots apenas â€” nunca cria botÃµes nem textos.
+ * Slots apenas � nunca cria botões nem textos.
  */
 export type FormActionsProps = {
 	primary?: React.ReactNode;

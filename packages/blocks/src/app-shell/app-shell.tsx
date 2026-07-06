@@ -11,13 +11,13 @@ import type { AppShellProps } from "./app-shell.types";
 
 /*
  * Chrome oficial dos portais: sidebar lateral + barra de breadcrumbs no topo
- * do conteÃºdo + miolo (page layouts da Sprint 5). SEM header/topbar fixo â€”
- * padrÃ£o do grupo (AdminShell do Supertrans).
+ * do conteúdo + miolo (page layouts da Sprint 5). SEM header/topbar fixo �
+ * padrão do grupo (AdminShell do Supertrans).
  *
- * Responsividade: no desktop (md+) a sidebar Ã© fixa lateral; abaixo de md
- * ela desaparece e um botÃ£o minimalista na barra de breadcrumbs abre a MESMA
- * navegaÃ§Ã£o num Sheet (drawer Ã  esquerda). O shell nÃ£o conhece rotas,
- * sessÃ£o ou permissÃµes â€” renderLink e canAccessItem sÃ£o injetados.
+ * Responsividade: no desktop (md+) a sidebar é fixa lateral; abaixo de md
+ * ela desaparece e um botão minimalista na barra de breadcrumbs abre a MESMA
+ * navegação num Sheet (drawer à esquerda). O shell não conhece rotas,
+ * sessão ou permissões � renderLink e canAccessItem são injetados.
  */
 export function AppShell({
 	brand,
@@ -64,7 +64,7 @@ export function AppShell({
 								<Button
 									variant="ghost"
 									size="icon-sm"
-									aria-label="Abrir menu de navegaÃ§Ã£o"
+									aria-label="Abrir menu de navegação"
 									className="md:hidden"
 								>
 									<Menu />
@@ -72,7 +72,7 @@ export function AppShell({
 							}
 						/>
 						<SheetContent side="left" className="w-72 max-w-full p-0 [&>button]:z-10">
-							<SheetTitle className="sr-only">Menu de navegaÃ§Ã£o</SheetTitle>
+							<SheetTitle className="sr-only">Menu de navegação</SheetTitle>
 							<Sidebar
 								{...sidebarProps}
 								className="h-full w-full border-r-0"

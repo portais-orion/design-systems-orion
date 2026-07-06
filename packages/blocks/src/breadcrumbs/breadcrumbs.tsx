@@ -6,9 +6,9 @@ import { cn } from "@portais-orion/ui";
 import type { BreadcrumbItem, RenderLink } from "../navigation";
 
 /*
- * Breadcrumbs do chrome (parte do shell, nÃ£o dos page layouts).
- * Origem visual: admin/breadcrumbs.tsx do Supertrans â€” desacoplado de
- * rotas/permissÃµes: itens por dados, link via renderLink injetado.
+ * Breadcrumbs do chrome (parte do shell, não dos page layouts).
+ * Origem visual: admin/breadcrumbs.tsx do Supertrans � desacoplado de
+ * rotas/permissões: itens por dados, link via renderLink injetado.
  */
 export type BreadcrumbsProps = {
 	items: BreadcrumbItem[];
@@ -35,7 +35,7 @@ export function Breadcrumbs({ items, renderLink, separator, className }: Breadcr
 					const isLast = index === items.length - 1;
 					const isCurrent = item.current ?? isLast;
 					return (
-						// biome-ignore lint/suspicious/noArrayIndexKey: trilha Ã© posicional e estÃ¡tica por render
+						// biome-ignore lint/suspicious/noArrayIndexKey: trilha é posicional e estática por render
 						<li key={index} className="flex min-w-0 items-center gap-1.5">
 							{index > 0 && sep}
 							{item.href && !isCurrent ? (

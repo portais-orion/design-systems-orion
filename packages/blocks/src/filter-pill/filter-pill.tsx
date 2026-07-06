@@ -5,7 +5,7 @@ import { cn } from "@portais-orion/ui";
 /*
  * Chip de filtro ativo (label: valor + remover). Inspirado nos pills de
  * filtro do portal-supertrans (shared.tsx), com a API do plano da sprint:
- * o pill de dropdown do Supertrans Ã© outra peÃ§a e ficarÃ¡ no futuro FilterBar.
+ * o pill de dropdown do Supertrans é outra peça e ficará no futuro FilterBar.
  */
 export type FilterPillProps = {
 	label: string;
@@ -27,7 +27,7 @@ export function FilterPill({ label, value, onRemove, className }: FilterPillProp
 			{value !== undefined && value !== "" && (
 				<>
 					<span aria-hidden="true" className="text-muted-foreground/60">
-						Â·
+						·
 					</span>
 					<span>{value}</span>
 				</>

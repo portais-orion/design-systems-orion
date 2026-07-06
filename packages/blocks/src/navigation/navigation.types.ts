@@ -1,9 +1,9 @@
 import type * as React from "react";
 
 /*
- * Tipos de navegação do chrome oficial (Sidebar/AppShell/Breadcrumbs).
- * O núcleo renderiza; o portal fornece destinos (renderLink) e visibilidade
- * (canAccessItem). Nenhuma permissão real é interpretada aqui.
+ * Tipos de navega��o do chrome oficial (Sidebar/AppShell/Breadcrumbs).
+ * O n�cleo renderiza; o portal fornece destinos (renderLink) e visibilidade
+ * (canAccessItem). Nenhuma permiss�o real � interpretada aqui.
  */
 export type NavigationItem = {
 	id: string;
@@ -13,7 +13,7 @@ export type NavigationItem = {
 	badge?: React.ReactNode;
 	disabled?: boolean;
 	children?: NavigationItem[];
-	/** Espaço livre do portal (ex.: chave de permissão). O núcleo NÃO interpreta. */
+	/** Espa�o livre do portal (ex.: chave de permiss�o). O n�cleo N�O interpreta. */
 	meta?: Record<string, unknown>;
 };
 
@@ -36,9 +36,9 @@ export type RenderLink = (props: RenderLinkProps) => React.ReactNode;
 export type CanAccessNavigationItem = (item: NavigationItem) => boolean;
 
 /**
- * Filtra a árvore de navegação:
+ * Filtra a �rvore de navega��o:
  * - item negado por canAccessItem some;
- * - filhos são filtrados recursivamente;
+ * - filhos s�o filtrados recursivamente;
  * - pai SEM href que ficou sem filhos some (grupo/submenu vazio);
  * - pai COM href e filhos todos filtrados permanece como link simples.
  */
@@ -56,7 +56,7 @@ export function filterNavigation(
 	});
 }
 
-/** true se o item ou algum descendente é o ativo. */
+/** true se o item ou algum descendente � o ativo. */
 export function containsActiveItem(item: NavigationItem, activeItemId?: string): boolean {
 	if (!activeItemId) return false;
 	if (item.id === activeItemId) return true;

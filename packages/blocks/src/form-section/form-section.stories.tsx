@@ -17,7 +17,7 @@ const Campos = () => (
 		<FormField label="Nome" htmlFor="fs-nome">
 			<Input id="fs-nome" />
 		</FormField>
-		<FormField label="CÃ³digo" htmlFor="fs-cod">
+		<FormField label="Código" htmlFor="fs-cod">
 			<Input id="fs-cod" />
 		</FormField>
 	</>
@@ -35,7 +35,7 @@ export const WithDescription: Story = {
 	render: () => (
 		<FormSection
 			title="Dados gerais"
-			description="InformaÃ§Ãµes principais do registro."
+			description="Informações principais do registro."
 			className="w-96"
 		>
 			<Campos />
@@ -46,7 +46,7 @@ export const WithDescription: Story = {
 export const WithActions: Story = {
 	render: () => (
 		<FormSection
-			title="EndereÃ§os"
+			title="Endereços"
 			actions={
 				<Button variant="outline" size="sm">
 					Adicionar
@@ -65,7 +65,7 @@ export const MultipleSections: Story = {
 			<FormSection title="Dados gerais">
 				<Campos />
 			</FormSection>
-			<FormSection title="ConfiguraÃ§Ãµes" description="Ajustes opcionais.">
+			<FormSection title="Configurações" description="Ajustes opcionais.">
 				<Campos />
 			</FormSection>
 		</div>

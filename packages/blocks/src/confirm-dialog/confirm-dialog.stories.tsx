@@ -22,8 +22,8 @@ function DemoDefault() {
 			<ConfirmDialog
 				open={open}
 				onOpenChange={setOpen}
-				title="Confirmar aprovaÃ§Ã£o"
-				description="O item serÃ¡ enviado para a prÃ³xima etapa."
+				title="Confirmar aprovação"
+				description="O item será enviado para a próxima etapa."
 				confirmLabel="Aprovar"
 				onConfirm={() => {}}
 			/>
@@ -42,7 +42,7 @@ function DemoDanger() {
 				open={open}
 				onOpenChange={setOpen}
 				title="Excluir registro?"
-				description="Esta aÃ§Ã£o nÃ£o poderÃ¡ ser desfeita."
+				description="Esta ação não poderá ser desfeita."
 				confirmLabel="Excluir"
 				variant="danger"
 				onConfirm={() => new Promise((r) => setTimeout(r, 1200))}
@@ -62,7 +62,7 @@ function DemoErro() {
 				open={open}
 				onOpenChange={setOpen}
 				title="Processar registro?"
-				description="Esta confirmaÃ§Ã£o sempre falha â€” o diÃ¡logo deve permanecer aberto."
+				description="Esta confirmação sempre falha � o diálogo deve permanecer aberto."
 				onConfirm={() => new Promise((_, reject) => setTimeout(reject, 800))}
 			/>
 		</>

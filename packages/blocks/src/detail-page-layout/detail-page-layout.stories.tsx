@@ -36,11 +36,11 @@ const Abas = () => (
 	<Tabs defaultValue="geral">
 		<TabsList>
 			<TabsTrigger value="geral">Geral</TabsTrigger>
-			<TabsTrigger value="historico">HistÃ³rico</TabsTrigger>
+			<TabsTrigger value="historico">Histórico</TabsTrigger>
 		</TabsList>
 		<TabsContent value="geral">
 			<ContentCard>
-				<p className="text-sm text-muted-foreground">ConteÃºdo da aba Geral.</p>
+				<p className="text-sm text-muted-foreground">Conteúdo da aba Geral.</p>
 			</ContentCard>
 		</TabsContent>
 		<TabsContent value="historico">
@@ -57,7 +57,7 @@ export const Default: Story = {
 			header={<Cabecalho />}
 			content={
 				<ContentCard>
-					<p className="text-sm text-muted-foreground">ConteÃºdo do detalhe.</p>
+					<p className="text-sm text-muted-foreground">Conteúdo do detalhe.</p>
 				</ContentCard>
 			}
 		/>
@@ -76,7 +76,7 @@ export const WithAside: Story = {
 			summary={<Resumo />}
 			tabs={<Abas />}
 			aside={
-				<ContentCard title="AÃ§Ãµes rÃ¡pidas">
+				<ContentCard title="Ações rápidas">
 					<div className="grid gap-2">
 						<Button variant="outline" size="sm">
 							Duplicar

@@ -5,8 +5,8 @@ import { cn } from "@portais-orion/ui";
 import { PageLayout } from "../page-layout";
 
 /*
- * Layout de pÃ¡gina de criar/editar. Largura contida (padrÃ£o max-w-3xl do
- * Supertrans) com aside opcional. NÃ£o cria <form> nem conhece RHF.
+ * Layout de página de criar/editar. Largura contida (padrão max-w-3xl do
+ * Supertrans) com aside opcional. Não cria <form> nem conhece RHF.
  */
 export type FormPageLayoutProps = {
 	header?: React.ReactNode;

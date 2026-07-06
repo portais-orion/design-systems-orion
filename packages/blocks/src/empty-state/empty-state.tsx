@@ -5,8 +5,8 @@ import { cn } from "@portais-orion/ui";
 
 /*
  * Origem: portal-supertrans gestao-cadastros/shared.tsx (EmptyState).
- * Generalizado: textos e aÃ§Ã£o viraram props/slot (a versÃ£o original tinha
- * textos fixos e callbacks de domÃ­nio onClear/onNew).
+ * Generalizado: textos e ação viraram props/slot (a versão original tinha
+ * textos fixos e callbacks de domínio onClear/onNew).
  */
 export type EmptyStateProps = {
 	title: string;

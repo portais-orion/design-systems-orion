@@ -16,7 +16,7 @@ export const Default: Story = {
 		<Table>
 			<TableHeader>
 				<TableRow>
-					<TableHead>CÃ³digo</TableHead>
+					<TableHead>Código</TableHead>
 					<TableHead>Nome</TableHead>
 					<TableHead>Status</TableHead>
 					<TableHead>Criado em</TableHead>

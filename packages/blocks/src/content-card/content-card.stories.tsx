@@ -14,14 +14,14 @@ type Story = StoryObj<typeof ContentCard>;
 export const Default: Story = {
 	render: () => (
 		<ContentCard className="w-96">
-			<p className="text-sm text-muted-foreground">ConteÃºdo simples sem cabeÃ§alho.</p>
+			<p className="text-sm text-muted-foreground">Conteúdo simples sem cabeçalho.</p>
 		</ContentCard>
 	),
 };
 export const WithHeader: Story = {
 	render: () => (
-		<ContentCard className="w-96" title="Resumo" description="InformaÃ§Ãµes principais">
-			<p className="text-sm text-muted-foreground">ConteÃºdo do card.</p>
+		<ContentCard className="w-96" title="Resumo" description="Informações principais">
+			<p className="text-sm text-muted-foreground">Conteúdo do card.</p>
 		</ContentCard>
 	),
 };
@@ -36,19 +36,19 @@ export const WithActions: Story = {
 				</Button>
 			}
 		>
-			<p className="text-sm text-muted-foreground">ConteÃºdo do card.</p>
+			<p className="text-sm text-muted-foreground">Conteúdo do card.</p>
 		</ContentCard>
 	),
 };
 export const NestedSections: Story = {
 	render: () => (
-		<ContentCard className="w-[32rem]" title="ConfiguraÃ§Ãµes">
+		<ContentCard className="w-[32rem]" title="Configurações">
 			<div className="space-y-6">
 				<FormSection title="Geral">
-					<p className="text-sm text-muted-foreground">Campos geraisâ€¦</p>
+					<p className="text-sm text-muted-foreground">Campos gerais⬦</p>
 				</FormSection>
-				<FormSection title="AvanÃ§ado">
-					<p className="text-sm text-muted-foreground">Campos avanÃ§adosâ€¦</p>
+				<FormSection title="Avançado">
+					<p className="text-sm text-muted-foreground">Campos avançados⬦</p>
 				</FormSection>
 			</div>
 		</ContentCard>

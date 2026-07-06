@@ -89,7 +89,7 @@ export const WithFilters: Story = {
 			filters={
 				<>
 					<FilterPill label="Status" value="Ativo" onRemove={() => {}} />
-					<FilterPill label="PerÃ­odo" value="Jul/2026" onRemove={() => {}} />
+					<FilterPill label="Período" value="Jul/2026" onRemove={() => {}} />
 				</>
 			}
 			content={<Tabela />}

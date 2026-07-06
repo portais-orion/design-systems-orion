@@ -22,7 +22,7 @@ export const Default: Story = {
 export const ComAcao: Story = {
 	args: {
 		title: "Nenhum item cadastrado",
-		description: "Cadastre o primeiro item para comeÃ§ar.",
+		description: "Cadastre o primeiro item para começar.",
 		icon: Inbox,
 		action: <Button size="sm">Novo registro</Button>,
 	},

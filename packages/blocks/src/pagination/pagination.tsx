@@ -14,7 +14,7 @@ import {
 
 /*
  * Recriado a partir da API do Portal-Aurora ui/Pagination.tsx, tokenizado e
- * sobre @portais-orion/ui. CompatÃ­vel com o envelope { data, total, page, limit }.
+ * sobre @portais-orion/ui. Compatível com o envelope { data, total, page, limit }.
  */
 export type PaginationProps = {
 	page: number;
@@ -61,7 +61,7 @@ export function Pagination({
 							}}
 							items={limitOptions.map((o) => ({ value: String(o), label: String(o) }))}
 						>
-							<SelectTrigger className="h-8 w-fit min-w-16" aria-label="Itens por pÃ¡gina">
+							<SelectTrigger className="h-8 w-fit min-w-16" aria-label="Itens por página">
 								<SelectValue />
 							</SelectTrigger>
 							<SelectContent>
@@ -84,20 +84,20 @@ export function Pagination({
 				<Button
 					variant="outline"
 					size="icon-sm"
-					aria-label="PÃ¡gina anterior"
+					aria-label="Página anterior"
 					disabled={page <= 1}
 					onClick={() => onPageChange(page - 1)}
 				>
 					<ChevronLeft />
 				</Button>
 				<span className="min-w-20 text-center text-sm text-muted-foreground">
-					PÃ¡gina <span className="font-medium text-foreground">{fmt.format(page)}</span> de{" "}
+					Página <span className="font-medium text-foreground">{fmt.format(page)}</span> de{" "}
 					<span className="font-medium text-foreground">{fmt.format(totalPages)}</span>
 				</span>
 				<Button
 					variant="outline"
 					size="icon-sm"
-					aria-label="PrÃ³xima pÃ¡gina"
+					aria-label="Próxima página"
 					disabled={page >= totalPages}
 					onClick={() => onPageChange(page + 1)}
 				>

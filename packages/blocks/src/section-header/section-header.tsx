@@ -2,7 +2,7 @@ import type * as React from "react";
 
 import { cn } from "@portais-orion/ui";
 
-/* CabeÃ§alho de seÃ§Ã£o dentro de pÃ¡gina (menor que PageHeader). */
+/* Cabeçalho de seção dentro de página (menor que PageHeader). */
 export type SectionHeaderProps = {
 	title: React.ReactNode;
 	description?: React.ReactNode;

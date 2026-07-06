@@ -5,7 +5,7 @@ import { cn } from "@portais-orion/ui";
 
 /*
  * Origem: portal-supertrans gestao-cadastros/shared.tsx (ErrorState).
- * Generalizado: textos com default genÃ©rico, aÃ§Ã£o vira slot (era onRetry fixo).
+ * Generalizado: textos com default genérico, ação vira slot (era onRetry fixo).
  */
 export type ErrorStateProps = {
 	title?: string;
@@ -15,8 +15,8 @@ export type ErrorStateProps = {
 };
 
 export function ErrorState({
-	title = "NÃ£o foi possÃ­vel carregar os dados",
-	description = "Ocorreu um erro de comunicaÃ§Ã£o. Tente novamente em alguns instantes.",
+	title = "Não foi possível carregar os dados",
+	description = "Ocorreu um erro de comunicação. Tente novamente em alguns instantes.",
 	action,
 	className,
 }: ErrorStateProps) {

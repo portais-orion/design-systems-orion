@@ -22,12 +22,12 @@ export function TableSkeletonRows({
 	return (
 		<>
 			{Array.from({ length: rows }).map((_, i) => (
-				// biome-ignore lint/suspicious/noArrayIndexKey: linhas de skeleton sÃ£o estÃ¡ticas
+				// biome-ignore lint/suspicious/noArrayIndexKey: linhas de skeleton são estáticas
 				<TableRow key={i} className={className}>
 					{Array.from({ length: total }).map((_, j) => {
 						const isActions = withActionsColumn && j === total - 1;
 						return (
-							// biome-ignore lint/suspicious/noArrayIndexKey: cÃ©lulas de skeleton sÃ£o estÃ¡ticas
+							// biome-ignore lint/suspicious/noArrayIndexKey: células de skeleton são estáticas
 							<TableCell key={j} className={isActions ? "w-20" : undefined}>
 								<Skeleton
 									className="h-4"

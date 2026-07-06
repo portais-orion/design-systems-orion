@@ -3,7 +3,7 @@ import type * as React from "react";
 import { Separator, cn } from "@portais-orion/ui";
 
 /*
- * Agrupamento visual de campos. Origem do padrÃ£o: seÃ§Ãµes com tÃ­tulo +
+ * Agrupamento visual de campos. Origem do padrão: seções com título +
  * space-y dos forms do Supertrans e das telas de cadastro do Aurora.
  */
 export type FormSectionProps = {

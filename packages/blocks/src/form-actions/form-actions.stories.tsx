@@ -46,7 +46,7 @@ export const Sticky: Story = {
 	render: () => (
 		<div className="h-64 w-96 overflow-y-auto rounded-md border border-border p-4">
 			<div className="h-96 rounded bg-muted/40 p-3 text-sm text-muted-foreground">
-				ConteÃºdo longo do formulÃ¡rio (role para ver as aÃ§Ãµes fixas)
+				Conteúdo longo do formulário (role para ver as ações fixas)
 			</div>
 			<FormActions {...Botoes()} sticky />
 		</div>

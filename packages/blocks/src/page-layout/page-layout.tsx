@@ -3,8 +3,8 @@ import type * as React from "react";
 import { cn } from "@portais-orion/ui";
 
 /*
- * Layout base de pÃ¡gina (sem shell/sidebar/breadcrumb â€” Sprint 6).
- * PadrÃ£o de espaÃ§amento observado nos dois portais: pilha space-y-6.
+ * Layout base de página (sem shell/sidebar/breadcrumb � Sprint 6).
+ * Padrão de espaçamento observado nos dois portais: pilha space-y-6.
  */
 export type PageLayoutProps = {
 	header?: React.ReactNode;
