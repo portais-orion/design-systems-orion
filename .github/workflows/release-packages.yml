@@ -2,8 +2,9 @@
 # Manual (workflow_dispatch), dry-run por padrão. NÃO publica em push.
 #
 # Pré-requisitos:
-#   - Scope dos pacotes == owner do repo (hoje: @mateusarcestr). Rode o runbook de
-#     rename (docs/architecture/package-distribution.md) ANTES do primeiro publish real.
+#   - Repo transferido para a org SuperTrans-Transportes (scope == owner == @supertrans-transportes).
+#   - Rode o runbook de rename @grupo → @supertrans-transportes
+#     (docs/architecture/package-distribution.md) ANTES do primeiro publish real.
 #   - GITHUB_TOKEN do job tem `packages: write` (definido em permissions abaixo).
 name: Release packages
 
@@ -33,7 +34,7 @@ jobs:
         with:
           node-version: 22
           registry-url: https://npm.pkg.github.com
-          scope: "@mateusarcestr"
+          scope: "@supertrans-transportes"
 
       - run: pnpm install --frozen-lockfile
 

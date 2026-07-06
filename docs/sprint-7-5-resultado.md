@@ -21,10 +21,10 @@ GitHub Packages (`https://npm.pkg.github.com`), privado. Configurado via
 
 ## Namespace escolhido
 
-**`@mateusarcestr`** (owner do repo `nucleo-portais` = conta pessoal). O working tree segue
-em `@grupo` (placeholder); o rename para `@mateusarcestr` é um runbook a rodar antes do
-publish. Recomendação registrada: mover o repo para a org **`SuperTrans-Transportes`** (que
-já hospeda o `portal-supertrans`) e adotar `@supertrans-transportes`.
+**`@mateusarcestr`** foi o scope provisório (owner do repo = conta pessoal).
+**Superado na Sprint 7.5.1:** decidido transferir o repo para a org `SuperTrans-Transportes`
+e adotar o scope final **`@supertrans-transportes`**. Ver `docs/sprint-7-5-1-resultado.md` e
+`docs/architecture/package-distribution.md` (atualizados).
 
 ## Cadastro/acesso necessário
 
