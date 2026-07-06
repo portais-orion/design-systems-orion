@@ -14,24 +14,24 @@ O NÃºcleo de Portais Ã© a base oficial para criaÃ§Ã£o, padronizaÃ§Ã£
 
 | Pacote | Camada | ConteÃºdo |
 |---|---|---|
-| `@supertrans-transportes/tokens` | 0 | tokens semÃ¢nticos + temas por marca (CSS puro) |
-| `@supertrans-transportes/ui` | 1 | 26 primitives (Base UI + Tailwind v4 + cva) |
-| `@supertrans-transportes/blocks` | 2 | composiÃ§Ãµes genÃ©ricas: DataTable, PageHeader, Pagination, ConfirmDialog... |
+| `@portais-orion/tokens` | 0 | tokens semÃ¢nticos + temas por marca (CSS puro) |
+| `@portais-orion/ui` | 1 | 26 primitives (Base UI + Tailwind v4 + cva) |
+| `@portais-orion/blocks` | 2 | composiÃ§Ãµes genÃ©ricas: DataTable, PageHeader, Pagination, ConfirmDialog... |
 
 ## InstalaÃ§Ã£o (produtos)
 
 ```sh
-pnpm add @supertrans-transportes/tokens @supertrans-transportes/ui @supertrans-transportes/blocks
+pnpm add @portais-orion/tokens @portais-orion/ui @portais-orion/blocks
 ```
 
 ```css
 /* entrada CSS do produto */
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@supertrans-transportes/tokens/base.css";
-@import "@supertrans-transportes/tokens/themes/supertrans.css"; /* UM tema por produto */
-@source "../node_modules/@supertrans-transportes/ui/src";
-@source "../node_modules/@supertrans-transportes/blocks/src";
+@import "@portais-orion/tokens/base.css";
+@import "@portais-orion/tokens/themes/supertrans.css"; /* UM tema por produto */
+@source "../node_modules/@portais-orion/ui/src";
+@source "../node_modules/@portais-orion/blocks/src";
 ```
 
 ## Temas

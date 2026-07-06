@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@supertrans-transportes/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
  * Recriado a partir da API do Portal-Aurora ui/DataTable/PageHeader.tsx,

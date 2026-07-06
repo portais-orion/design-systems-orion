@@ -1,5 +1,5 @@
+import { Button } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@supertrans-transportes/ui";
 import { SectionHeader } from "./section-header";
 
 const meta: Meta<typeof SectionHeader> = {

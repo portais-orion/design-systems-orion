@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@supertrans-transportes/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
  * Grid responsivo de campos (1 coluna no mobile). Origem do padrÃ£o:

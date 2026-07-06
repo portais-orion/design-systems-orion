@@ -1,5 +1,5 @@
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Table, TableBody, TableHead, TableHeader, TableRow } from "@supertrans-transportes/ui";
 import { TableSkeletonRows } from "./table-skeleton-rows";
 
 const meta: Meta<typeof TableSkeletonRows> = {

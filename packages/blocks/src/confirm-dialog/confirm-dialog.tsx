@@ -11,11 +11,11 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	Button,
-} from "@supertrans-transportes/ui";
+} from "@portais-orion/ui";
 
 /*
  * Recriado a partir da API do Portal-Aurora ui/ConfirmDialog.tsx, sobre o
- * AlertDialog do @supertrans-transportes/ui. DiferenÃ§a deliberada em relaÃ§Ã£o ao original:
+ * AlertDialog do @portais-orion/ui. DiferenÃ§a deliberada em relaÃ§Ã£o ao original:
  * fecha somente quando onConfirm resolve; se lanÃ§ar/rejeitar, permanece
  * aberto (o original fechava mesmo com erro em voo).
  */

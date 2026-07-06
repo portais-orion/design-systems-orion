@@ -1,13 +1,6 @@
 import type * as React from "react";
 
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-	cn,
-} from "@supertrans-transportes/ui";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, cn } from "@portais-orion/ui";
 
 /* Card de conteÃºdo com cabeÃ§alho/aÃ§Ãµes â€” estrutura comum de painÃ©is. */
 export type ContentCardProps = {

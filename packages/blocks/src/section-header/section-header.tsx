@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@supertrans-transportes/ui";
+import { cn } from "@portais-orion/ui";
 
 /* CabeÃ§alho de seÃ§Ã£o dentro de pÃ¡gina (menor que PageHeader). */
 export type SectionHeaderProps = {

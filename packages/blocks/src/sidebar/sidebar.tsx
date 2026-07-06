@@ -3,13 +3,7 @@
 import { ChevronDown } from "lucide-react";
 import * as React from "react";
 
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-	cn,
-} from "@supertrans-transportes/ui";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, cn } from "@portais-orion/ui";
 
 import {
 	type NavigationItem,

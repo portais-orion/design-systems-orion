@@ -1,4 +1,3 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import {
 	Badge,
 	Button,
@@ -7,7 +6,8 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from "@supertrans-transportes/ui";
+} from "@portais-orion/ui";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Download, Eye, MoreHorizontal, Pencil, Plus, Trash2 } from "lucide-react";
 import * as React from "react";
 import { CodeBadge } from "../code-badge";

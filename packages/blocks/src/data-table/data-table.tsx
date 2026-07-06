@@ -18,7 +18,7 @@ import {
 	TableHeader,
 	TableRow,
 	cn,
-} from "@supertrans-transportes/ui";
+} from "@portais-orion/ui";
 
 import { EmptyState } from "../empty-state";
 import { ErrorState } from "../error-state";

@@ -1,8 +1,8 @@
 /*
  * Entrada de conveniÃªncia para ambientes multi-marca (Storybook, previews).
  * Produtos reais importam base.css + UM tema:
- *   @import "@supertrans-transportes/tokens/base.css";
- *   @import "@supertrans-transportes/tokens/themes/aurora.css";
+ *   @import "@portais-orion/tokens/base.css";
+ *   @import "@portais-orion/tokens/themes/aurora.css";
  * Com os dois temas carregados, a marca efetiva Ã© controlada por [data-brand].
  */
 @import "./base.css";

@@ -1,4 +1,4 @@
-import { cn } from "@supertrans-transportes/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
  * Indicador de status por tom semÃ¢ntico. Origem conceitual: StatusDot do

@@ -1,140 +1,127 @@
 # Package Distribution
 
-Como o NÃºcleo de Portais Ã© empacotado e distribuÃ­do como pacotes internos versionados
-(Sprint 7.5 / 7.5.1). Substitui a estratÃ©gia temporÃ¡ria de aliases da Sprint 7.
+Como o Núcleo de Portais é empacotado e distribuído como pacotes internos versionados.
+Scope final: **`@portais-orion`** (org `portais-orion`). Substitui a estratégia temporária de
+aliases da Sprint 7 e os scopes intermediários `@grupo`, `@mateusarcestr`, `@supertrans-transportes`.
 
-## DecisÃ£o
+## Decisão
 
-- **Modelo v0.1.0: source-based publish.** Os pacotes publicam o cÃ³digo-fonte (`src`),
-  sem build de `dist`. O consumidor transpila (Next `transpilePackages`). Motivo: modelo jÃ¡
-  provado na Sprint 7, `pnpm publish` resolve `workspace:*` automaticamente, e nÃ£o exige um
-  build de biblioteca (tsup) ainda nÃ£o validado. **Dist compilado (tsup) = hardening da Sprint 8.**
-- **Lar do repo: org `SuperTrans-Transportes`** (a mesma que hospeda `portal-supertrans`).
-  O repo `nucleo-portais` Ã© transferido da conta pessoal `mateusarcestr` para a org.
-- **`@supertrans-transportes/tsconfig` e `@supertrans-transportes/biome-config` permanecem `private`** â€” tooling interno, nunca publicado.
+- **Modelo v0.1.0: source-based publish.** Os pacotes publicam o código-fonte (`src`), sem
+  build de `dist`. O consumidor transpila (Next `transpilePackages`). `pnpm publish` resolve
+  `workspace:*` automaticamente. Dist compilado (tsup) = hardening da Sprint 8.
+- **Lar do repo: org `portais-orion`** (scope genérico, reutilizável por vários portais). O
+  scope `@supertrans-transportes` foi abandonado por ser específico demais (fica como legado).
+- **`@portais-orion/tsconfig` e `@portais-orion/biome-config` permanecem `private`** — tooling interno.
 
 ## Registry escolhido
 
-**GitHub Packages** (`https://npm.pkg.github.com`). Privado. NÃ£o usar npm pÃºblico, shadcn
+**GitHub Packages** (`https://npm.pkg.github.com`), privado. Não usar npm público, shadcn
 registry, nem registry externo.
 
 ## Namespace
 
-Regra do GitHub Packages: **o scope do pacote precisa ser igual ao owner do repositÃ³rio**.
+Regra do GitHub Packages: **o scope do pacote precisa ser igual ao owner do repositório**.
+Scope final `@portais-orion` == org `portais-orion`, após transferir o repo para a org.
 
-- Scope final: **`@supertrans-transportes`** (== org, apÃ³s a transferÃªncia do repo).
-- O working tree ainda usa o scope placeholder **`@supertrans-transportes`**; o rename para
-  `@supertrans-transportes` Ã© o passo 2 do runbook abaixo (apÃ³s a transferÃªncia).
+## Pacotes publicados (alvo)
 
-## Pacotes publicados
-
-| Pacote (pÃ³s-rename) | VersÃ£o | ConteÃºdo |
+| Pacote | Versão | Conteúdo |
 |---|---|---|
-| `@supertrans-transportes/tokens` | 0.1.0 | CSS (`base.css`, `themes/*.css`) |
-| `@supertrans-transportes/ui` | 0.1.0 | Primitivos Base UI (source `src`) |
-| `@supertrans-transportes/blocks` | 0.1.0 | ComposiÃ§Ãµes Camada 2 (source `src`), depende de `.../ui` |
+| `@portais-orion/tokens` | 0.1.0 | CSS (`base.css`, `themes/*.css`) |
+| `@portais-orion/ui` | 0.1.0 | Primitivos Base UI (source `src`) |
+| `@portais-orion/blocks` | 0.1.0 | Composições Camada 2 (source `src`), depende de `.../ui` |
 
-## Build dos packages
+Legado a documentar/depreciar (não apagar sem autorização): `@supertrans-transportes/{tokens,ui,blocks}`.
 
-v0.1.0 **nÃ£o tem build de dist** â€” `files: ["src"]` publica a fonte; consumidor transpila
-via `transpilePackages`. O script `build` (`tsc --noEmit`) permanece como gate de tipos.
+## Build / Exports / peerDependencies
 
-Hardening Sprint 8 (dist): adotar **tsup** em `ui`/`blocks` (ESM + `.d.ts`, external de
-`react`/`react-dom`/`@base-ui/react`/`lucide-react`/`@tanstack/react-table`/`.../ui`),
-trocar `files` para `["dist"]` e apontar `publishConfig.exports` para `./dist/...`.
+- **Build**: source-based (`files: ["src"]`); `build` = `tsc --noEmit` (gate de tipos).
+- **Exports**: subpath por componente/tema, apontando para `./src/...`.
+- **`ui`** peers: `react`, `react-dom`, `@base-ui/react`, `lucide-react`, `class-variance-authority`,
+  `tailwind-merge`; dep `clsx`.
+- **`blocks`** peers: `react`, `react-dom`, `@tanstack/react-table`, `lucide-react`; dep `@portais-orion/ui`.
+- **`tokens`**: sem peers.
 
-## Exports
+## `workspace:*`
 
-Subpath exports por componente/tema preservados, apontando para `./src/...`
-(ex.: `.../ui/button` â†’ `./src/button/index.ts`; `.../tokens/base.css` â†’ `./src/base.css`).
+`pnpm publish` substitui `workspace:*` pela versão real. `@portais-orion/blocks@0.1.0` publicado
+depende de `@portais-orion/ui@0.1.0`. Tooling `@portais-orion/tsconfig` (devDep) não afeta consumidores.
 
-## peerDependencies
+## Autenticação local
 
-- **`ui`** â€” peers: `react`, `react-dom`, `@base-ui/react`, `lucide-react`,
-  `class-variance-authority`, `tailwind-merge`. Dep: `clsx`.
-- **`blocks`** â€” peers: `react`, `react-dom`, `@tanstack/react-table`, `lucide-react`.
-  Dep: `@supertrans-transportes/ui` (`workspace:*`, resolvido no publish).
-- **`tokens`** â€” sem peers (CSS puro).
-
-## ResoluÃ§Ã£o de `workspace:*`
-
-`pnpm publish` **substitui `workspace:*` pela versÃ£o real** no manifesto publicado. Assim
-`.../blocks@0.1.0` publicado depende de `.../ui@0.1.0` (nÃ£o de `workspace:*`).
-`@supertrans-transportes/tsconfig` (devDep) nÃ£o afeta consumidores e permanece privado.
-
-## AutenticaÃ§Ã£o local
-
-`.npmrc` **nÃ£o Ã© commitado** (estÃ¡ no `.gitignore`). Use `.npmrc.example` como modelo.
+`.npmrc` **não é commitado** (gitignored). Modelo em `.npmrc.example`:
 
 ```bash
-# opÃ§Ã£o A â€” login interativo
-npm login --scope=@supertrans-transportes --auth-type=legacy --registry=https://npm.pkg.github.com
-
-# opÃ§Ã£o B â€” ~/.npmrc manual (PAT classic com read:packages / write:packages)
-@supertrans-transportes:registry=https://npm.pkg.github.com
+npm login --scope=@portais-orion --auth-type=legacy --registry=https://npm.pkg.github.com
+# ou ~/.npmrc com PAT classic (read:packages / write:packages):
+@portais-orion:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=SEU_PAT_AQUI
 ```
 
-`publishConfig.registry` nos 3 pacotes jÃ¡ direciona o `pnpm publish` para o GitHub Packages.
+`publishConfig.registry` nos 3 pacotes já direciona o `pnpm publish` para o GitHub Packages.
 
 ## GitHub Actions
 
-`.github/workflows/release-packages.yml` â€” `workflow_dispatch`, dry-run por padrÃ£o,
-`permissions: packages: write`, publica com `GITHUB_TOKEN`, `scope: @supertrans-transportes`.
+`.github/workflows/release-packages.yml` — `workflow_dispatch`, dry-run por padrão,
+`permissions: packages: write`, `scope: @portais-orion`.
 
-## Runbook operacional (rodar na mÃ¡quina do dev, com `gh` + pnpm + rede)
+## Estado atual (antes do runbook 7.5.2)
 
-### Passo 0 â€” prÃ©-checagem
+- Working tree do Núcleo: **scope `@supertrans-transportes`** (57 arquivos de código/config).
+- `portal-supertrans`: já consome `@supertrans-transportes/*` versionado (aliases removidos,
+  `transpilePackages` + imports via `node_modules`).
+- **Precisa re-scope para `@portais-orion`** + transferência do repo para a org `portais-orion`.
+- ⚠️ `nucleo-portais/.git/config` está corrompido ("bad config line 18") — `git remote` falha.
+  Corrigir manualmente antes de qualquer operação git (ver 7.5.2-resultado).
 
-```bash
-gh auth status
-gh repo view mateusarcestr/nucleo-portais --json nameWithOwner,isPrivate,url
-gh org view SuperTrans-Transportes --json login,name
-gh repo view SuperTrans-Transportes/nucleo-portais --json nameWithOwner 2>/dev/null \
-  && echo "REPO DESTINO JÃ EXISTE â€” PARAR" || echo "OK: destino livre"
-```
+## Runbook operacional (rodar na máquina do dev, com `gh` + pnpm + rede, locale UTF-8)
 
-### Passo 1 â€” transferir o repo para a org
+> Rodar `sed` em locale UTF-8 (`LC_ALL=C.UTF-8`) para não corromper acentos (mojibake).
 
-```bash
-gh api --method POST -H "Accept: application/vnd.github+json" \
-  /repos/mateusarcestr/nucleo-portais/transfer -f new_owner=SuperTrans-Transportes
-gh repo view SuperTrans-Transportes/nucleo-portais --json nameWithOwner,isPrivate,url
-```
-
-Se ficar pendente de aceite na org, **parar** atÃ© aceitar. Alternativa manual: repo Settings â†’
-Danger Zone â†’ Transfer ownership â†’ `SuperTrans-Transportes`. **NÃ£o publicar enquanto o repo
-estiver em `mateusarcestr`.**
+### Passo 0 — corrigir git + pré-checagem
 
 ```bash
 cd C:\projetos\nucleo-portais
-git remote set-url origin https://github.com/SuperTrans-Transportes/nucleo-portais.git
+git config --get remote.origin.url    # se falhar: abrir .git/config e reparar a linha quebrada
+gh auth status
+gh org view portais-orion --json login,name,url
+gh repo view portais-orion/nucleo-portais --json nameWithOwner 2>/dev/null \
+  && echo "DESTINO JÁ EXISTE — verificar" || echo "OK: destino livre"
+# achar onde o repo está hoje:
+gh repo view SuperTrans-Transportes/nucleo-portais --json nameWithOwner 2>/dev/null || true
+```
+
+### Passo 1 — transferir o repo para `portais-orion`
+
+```bash
+# ajustar o owner de origem conforme o Passo 0 (SuperTrans-Transportes ou mateusarcestr)
+gh api --method POST -H "Accept: application/vnd.github+json" \
+  /repos/SuperTrans-Transportes/nucleo-portais/transfer -f new_owner=portais-orion
+gh repo view portais-orion/nucleo-portais --json nameWithOwner,isPrivate,url
+
+cd C:\projetos\nucleo-portais
+git remote set-url origin https://github.com/portais-orion/nucleo-portais.git
 git remote -v && git fetch origin
 ```
 
-### Passo 2 â€” rename de scope `@supertrans-transportes` â†’ `@supertrans-transportes`
+Se ficar pendente de aceite, aceitar no GitHub Web. **Não publicar enquanto o repo não estiver em `portais-orion`.**
 
-NÃ£o renomear docs/changesets histÃ³ricos.
+### Passo 2 — rename de scope `@supertrans-transportes` → `@portais-orion` (código/config, NÃO docs)
 
 ```bash
 cd C:\projetos\nucleo-portais
-grep -rl "@supertrans-transportes/" packages apps .github ai README.md AGENTS.md package.json pnpm-workspace.yaml turbo.json \
-  --include=package.json --include=*.ts --include=*.tsx --include=*.json \
-  --include=*.yml --include=*.yaml --include=*.example \
-  | xargs sed -i 's#@supertrans-transportes/#@supertrans-transportes/#g'
+export LC_ALL=C.UTF-8
+grep -rl "@supertrans-transportes/" packages apps .github package.json pnpm-workspace.yaml turbo.json \
+  --include=package.json --include=*.ts --include=*.tsx --include=*.json --include=*.yml --include=*.yaml --include=*.example \
+  | xargs sed -i 's#@supertrans-transportes/#@portais-orion/#g'
 
-# gate: zero @supertrans-transportes/ em cÃ³digo/config ativo
-grep -rn "@supertrans-transportes/" packages apps .github package.json pnpm-workspace.yaml turbo.json \
+# gate: zero scope antigo em código/config
+grep -rn "@supertrans-transportes/\|@grupo/\|@mateusarcestr/" packages apps .github package.json pnpm-workspace.yaml turbo.json \
   --include=package.json --include=*.ts --include=*.tsx --include=*.json --include=*.yml --include=*.yaml \
-  && echo "AINDA HÃ @supertrans-transportes/ â€” revisar" || echo "OK: scope limpo"
-
-# espelhar no Supertrans (adaptadores + tsconfig paths) â€” sÃ³ neste passo do runbook
-cd C:\projetos\portal-supertrans
-grep -rl "@supertrans-transportes/" apps/web/src/components/grupo-ui apps/web/src/components/grupo-blocks apps/web/tsconfig.json \
-  | xargs sed -i 's#@supertrans-transportes/#@supertrans-transportes/#g'
+  && echo "ERRO: scope antigo em código/config" || echo "OK: scope limpo"
 ```
 
-### Passo 3 â€” validar + empacotar + publicar
+### Passo 3 — validar + empacotar + publicar
 
 ```bash
 cd C:\projetos\nucleo-portais
@@ -142,55 +129,48 @@ pnpm install
 pnpm check && pnpm typecheck && pnpm build && pnpm build:storybook && pnpm check:pureza
 
 pnpm pack:all
-tar -tf packages/ui/*.tgz   # sÃ³ package/src/** + package.json (+README); sem workspace:* no package.json
+tar -tf packages/ui/*.tgz   # só package/src/** + package.json (+README); sem @supertrans-transportes; sem workspace:*
 
-pnpm publish:packages       # ou: gh workflow run release-packages.yml --repo SuperTrans-Transportes/nucleo-portais
-gh api /orgs/SuperTrans-Transportes/packages?package_type=npm   # confirmar tokens/ui/blocks
+pnpm publish:packages       # ou: gh workflow run release-packages.yml --repo portais-orion/nucleo-portais
+gh api /orgs/portais-orion/packages?package_type=npm   # confirmar @portais-orion/{tokens,ui,blocks}
 ```
 
-### Passo 4 â€” consumidor limpo
+### Passo 4 — consumidor limpo
 
-Ver `.tmp/consumer-test/README.md`. `pnpm install && pnpm typecheck` verde antes de migrar o Supertrans.
+`.tmp/consumer-test/` já está em `@portais-orion`. `pnpm install && pnpm typecheck` verde antes de migrar o Supertrans.
 
 ## Como consumir no Supertrans
 
-SÃ³ **apÃ³s** publish + consumer-test verdes. Plano detalhado em
-`portal-supertrans/docs/nucleo-portais-consumo.md`. Resumo:
+Só **após** publish + consumer-test verdes. Detalhe em `portal-supertrans/docs/nucleo-portais-consumo.md`.
+Resumo do re-scope (o Supertrans já está em `@supertrans-transportes` versionado):
 
-```jsonc
-// apps/web/package.json
-"dependencies": {
-  "@supertrans-transportes/tokens": "0.1.0",
-  "@supertrans-transportes/ui": "0.1.0",
-  "@supertrans-transportes/blocks": "0.1.0"
-}
+```bash
+cd C:\projetos\portal-supertrans
+export LC_ALL=C.UTF-8
+grep -rl "@supertrans-transportes" apps/web --include=*.ts --include=*.tsx --include=*.json --include=*.css \
+  | xargs sed -i 's#@supertrans-transportes#@portais-orion#g'
+# apps/web/package.json: deps @portais-orion/{tokens,ui,blocks}; next.config transpilePackages; globals @import/@source
+pnpm install
+grep -Rn "@supertrans-transportes\|@grupo/\|nucleo-portais" apps/web --include=*.ts --include=*.tsx --include=*.json --include=*.css \
+  && echo "ERRO: resíduo" || echo "OK"
+pnpm --filter @portal-supertrans/web dev   # abrir /configurador/permissions
 ```
 
-```ts
-// next.config.ts â€” source-based exige transpile
-transpilePackages: ["@supertrans-transportes/ui", "@supertrans-transportes/blocks", /* ...existentes */]
-```
+## Packages legados `@supertrans-transportes`
 
-Remover os aliases `@supertrans-transportes/*` do `tsconfig.json`, o `outputFileTracingRoot` extra e trocar os
-`@import`/`@source` relativos do `globals.css` por `@import "@supertrans-transportes/tokens/base.css"`
-e `@source "../node_modules/@supertrans-transportes/ui/src"`. Manter os adaptadores
-`components/grupo-ui`/`components/grupo-blocks` (sÃ³ troca o alvo do re-export) e `data-brand="supertrans"`.
+Não apagar nesta sprint. Inventariar (`gh api /orgs/SuperTrans-Transportes/packages?package_type=npm`),
+confirmar que nenhum outro consumidor os usa, restringir/mark legacy, e só deletar com autorização explícita.
 
-## Como testar consumidor limpo
+## O que não fazer
 
-`.tmp/consumer-test/` (gitignored) â€” instala os pacotes (registry ou tarballs) fora do
-monorepo e roda `pnpm typecheck`. Ver `.tmp/consumer-test/README.md`.
+- Não commitar `.npmrc` com token. Não publicar em registry público.
+- Não publicar com scope `@grupo`/`@mateusarcestr`/`@supertrans-transportes` (só `@portais-orion`).
+- Não remover consumo do Supertrans antes de validar o install real de `@portais-orion`.
+- Não rodar `sed` sem `LC_ALL=C.UTF-8` (corrompe acentos). Não sed docs (curar à mão).
+- Não apagar os packages legados sem autorização.
 
-## O que nÃ£o fazer
+## Pendências (Sprint 8)
 
-- NÃ£o commitar `.npmrc` com token. NÃ£o publicar em registry pÃºblico.
-- NÃ£o publicar com scope `@supertrans-transportes` nem `@mateusarcestr` (nÃ£o batem com o owner org â†’ falha/errado).
-- NÃ£o remover os aliases do Supertrans antes de validar o install real dos pacotes.
-- NÃ£o renomear scope em docs/changesets histÃ³ricos. NÃ£o publicar com o repo ainda em `mateusarcestr`.
-
-## PendÃªncias (Sprint 8)
-
-1. Executar o runbook (transferÃªncia + rename + publish + consumer-test) â€” requer `gh`/pnpm/rede.
-2. Migrar o Supertrans para deps versionadas (remover aliases).
-3. Build de `dist` (tsup) para consumidores que nÃ£o transpilam.
-4. Automatizar versionamento com changesets (v0.1.0 foi bump manual).
+1. Executar o runbook: git-fix + transferência + rename + publish + consumer-test + re-scope do Supertrans.
+2. Depreciar os packages legados `@supertrans-transportes`.
+3. Build de `dist` (tsup) + versionamento via changesets.

@@ -1,5 +1,5 @@
+import { Avatar, AvatarFallback, Badge } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Avatar, AvatarFallback, Badge } from "@supertrans-transportes/ui";
 import { FileText, FolderOpen, Home, Lock, LogOut, Settings, Users } from "lucide-react";
 import * as React from "react";
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";

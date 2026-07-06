@@ -3,6 +3,11 @@
 Transferir `nucleo-portais` para a org `SuperTrans-Transportes`, adotar o scope
 `@supertrans-transportes`, publicar os pacotes e migrar o Supertrans para consumo versionado.
 
+> **Correção (Sprint 7.5.2):** o scope `@supertrans-transportes` foi abandonado (específico demais).
+> Scope final = **`@portais-orion`** (org `portais-orion`). Este documento contém texto
+> auto-referencial corrompido por um `sed` global em locale não-UTF-8; ver
+> `docs/sprint-7-5-2-resultado.md` e `docs/architecture/package-distribution.md` (corrigidos).
+
 ## Resumo
 
 **DecisÃ£o confirmada e configuraÃ§Ã£o alinhada; execuÃ§Ã£o operacional BLOQUEADA neste ambiente.**

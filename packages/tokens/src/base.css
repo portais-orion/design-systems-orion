@@ -1,5 +1,5 @@
 /*
- * @supertrans-transportes/tokens â€” base.css
+ * @portais-orion/tokens â€” base.css
  * Mapeamento semÃ¢ntico (Tailwind v4 CSS-first). NÃƒO contÃ©m valores de marca.
  * Valores de marca vivem em themes/<marca>.css e sÃ£o resolvidos por CSS variables
  * via :root (fallback) e [data-brand="<marca>"].

@@ -1,8 +1,8 @@
-import { Skeleton, TableCell, TableRow } from "@supertrans-transportes/ui";
+import { Skeleton, TableCell, TableRow } from "@portais-orion/ui";
 
 /*
  * Origem: portal-supertrans gestao-cadastros/shared.tsx (TableSkeletonRows).
- * Refeito sobre TableRow/TableCell/Skeleton do @supertrans-transportes/ui (o original usava
+ * Refeito sobre TableRow/TableCell/Skeleton do @portais-orion/ui (o original usava
  * tr/td cru com bg-slate-100 hardcoded).
  */
 export type TableSkeletonRowsProps = {

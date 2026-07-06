@@ -1,9 +1,9 @@
-# Sprint 7.5 â€” PublicaÃ§Ã£o dos pacotes do NÃºcleo no GitHub Packages.
-# Manual (workflow_dispatch), dry-run por padrÃ£o. NÃƒO publica em push.
+# Publicacao dos pacotes do Nucleo no GitHub Packages.
+# Manual (workflow_dispatch), dry-run por padrao. NAO publica em push.
 #
-# PrÃ©-requisitos:
-#   - Repo transferido para a org SuperTrans-Transportes (scope == owner == @supertrans-transportes).
-#   - Rode o runbook de rename @supertrans-transportes â†’ @supertrans-transportes
+# Pre-requisitos:
+#   - Repo transferido para a org portais-orion (scope == owner == @portais-orion).
+#   - Rode o runbook de rename @portais-orion -> @portais-orion
 #     (docs/architecture/package-distribution.md) ANTES do primeiro publish real.
 #   - GITHUB_TOKEN do job tem `packages: write` (definido em permissions abaixo).
 name: Release packages
@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       dry-run:
-        description: "SÃ³ empacota (pnpm pack:all), sem publicar"
+        description: "So empacota (pnpm pack:all), sem publicar"
         type: boolean
         default: true
 
@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: 22
           registry-url: https://npm.pkg.github.com
-          scope: "@supertrans-transportes"
+          scope: "@portais-orion"
 
       - run: pnpm install --frozen-lockfile
 

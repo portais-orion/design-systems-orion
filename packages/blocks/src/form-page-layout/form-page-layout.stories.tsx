@@ -1,5 +1,5 @@
+import { Button, Input } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button, Input } from "@supertrans-transportes/ui";
 import { fn } from "storybook/test";
 import { ContentCard } from "../content-card";
 import { FieldGroup } from "../field-group";

@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import * as React from "react";
 
-import { cn } from "@supertrans-transportes/ui";
+import { cn } from "@portais-orion/ui";
 
 import type { BreadcrumbItem, RenderLink } from "../navigation";
 

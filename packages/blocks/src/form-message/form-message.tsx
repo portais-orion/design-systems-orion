@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@supertrans-transportes/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
  * Mensagem de apoio/validaÃ§Ã£o de formulÃ¡rio. Origem do padrÃ£o: os

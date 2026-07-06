@@ -2,11 +2,11 @@
 
 import type * as React from "react";
 
-import { Spinner, cn } from "@supertrans-transportes/ui";
+import { Spinner, cn } from "@portais-orion/ui";
 
 /*
  * Overlay de carregamento para Ã¡reas assÃ­ncronas (cards, tabelas, formulÃ¡rios).
- * CompÃµe o Spinner do @supertrans-transportes/ui; children permanecem montados (sem flicker
+ * CompÃµe o Spinner do @portais-orion/ui; children permanecem montados (sem flicker
  * de desmontagem); interaÃ§Ã£o bloqueada apenas enquanto loading=true.
  */
 export type LoadingOverlayProps = {

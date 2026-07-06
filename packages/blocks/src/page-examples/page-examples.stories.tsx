@@ -1,4 +1,3 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import {
 	Badge,
 	Button,
@@ -9,7 +8,8 @@ import {
 	TabsContent,
 	TabsList,
 	TabsTrigger,
-} from "@supertrans-transportes/ui";
+} from "@portais-orion/ui";
+import type { Meta, StoryObj } from "@storybook/react";
 import { CheckCircle, Clock, Download, FileText, Pencil, Plus } from "lucide-react";
 import * as React from "react";
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";

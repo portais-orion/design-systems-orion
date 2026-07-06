@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@supertrans-transportes/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
  * Barra de aÃ§Ãµes de formulÃ¡rio (salvar/cancelar/extra). Origem do padrÃ£o:

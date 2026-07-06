@@ -1,5 +1,5 @@
+import { Button, Input } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button, Input } from "@supertrans-transportes/ui";
 import { FormField } from "../form-field";
 import { FormSection } from "./form-section";
 

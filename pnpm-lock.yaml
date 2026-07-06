@@ -23,10 +23,10 @@ importers:
 
   apps/storybook:
     dependencies:
-      '@supertrans-transportes/tokens':
+      '@portais-orion/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@supertrans-transportes/ui':
+      '@portais-orion/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       react:
@@ -42,6 +42,9 @@ importers:
       '@chromatic-com/storybook':
         specifier: ^5.2.1
         version: 5.2.1(storybook@10.4.6(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@2.8.8)(react@19.2.7))
+      '@portais-orion/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
       '@storybook/addon-a11y':
         specifier: ^10.4.1
         version: 10.4.6(storybook@10.4.6(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@2.8.8)(react@19.2.7))
@@ -57,9 +60,6 @@ importers:
       '@storybook/react-vite':
         specifier: ^10.4.1
         version: 10.4.6(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(esbuild@0.28.1)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(storybook@10.4.6(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@2.8.8)(react@19.2.7))(typescript@5.9.3)(vite@8.1.3(esbuild@0.28.1)(jiti@2.7.0))
-      '@supertrans-transportes/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
       '@tailwindcss/vite':
         specifier: ^4.3.0
         version: 4.3.2(vite@8.1.3(esbuild@0.28.1)(jiti@2.7.0))
@@ -104,19 +104,19 @@ importers:
 
   packages/blocks:
     dependencies:
-      '@supertrans-transportes/ui':
+      '@portais-orion/ui':
         specifier: workspace:*
         version: link:../ui
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
         version: 1.9.4
+      '@portais-orion/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       '@storybook/react':
         specifier: ^10.4.1
         version: 10.4.6(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(storybook@10.4.6(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@2.8.8)(react@19.2.7))(typescript@5.9.3)
-      '@supertrans-transportes/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
       '@tanstack/react-table':
         specifier: ^8.20.0
         version: 8.21.3(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -155,12 +155,12 @@ importers:
       '@biomejs/biome':
         specifier: 1.9.4
         version: 1.9.4
+      '@portais-orion/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       '@storybook/react':
         specifier: ^10.4.1
         version: 10.4.6(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(storybook@10.4.6(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@2.8.8)(react@19.2.7))(typescript@5.9.3)
-      '@supertrans-transportes/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.17

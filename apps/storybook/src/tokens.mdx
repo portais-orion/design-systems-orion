@@ -6,7 +6,7 @@ import { Meta, Title } from "@storybook/addon-docs/blocks";
 
 ## Modelo
 
-Duas camadas em `@supertrans-transportes/tokens`:
+Duas camadas em `@portais-orion/tokens`:
 
 1. **`base.css`** â€” o mapeamento semÃ¢ntico (`@theme inline` do Tailwind v4) + defaults neutros. NÃ£o contÃ©m nenhuma cor de marca.
 2. **`themes/<marca>.css`** â€” somente valores de identidade da marca (primary, hover, accent, sidebar), aplicados via CSS variables.
@@ -33,11 +33,11 @@ Use a toolbar **Marca** deste Storybook, ou a story *NÃºcleo â†’ Comparat
 ## Uso nos produtos
 
 ```css
-@import "@supertrans-transportes/tokens/base.css";
-@import "@supertrans-transportes/tokens/themes/aurora.css";  /* UM tema por produto */
+@import "@portais-orion/tokens/base.css";
+@import "@portais-orion/tokens/themes/aurora.css";  /* UM tema por produto */
 ```
 
-Ambientes multi-marca (como este Storybook) importam `@supertrans-transportes/tokens/index.css` e controlam a marca por `data-brand` no elemento raiz.
+Ambientes multi-marca (como este Storybook) importam `@portais-orion/tokens/index.css` e controlam a marca por `data-brand` no elemento raiz.
 
 ## Regras
 

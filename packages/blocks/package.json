@@ -1,5 +1,5 @@
 {
-	"name": "@supertrans-transportes/blocks",
+	"name": "@portais-orion/blocks",
 	"version": "0.1.0",
 	"description": "ComposiÃ§Ãµes genÃ©ricas do NÃºcleo de Portais (Camada 2) â€” dados por props, sem domÃ­nio.",
 	"sideEffects": false,
@@ -48,7 +48,7 @@
 		"react-dom": "^19.0.0"
 	},
 	"dependencies": {
-		"@supertrans-transportes/ui": "workspace:*"
+		"@portais-orion/ui": "workspace:*"
 	},
 	"publishConfig": {
 		"access": "restricted",
@@ -56,7 +56,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@supertrans-transportes/tsconfig": "workspace:*",
+		"@portais-orion/tsconfig": "workspace:*",
 		"@storybook/react": "^10.4.1",
 		"@tanstack/react-table": "^8.20.0",
 		"@types/react": "^19.0.0",

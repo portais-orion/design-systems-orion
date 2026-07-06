@@ -1,5 +1,5 @@
+import { Button, Card, CardContent, CardHeader, CardTitle } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button, Card, CardContent, CardHeader, CardTitle } from "@supertrans-transportes/ui";
 import * as React from "react";
 import { DataTable } from "../data-table";
 import { LoadingOverlay } from "./loading-overlay";

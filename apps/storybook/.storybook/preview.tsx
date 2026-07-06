@@ -5,7 +5,7 @@ import "../src/styles.css";
 /*
  * Toolbar global de marca: todo componente do NÃºcleo deve ser validado
  * nas duas marcas. O decorator aplica data-brand no <html>, entÃ£o os
- * temas de @supertrans-transportes/tokens resolvem as CSS variables da marca ativa.
+ * temas de @portais-orion/tokens resolvem as CSS variables da marca ativa.
  * Nenhum provider de app real (Auth, Query) Ã© usado aqui â€” o Storybook
  * do NÃºcleo Ã© independente dos portais.
  */

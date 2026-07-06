@@ -1,5 +1,5 @@
 {
-	"name": "@supertrans-transportes/tokens",
+	"name": "@portais-orion/tokens",
 	"version": "0.1.0",
 	"description": "Tokens semÃ¢nticos e temas por marca do NÃºcleo de Portais do Grupo",
 	"sideEffects": ["*.css"],

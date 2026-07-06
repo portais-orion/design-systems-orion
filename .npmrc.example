@@ -3,5 +3,5 @@
 #
 # O token precisa de scope read:packages (instalar) e/ou write:packages (publicar).
 # PAT classic: https://github.com/settings/tokens
-@supertrans-transportes:registry=https://npm.pkg.github.com
+@portais-orion:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_PACKAGES_TOKEN}

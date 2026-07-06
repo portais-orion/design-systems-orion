@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { Separator, cn } from "@supertrans-transportes/ui";
+import { Separator, cn } from "@portais-orion/ui";
 
 /*
  * Agrupamento visual de campos. Origem do padrÃ£o: seÃ§Ãµes com tÃ­tulo +

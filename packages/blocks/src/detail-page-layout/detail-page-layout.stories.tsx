@@ -1,12 +1,5 @@
+import { Badge, Button, Tabs, TabsContent, TabsList, TabsTrigger } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
-import {
-	Badge,
-	Button,
-	Tabs,
-	TabsContent,
-	TabsList,
-	TabsTrigger,
-} from "@supertrans-transportes/ui";
 import { CodeBadge } from "../code-badge";
 import { ContentCard } from "../content-card";
 import { PageHeader } from "../page-header";

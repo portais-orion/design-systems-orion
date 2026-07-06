@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 
-import { cn } from "@supertrans-transportes/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
  * Chip de filtro ativo (label: valor + remover). Inspirado nos pills de

@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@supertrans-transportes/ui";
+import { cn } from "@portais-orion/ui";
 
 /*
  * Layout base de pÃ¡gina (sem shell/sidebar/breadcrumb â€” Sprint 6).

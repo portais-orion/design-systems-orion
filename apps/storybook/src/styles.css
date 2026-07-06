@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@supertrans-transportes/tokens/index.css";
+@import "@portais-orion/tokens/index.css";
 
 /* Tailwind precisa escanear as classes usadas nos packages compartilhados */
 @source "../../../packages/ui/src";
