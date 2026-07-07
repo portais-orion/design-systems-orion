@@ -1,6 +1,6 @@
 {
 	"name": "@portais-orion/blocks",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Composições genéricas do Núcleo de Portais (Camada 2) — dados por props, sem domínio.",
 	"sideEffects": false,
 	"exports": {

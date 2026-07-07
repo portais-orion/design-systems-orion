@@ -1,5 +1,11 @@
 # @portais-orion/ui
 
+## 0.3.0
+
+### Minor Changes
+
+- Adiciona suporte a variantes de `Tabs` (line) e orientação vertical.
+
 ## 0.2.1
 
 ### Patch Changes
