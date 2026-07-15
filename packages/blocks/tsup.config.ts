@@ -1,4 +1,9 @@
+import { readFileSync } from "node:fs";
 import { defineConfig } from "tsup";
+import { derivePackageDistribution } from "../../scripts/lib/package-distribution.mjs";
+
+const manifest = JSON.parse(readFileSync(new URL("./package.json", import.meta.url), "utf8"));
+const entry = derivePackageDistribution(manifest).entries.map(({ source }) => source);
 
 /*
  * Build distribuível de @portais-orion/blocks (Sprint 10 hardening).
@@ -8,7 +13,7 @@ import { defineConfig } from "tsup";
  * Nenhuma dependência de Next é introduzida.
  */
 export default defineConfig({
-	entry: ["src/index.ts", "src/*/index.ts"],
+	entry,
 	format: ["esm"],
 	// Emite .mjs + .d.mts (casa com scripts/gen-dist-exports.mjs).
 	outExtension() {
