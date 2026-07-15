@@ -11,15 +11,18 @@
 		"lint": "turbo lint",
 		"typecheck": "turbo typecheck",
 		"format": "biome format --write .",
-		"check": "biome check .",
+		"check": "node scripts/check-text-integrity.mjs && node packages/tokens/scripts/validate-tokens.mjs && node scripts/check-storybook-brands.mjs && biome check .",
 		"storybook": "pnpm --filter @nucleo/storybook storybook",
 		"build:storybook": "pnpm --filter @nucleo/storybook build-storybook",
 		"changeset": "changeset",
+		"check:integrity": "node scripts/check-text-integrity.mjs",
 		"check:pureza": "node scripts/check-purity.mjs",
 		"test:storybook": "pnpm --filter @nucleo/storybook test-storybook",
 		"chromatic": "pnpm --filter @nucleo/storybook chromatic",
 		"pack:all": "pnpm --filter ./packages/tokens --filter ./packages/ui --filter ./packages/blocks exec npm pack",
-		"publish:packages": "pnpm --filter ./packages/tokens --filter ./packages/ui --filter ./packages/blocks publish --no-git-checks"
+		"publish:packages": "pnpm --filter ./packages/tokens --filter ./packages/ui --filter ./packages/blocks publish --no-git-checks",
+		"check:tokens": "node packages/tokens/scripts/validate-tokens.mjs",
+		"check:storybook-brands": "node scripts/check-storybook-brands.mjs"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

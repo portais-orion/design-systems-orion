@@ -24,6 +24,15 @@
 		}
 	},
 	"files": {
-		"ignore": ["node_modules", "dist", "build", ".turbo", "storybook-static", ".changeset"]
+		"ignore": [
+			"node_modules",
+			"dist",
+			"build",
+			".turbo",
+			"storybook-static",
+			".changeset",
+			".tmp",
+			".pnpm-store"
+		]
 	}
 }

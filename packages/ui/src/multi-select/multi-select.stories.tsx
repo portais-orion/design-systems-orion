@@ -178,16 +178,21 @@ export const KeyboardInteraction: Story = {
 		const canvas = within(canvasElement);
 		const body = within(canvasElement.ownerDocument.body);
 		const input = canvas.getByRole("combobox");
-		// abre, busca e seleciona duas opções (popup permanece aberto no multiple)
+		// abre, busca e seleciona duas opções
 		await userEvent.click(input);
 		await userEvent.type(input, "A");
 		await waitFor(() => expect(body.getByText("Opção A1")).toBeVisible());
 		await userEvent.click(body.getByText("Opção A1"));
 		await waitFor(() => expect(args.onValueChange).toHaveBeenCalledWith(["a1"]));
+		await userEvent.click(input);
+		await userEvent.type(input, "A");
+		await waitFor(() => expect(body.getByText("Opção A2")).toBeVisible());
 		await userEvent.click(body.getByText("Opção A2"));
 		await waitFor(() => expect(args.onValueChange).toHaveBeenCalledWith(["a1", "a2"]));
-		await userEvent.keyboard("{Escape}");
 		// remove pelo chip
+		await waitFor(() =>
+			expect(canvas.getByRole("button", { name: "Remover Opção A1" })).toBeVisible(),
+		);
 		const remover = canvas.getByRole("button", { name: "Remover Opção A1" });
 		await userEvent.click(remover);
 		await waitFor(() => expect(args.onValueChange).toHaveBeenCalledWith(["a2"]));

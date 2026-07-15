@@ -14,13 +14,13 @@ import {
 import type { SidebarProps } from "./sidebar.types";
 
 /*
- * Sidebar oficial do grupo � estrutura visual do Supertrans (tokens
+ * Sidebar oficial do grupo — estrutura visual do Supertrans (tokens
  * sidebar-*, tooltip em collapsed, auto-open do submenu ativo) + UX de
  * colapso/submenu do Aurora. Navegação por dados; link e visibilidade
  * injetados (renderLink / canAccessItem).
  *
  * Decisões (documentadas em app-shell.md):
- * - SidebarItem/Group/Submenu/CollapseButton são INTERNOS � a API pública é
+ * - SidebarItem/Group/Submenu/CollapseButton são INTERNOS — a API pública é
  *   dirigida por dados; exportar peças soltas incentivaria montagens
  *   divergentes entre portais.
  * - Grupo estático = item sem href com meta.group === true (label de seção,
@@ -60,7 +60,7 @@ const itemBaseClass =
 const itemIdleClass =
 	"text-sidebar-foreground/70 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground";
 const itemActiveClass =
-	"bg-sidebar-accent text-sidebar-accent-foreground font-medium border border-sidebar-border shadow-sm";
+	"bg-sidebar-primary text-sidebar-primary-foreground font-medium border border-sidebar-border shadow-sm";
 
 function ItemContent({
 	item,
@@ -108,6 +108,7 @@ function SidebarEntry({
 	activeItemId,
 	renderLink,
 	onExpandSidebar,
+	onNavigate,
 }: {
 	item: NavigationItem;
 	depth: number;
@@ -115,13 +116,14 @@ function SidebarEntry({
 	activeItemId?: string;
 	renderLink: RenderLink;
 	onExpandSidebar: () => void;
+	onNavigate?: () => void;
 }) {
 	const isGroup = !item.href && item.meta?.group === true && !!item.children?.length;
 	const isSubmenu = !isGroup && !!item.children?.length;
 	const hasActiveChild = containsActiveItem(item, activeItemId) && item.id !== activeItemId;
 	const [open, setOpen] = React.useState(hasActiveChild);
 	React.useEffect(() => {
-		// auto-open (aditivo) quando um filho vira ativo � nunca fecha sozinho
+		// auto-open (aditivo) quando um filho vira ativo — nunca fecha sozinho
 		if (hasActiveChild) setOpen(true);
 	}, [hasActiveChild]);
 
@@ -141,6 +143,7 @@ function SidebarEntry({
 							activeItemId={activeItemId}
 							renderLink={renderLink}
 							onExpandSidebar={onExpandSidebar}
+							onNavigate={onNavigate}
 						/>
 					))}
 				</div>
@@ -160,6 +163,7 @@ function SidebarEntry({
 						activeItemId={activeItemId}
 						renderLink={renderLink}
 						onExpandSidebar={onExpandSidebar}
+						onNavigate={onNavigate}
 					/>
 				))}
 			</div>
@@ -202,7 +206,7 @@ function SidebarEntry({
 					</button>
 				</MaybeTooltip>
 				{!collapsed && open && (
-					<div className="mt-1 space-y-1 border-l border-sidebar-border pl-3 ml-4">
+					<div className="mt-1 ml-4 space-y-1 border-l border-sidebar-border pl-3">
 						{item.children?.map((child) => (
 							<SidebarEntry
 								key={child.id}
@@ -212,6 +216,7 @@ function SidebarEntry({
 								activeItemId={activeItemId}
 								renderLink={renderLink}
 								onExpandSidebar={onExpandSidebar}
+								onNavigate={onNavigate}
 							/>
 						))}
 					</div>
@@ -244,7 +249,12 @@ function SidebarEntry({
 
 	return (
 		<MaybeTooltip collapsed={collapsed} label={item.label}>
-			<span className="block">
+			<span
+				className="block"
+				onClickCapture={() => {
+					onNavigate?.();
+				}}
+			>
 				{renderLink({
 					href: item.href,
 					className,
@@ -265,6 +275,7 @@ export function Sidebar({
 	onCollapsedChange,
 	canAccessItem,
 	renderLink = defaultRenderLink,
+	onNavigate,
 	footer,
 	className,
 }: SidebarProps) {
@@ -308,6 +319,7 @@ export function Sidebar({
 							activeItemId={activeItemId}
 							renderLink={renderLink}
 							onExpandSidebar={() => setCollapsed(false)}
+							onNavigate={onNavigate}
 						/>
 					))}
 				</nav>

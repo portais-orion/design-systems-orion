@@ -1,30 +1,22 @@
-# Componentes � estado atual do @supertrans-transportes/ui
+# Components
 
-Atualizado na Sprint 1.
+Estado atual de `@supertrans-transportes/ui`.
 
-## Implementados (28 + cn)
+Extraídos do Supertrans:
+- input, label, textarea, card, badge, skeleton, table
+- checkbox, select, dialog, tooltip, avatar
 
-| Componente | Origem | Base UI | Observações |
-|---|---|---|---|
-| button | Sprint 0 (Supertrans) | `button` | referência de padrão |
-| input, label, textarea, card, badge, skeleton, table | Extração Supertrans | � (nativos) | badge: variants `brand`/`origin-*` removidas (domínio); `tinted`/`success`/`warning` tokenizadas |
-| checkbox, select, dialog, tooltip, avatar | Extração Supertrans | `checkbox`, `select`, `dialog`, `tooltip`, `avatar` | `bg-white` �  `bg-background` |
-| switch, tabs, separator, dropdown-menu, alert-dialog | Recriação (API do Aurora) | `switch`, `tabs`, `separator`, `menu`, `alert-dialog` | nomes públicos padrão shadcn p/ facilitar migração |
-| alert | Recriação (API do Aurora) | � (`role="alert"`) | variants: default, destructive, info |
-| popover, radio-group, scroll-area | Recriação (API do Aurora; Sprint 4) | `popover`, `radio-group`+`radio`, `scroll-area` | fecham o inventário Radix de baixo risco |
-| combobox, multi-select | Recriação (API do plano; Sprint 4.1) | `combobox` (single/multiple) | MultiSelect único substitui multi-select + GroupedMultiSelect do Aurora; ver advanced-inputs.md |
-| sheet, accordion, progress, spinner | Novos (padrão shadcn/Base UI; Sprint 4) | `dialog`, `accordion`, `progress`, � | sheet com side left/right/top/bottom; progress com indeterminate |
+Recriados com Base UI a partir de API do Aurora:
+- alert, alert-dialog, tabs, popover, dropdown-menu, switch, radio-group, scroll-area, separator
 
-## Blocks (@supertrans-transportes/blocks)
+Novos no núcleo:
+- sheet, accordion, progress, spinner, combobox, multi-select
 
-11 blocks desde a Sprint 2 � ver `docs/architecture/blocks.md`.
+Regras de implementação:
+- Base UI como primitivo headless oficial
+- Tailwind v4 CSS-first
+- só tokens semânticos
+- sem `orange-*`, `blue-*`, `primary-600`
+- sem `tailwind.config.ts`
 
-## Adiados
-
-Inventário do Aurora 100% coberto. Command permanece não-público por decisão (advanced-inputs.md).
-
-## Convenções
-
-- Animações usam classes do `tw-animate-css` � consumidores devem importar `tw-animate-css` no CSS de entrada (o Storybook do núcleo já importa).
-- Subpath exports disponíveis: `@supertrans-transportes/ui/button`, `@supertrans-transportes/ui/dialog`, etc.
-- Regras completas: `ai/rules/components.md`.
+Animações usam `tw-animate-css`; consumidores precisam importar esse CSS de entrada.

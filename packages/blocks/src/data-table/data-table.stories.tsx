@@ -28,7 +28,7 @@ const meta: Meta<typeof DataTable> = {
 export default meta;
 type Story = StoryObj<typeof DataTable>;
 
-// ���� dados genéricos ��������������������������������������������������������������������������������������������������������������������
+// dados genéricos
 
 type Processo = {
 	id: string;
@@ -84,7 +84,7 @@ const columns: DataTableColumn<Processo>[] = [
 	},
 ];
 
-// ���� stories ������������������������������������������������������������������������������������������������������������������������������������
+// stories
 
 export const Default: Story = {
 	render: () => (

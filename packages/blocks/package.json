@@ -38,9 +38,7 @@
 		"./filters-card": "./src/filters-card/index.ts",
 		"./launcher-card": "./src/launcher-card/index.ts"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"scripts": {
 		"build": "tsup",
 		"typecheck": "tsc --noEmit",

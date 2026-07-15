@@ -3,7 +3,8 @@
 ✅ Correto:
 ```css
 /* themes/aurora.css */
-:root,
+:root:not([data-brand]),
+:root[data-brand="aurora"],
 [data-brand="aurora"] {
 	--primary: #f97316;
 	--primary-hover: #ea580c;
@@ -24,5 +25,7 @@
 --primary: #00526b;                        /* cor de marca no base */
 ```
 
-- Todo token novo entra nos DOIS temas + default neutro no base.css.
+- Todo token novo entra em TODOS os temas + default neutro no base.css.
+- Todo tema usa exatamente três seletores: `:root:not([data-brand])`, `:root[data-brand="<marca>"]` e `[data-brand="<marca>"]`.
 - hex é permitido APENAS dentro de `packages/tokens/src/themes/*.css`.
+- `pnpm check:tokens` valida defaults, mapeamentos e seletores obrigatórios.

@@ -1,7 +1,7 @@
 /*
- * @portais-orion/tokens â€” base.css
- * Mapeamento semÃ¢ntico (Tailwind v4 CSS-first). NÃƒO contÃ©m valores de marca.
- * Valores de marca vivem em themes/<marca>.css e sÃ£o resolvidos por CSS variables
+ * @portais-orion/tokens — base.css
+ * Mapeamento semântico (Tailwind v4 CSS-first). NÃO contém valores de marca.
+ * Valores de marca vivem em themes/<marca>.css e são resolvidos por CSS variables
  * via :root (fallback) e [data-brand="<marca>"].
  * Origem do mapeamento: portal-supertrans apps/web/src/app/globals.css (@theme inline).
  */
@@ -52,7 +52,7 @@
 }
 
 /*
- * Defaults neutros (nÃ£o dependem de marca). Cada tema de marca redefine
+ * Defaults neutros (não dependem de marca). Cada tema de marca redefine
  * apenas os tokens de identidade (primary, ring, brand-*, sidebar-*).
  */
 :root {
@@ -71,11 +71,26 @@
 	--destructive: oklch(0.577 0.245 27.325);
 	--border: oklch(0.922 0 0);
 	--input: oklch(0.922 0 0);
+	--ring: oklch(0.708 0 0);
 	--chart-1: oklch(0.87 0 0);
 	--chart-2: oklch(0.556 0 0);
 	--chart-3: oklch(0.439 0 0);
 	--chart-4: oklch(0.371 0 0);
 	--chart-5: oklch(0.269 0 0);
+	--primary: oklch(0.205 0 0);
+	--primary-foreground: oklch(0.985 0 0);
+	--primary-hover: oklch(0.269 0 0);
+	--brand-primary: var(--primary);
+	--brand-hover: var(--primary-hover);
+	--brand-accent: oklch(0.97 0 0);
+	--sidebar: oklch(0.145 0 0);
+	--sidebar-foreground: oklch(0.985 0 0);
+	--sidebar-primary: oklch(0.205 0 0);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.269 0 0);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 12%);
+	--sidebar-ring: var(--ring);
 	--radius: 0.625rem;
 }
 

@@ -22,8 +22,7 @@ const tabsListVariants = cva(
 	{
 		variants: {
 			variant: {
-				default:
-					"rounded-lg bg-muted p-1 data-[orientation=vertical]:h-auto",
+				default: "rounded-lg bg-muted p-1 data-[orientation=vertical]:h-auto",
 				line: "justify-start bg-transparent p-0 data-[orientation=horizontal]:border-b data-[orientation=horizontal]:border-border data-[orientation=horizontal]:w-full data-[orientation=vertical]:border-l data-[orientation=vertical]:border-border data-[orientation=vertical]:h-full",
 			},
 		},
@@ -35,8 +34,7 @@ const tabsListVariants = cva(
 
 const TabsList = React.forwardRef<
 	React.ElementRef<typeof TabsPrimitive.List>,
-	React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> &
-		VariantProps<typeof tabsListVariants>
+	React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & VariantProps<typeof tabsListVariants>
 >(({ className, variant = "default", ...props }, ref) => (
 	<TabsContext.Provider value={{ variant: variant || "default" }}>
 		<TabsPrimitive.List

@@ -13,7 +13,7 @@ import type { FormFieldProps } from "./form-field.types";
  * a11y: quando `htmlFor` é informado, description/error recebem ids
  * `<htmlFor>-description` / `<htmlFor>-error`. Conecte no controle:
  *   <Input id="nome" aria-describedby="nome-description nome-error" />
- * (a conexão é responsabilidade do consumidor � o FormField não clona filhos).
+ * (a conexão é responsabilidade do consumidor — o FormField não clona filhos).
  */
 export function FormField({
 	label,

@@ -19,8 +19,8 @@ import type { MultiSelectProps } from "./multi-select.types";
  * Seleção múltipla com busca, chips e grupos — componente ÚNICO que substitui
  * conceitualmente multi-select E GroupedMultiSelect do Portal-Aurora (19 telas).
  * Sobre o Combobox multiple do Base UI (sem cmdk, sem Radix): Chips/ChipRemove
- * nativos evitam botão-dentro-de-botão (a11y); popup permanece aberto durante
- * a seleção múltipla; filtro/teclado/ARIA vêm do primitivo.
+ * nativos evitam botão-dentro-de-botão (a11y); filtro/teclado/ARIA vêm do
+ * primitivo.
  */
 const itemClass =
 	"relative flex cursor-default select-none flex-col gap-0.5 rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none data-[highlighted]:bg-muted data-[disabled]:pointer-events-none data-[disabled]:opacity-50";

@@ -1,10 +1,11 @@
 import { Button } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
+import { BRANDS, BRAND_LABELS } from "../src/brands";
 
 /*
- * Comparativo lado a lado: o MESMO componente sob os dois temas,
- * via [data-brand] em containers � prova de que a marca é CSS, não prop.
+ * Comparativo lado a lado: o MESMO componente sob todos os temas,
+ * via [data-brand] em containers — prova de que a marca é CSS, não prop.
  */
 const meta: Meta = {
 	title: "Núcleo/Comparativo de Marcas",
@@ -28,17 +29,16 @@ function Amostra() {
 export const LadoALado: StoryObj = {
 	render: () => (
 		<div className="grid gap-6">
-			<section
-				data-brand="supertrans"
-				className="rounded-lg border border-border bg-background p-6"
-			>
-				<p className="mb-3 text-sm font-medium text-muted-foreground">Supertrans</p>
-				<Amostra />
-			</section>
-			<section data-brand="aurora" className="rounded-lg border border-border bg-background p-6">
-				<p className="mb-3 text-sm font-medium text-muted-foreground">Aurora</p>
-				<Amostra />
-			</section>
+			{BRANDS.map((brand) => (
+				<section
+					key={brand}
+					data-brand={brand}
+					className="rounded-lg border border-border bg-background p-6"
+				>
+					<p className="mb-3 text-sm font-medium text-muted-foreground">{BRAND_LABELS[brand]}</p>
+					<Amostra />
+				</section>
+			))}
 		</div>
 	),
 };
@@ -46,9 +46,9 @@ export const LadoALado: StoryObj = {
 export const TokensDeMarca: StoryObj = {
 	render: () => (
 		<div className="grid gap-6">
-			{["supertrans", "aurora"].map((brand) => (
+			{BRANDS.map((brand) => (
 				<section key={brand} data-brand={brand} className="rounded-lg border border-border p-6">
-					<p className="mb-3 text-sm font-medium text-muted-foreground">{brand}</p>
+					<p className="mb-3 text-sm font-medium text-muted-foreground">{BRAND_LABELS[brand]}</p>
 					<div className="flex gap-3">
 						<div className="size-16 rounded-md bg-primary" title="--primary" />
 						<div className="size-16 rounded-md bg-primary-hover" title="--primary-hover" />

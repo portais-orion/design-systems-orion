@@ -115,7 +115,7 @@ transpilePackages, imports de Button/PageHeader/DataTable, validação de build,
 
 1. `pnpm`/`tsup`/`gh`/rede ausentes → build/publish/consumer-test são handoff.
 2. Docs (7.5.x, package-distribution) re-corrompidas por `sed`/linter externo em locale não-UTF-8
-   (mojibake `�`); precisam de limpeza — não é `@portais-orion`-crítico.
+   (mojibake `?`); precisam de limpeza — não é `@portais-orion`-crítico.
 3. `nucleo-portais/.git/config` segue corrompido (7.5.2) — reparar antes de operações git.
 
 ## Decisões tomadas

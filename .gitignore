@@ -11,3 +11,6 @@ storybook-static/
 .npmrc
 .tmp/
 *.tgz
+
+# Local subagent-driven development ledger
+.superpowers/

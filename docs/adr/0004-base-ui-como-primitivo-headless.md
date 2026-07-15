@@ -1,4 +1,4 @@
-# 0004 � Base UI como primitivo headless
+# 0004 — Base UI como primitivo headless
 
 ## Contexto
 Supertrans usa `@base-ui/react` (padrão shadcn atual do projeto); Aurora usa Radix UI. As APIs são incompatíveis (`render` vs `asChild`, `Popup` vs `Content`).

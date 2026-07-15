@@ -34,9 +34,7 @@
 		"./combobox": "./src/combobox/index.ts",
 		"./multi-select": "./src/multi-select/index.ts"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"scripts": {
 		"build": "tsup",
 		"typecheck": "tsc --noEmit",

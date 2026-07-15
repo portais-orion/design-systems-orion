@@ -5,7 +5,7 @@ import { cn } from "@portais-orion/ui";
 /*
  * Barra de ações de formulário (salvar/cancelar/extra). Origem do padrão:
  * footers repetidos com justify-end nos forms dos dois portais.
- * Slots apenas � nunca cria botões nem textos.
+ * Slots apenas — nunca cria botões nem textos.
  */
 export type FormActionsProps = {
 	primary?: React.ReactNode;

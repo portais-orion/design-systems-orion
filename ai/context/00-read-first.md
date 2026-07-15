@@ -1,11 +1,12 @@
-# Leia primeiro
+# Leitura mínima inicial
 
-Voc� est� no `nucleo-portais`  plataforma interna do grupo (design system + docs + agentes). N�O � um produto: aqui n�o existem telas, dom�nio, API ou auth.
+Você está no `nucleo-portais` — plataforma interna do grupo (design system + docs + agentes). NÃO é um produto: aqui não existem telas, domínio, API ou auth.
 
-Ordem de leitura m�nima por tipo de tarefa:
-- Qualquer tarefa: `AGENTS.md` (raiz) + este arquivo.
-- Componente novo/alterado: `01-repo-map.md`, `03-component-rules.md`, `ai/rules/components.md`, workflow `ai/workflows/create-component.md`.
-- Tokens/temas: `04-token-rules.md`, `ai/rules/tokens.md`.
-- Decis�es: `02-current-decisions.md` (resumo) e `docs/adr/` (fonte).
+Ordem de leitura mínima por tipo de tarefa:
 
-N�o carregue arquivos fora do assunto da tarefa  o contexto � propositalmente fatiado para economizar tokens.
+- Qualquer tarefa: este arquivo.
+- Componente: `03-component-rules.md` e `ai/rules/components.md`.
+- Tokens/tema: `04-token-rules.md` e `ai/rules/tokens.md`.
+- Decisões: `02-current-decisions.md` (resumo) e `docs/adr/` (fonte).
+
+Não carregue arquivos fora do assunto da tarefa — o contexto é propositalmente fatiado para economizar tokens.

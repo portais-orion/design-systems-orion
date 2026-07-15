@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { User, Key, Bell } from "lucide-react";
+import { Bell, Key, User } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
 

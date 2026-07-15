@@ -7,7 +7,7 @@ import type { BreadcrumbItem, RenderLink } from "../navigation";
 
 /*
  * Breadcrumbs do chrome (parte do shell, não dos page layouts).
- * Origem visual: admin/breadcrumbs.tsx do Supertrans � desacoplado de
+ * Origem visual: admin/breadcrumbs.tsx do Supertrans — desacoplado de
  * rotas/permissões: itens por dados, link via renderLink injetado.
  */
 export type BreadcrumbsProps = {

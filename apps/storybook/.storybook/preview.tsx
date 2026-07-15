@@ -1,16 +1,17 @@
 import type { Decorator, Preview } from "@storybook/react";
 import React from "react";
+import { BRANDS, BRAND_LABELS, type Brand } from "../src/brands";
 import "../src/styles.css";
 
 /*
  * Toolbar global de marca: todo componente do Núcleo deve ser validado
  * nas duas marcas. O decorator aplica data-brand no <html>, então os
  * temas de @portais-orion/tokens resolvem as CSS variables da marca ativa.
- * Nenhum provider de app real (Auth, Query) é usado aqui � o Storybook
+ * Nenhum provider de app real (Auth, Query) é usado aqui — o Storybook
  * do Núcleo é independente dos portais.
  */
 const withBrand: Decorator = (Story, context) => {
-	const brand = (context.globals.brand as string) ?? "supertrans";
+	const brand = (context.globals.brand as Brand | undefined) ?? "supertrans";
 	document.documentElement.setAttribute("data-brand", brand);
 	return (
 		<div className="bg-background p-6 text-foreground">
@@ -26,10 +27,7 @@ const preview: Preview = {
 			toolbar: {
 				title: "Marca",
 				icon: "paintbrush",
-				items: [
-					{ value: "supertrans", title: "Supertrans" },
-					{ value: "aurora", title: "Aurora" },
-				],
+				items: BRANDS.map((brand) => ({ value: brand, title: BRAND_LABELS[brand] })),
 				dynamicTitle: true,
 			},
 		},
@@ -41,7 +39,7 @@ const preview: Preview = {
 	parameters: {
 		options: {
 			storySort: {
-				order: ["Ínicio", "Fundações", "UI", "Blocks", "Núcleo"],
+				order: ["Início", "Fundações", "UI", "Blocks", "Núcleo"],
 			},
 		},
 		// 'todo' mostra violações no painel sem falhar o teste; 'error' falha no vitest

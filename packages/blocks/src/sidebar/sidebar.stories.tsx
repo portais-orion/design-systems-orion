@@ -22,7 +22,7 @@ const meta: Meta<typeof Sidebar> = {
 export default meta;
 type Story = StoryObj<typeof Sidebar>;
 
-const Marca = () => <span className="text-sm font-bold tracking-wide">N�aCLEO</span>;
+const Marca = () => <span className="text-sm font-bold tracking-wide">NÚCLEO</span>;
 
 const NAV: NavigationItem[] = [
 	{ id: "inicio", label: "Início", href: "#", icon: Home },

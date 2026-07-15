@@ -2,7 +2,7 @@ import type * as React from "react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, cn } from "@portais-orion/ui";
 
-/* Card de conteúdo com cabeçalho/ações � estrutura comum de painéis. */
+/* Card de conteúdo com cabeçalho/ações — estrutura comum de painéis. */
 export type ContentCardProps = {
 	title?: React.ReactNode;
 	description?: React.ReactNode;

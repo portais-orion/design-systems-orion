@@ -27,13 +27,13 @@ import { TableSkeletonRows } from "../table-skeleton-rows";
 import type { DataTableColumn, DataTableProps } from "./data-table.types";
 
 /*
- * DataTable � bloco oficial de listagem do grupo ("melhor dos dois"):
- * API e requisitos: Portal-Aurora (ui/DataTable � Column<T>, keyExtractor,
+ * DataTable — bloco oficial de listagem do grupo ("melhor dos dois"):
+ * API e requisitos: Portal-Aurora (ui/DataTable — Column<T>, keyExtractor,
  *   estados embutidos, paginação, onRowClick, alinhamento, 32 telas reais).
  * Markup/stack: Núcleo (ui/Table do Supertrans, tokens, TW4) + blocks
  *   TableSkeletonRows/EmptyState/ErrorState/Pagination.
  * Motor interno: TanStack Table (getCoreRowModel; sorting controlado/manual).
- * O consumidor comum usa apenas DataTableColumn<T> � nada do TanStack vaza.
+ * O consumidor comum usa apenas DataTableColumn<T> — nada do TanStack vaza.
  */
 
 const ACTIONS_COL_ID = "__actions";
@@ -85,7 +85,7 @@ export function DataTable<TData>({
 				cell: (ctx) =>
 					col.cell
 						? col.cell(ctx.row.original, ctx.row.index)
-						: ((ctx.getValue() as React.ReactNode) ?? "�"),
+						: ((ctx.getValue() as React.ReactNode) ?? "—"),
 				enableSorting: col.sortable === true,
 				meta: col,
 			};

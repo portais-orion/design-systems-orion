@@ -1,6 +1,6 @@
 /*
- * Helpers internos de Combobox/MultiSelect. N�O exportar pelo barrel p�blico.
- * O shape { value, label } � reconhecido nativamente pelo Base UI (LabeledItem);
+ * Helpers internos de Combobox/MultiSelect. NÃO exportar pelo barrel público.
+ * O shape { value, label } é reconhecido nativamente pelo Base UI (LabeledItem);
  * grupos usam o shape Group do Base UI: { items: [...], ...meta }.
  */
 

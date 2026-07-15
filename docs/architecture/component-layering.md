@@ -1,16 +1,17 @@
-# Camadas de componentes
+# Component Layering
 
-```
-Camada 0 � @supertrans-transportes/tokens   cores, radius, tipografia (CSS puro)
-Camada 1 � @supertrans-transportes/ui       primitives: button, input, dialog, select...
-Camada 2 � @supertrans-transportes/blocks   composições genéricas: DataTable, PageHeader,
-                           Pagination, ConfirmDialog, FilterBar, EmptyState,
-                           StatCards, futuros templates de tela
-Camada 3 � apps/produtos   telas, domínio, hooks de API, permissões, auth
-```
+Camada 0 → `@supertrans-transportes/tokens`
+cores, radius, tipografia e variáveis CSS puras.
 
-Regra de corte (ADR 0006): se o componente conhece entidade de negócio, rota, endpoint ou chave de permissão real, ele é Camada 3 e fica no produto. `DataTable` genérico é Camada 2; `TabelaDeFaturas` é Camada 3 e usa o DataTable.
+Camada 1 → `@supertrans-transportes/ui`
+primitives headless estilizadas: button, input, dialog, select, tooltip, tabs, combobox, multi-select e afins.
 
-Regras de dependência: camada inferior nunca importa da superior; Camada 2 recebe dados por props e integrações por slots/providers (nunca faz fetch); regra dos dois usos para promover algo à Camada 2.
+Camada 2 → `@supertrans-transportes/blocks`
+composições genéricas: DataTable, PageHeader, Pagination, ConfirmDialog, layouts de página, Sidebar, AppShell.
 
-Origem das APIs da Camada 2: padrões do Portal-Aurora (`ui/DataTable/`, `Pagination`, `ConfirmDialog`, `StatusCards`), reimplementados sobre a Camada 1 � ver diagnóstico comparativo.
+Camada 3 → apps/produtos
+termos de negócio, telas, rotas, hooks de API, auth, permissões reais e integrações específicas.
+
+Regra de corte: se conhece entidade de negócio, rota, endpoint ou chave de permissão real, é Camada 3.
+
+Origem das APIs da Camada 2: padrões do Portal-Aurora (`ui/DataTable/`, `Pagination`, `ConfirmDialog`, `StatusCards`), reimplementados sobre a Camada 1.

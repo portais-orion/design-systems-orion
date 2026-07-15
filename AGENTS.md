@@ -1,18 +1,18 @@
-# AGENTS.md � Núcleo de Portais do Grupo
+# AGENTS.md — Núcleo de Portais do Grupo
 
-Ponto de entrada único para agentes de IA. Contexto detalhado vive em `ai/` � carregue apenas o que a tarefa pedir (ver `ai/context/00-read-first.md`).
+Ponto de entrada único para agentes de IA. Contexto detalhado vive em `ai/` — carregue apenas o que a tarefa pedir (ver `ai/context/00-read-first.md`).
 
 ## Natureza do projeto
 
-Este projeto é o **Núcleo de Portais do Grupo**, não uma biblioteca específica da Supertrans ou do Aurora. �0 a plataforma interna para design system compartilhado, tokens/temas por empresa, Storybook oficial, documentação arquitetural e estrutura de desenvolvimento assistido por agentes. Produtos (portais) vivem em repositórios separados e consomem os packages daqui por versão.
+Este projeto é o **Núcleo de Portais do Grupo**, não uma biblioteca específica da Supertrans ou do Aurora. É a plataforma interna para design system compartilhado, tokens/temas por empresa, Storybook oficial, documentação arquitetural e estrutura de desenvolvimento assistido por agentes. Produtos (portais) vivem em repositórios separados e consomem os packages daqui por versão.
 
 ## Estrutura
 
-```
+```txt
 apps/storybook/        Storybook oficial (toolbar de marca Supertrans/Aurora)
-packages/tokens/       @supertrans-transportes/tokens � base.css + themes/{supertrans,aurora}.css
-packages/ui/           @supertrans-transportes/ui � primitives (Base UI + Tailwind v4 + cva)
-packages/blocks/       @supertrans-transportes/blocks � composições (vazio na Sprint 0)
+packages/tokens/       @supertrans-transportes/tokens — base.css + themes/{supertrans,aurora}.css
+packages/ui/           @supertrans-transportes/ui — primitives (Base UI + Tailwind v4 + cva)
+packages/blocks/       @supertrans-transportes/blocks — composições (vazio na Sprint 0)
 packages/tsconfig/     @supertrans-transportes/tsconfig
 packages/biome-config/ @supertrans-transportes/biome-config
 docs/adr/              decisões de arquitetura (fonte de verdade)
@@ -48,11 +48,11 @@ pnpm chromatic          # visual tests na nuvem (requer CHROMATIC_PROJECT_TOKEN)
 ## O que NUNCA fazer
 
 - Alterar os repositórios `portal-supertrans` ou `Portal-Aurora` a partir de tarefas deste repo.
-- Usar `@radix-ui/*` (ADR 0004 � Base UI é o único headless; `render`, não `asChild`).
-- Criar `tailwind.config.ts` (ADR 0003 � Tailwind v4 é CSS-first).
-- Copiar código Radix/TW3 do Aurora � recriar seguindo `ai/workflows/recreate-from-aurora.md`.
+- Usar `@radix-ui/*` (ADR 0004 — Base UI é o único headless; `render`, não `asChild`).
+- Criar `tailwind.config.ts` (ADR 0003 — Tailwind v4 é CSS-first).
+- Copiar código Radix/TW3 do Aurora — recriar seguindo `ai/workflows/recreate-from-aurora.md`.
 - Adicionar block sem 2+ consumidores reais previstos (regra dos dois usos).
-- Contornar uma ADR; conflito �  parar e reportar.
+- Contornar uma ADR; conflito → parar e reportar.
 - Declarar sucesso sem executar `pnpm check && pnpm typecheck && pnpm build`.
 
 ## Onde buscar contexto
@@ -63,7 +63,7 @@ pnpm chromatic          # visual tests na nuvem (requer CHROMATIC_PROJECT_TOKEN)
 | Componente | `ai/context/03-component-rules.md` + `ai/rules/components.md` + `ai/workflows/create-component.md` |
 | Tokens/tema | `ai/context/04-token-rules.md` + `ai/rules/tokens.md` + `ai/workflows/add-brand-theme.md` |
 | Block | `ai/rules/blocks.md` + `ai/workflows/create-block.md` |
-| Decisão/arquitetura | `ai/context/02-current-decisions.md` �  `docs/adr/` |
+| Decisão/arquitetura | `ai/context/02-current-decisions.md` → `docs/adr/` |
 | Migração dos portais | `ai/context/05-*.md`, `ai/context/06-*.md` |
 
 ## Como criar componentes

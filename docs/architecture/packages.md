@@ -1,13 +1,16 @@
 # Packages
 
-| Package | Camada | Conteúdo | Estado (Sprint 0) |
-|---|---|---|---|
-| `@supertrans-transportes/tokens` | 0 | Mapeamento semântico (`base.css`) + temas por marca (`themes/*.css`), CSS puro | Funcional: 2 temas |
-| `@supertrans-transportes/ui` | 1 | Primitives (Base UI + Tailwind v4 + cva + cn), stories colocalizadas | Button implementado |
-| `@supertrans-transportes/blocks` | 2 | Composições genéricas (DataTable, PageHeader, Pagination, ConfirmDialog, FilterBar, EmptyState, StatCards) | 11 blocks (Sprint 2) � ver blocks.md |
-| `@supertrans-transportes/tsconfig` | infra | `base.json`, `react-library.json`, `nextjs.json` | Funcional |
-| `@supertrans-transportes/biome-config` | infra | Config Biome compartilhada (tab, 100 col, double quotes) | Funcional |
+Resumo dos packages do núcleo.
 
-Futuro (fora da Sprint 0): `@supertrans-transportes/api-client`, `@supertrans-transportes/contracts`, `@supertrans-transportes/nest-core`, agent-kit distribuível, templates e CLI.
+| Package | Camada | Papel |
+|---|---:|---|
+| `@supertrans-transportes/tokens` | 0 | Variáveis CSS, temas, mapeamento semântico |
+| `@supertrans-transportes/ui` | 1 | Primitives headless estilizadas |
+| `@supertrans-transportes/blocks` | 2 | Composições genéricas e chrome oficial |
+| `@supertrans-transportes/tsconfig` | tooling | Base de TypeScript interna |
+| `@supertrans-transportes/biome-config` | tooling | Configuração de lint/format interna |
 
-Sprint 0 usa pacotes internos JIT (exports apontam para `src/`); build compilado (tsup) entra quando começarmos a publicar em registry.
+Notas:
+- `blocks` depende de `ui`
+- `ui` depende de `tokens`
+- tooling não é pacote consumível por produto

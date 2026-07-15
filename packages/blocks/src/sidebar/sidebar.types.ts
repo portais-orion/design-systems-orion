@@ -11,6 +11,7 @@ export type SidebarProps = {
 	onCollapsedChange?: (collapsed: boolean) => void;
 	canAccessItem?: CanAccessNavigationItem;
 	renderLink?: RenderLink;
+	onNavigate?: () => void;
 	footer?: React.ReactNode;
 	className?: string;
 };

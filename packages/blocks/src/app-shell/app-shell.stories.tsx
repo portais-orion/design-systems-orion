@@ -39,7 +39,7 @@ const meta: Meta<typeof AppShell> = {
 export default meta;
 type Story = StoryObj<typeof AppShell>;
 
-const Marca = () => <span className="text-sm font-bold tracking-wide">N�aCLEO</span>;
+const Marca = () => <span className="text-sm font-bold tracking-wide">NÚCLEO</span>;
 
 const NAV: NavigationItem[] = [
 	{ id: "inicio", label: "Início", href: "#", icon: Home },
@@ -156,7 +156,11 @@ export const WithFilteredNavigation: Story = {
 	),
 	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
-		await waitFor(() => expect(canvas.getByText("Registros")).toBeVisible());
+		await waitFor(() =>
+			expect(canvas.getAllByText("Registros").some((node) => node instanceof HTMLElement)).toBe(
+				true,
+			),
+		);
 		await expect(canvas.queryByText("Usuários")).toBeNull();
 	},
 };
@@ -194,7 +198,7 @@ export const MobileNavigation: Story = {
 	),
 };
 
-// ���� Stories integradas (Parte H) ������������������������������������������������������������������������������������������
+// Stories integradas (Parte H)
 
 export const AppShellWithListPage: Story = {
 	render: function Lista() {
@@ -351,7 +355,7 @@ export const AppShellWithDashboardPage: Story = {
 				}
 				content={
 					<div className="grid gap-6 lg:grid-cols-2">
-						<ContentCard title="�altimos registros">
+						<ContentCard title="Últimos registros">
 							<DataTable
 								data={REGISTROS.slice(0, 5)}
 								columns={COLS.slice(0, 2)}

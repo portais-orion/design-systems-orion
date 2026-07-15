@@ -11,13 +11,13 @@ import type { AppShellProps } from "./app-shell.types";
 
 /*
  * Chrome oficial dos portais: sidebar lateral + barra de breadcrumbs no topo
- * do conteúdo + miolo (page layouts da Sprint 5). SEM header/topbar fixo �
+ * do conteúdo + miolo (page layouts da Sprint 5). SEM header/topbar fixo —
  * padrão do grupo (AdminShell do Supertrans).
  *
  * Responsividade: no desktop (md+) a sidebar é fixa lateral; abaixo de md
  * ela desaparece e um botão minimalista na barra de breadcrumbs abre a MESMA
  * navegação num Sheet (drawer à esquerda). O shell não conhece rotas,
- * sessão ou permissões � renderLink e canAccessItem são injetados.
+ * sessão ou permissões — renderLink e canAccessItem são injetados.
  */
 export function AppShell({
 	brand,
@@ -76,26 +76,7 @@ export function AppShell({
 							<Sidebar
 								{...sidebarProps}
 								className="h-full w-full border-r-0"
-								renderLink={(props) =>
-									(
-										renderLink ??
-										((p) => (
-											<a
-												href={p.href}
-												className={p.className}
-												{...(p["aria-current"] ? { "aria-current": p["aria-current"] } : {})}
-											>
-												{p.children}
-											</a>
-										))
-									)({
-										...props,
-										onClick: (e) => {
-											props.onClick?.(e);
-											setMobileOpen(false);
-										},
-									})
-								}
+								onNavigate={() => setMobileOpen(false)}
 							/>
 						</SheetContent>
 					</Sheet>

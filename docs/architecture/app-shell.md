@@ -10,7 +10,7 @@ Shell é o **chrome** da aplicação (navegação, marca, breadcrumbs); PageLayo
 
 ## NavigationItem
 
-`{ id, label, href?, icon?, badge?, disabled?, children?, meta? }`. Sem href = agrupador; com children = grupo ou submenu; `meta` é espaço livre do portal (ex.: chave de permissão) que o núcleo **não interpreta**. Regra de forma: `meta.group === true` (sem href) → **grupo estático** (label de seção, filhos sempre visíveis); children sem `meta.group` → **submenu expansível** (aria-expanded, auto-open aditivo quando um filho está ativo).
+`{ id, label, href?, icon?, badge?, disabled?, children?, meta? }`. Sem href = agrupador; com children = grupo ou submenu. `meta.group === true` é a única convenção reservada pelo núcleo para **grupo estático** (label de seção, filhos sempre visíveis); demais chaves de `meta` continuam opacas para o portal (ex.: chave de permissão). Children sem `meta.group` viram **submenu expansível** (aria-expanded, auto-open aditivo quando um filho está ativo).
 
 ## Breadcrumbs
 

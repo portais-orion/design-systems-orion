@@ -1,4 +1,4 @@
-# Checklist � aceite de componente
+# Checklist — aceite de componente
 
 - [ ] Sem domínio (entidade/rota/endpoint/permissão/texto de empresa)
 - [ ] Sem hex, sem `orange-*`/`blue-*`/`primary-600`, só tokens semânticos
