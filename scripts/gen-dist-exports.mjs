@@ -1,34 +1,96 @@
-// Deriva os exports de dist a partir dos subpaths src existentes (sem mapa manual frágil).
-// Aplica em publishConfig (dev continua usando exports->src; publish usa dist via pnpm publishConfig).
-// Uso: node scripts/gen-dist-exports.mjs packages/ui/package.json
-//      node scripts/gen-dist-exports.mjs packages/blocks/package.json
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { dirname, join, relative, resolve } from "node:path";
+import {
+	synchronizePackageManifest,
+	validatePackageManifest,
+} from "./lib/package-distribution.mjs";
 
-const pkgPath = process.argv[2];
-if (!pkgPath) {
-	console.error("uso: node scripts/gen-dist-exports.mjs <caminho/para/package.json>");
-	process.exit(1);
+const usage =
+	"uso: node scripts/gen-dist-exports.mjs [--check|--write] <package.json> [package.json ...]";
+
+function parseArguments(args) {
+	const first = args[0];
+	if (!first) {
+		throw new Error(usage);
+	}
+
+	if (first === "--check" || first === "--write") {
+		if (args.length === 1) {
+			throw new Error(usage);
+		}
+		return { mode: first.slice(2), packagePaths: args.slice(1) };
+	}
+	if (first.startsWith("--")) {
+		throw new Error(`opção desconhecida: ${first}\n${usage}`);
+	}
+	return { mode: "write", packagePaths: args };
 }
 
-const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
-const isTs = (p) => typeof p === "string" && /\.(ts|tsx)$/.test(p);
-const toJs = (p) => p.replace(/^\.\/src\//, "./dist/").replace(/\.(ts|tsx)$/, ".mjs");
-const toDts = (p) => p.replace(/^\.\/src\//, "./dist/").replace(/\.(ts|tsx)$/, ".d.mts");
+function collectSourceFiles(packageDirectory) {
+	const sourceDirectory = join(packageDirectory, "src");
+	const sourceFiles = new Set();
+	const pending = [sourceDirectory];
 
-const distExports = {};
-for (const [key, val] of Object.entries(pkg.exports ?? {})) {
-	// TS subpaths -> { types, import } em dist; CSS/outros mantêm (tokens usa isto).
-	distExports[key] = isTs(val) ? { types: toDts(val), import: toJs(val) } : val;
+	while (pending.length > 0) {
+		const directory = pending.pop();
+		for (const entry of readdirSync(directory, { withFileTypes: true })) {
+			const entryPath = join(directory, entry.name);
+			if (entry.isDirectory()) {
+				pending.push(entryPath);
+			} else if (entry.isFile()) {
+				sourceFiles.add(relative(packageDirectory, entryPath).replaceAll("\\", "/"));
+			}
+		}
+	}
+
+	return sourceFiles;
 }
 
-pkg.publishConfig = {
-	...(pkg.publishConfig ?? {}),
-	main: "./dist/index.mjs",
-	module: "./dist/index.mjs",
-	types: "./dist/index.d.mts",
-	exports: distExports,
-};
-pkg.files = ["dist"];
+function processPackage(packagePath, mode) {
+	const resolvedPackagePath = resolve(packagePath);
+	const packageDirectory = dirname(resolvedPackagePath);
+	const manifest = JSON.parse(readFileSync(resolvedPackagePath, "utf8"));
+	const currentManifest = mode === "write" ? synchronizePackageManifest(manifest) : manifest;
 
-writeFileSync(pkgPath, `${JSON.stringify(pkg, null, "\t")}\n`);
-console.log(`gen-dist-exports OK — publishConfig.exports (dist) gerado em ${pkgPath}`);
+	if (mode === "write") {
+		writeFileSync(resolvedPackagePath, `${JSON.stringify(currentManifest, null, "\t")}\n`);
+	}
+
+	return validatePackageManifest(currentManifest, collectSourceFiles(packageDirectory));
+}
+
+function main() {
+	let options;
+	try {
+		options = parseArguments(process.argv.slice(2));
+	} catch (error) {
+		console.error(error.message);
+		process.exitCode = 1;
+		return;
+	}
+
+	const diagnostics = [];
+	for (const packagePath of options.packagePaths) {
+		try {
+			diagnostics.push(...processPackage(packagePath, options.mode));
+		} catch (error) {
+			diagnostics.push(`${packagePath}: ${error.message}`);
+		}
+	}
+
+	if (diagnostics.length > 0) {
+		for (const diagnostic of diagnostics) {
+			console.error(diagnostic);
+		}
+		process.exitCode = 1;
+		return;
+	}
+
+	console.log(
+		`gen-dist-exports OK — ${options.packagePaths.length} manifest(s) ${
+			options.mode === "check" ? "sincronizado(s)" : "atualizado(s)"
+		}`,
+	);
+}
+
+main();

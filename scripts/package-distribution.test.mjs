@@ -3,6 +3,7 @@ import test from "node:test";
 import {
 	derivePackageDistribution,
 	synchronizePackageManifest,
+	validatePackageManifest,
 } from "./lib/package-distribution.mjs";
 
 const manifest = {
@@ -54,5 +55,26 @@ test("rejects non-TypeScript source exports", () => {
 	assert.throws(
 		() => derivePackageDistribution({ name: "bad", exports: { ".": "./src/index.js" } }),
 		/bad.*\.\/src\/index\.js.*\.ts|\.tsx/s,
+	);
+});
+
+test("reports missing source and stale publish map", () => {
+	const stale = {
+		...manifest,
+		publishConfig: {
+			...manifest.publishConfig,
+			exports: { ".": { types: "./old.d.ts", import: "./old.js" } },
+		},
+	};
+	const diagnostics = validatePackageManifest(stale, new Set(["src/index.ts"]));
+	assert.ok(diagnostics.some((item) => item.includes("src/button/index.tsx")));
+	assert.ok(diagnostics.some((item) => item.includes("publishConfig.exports")));
+});
+
+test("accepts synchronized manifest with every source present", () => {
+	const synced = synchronizePackageManifest(manifest);
+	assert.deepEqual(
+		validatePackageManifest(synced, new Set(["src/index.ts", "src/button/index.tsx"])),
+		[],
 	);
 });
