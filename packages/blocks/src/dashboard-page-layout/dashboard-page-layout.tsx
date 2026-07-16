@@ -1,5 +1,6 @@
 import type * as React from "react";
 
+import { ContentWithAside } from "../_internal/content-with-aside";
 import { PageLayout } from "../page-layout";
 
 /* Layout de dashboard simples: stats + conteúdo + aside opcional. */
@@ -25,14 +26,7 @@ export function DashboardPageLayout({
 	return (
 		<PageLayout header={header} className={className}>
 			{stats}
-			{aside ? (
-				<div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
-					<div className="min-w-0 space-y-6">{content}</div>
-					<div className="space-y-4">{aside}</div>
-				</div>
-			) : (
-				content
-			)}
+			<ContentWithAside content={content} aside={aside} />
 		</PageLayout>
 	);
 }
