@@ -15,6 +15,10 @@ function stableJson(value) {
 	return JSON.stringify(value);
 }
 
+function packageDiagnostic(name, subpath, field, actual, expected) {
+	return `${name}: subpath ${subpath}; ${field}; atual=${stableJson(actual)}; esperado=${stableJson(expected)}`;
+}
+
 function toEntry(name, subpath, target) {
 	const match = target.match(SOURCE_TARGET);
 	if (!match) {
@@ -48,6 +52,7 @@ export function derivePackageDistribution(manifest) {
 
 	return {
 		entries,
+		files: ["dist"],
 		publishConfig: {
 			main: root.importTarget,
 			module: root.importTarget,
@@ -62,7 +67,7 @@ export function synchronizePackageManifest(manifest) {
 
 	return {
 		...manifest,
-		files: ["dist"],
+		files: distribution.files,
 		publishConfig: {
 			...manifest.publishConfig,
 			...distribution.publishConfig,
@@ -76,20 +81,32 @@ export function validatePackageManifest(manifest, sourceFiles) {
 
 	for (const entry of distribution.entries) {
 		if (!sourceFiles.has(entry.source)) {
-			diagnostics.push(`${manifest.name}: source ausente: ${entry.source}`);
+			diagnostics.push(
+				packageDiagnostic(manifest.name, entry.subpath, "source", "ausente", entry.source),
+			);
 		}
 	}
 
 	const derivedFields = [
-		["files", manifest.files, ["dist"]],
-		["publishConfig.main", manifest.publishConfig?.main, distribution.publishConfig.main],
-		["publishConfig.module", manifest.publishConfig?.module, distribution.publishConfig.module],
-		["publishConfig.types", manifest.publishConfig?.types, distribution.publishConfig.types],
-		["publishConfig.exports", manifest.publishConfig?.exports, distribution.publishConfig.exports],
+		["<pacote>", "files", manifest.files, distribution.files],
+		[".", "publishConfig.main", manifest.publishConfig?.main, distribution.publishConfig.main],
+		[
+			".",
+			"publishConfig.module",
+			manifest.publishConfig?.module,
+			distribution.publishConfig.module,
+		],
+		[".", "publishConfig.types", manifest.publishConfig?.types, distribution.publishConfig.types],
+		[
+			Object.keys(distribution.publishConfig.exports).join(", "),
+			"publishConfig.exports",
+			manifest.publishConfig?.exports,
+			distribution.publishConfig.exports,
+		],
 	];
-	for (const [field, actual, expected] of derivedFields) {
+	for (const [subpath, field, actual, expected] of derivedFields) {
 		if (stableJson(actual) !== stableJson(expected)) {
-			diagnostics.push(`${manifest.name}: ${field} fora de sincronia`);
+			diagnostics.push(packageDiagnostic(manifest.name, subpath, field, actual, expected));
 		}
 	}
 
@@ -176,6 +193,20 @@ function isDistTarget(target) {
 	);
 }
 
+function validatePackedTarget(packageName, field, target, files, diagnostics) {
+	if (typeof target !== "string" || !isDistTarget(target)) {
+		diagnostics.push(`${packageName}: ${field} aponta fora de ./dist/: ${String(target)}`);
+		return;
+	}
+
+	const packedFile = `package/${target.slice(2)}`;
+	if (!files.has(packedFile)) {
+		diagnostics.push(
+			`${packageName}: ${field} aponta para ${target}, ausente do inventario; esperado ${packedFile}`,
+		);
+	}
+}
+
 function isAllowedPackedFile(file) {
 	if (file === "package/package.json" || /^package\/(README|LICENSE)[^/]*$/i.test(file)) {
 		return true;
@@ -226,17 +257,24 @@ export function validatePackedArtifact({ manifest, files }) {
 		}
 	}
 
+	const exportsIsEmpty =
+		manifest.exports === undefined ||
+		manifest.exports === null ||
+		manifest.exports === "" ||
+		(typeof manifest.exports === "object" && Object.keys(manifest.exports).length === 0);
+	if (exportsIsEmpty) {
+		diagnostics.push(`${packageName}: exports vazio ou ausente no manifest empacotado`);
+	}
+
 	for (const field of PACKED_ENTRY_FIELDS) {
 		const target = manifest[field];
-		if (target !== undefined && (typeof target !== "string" || !isDistTarget(target))) {
-			diagnostics.push(`${packageName}: ${field} aponta fora de ./dist/: ${String(target)}`);
+		if (target !== undefined) {
+			validatePackedTarget(packageName, field, target, files, diagnostics);
 		}
 	}
 
 	visitStrings(manifest.exports, "exports", (target, field) => {
-		if (!isDistTarget(target)) {
-			diagnostics.push(`${packageName}: ${field} aponta fora de ./dist/: ${target}`);
-		}
+		validatePackedTarget(packageName, field, target, files, diagnostics);
 	});
 
 	for (const dependencyField of DEPENDENCY_FIELDS) {

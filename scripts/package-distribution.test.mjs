@@ -42,6 +42,7 @@ test("derives tsup entries and dist targets from source exports", () => {
 		types: "./dist/button/index.d.mts",
 		import: "./dist/button/index.mjs",
 	});
+	assert.deepEqual(result.files, ["dist"]);
 });
 
 test("synchronizes only derived distribution fields", () => {
@@ -70,8 +71,24 @@ test("reports missing source and stale publish map", () => {
 		},
 	};
 	const diagnostics = validatePackageManifest(stale, new Set(["src/index.ts"]));
-	assert.ok(diagnostics.some((item) => item.includes("src/button/index.tsx")));
-	assert.ok(diagnostics.some((item) => item.includes("publishConfig.exports")));
+	for (const fragment of [
+		"@portais-orion/example",
+		"./button",
+		"atual",
+		"esperado",
+		"src/button/index.tsx",
+	]) {
+		assert.ok(diagnostics.some((item) => item.includes(fragment)));
+	}
+	assert.ok(
+		diagnostics.some(
+			(item) =>
+				item.includes("publishConfig.exports") &&
+				item.includes("./button") &&
+				item.includes("./old.js") &&
+				item.includes("./dist/button/index.mjs"),
+		),
+	);
 });
 
 test("accepts synchronized manifest with every source present", () => {
@@ -156,6 +173,46 @@ test("accepts package.json plus dist files", () => {
 		}),
 		[],
 	);
+});
+
+test("rejects missing or empty packed exports", () => {
+	for (const exports of [undefined, {}]) {
+		const diagnostics = validatePackedArtifact({
+			manifest: { ...packed, exports },
+			files: new Set([
+				"package/package.json",
+				"package/dist/index.mjs",
+				"package/dist/index.d.mts",
+			]),
+		});
+
+		assert.ok(
+			diagnostics.some((item) => item.includes("exports") && item.includes("vazio ou ausente")),
+		);
+	}
+});
+
+test("rejects every packed entry target absent from tarball inventory", () => {
+	const diagnostics = validatePackedArtifact({
+		manifest: packed,
+		files: new Set(["package/package.json"]),
+	});
+
+	const expected = [
+		["main", "./dist/index.mjs", "package/dist/index.mjs"],
+		["module", "./dist/index.mjs", "package/dist/index.mjs"],
+		["types", "./dist/index.d.mts", "package/dist/index.d.mts"],
+		["exports../button.import", "./dist/button/index.mjs", "package/dist/button/index.mjs"],
+		["exports../button.types", "./dist/button/index.d.mts", "package/dist/button/index.d.mts"],
+	];
+	for (const [field, target, packedFile] of expected) {
+		assert.ok(
+			diagnostics.some(
+				(item) => item.includes(field) && item.includes(target) && item.includes(packedFile),
+			),
+			`expected missing inventory diagnostic for ${field}`,
+		);
+	}
 });
 
 test("rejects source, credentials, unknown roots, and workspace dependencies", () => {
@@ -269,6 +326,10 @@ test("accepts public SSH keys and private-named runtime modules", () => {
 			manifest: packed,
 			files: new Set([
 				"package/package.json",
+				"package/dist/index.mjs",
+				"package/dist/index.d.mts",
+				"package/dist/button/index.mjs",
+				"package/dist/button/index.d.mts",
 				"package/dist/id_rsa.pub",
 				"package/dist/id_ed25519.pub",
 				"package/dist/id_rsa-cert.pub",
