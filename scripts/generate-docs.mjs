@@ -165,9 +165,7 @@ function extractStories(storySource) {
 
 	for (const statement of sourceFile.statements) {
 		if (!ts.isVariableStatement(statement)) continue;
-		const isExported = statement.modifiers?.some(
-			(m) => m.kind === ts.SyntaxKind.ExportKeyword,
-		);
+		const isExported = statement.modifiers?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword);
 		if (!isExported) continue;
 
 		for (const decl of statement.declarationList.declarations) {
@@ -328,7 +326,10 @@ async function readSource(pkg, name) {
 	const srcDir = path.join(root, "packages", pkg, "src", name);
 	for (const file of [`${name}.tsx`, "index.tsx"]) {
 		try {
-			return { content: await readFile(path.join(srcDir, file), "utf8"), file: path.join(srcDir, file) };
+			return {
+				content: await readFile(path.join(srcDir, file), "utf8"),
+				file: path.join(srcDir, file),
+			};
 		} catch {}
 	}
 	return { content: "", file: null };
@@ -387,7 +388,7 @@ function extractExportNames(sourceContent, compName) {
 function formatImport(names, specifier) {
 	const single = `import { ${names.join(", ")} } from "${specifier}";`;
 	if (single.length <= 90) return single;
-	return [`import {`, ...names.map((name) => `\t${name},`), `} from "${specifier}";`].join("\n");
+	return ["import {", ...names.map((name) => `\t${name},`), `} from "${specifier}";`].join("\n");
 }
 
 function extractProps(sourceFile) {
@@ -453,11 +454,7 @@ function extractComponentDoc(sourceContent, compName) {
 		) {
 			found = readDoc(node);
 		}
-		if (
-			ts.isFunctionDeclaration(node) &&
-			node.name &&
-			node.name.text === compName
-		) {
+		if (ts.isFunctionDeclaration(node) && node.name && node.name.text === compName) {
 			found = readDoc(node);
 		}
 		if (!found) ts.forEachChild(node, visit);
@@ -486,7 +483,7 @@ function renderPropsTable(props, compName, pkg) {
 			"## API Reference",
 			"",
 			`\`${compName}\` não declara props próprias: repassa as props do primitivo`,
-			`de Base UI que envolve, mais \`className\`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)`,
+			"de Base UI que envolve, mais `className`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)",
 			"para a lista completa.",
 			"",
 		].join("\n");
@@ -507,9 +504,7 @@ function renderPropsTable(props, compName, pkg) {
 		// A coluna Descrição só existe se algum prop tiver JSDoc; senão seria uma
 		// coluna inteira de travessões.
 		const hasDocs = rows.some((row) => row.description.trim());
-		const header = hasDocs
-			? "| Prop | Tipo | Padrão | Descrição |"
-			: "| Prop | Tipo | Padrão |";
+		const header = hasDocs ? "| Prop | Tipo | Padrão | Descrição |" : "| Prop | Tipo | Padrão |";
 		const divider = hasDocs ? "| --- | --- | --- | --- |" : "| --- | --- | --- |";
 		parts.push(header, divider);
 
@@ -530,10 +525,7 @@ function renderPropsTable(props, compName, pkg) {
 		}
 	}
 
-	parts.push(
-		`Além destas, \`${compName}\` aceita as props do elemento/primitivo que envolve.`,
-		"",
-	);
+	parts.push(`Além destas, \`${compName}\` aceita as props do elemento/primitivo que envolve.`, "");
 
 	return parts.join("\n");
 }
