@@ -219,3 +219,31 @@ test("rejects nested entry targets outside dist and sensitive filenames", () => 
 		assert.ok(diagnostics.some((item) => item.includes(fragment)));
 	}
 });
+
+test("rejects encoded and Windows traversal in packed entry targets", () => {
+	for (const target of ["./dist/%2e%2e/package.json", "./dist/a\\..\\..\\package.json"]) {
+		const diagnostics = validatePackedArtifact({
+			manifest: {
+				...packed,
+				exports: { ".": target },
+			},
+			files: new Set(["package/package.json", "package/dist/index.mjs"]),
+		});
+
+		assert.ok(
+			diagnostics.some((item) => item.includes(target)),
+			`expected ${target} to be rejected`,
+		);
+	}
+});
+
+test("rejects conventional private key filenames inside dist", () => {
+	const diagnostics = validatePackedArtifact({
+		manifest: packed,
+		files: new Set(["package/package.json", "package/dist/id_ed25519", "package/dist/private.pem"]),
+	});
+
+	for (const filename of ["id_ed25519", "private.pem"]) {
+		assert.ok(diagnostics.some((item) => item.includes(filename)));
+	}
+});

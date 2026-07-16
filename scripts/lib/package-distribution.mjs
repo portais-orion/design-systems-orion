@@ -1,3 +1,5 @@
+import { posix } from "node:path";
+
 const SOURCE_TARGET = /^\.\/src\/(.+)\.(ts|tsx)$/;
 
 function stableJson(value) {
@@ -131,12 +133,47 @@ function visitStrings(value, path, visit) {
 	}
 }
 
+function decodePathTarget(target) {
+	let decoded = target;
+	for (let depth = 0; depth < 5; depth += 1) {
+		if (/%(?:2e|2f|5c)/i.test(decoded)) {
+			return null;
+		}
+
+		let next;
+		try {
+			next = decodeURIComponent(decoded);
+		} catch {
+			return null;
+		}
+		if (next === decoded) {
+			return decoded;
+		}
+		decoded = next;
+	}
+	return null;
+}
+
 function isDistTarget(target) {
-	if (!target.startsWith("./dist/")) {
+	if (!target.startsWith("./dist/") || target.includes("\\")) {
 		return false;
 	}
-	const segments = target.slice(2).split("/");
-	return !segments.includes("") && !segments.includes(".") && !segments.includes("..");
+	const decoded = decodePathTarget(target);
+	if (decoded === null || !decoded.startsWith("./dist/") || decoded.includes("\\")) {
+		return false;
+	}
+	const segments = decoded.slice(2).split("/");
+	if (segments.some((segment) => segment === "" || segment === "." || segment === "..")) {
+		return false;
+	}
+	const normalized = posix.normalize(decoded.slice(2));
+	const relativeToDist = posix.relative("dist", normalized);
+	return (
+		relativeToDist !== "" &&
+		!posix.isAbsolute(relativeToDist) &&
+		relativeToDist !== ".." &&
+		!relativeToDist.startsWith("../")
+	);
 }
 
 function isAllowedPackedFile(file) {
@@ -158,7 +195,11 @@ function isSensitiveFilename(file) {
 	return (
 		/^\.env(?:\..*)?$/i.test(filename) ||
 		/^\.npmrc$/i.test(filename) ||
-		/(^|[._-])(secrets?|credentials?|private[-_]?key|id[-_]?rsa)([._-]|$)/i.test(filename)
+		/^id_(?:rsa|dsa|ecdsa|ed25519)(?:\.(?!pub$).+)?$/i.test(filename) ||
+		/\.(?:key|p12|pfx|jks|keystore)$/i.test(filename) ||
+		/(^|[._-])(secrets?|credentials?|private(?:[-_]?key)?|service[-_]?account)([._-]|$)/i.test(
+			filename,
+		)
 	);
 }
 
