@@ -3,7 +3,7 @@
 #
 # Pre-requisitos:
 #   - Repo transferido para a org portais-orion (scope == owner == @portais-orion).
-#   - Rode o runbook de rename @portais-orion -> @portais-orion
+#   - Confirme o scope @portais-orion e siga o runbook de distribuicao
 #     (docs/architecture/package-distribution.md) ANTES do primeiro publish real.
 #   - GITHUB_TOKEN do job tem `packages: write` (definido em permissions abaixo).
 name: Release packages

@@ -2,7 +2,7 @@
 
 **Data:** 2026-07-15
 
-**Status:** em implementação
+**Status:** implementado e verificado
 
 ## Objetivo
 
