@@ -11,6 +11,7 @@
 			".changeset",
 			".tmp",
 			".pnpm-store",
+			".claude",
 			"apps/docs",
 			".next",
 			".source",
