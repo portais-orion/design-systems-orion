@@ -2,7 +2,7 @@
 
 **Data:** 2026-07-15
 
-**Status:** aprovado em conversa; aguardando revisão da spec
+**Status:** em implementação
 
 ## Objetivo
 
