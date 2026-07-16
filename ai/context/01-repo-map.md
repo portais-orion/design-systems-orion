@@ -4,7 +4,7 @@
 apps/storybook/           doc oficial; toolbar de marca; stories dos packages
 packages/tokens/          Camada 0 — base.css + themes/{supertrans,aurora}.css
 packages/ui/              Camada 1 — primitives (Base UI + TW4 + cva); um dir por componente
-packages/blocks/          Camada 2 — composições (vazio na Sprint 0)
+packages/blocks/          Camada 2 — composições (page-header, data-table, app-shell, layouts...)
 packages/tsconfig/        tsconfigs compartilhados
 packages/biome-config/    lint/format compartilhado
 docs/adr/                 decisões (fonte de verdade)
