@@ -168,6 +168,50 @@ test("reports exact catalog diagnostics", () => {
 	}
 });
 
+test("reports deterministic diagnostics for invalid state and catalog roots", () => {
+	assert.deepEqual(validateBrandState(null), [
+		{
+			code: "state.invalid",
+			path: "packages/tokens/brands.json",
+			actual: null,
+			expected: "object",
+		},
+	]);
+	assert.deepEqual(validateBrandState(createState({ catalog: null })), [
+		{
+			code: "catalog.invalid",
+			path: "packages/tokens/brands.json",
+			actual: null,
+			expected: "object",
+		},
+	]);
+});
+
+test("aggregates independent state diagnostics when the catalog is invalid", () => {
+	assert.deepEqual(
+		validateBrandState(
+			createState({
+				catalog: { ...catalog, defaultBrand: "unknown" },
+				indexCss: null,
+			}),
+		),
+		[
+			{
+				code: "catalog.defaultBrand",
+				path: "packages/tokens/brands.json",
+				actual: "unknown",
+				expected: ["supertrans", "aurora"],
+			},
+			{
+				code: "state.indexCss",
+				path: "packages/tokens/src/index.css",
+				actual: null,
+				expected: "string",
+			},
+		],
+	);
+});
+
 test("aggregates missing and orphan theme diagnostics", () => {
 	const themes = { supertrans: createThemeCss("supertrans"), polar: createThemeCss("polar") };
 	assert.deepEqual(validateBrandState(createState({ themes })), [
@@ -344,6 +388,20 @@ test("synchronizes only theme imports and preserves all other CSS bytes", () => 
 	);
 });
 
+test("separates inserted theme imports from a final import without a newline", () => {
+	const result = synchronizeBrandArtifacts(createState({ indexCss: '@import "./base.css";' }));
+
+	assert.equal(
+		result.indexCss,
+		[
+			'@import "./base.css";',
+			'@import "./themes/supertrans.css";',
+			'@import "./themes/aurora.css";',
+			"",
+		].join("\n"),
+	);
+});
+
 test("synchronizes only theme exports and does not mutate the manifest", () => {
 	const manifest = {
 		name: "@portais-orion/tokens",
@@ -420,4 +478,52 @@ test("rejects invalid catalog and unsafe theme state before synchronization", ()
 			message: `brand state cannot be synchronized: ${code}`,
 		});
 	}
+});
+
+test("throws a deterministic TypeError for a structurally invalid catalog", () => {
+	assert.throws(() => deriveBrandArtifacts(null), {
+		name: "TypeError",
+		message: "catalog.invalid: packages/tokens/brands.json",
+	});
+});
+
+test("reports theme imports that have inline comments", () => {
+	const diagnostics = validateBrandState(
+		createState({
+			indexCss: [
+				'@import "./base.css";',
+				'@import "./themes/legacy.css"; /* keep this comment */',
+				"",
+			].join("\n"),
+		}),
+	);
+
+	assert.deepEqual(findDiagnostic(diagnostics, "index.theme-imports"), {
+		code: "index.theme-imports",
+		path: "packages/tokens/src/index.css",
+		actual: ['@import "./themes/legacy.css";'],
+		expected: deriveBrandArtifacts(catalog).themeImports,
+	});
+});
+
+test("replaces a commented theme import and preserves its inline comment", () => {
+	const result = synchronizeBrandArtifacts(
+		createState({
+			indexCss: [
+				'@import "./base.css";',
+				'@import "./themes/legacy.css"; /* keep this comment */',
+				"",
+			].join("\n"),
+		}),
+	);
+
+	assert.equal(
+		result.indexCss,
+		[
+			'@import "./base.css";',
+			'@import "./themes/supertrans.css";',
+			'@import "./themes/aurora.css"; /* keep this comment */',
+			"",
+		].join("\n"),
+	);
 });

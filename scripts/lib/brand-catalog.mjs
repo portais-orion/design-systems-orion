@@ -6,7 +6,14 @@ function normalizeLabel(value) {
 
 function catalogDiagnostics(catalog) {
 	if (!catalog || typeof catalog !== "object" || Array.isArray(catalog)) {
-		return [{ code: "catalog.invalid", path: "packages/tokens/brands.json" }];
+		return [
+			{
+				code: "catalog.invalid",
+				path: "packages/tokens/brands.json",
+				actual: catalog ?? null,
+				expected: "object",
+			},
+		];
 	}
 
 	const diagnostics = [];
@@ -153,7 +160,7 @@ function pickThemeExports(exports) {
 function extractThemeImports(indexCss) {
 	if (typeof indexCss !== "string") return [];
 	const imports = [];
-	const pattern = /^\s*@import\s+["']\.\/themes\/([^"']+\.css)["'];\s*$/gm;
+	const pattern = /^[\t ]*@import\s+["']\.\/themes\/([^"']+\.css)["'];(?=[\t ]*(?:\/\*|\r?$))/gm;
 	for (const match of indexCss.matchAll(pattern)) {
 		imports.push(`@import "./themes/${match[1]}";`);
 	}
@@ -173,14 +180,22 @@ function hasSelector(content, selector) {
 
 export function validateBrandState(input) {
 	if (!isRecord(input)) {
-		return [{ code: "state.invalid", path: CATALOG_PATH }];
+		return [
+			{
+				code: "state.invalid",
+				path: CATALOG_PATH,
+				actual: input ?? null,
+				expected: "object",
+			},
+		];
 	}
 
 	const diagnostics = catalogDiagnostics(input.catalog);
-	if (diagnostics.length > 0) return diagnostics;
-
-	const derived = deriveBrandArtifacts(input.catalog);
-	const registeredIds = new Set(input.catalog.brands.map((brand) => brand.id));
+	const hasValidCatalog = diagnostics.length === 0;
+	const derived = hasValidCatalog ? deriveBrandArtifacts(input.catalog) : null;
+	const registeredIds = hasValidCatalog
+		? new Set(input.catalog.brands.map((brand) => brand.id))
+		: null;
 	const themes = isRecord(input.themes) ? input.themes : null;
 
 	if (!themes) {
@@ -190,7 +205,7 @@ export function validateBrandState(input) {
 			actual: input.themes ?? null,
 			expected: "object keyed by brand id",
 		});
-	} else {
+	} else if (hasValidCatalog) {
 		for (const brand of input.catalog.brands) {
 			if (!Object.hasOwn(themes, brand.id)) {
 				diagnostics.push({
@@ -285,22 +300,23 @@ export function validateBrandState(input) {
 			}
 		}
 	}
-	if (typeof input.indexCss !== "string")
+	if (typeof input.indexCss !== "string") {
 		diagnostics.push({
 			code: "state.indexCss",
 			path: INDEX_PATH,
 			actual: input.indexCss ?? null,
 			expected: "string",
 		});
-
-	const actualImports = extractThemeImports(input.indexCss);
-	if (!sameValue(actualImports, derived.themeImports)) {
-		diagnostics.push({
-			code: "index.theme-imports",
-			path: INDEX_PATH,
-			actual: actualImports,
-			expected: derived.themeImports,
-		});
+	} else if (derived) {
+		const actualImports = extractThemeImports(input.indexCss);
+		if (!sameValue(actualImports, derived.themeImports)) {
+			diagnostics.push({
+				code: "index.theme-imports",
+				path: INDEX_PATH,
+				actual: actualImports,
+				expected: derived.themeImports,
+			});
+		}
 	}
 	if (!isRecord(input.manifest?.exports))
 		diagnostics.push({
@@ -318,7 +334,11 @@ export function validateBrandState(input) {
 		});
 
 	const sourceExports = pickThemeExports(input.manifest?.exports);
-	if (!sameValue(sourceExports, derived.sourceThemeExports)) {
+	if (
+		derived &&
+		isRecord(input.manifest?.exports) &&
+		!sameValue(sourceExports, derived.sourceThemeExports)
+	) {
 		diagnostics.push({
 			code: "manifest.source-theme-exports",
 			path: MANIFEST_PATH,
@@ -328,7 +348,11 @@ export function validateBrandState(input) {
 	}
 
 	const publishExports = pickThemeExports(input.manifest?.publishConfig?.exports);
-	if (!sameValue(publishExports, derived.distThemeExports)) {
+	if (
+		derived &&
+		isRecord(input.manifest?.publishConfig?.exports) &&
+		!sameValue(publishExports, derived.distThemeExports)
+	) {
 		diagnostics.push({
 			code: "manifest.publish-theme-exports",
 			path: MANIFEST_PATH,
@@ -367,7 +391,8 @@ function replaceThemeExports(exports, derivedThemeExports) {
 
 function synchronizeIndexCss(indexCss, themeImports) {
 	const eol = indexCss.includes("\r\n") ? "\r\n" : "\n";
-	const themePattern = /^[\t ]*@import\s+["']\.\/themes\/[^"']+\.css["'];[\t ]*(?:\r?\n|$)/gm;
+	const themePattern =
+		/^[\t ]*@import\s+["']\.\/themes\/[^"']+\.css["'];(?:[\t ]*(?:\r?\n|$)|(?=[\t ]*\/\*))/gm;
 	let replacedFirst = false;
 	let synchronized = indexCss.replace(themePattern, (match) => {
 		if (replacedFirst) return "";
@@ -383,9 +408,10 @@ function synchronizeIndexCss(indexCss, themeImports) {
 	if (imports.length === 0) return `${themeImports.join(eol)}${eol}${indexCss}`;
 	const lastImport = imports.at(-1);
 	const insertionPoint = lastImport.index + lastImport[0].length;
+	const separator = lastImport[0].endsWith("\n") ? "" : eol;
 	synchronized = [
 		indexCss.slice(0, insertionPoint),
-		`${themeImports.join(eol)}${eol}`,
+		`${separator}${themeImports.join(eol)}${eol}`,
 		indexCss.slice(insertionPoint),
 	].join("");
 	return synchronized;
