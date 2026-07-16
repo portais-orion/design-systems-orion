@@ -1,0 +1,4 @@
+{
+	"defaultBrand": "supertrans",
+	"brands": [{ "id": "supertrans", "label": "Supertrans" }, { "id": "aurora", "label": "Aurora" }]
+}

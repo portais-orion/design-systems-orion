@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
+import path from "node:path";
 import test from "node:test";
 
+import { runBrandCatalogCli } from "./brand-catalog.mjs";
 import {
 	deriveBrandArtifacts,
 	synchronizeBrandArtifacts,
@@ -526,4 +528,174 @@ test("replaces a commented theme import and preserves its inline comment", () =>
 			"",
 		].join("\n"),
 	);
+});
+
+function createAdapterFileSystem(rootDir, overrides = {}) {
+	const state = createState(overrides);
+	const files = new Map([
+		[path.join(rootDir, "packages/tokens/brands.json"), JSON.stringify(state.catalog)],
+		[path.join(rootDir, "packages/tokens/src/base.css"), state.baseCss],
+		[path.join(rootDir, "packages/tokens/src/index.css"), state.indexCss],
+		[path.join(rootDir, "packages/tokens/package.json"), JSON.stringify(state.manifest)],
+		[path.join(rootDir, "packages/tokens/src/themes/supertrans.css"), state.themes.supertrans],
+		[path.join(rootDir, "packages/tokens/src/themes/aurora.css"), state.themes.aurora],
+	]);
+	const writes = [];
+
+	return {
+		files,
+		writes,
+		readDir: async () => ["supertrans.css", "aurora.css"],
+		readFile: async (filePath) => {
+			if (!files.has(filePath)) throw new Error(`unexpected read: ${filePath}`);
+			return files.get(filePath);
+		},
+		writeFile: async (filePath, content) => {
+			writes.push([filePath, content]);
+			files.set(filePath, content);
+		},
+	};
+}
+
+test("returns usage failure for missing and unknown modes without file-system access", async () => {
+	for (const mode of [undefined, "--unknown"]) {
+		const failOnAccess = async () => assert.fail("must not access the file system");
+		const result = await runBrandCatalogCli({
+			mode,
+			rootDir: path.resolve("repo"),
+			readFile: failOnAccess,
+			writeFile: failOnAccess,
+			readDir: failOnAccess,
+		});
+
+		assert.equal(result.exitCode, 2);
+		assert.match(result.message, /--check\|--write/);
+	}
+});
+
+test("check aggregates diagnostics and never writes", async () => {
+	const rootDir = path.resolve("repo");
+	const fs = createAdapterFileSystem(rootDir, {
+		baseCss: "",
+		indexCss: '@import "./themes/legacy.css";\n',
+		manifest: {
+			name: "@portais-orion/tokens",
+			exports: { "./themes/legacy.css": "./src/themes/legacy.css" },
+			publishConfig: {
+				exports: { "./themes/legacy.css": "./dist/themes/legacy.css" },
+			},
+		},
+	});
+
+	const result = await runBrandCatalogCli({ mode: "--check", rootDir, ...fs });
+	const codes = new Set(result.diagnostics.map(({ code }) => code));
+
+	assert.equal(result.exitCode, 1);
+	assert.ok(codes.has("base.missing-default"));
+	assert.ok(codes.has("index.theme-imports"));
+	assert.ok(codes.has("manifest.source-theme-exports"));
+	assert.ok(codes.has("manifest.publish-theme-exports"));
+	assert.deepEqual(fs.writes, []);
+});
+
+test("write refuses structural or theme failures", async () => {
+	const rootDir = path.resolve("repo");
+	const fs = createAdapterFileSystem(rootDir, {
+		themes: {
+			supertrans: createThemeCss("supertrans"),
+			aurora: createThemeCss("aurora").replace('[data-brand="aurora"] {', "missing {"),
+		},
+		indexCss: '@import "./themes/legacy.css";\n',
+	});
+
+	const result = await runBrandCatalogCli({ mode: "--write", rootDir, ...fs });
+
+	assert.equal(result.exitCode, 1);
+	assert.ok(result.diagnostics.some(({ code }) => code === "theme.missing-selector"));
+	assert.deepEqual(fs.writes, []);
+});
+
+test("write changes exactly the absolute index and manifest targets", async () => {
+	const rootDir = path.resolve("repo");
+	const fs = createAdapterFileSystem(rootDir, {
+		indexCss: '@import "./base.css";\n@import "./themes/legacy.css";\n',
+		manifest: {
+			name: "@portais-orion/tokens",
+			exports: {
+				"./index.css": "./src/index.css",
+				"./themes/legacy.css": "./src/themes/legacy.css",
+			},
+			publishConfig: {
+				exports: {
+					"./index.css": "./dist/index.css",
+					"./themes/legacy.css": "./dist/themes/legacy.css",
+				},
+			},
+		},
+	});
+
+	const result = await runBrandCatalogCli({ mode: "--write", rootDir, ...fs });
+
+	assert.equal(result.exitCode, 0);
+	assert.deepEqual(
+		fs.writes.map(([filePath]) => filePath),
+		[
+			path.join(rootDir, "packages/tokens/src/index.css"),
+			path.join(rootDir, "packages/tokens/package.json"),
+		],
+	);
+	assert.ok(fs.writes.every(([filePath]) => path.isAbsolute(filePath)));
+});
+
+test("write rejects an unanchored root before any file-system access", async () => {
+	const accesses = [];
+	const recordAccess = async (...args) => accesses.push(args);
+	const result = await runBrandCatalogCli({
+		mode: "--write",
+		rootDir: path.join("..", "outside-repo"),
+		readFile: recordAccess,
+		writeFile: recordAccess,
+		readDir: recordAccess,
+	});
+
+	assert.equal(result.exitCode, 1);
+	assert.equal(result.diagnostics[0].code, "path.root-not-absolute");
+	assert.deepEqual(accesses, []);
+});
+
+test("successful write preserves unrelated manifest content and stable serialization", async () => {
+	const rootDir = path.resolve("repo");
+	const fs = createAdapterFileSystem(rootDir, {
+		indexCss: '@import "./themes/legacy.css";\n',
+		manifest: {
+			name: "@portais-orion/tokens",
+			version: "9.9.9",
+			custom: { keep: true },
+			exports: {
+				"./base.css": "./src/base.css",
+				"./themes/legacy.css": "./src/themes/legacy.css",
+			},
+			publishConfig: {
+				access: "restricted",
+				exports: {
+					"./base.css": "./dist/base.css",
+					"./themes/legacy.css": "./dist/themes/legacy.css",
+				},
+			},
+		},
+	});
+
+	const result = await runBrandCatalogCli({ mode: "--write", rootDir, ...fs });
+	const manifestWrite = fs.writes.find(
+		([filePath]) => filePath === path.join(rootDir, "packages/tokens/package.json"),
+	);
+	const serialized = manifestWrite[1];
+	const manifest = JSON.parse(serialized);
+
+	assert.equal(result.exitCode, 0);
+	assert.equal(manifest.version, "9.9.9");
+	assert.deepEqual(manifest.custom, { keep: true });
+	assert.equal(manifest.publishConfig.access, "restricted");
+	assert.match(serialized, /^\{\n\t"name"/);
+	assert.ok(serialized.endsWith("\n"));
 });
