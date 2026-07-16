@@ -17,3 +17,6 @@ storybook-static/
 
 # Local pnpm store used by sandboxed validation
 .pnpm-store/
+
+# Junction para .agents/skills — git a percorreria e duplicaria os arquivos
+.claude/skills/

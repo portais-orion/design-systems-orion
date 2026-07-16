@@ -82,6 +82,20 @@ Seguir `ai/context/04-token-rules.md`. Token novo entra no `@theme inline` do ba
 
 Teste rápido de `ai/rules/no-domain-in-shared-packages.md`: "este código faria sentido num terceiro portal de outra empresa criado amanhã?" Se não, é Camada 3 e fica no produto. Dados por props, conteúdo por slots, integrações por providers injetados.
 
+## Agent skills
+
+### Issue tracker
+
+Issues vivem no GitHub Issues de `portais-orion/nucleo-portais`, operadas pelo `gh` CLI. Veja `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Vocabulário canônico padrão: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. Veja `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: um `CONTEXT.md` na raiz + `docs/adr/` centralizado. Veja `docs/agents/domain.md`.
+
 ## Skill oficial de adoção
 
 A skill oficial para adotar/migrar telas de portais ao Núcleo `@portais-orion` vive AQUI (fonte de verdade):
