@@ -193,7 +193,7 @@ function isAllowedPackedFile(file) {
 function isSensitiveFilename(file) {
 	const filename = file.split("/").at(-1);
 	const sshKeyName = /(^|[._-])id[-_]?(?:rsa|dsa|ecdsa|ed25519)(?:[._-]|$)/i;
-	const publicSshKey = /(^|[._-])id[-_]?(?:rsa|dsa|ecdsa|ed25519)\.pub$/i;
+	const publicSshKey = /(^|[._-])id[-_]?(?:rsa|dsa|ecdsa|ed25519)(?:-cert)?\.pub$/i;
 	const privateKeyword = /(^|[._-])private([._-]|$)/i;
 	const privateKeyKeyword = /(^|[._-])private[-_]?key([._-]|$)/i;
 	const runtimeModule = /\.(?:[cm]?js|d\.[cm]?ts|map)$/i;

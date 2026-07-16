@@ -271,6 +271,8 @@ test("accepts public SSH keys and private-named runtime modules", () => {
 				"package/package.json",
 				"package/dist/id_rsa.pub",
 				"package/dist/id_ed25519.pub",
+				"package/dist/id_rsa-cert.pub",
+				"package/dist/foo-id-rsa-cert.pub",
 				"package/dist/private-api.mjs",
 			]),
 		}),
