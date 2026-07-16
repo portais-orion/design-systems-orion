@@ -1,0 +1,48 @@
+---
+title: Spinner
+description: Componente da biblioteca Base UI.
+---
+
+import { Spinner } from "@portais-orion/ui";
+
+# Spinner
+
+Um componente da biblioteca `@portais-orion/ui` agrupado em **Feedback**.
+
+## Instalação
+
+```bash
+# Como nosso ecossistema é um monorepo e importamos o package completo:
+pnpm add @portais-orion/ui
+```
+
+## Uso
+
+<Preview>
+  <div className="text-muted-foreground text-sm">
+    Substitua este texto pela declaração real do componente com suas props obrigatórias.
+  </div>
+</Preview>
+
+```tsx
+import { Spinner } from "@portais-orion/ui";
+
+export default function Example() {
+  return (
+    <Spinner {/* props */} />
+  )
+}
+```
+
+## Exemplos
+
+### Sizes
+Consulte o Storybook para a variação `Sizes`.
+
+### WithLabel
+```tsx
+<Spinner {...{ label: "Carregando...", size: "sm" }} />
+```
+
+### InsideButton
+Consulte o Storybook para a variação `InsideButton`.

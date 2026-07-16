@@ -1,0 +1,47 @@
+---
+title: ErrorState
+description: Componente da biblioteca Blocks.
+---
+
+import { ErrorState } from "@portais-orion/blocks";
+
+# ErrorState
+
+Um componente da biblioteca `@portais-orion/blocks` agrupado em **Feedback**.
+
+## Instalação
+
+```bash
+# Como nosso ecossistema é um monorepo e importamos o package completo:
+pnpm add @portais-orion/blocks
+```
+
+## Uso
+
+<Preview>
+  <div className="text-muted-foreground text-sm">
+    Substitua este texto pela declaração real do componente com suas props obrigatórias.
+  </div>
+</Preview>
+
+```tsx
+import { ErrorState } from "@portais-orion/blocks";
+
+export default function Example() {
+  return (
+    <ErrorState {/* props */} />
+  )
+}
+```
+
+## Exemplos
+
+### ComRetry
+```tsx
+<ErrorState {...{ 		action: ( 			<Button variant="outline" size="sm"> 				<RefreshCw /> Tentar novamente 			</Button> 		), 	}} />
+```
+
+### TextoCustomizado
+```tsx
+<ErrorState {...{ 		title: "Falha ao processar a solicitação", 		description: "O servidor demorou para responder.", 	}} />
+```

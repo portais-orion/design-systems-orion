@@ -1,61 +1,30 @@
-import { readFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { readFile, readdir, writeFile } from "node:fs/promises";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const pkgDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const srcDir = resolve(pkgDir, "src");
-const base = readFileSync(resolve(srcDir, "base.css"), "utf8");
+import { runBrandCatalogCli } from "../../../scripts/brand-catalog.mjs";
 
-const brands = ["supertrans", "aurora"];
-const requiredIdentityTokens = [
-	"primary",
-	"primary-foreground",
-	"primary-hover",
-	"ring",
-	"brand-primary",
-	"brand-hover",
-	"brand-accent",
-	"sidebar",
-	"sidebar-foreground",
-	"sidebar-primary",
-	"sidebar-primary-foreground",
-	"sidebar-accent",
-	"sidebar-accent-foreground",
-	"sidebar-border",
-	"sidebar-ring",
-];
+const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
+const result = await runBrandCatalogCli({
+	mode: "--check",
+	rootDir,
+	readFile,
+	writeFile,
+	readDir: readdir,
+});
 
-const failures = [];
-
-for (const token of requiredIdentityTokens) {
-	if (!base.includes(`--${token}:`)) failures.push(`base.css sem default neutro para --${token}`);
-	if (!base.includes(`--color-${token}: var(--${token})`)) {
-		failures.push(`base.css sem mapeamento @theme para --color-${token}`);
-	}
+function formatDiagnostic(diagnostic) {
+	return ["code", "path", "actual", "expected"]
+		.map((field) => `${field}=${JSON.stringify(diagnostic[field] ?? null)}`)
+		.join(" ");
 }
 
-for (const brand of brands) {
-	const theme = readFileSync(resolve(srcDir, "themes", `${brand}.css`), "utf8");
-	for (const selector of [
-		":root:not([data-brand])",
-		`:root[data-brand="${brand}"]`,
-		`[data-brand="${brand}"]`,
-	]) {
-		if (!theme.includes(selector))
-			failures.push(`${brand}.css sem seletor obrigatório ${selector}`);
+if (result.exitCode !== 0) {
+	console.error(`validate-tokens FALHOU — ${result.diagnostics.length} problema(s).`);
+	for (const diagnostic of result.diagnostics) {
+		console.error(`- ${formatDiagnostic(diagnostic)}`);
 	}
-	for (const token of requiredIdentityTokens) {
-		if (!theme.includes(`--${token}:`)) failures.push(`${brand}.css sem --${token}`);
-	}
-	if (/:root,\s*\[data-brand/.test(theme)) {
-		failures.push(`${brand}.css usa seletor antigo :root, [data-brand]`);
-	}
-}
-
-if (failures.length > 0) {
-	console.error(`validate-tokens FALHOU — ${failures.length} problema(s).`);
-	for (const failure of failures) console.error(`- ${failure}`);
 	process.exit(1);
 }
 
-console.log("validate-tokens OK — temas completos e seletores corretos.");
+console.log("validate-tokens OK — catálogo, temas, imports e exports sincronizados.");

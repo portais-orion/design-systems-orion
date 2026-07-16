@@ -25,8 +25,7 @@
 		"chromatic": "pnpm --filter @nucleo/storybook chromatic",
 		"pack:all": "node scripts/pack-packages.mjs",
 		"publish:packages": "pnpm --filter ./packages/tokens --filter ./packages/ui --filter ./packages/blocks publish --no-git-checks",
-		"check:tokens": "node packages/tokens/scripts/validate-tokens.mjs",
-		"check:storybook-brands": "node scripts/check-storybook-brands.mjs"
+		"check:tokens": "node packages/tokens/scripts/validate-tokens.mjs"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

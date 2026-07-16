@@ -1,0 +1,47 @@
+---
+title: CrudModalHeader
+description: Componente da biblioteca Blocks.
+---
+
+import { CrudModalHeader } from "@portais-orion/blocks";
+
+# CrudModalHeader
+
+Um componente da biblioteca `@portais-orion/blocks` agrupado em **Utilities**.
+
+## Instalação
+
+```bash
+# Como nosso ecossistema é um monorepo e importamos o package completo:
+pnpm add @portais-orion/blocks
+```
+
+## Uso
+
+<Preview>
+  <div className="text-muted-foreground text-sm">
+    Substitua este texto pela declaração real do componente com suas props obrigatórias.
+  </div>
+</Preview>
+
+```tsx
+import { CrudModalHeader } from "@portais-orion/blocks";
+
+export default function Example() {
+  return (
+    <CrudModalHeader {/* props */} />
+  )
+}
+```
+
+## Exemplos
+
+### Criar
+```tsx
+<CrudModalHeader {...{ 		icon: Plus, 		title: "Novo módulo", 		description: "Preencha os dados para cadastrar um módulo.", 	}} />
+```
+
+### EditarComBadges
+```tsx
+<CrudModalHeader {...{ 		icon: Pencil, 		title: "Editar módulo", 		description: "Alterações afetam o acesso dos usuários.", 		tone: "warning", 		badges: ( 			<> 				<Badge variant="secondary">BUSINESS</Badge> 				<Badge variant="tinted">ordem 3</Badge> 			</> 		), 	}} />
+```

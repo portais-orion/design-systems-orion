@@ -1,6 +1,6 @@
 import type { Decorator, Preview } from "@storybook/react";
 import React from "react";
-import { BRANDS, BRAND_LABELS, type Brand } from "../src/brands";
+import catalog from "../../../packages/tokens/brands.json";
 import "../src/styles.css";
 
 /*
@@ -11,7 +11,7 @@ import "../src/styles.css";
  * do Núcleo é independente dos portais.
  */
 const withBrand: Decorator = (Story, context) => {
-	const brand = (context.globals.brand as Brand | undefined) ?? "supertrans";
+	const brand = (context.globals.brand as string | undefined) ?? catalog.defaultBrand;
 	document.documentElement.setAttribute("data-brand", brand);
 	return (
 		<div className="bg-background p-6 text-foreground">
@@ -27,13 +27,13 @@ const preview: Preview = {
 			toolbar: {
 				title: "Marca",
 				icon: "paintbrush",
-				items: BRANDS.map((brand) => ({ value: brand, title: BRAND_LABELS[brand] })),
+				items: catalog.brands.map((b) => ({ value: b.id, title: b.label })),
 				dynamicTitle: true,
 			},
 		},
 	},
 	initialGlobals: {
-		brand: "supertrans",
+		brand: catalog.defaultBrand,
 	},
 	decorators: [withBrand],
 	parameters: {
