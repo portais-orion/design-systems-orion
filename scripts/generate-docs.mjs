@@ -334,6 +334,62 @@ async function readSource(pkg, name) {
 	return { content: "", file: null };
 }
 
+/*
+ * Nomes exportados pelo componente, para o snippet de import por subpath. O
+ * `<name>/index.ts` é sempre um `export *`, então a lista real sai do módulo
+ * fonte. Só PascalCase entra: `buttonVariants` e afins são detalhe de
+ * implementação e poluiriam o exemplo.
+ */
+function extractExportNames(sourceContent, compName) {
+	const fallback = compName ? [compName] : [];
+	if (!sourceContent) return fallback;
+
+	const sourceFile = ts.createSourceFile(
+		"component.tsx",
+		sourceContent,
+		ts.ScriptTarget.Latest,
+		true,
+		ts.ScriptKind.TSX,
+	);
+
+	const isExported = (node) =>
+		node.modifiers?.some((mod) => mod.kind === ts.SyntaxKind.ExportKeyword);
+
+	const names = new Set();
+	for (const stmt of sourceFile.statements) {
+		if (ts.isFunctionDeclaration(stmt) && isExported(stmt) && stmt.name) {
+			names.add(stmt.name.text);
+		} else if (ts.isVariableStatement(stmt) && isExported(stmt)) {
+			for (const decl of stmt.declarationList.declarations) {
+				if (ts.isIdentifier(decl.name)) names.add(decl.name.text);
+			}
+		} else if (
+			ts.isExportDeclaration(stmt) &&
+			!stmt.isTypeOnly &&
+			stmt.exportClause &&
+			ts.isNamedExports(stmt.exportClause)
+		) {
+			for (const el of stmt.exportClause.elements) {
+				if (!el.isTypeOnly) names.add(el.name.text);
+			}
+		}
+	}
+
+	const components = [...names].filter((name) => /^[A-Z]/.test(name));
+	if (components.length === 0) return fallback;
+
+	// O componente homônimo da página vem primeiro; o resto mantém a ordem do arquivo.
+	components.sort((a, b) => (a === compName ? -1 : b === compName ? 1 : 0));
+	return components;
+}
+
+// Import de uma linha só; quebra em várias quando a lista não cabe nos 90 colunas.
+function formatImport(names, specifier) {
+	const single = `import { ${names.join(", ")} } from "${specifier}";`;
+	if (single.length <= 90) return single;
+	return [`import {`, ...names.map((name) => `\t${name},`), `} from "${specifier}";`].join("\n");
+}
+
 function extractProps(sourceFile) {
 	if (!sourceFile) return [];
 	let parsed = [];
@@ -495,6 +551,7 @@ async function generateMdx(name, pkg, category) {
 	const stories = extractStories(storySource);
 	const props = extractProps(sourceFile);
 	const doc = extractComponentDoc(sourceContent, compName);
+	const exportNames = extractExportNames(sourceContent, compName);
 	const registryKey = `${pkg}/${name}`;
 
 	const primary = stories[0];
@@ -542,18 +599,32 @@ async function generateMdx(name, pkg, category) {
 			"## Instalação",
 			"",
 			"```bash",
-			"# O ecossistema é um monorepo e importamos o package completo:",
+			"# Primitives e blocks são packages separados: instale só o que for usar.",
+			...(pkg === "blocks"
+				? ["# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto."]
+				: []),
 			`pnpm add @portais-orion/${pkg}`,
 			"```",
 			"",
-			"## Uso",
+			"## Import",
+			"",
+			"```tsx",
+			formatImport(exportNames, `@portais-orion/${pkg}/${name}`),
+			"```",
+			"",
+			`O import por subpath traz só \`${name}\`. Importar de \`@portais-orion/${pkg}\` também`,
+			"funciona e dá no mesmo bundle — os packages são `sideEffects: false`.",
 			"",
 		);
 
+		// Sem story não há o que renderizar: a seção inteira sai, em vez de virar um heading vazio.
 		if (primary) {
-			lines.push(`<ComponentPreview name="${registryKey}" story="${primary.name}" />`, "");
-		} else {
-			lines.push("```tsx", `import { ${compName} } from "@portais-orion/${pkg}";`, "```", "");
+			lines.push(
+				"## Uso",
+				"",
+				`<ComponentPreview name="${registryKey}" story="${primary.name}" />`,
+				"",
+			);
 		}
 
 		lines.push(renderPropsTable(props, compName, pkg));

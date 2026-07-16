@@ -27,6 +27,7 @@ import type { AppShellProps } from "./app-shell.types";
  */
 export function AppShell({
 	brand,
+	activeModule,
 	navigation,
 	activeItemId,
 	breadcrumbs,
@@ -44,6 +45,7 @@ export function AppShell({
 
 	const sidebarProps = {
 		brand,
+		activeModule,
 		navigation,
 		activeItemId,
 		canAccessItem,
@@ -79,8 +81,10 @@ export function AppShell({
 						/>
 						<SheetContent side="left" className="w-72 max-w-full p-0 [&>button]:z-10">
 							<SheetTitle className="sr-only">Menu de navegação</SheetTitle>
+							{/* No drawer a sidebar já ocupa a tela toda: colapsar não faz sentido. */}
 							<Sidebar
 								{...sidebarProps}
+								collapsible={false}
 								className="h-full w-full border-r-0"
 								onNavigate={() => setMobileOpen(false)}
 							/>

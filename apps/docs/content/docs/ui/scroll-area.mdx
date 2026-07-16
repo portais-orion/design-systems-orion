@@ -10,9 +10,18 @@ Disponível em `@portais-orion/ui`, na categoria **Layout**.
 ## Instalação
 
 ```bash
-# O ecossistema é um monorepo e importamos o package completo:
+# Primitives e blocks são packages separados: instale só o que for usar.
 pnpm add @portais-orion/ui
 ```
+
+## Import
+
+```tsx
+import { ScrollArea, ScrollBar } from "@portais-orion/ui/scroll-area";
+```
+
+O import por subpath traz só `scroll-area`. Importar de `@portais-orion/ui` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso
 

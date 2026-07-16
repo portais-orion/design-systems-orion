@@ -10,9 +10,25 @@ Disponível em `@portais-orion/ui`, na categoria **Exibição de dados**.
 ## Instalação
 
 ```bash
-# O ecossistema é um monorepo e importamos o package completo:
+# Primitives e blocks são packages separados: instale só o que for usar.
 pnpm add @portais-orion/ui
 ```
+
+## Import
+
+```tsx
+import {
+	Card,
+	CardHeader,
+	CardFooter,
+	CardTitle,
+	CardDescription,
+	CardContent,
+} from "@portais-orion/ui/card";
+```
+
+O import por subpath traz só `card`. Importar de `@portais-orion/ui` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso
 

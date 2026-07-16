@@ -18,9 +18,13 @@ Shell é o **chrome** da aplicação (navegação, marca, breadcrumbs); PageLayo
 
 ## Sidebar
 
-Tokens `sidebar-*` (cada marca define os seus); larguras w-64/w-16; colapso controlado e não controlado; tooltip nos itens quando collapsed; badges (ocultos em collapsed); disabled; item ativo com `aria-current="page"`; grupos e submenus conforme regra acima; **sem botão de colapso embutido** (decisão pós-Sprint 6, alinhada à referência visual do Supertrans): o colapso é controlado pelo portal via `collapsed`/`onCollapsedChange`, se ele quiser oferecer o gesto. O rodapé é slot livre — padrão recomendado: avatar + nome/cargo + ação de sair (ver story WithFooter).
+Tokens `sidebar-*` (cada marca define os seus); larguras w-64/w-16; colapso controlado e não controlado; tooltip nos itens quando collapsed; badges (ocultos em collapsed); disabled; item ativo com `aria-current="page"`; grupos e submenus conforme regra acima. **Botão de colapso embutido** na borda (`collapsible`, padrão `true`; o AppShell o desliga dentro do drawer mobile) — o clique passa por `onCollapsedChange`, então o modo controlado segue valendo. O rodapé é slot livre — padrão recomendado: avatar + nome/cargo + ação de sair (ver story WithFooter); slots reagem ao colapso via `group-data-[collapsed]/sidebar:*`.
 
-**Decisões**: `SidebarItem/SidebarGroup/SidebarSubmenu/SidebarCollapseButton` são **internos** — a API é dirigida por dados; exportar peças soltas incentivaria montagens divergentes. **Submenu em collapsed (versão conservadora)**: clicar no pai expande a sidebar e abre o submenu; flyout em collapsed fica para a Sprint 8.
+**Faixa de módulo** (`activeModule: { name, icon?, switchHref?, switchLabel? }`): link de troca + módulo atual acima da navegação, colapsando para só o ícone com tooltip. É dado, não slot — o núcleo não descobre o módulo (isso é rota, logo do portal), mas a faixa é estrutura fixa do chrome.
+
+**Item ativo**: barra de 3px em `brand-accent` na borda esquerda + fundo `sidebar-foreground/10`, não fill sólido. Estrutura igual nas duas marcas; a cor sai dos tokens de cada uma.
+
+**Decisões**: `SidebarItem/SidebarGroup/SidebarSubmenu/SidebarCollapseButton` são **internos** — a API é dirigida por dados; exportar peças soltas incentivaria montagens divergentes. O botão de colapso saiu na pós-Sprint 6 citando a referência visual do Supertrans, que na verdade **tem** o botão; voltou para fechar com o portal real. **Submenu em collapsed (versão conservadora)**: clicar no pai expande a sidebar e abre o submenu; flyout em collapsed fica para a Sprint 8.
 
 ## AppShell
 

@@ -10,9 +10,19 @@ Disponível em `@portais-orion/blocks`, na categoria **Tabelas**.
 ## Instalação
 
 ```bash
-# O ecossistema é um monorepo e importamos o package completo:
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
 pnpm add @portais-orion/blocks
 ```
+
+## Import
+
+```tsx
+import { Pagination } from "@portais-orion/blocks/pagination";
+```
+
+O import por subpath traz só `pagination`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso
 

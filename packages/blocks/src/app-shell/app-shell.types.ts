@@ -6,9 +6,12 @@ import type {
 	NavigationItem,
 	RenderLink,
 } from "../navigation";
+import type { SidebarModule } from "../sidebar";
 
 export type AppShellProps = {
 	brand?: React.ReactNode;
+	/** Módulo ativo, repassado à Sidebar. */
+	activeModule?: SidebarModule;
 	navigation: NavigationItem[];
 	activeItemId?: string;
 	breadcrumbs?: BreadcrumbItem[];

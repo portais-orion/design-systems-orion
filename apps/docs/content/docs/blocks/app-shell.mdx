@@ -10,9 +10,19 @@ Disponível em `@portais-orion/blocks`, na categoria **Layout**.
 ## Instalação
 
 ```bash
-# O ecossistema é um monorepo e importamos o package completo:
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
 pnpm add @portais-orion/blocks
 ```
+
+## Import
+
+```tsx
+import { AppShell } from "@portais-orion/blocks/app-shell";
+```
+
+O import por subpath traz só `app-shell`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso
 
@@ -20,20 +30,21 @@ pnpm add @portais-orion/blocks
 
 ## API Reference
 
-| Prop | Tipo | Padrão |
-| --- | --- | --- |
-| `brand` | `any` | — |
-| `navigation`\* | `NavigationItem[]` | — |
-| `activeItemId` | `string` | — |
-| `breadcrumbs` | `BreadcrumbItem[]` | — |
-| `renderLink` | `RenderLink` | — |
-| `canAccessItem` | `CanAccessNavigationItem` | — |
-| `sidebarFooter` | `any` | — |
-| `collapsed` | `boolean` | — |
-| `defaultCollapsed` | `boolean` | — |
-| `onCollapsedChange` | `(collapsed: boolean) => void` | — |
-| `className` | `string` | — |
-| `contentClassName` | `string` | — |
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `brand` | `any` | — | — |
+| `activeModule` | `SidebarModule` | — | Módulo ativo, repassado à Sidebar. |
+| `navigation`\* | `NavigationItem[]` | — | — |
+| `activeItemId` | `string` | — | — |
+| `breadcrumbs` | `BreadcrumbItem[]` | — | — |
+| `renderLink` | `RenderLink` | — | — |
+| `canAccessItem` | `CanAccessNavigationItem` | — | — |
+| `sidebarFooter` | `any` | — | — |
+| `collapsed` | `boolean` | — | — |
+| `defaultCollapsed` | `boolean` | — | — |
+| `onCollapsedChange` | `(collapsed: boolean) => void` | — | — |
+| `className` | `string` | — | — |
+| `contentClassName` | `string` | — | — |
 
 \* Prop obrigatória.
 

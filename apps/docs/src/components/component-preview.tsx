@@ -57,7 +57,7 @@ export function ComponentPreview({ name, story }: { name: string; story: string 
       </div>
 
       {tab === 'preview' ? (
-        <div className="flex min-h-[350px] w-full items-center justify-center rounded-xl border border-fd-border bg-fd-background p-10">
+        <div className="flex min-h-[180px] w-full items-center justify-center overflow-x-auto rounded-xl border border-fd-border bg-fd-background p-6">
           <div className="flex w-full max-w-3xl justify-center">
             <StoryRender story={storyObj} Component={entry.meta?.component} />
           </div>

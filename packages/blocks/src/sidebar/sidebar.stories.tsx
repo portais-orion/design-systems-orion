@@ -1,6 +1,18 @@
 import { Avatar, AvatarFallback, Badge } from "@portais-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
-import { FileText, FolderOpen, Home, Lock, LogOut, Settings, Users } from "lucide-react";
+import {
+	Activity,
+	Bell,
+	Calendar,
+	FileText,
+	FolderOpen,
+	Home,
+	Lock,
+	LogOut,
+	Package,
+	Settings,
+	Users,
+} from "lucide-react";
 import * as React from "react";
 import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 import type { NavigationItem } from "../navigation";
@@ -141,6 +153,73 @@ export const WithFooter: Story = {
 			</div>
 		),
 	},
+};
+
+/*
+ * Composição equivalente à do portal real: marca, faixa de módulo, navegação do
+ * módulo e footer de sessão. Os dados são fictícios de propósito — o package não
+ * carrega domínio; num portal eles vêm da API de menus e da sessão.
+ */
+export const ComModuloAtivo: Story = {
+	args: {
+		brand: <Marca />,
+		activeModule: { name: "Demandas", icon: Package, switchHref: "#" },
+		activeItemId: "gestao",
+		navigation: [
+			{ id: "tipos-conteineres", label: "Tipos de Contêineres", href: "#", icon: Package },
+			{ id: "tipos-operacao", label: "Tipos de Operação", href: "#", icon: Activity },
+			{ id: "grade", label: "Grade de Programação", href: "#", icon: Calendar },
+			{ id: "clientes", label: "Clientes", href: "#", icon: Users },
+			{ id: "gestao", label: "Gestão de Demandas", href: "#", icon: FileText },
+		],
+		footer: (
+			<div className="flex w-full items-center gap-2.5 group-data-[collapsed]/sidebar:flex-col group-data-[collapsed]/sidebar:gap-1">
+				<Avatar className="size-8 bg-brand-accent/20 text-brand-accent">
+					<AvatarFallback className="bg-transparent text-xs font-semibold">MA</AvatarFallback>
+				</Avatar>
+				<div className="min-w-0 flex-1 leading-tight group-data-[collapsed]/sidebar:hidden">
+					<p className="truncate text-xs font-medium">Mateus Arce</p>
+					<p className="truncate text-[0.65rem] text-sidebar-foreground/50">Administrador</p>
+				</div>
+				<button
+					type="button"
+					aria-label="Notificações"
+					className="flex size-7 shrink-0 items-center justify-center rounded-md text-sidebar-foreground/50 outline-none transition-colors hover:bg-sidebar-foreground/10 hover:text-sidebar-foreground focus-visible:ring-2 focus-visible:ring-sidebar-ring"
+				>
+					<Bell className="size-3.5" />
+				</button>
+				<button
+					type="button"
+					aria-label="Sair"
+					className="flex size-7 shrink-0 items-center justify-center rounded-md text-sidebar-foreground/50 outline-none transition-colors hover:bg-sidebar-foreground/10 hover:text-sidebar-foreground focus-visible:ring-2 focus-visible:ring-sidebar-ring"
+				>
+					<LogOut className="size-3.5" />
+				</button>
+			</div>
+		),
+	},
+};
+
+export const ComModuloColapsado: Story = {
+	args: { ...ComModuloAtivo.args, defaultCollapsed: true },
+};
+
+/** O botão da borda alterna o colapso mesmo sem o portal controlar o estado. */
+export const BotaoDeColapso: Story = {
+	args: { brand: <Marca />, navigation: NAV, activeItemId: "registros", onCollapsedChange: fn() },
+	play: async ({ canvasElement, args }) => {
+		const canvas = within(canvasElement);
+		const botao = canvas.getByRole("button", { name: /Recolher navegação/ });
+		await userEvent.click(botao);
+		await waitFor(() => expect(args.onCollapsedChange).toHaveBeenCalledWith(true));
+		await userEvent.click(canvas.getByRole("button", { name: /Expandir navegação/ }));
+		await waitFor(() => expect(args.onCollapsedChange).toHaveBeenCalledWith(false));
+	},
+};
+
+/** `collapsible: false` remove o botão — usado pelo AppShell dentro do drawer mobile. */
+export const SemBotaoDeColapso: Story = {
+	args: { brand: <Marca />, navigation: NAV, activeItemId: "registros", collapsible: false },
 };
 
 export const ControlledCollapsed: Story = {
