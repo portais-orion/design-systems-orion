@@ -12,7 +12,7 @@
 - [ ] `bg-white`/`text-gray-*` ausentes (usar tokens)
 - [ ] Variants de domínio ausentes (nomes semânticos apenas)
 - [ ] Se usa ícone em runtime: lucide-react está em dependencies
-- [ ] Subpath export adicionado no package.json do @supertrans-transportes/ui
+- [ ] Subpath export adicionado no package.json do @portais-orion/ui
 - [ ] (blocks) Tons usam o vocabulário padrão default/success/warning/danger/info/muted
 - [ ] (blocks) Comentário de proveniência no topo do arquivo
 - [ ] `pnpm check:pureza` verde
