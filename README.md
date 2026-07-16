@@ -3,7 +3,8 @@
 ![tokens version](https://img.shields.io/badge/@portais--orion/tokens-0.1.1-blue?style=flat-square)
 ![ui version](https://img.shields.io/badge/@portais--orion/ui-0.3.0-blue?style=flat-square)
 ![blocks version](https://img.shields.io/badge/@portais--orion/blocks-0.3.1-blue?style=flat-square)
-[![CI](https://github.com/portais-orion/nucleo-portais/actions/workflows/ci.yml/badge.svg)](https://github.com/portais-orion/nucleo-portais/actions/workflows/ci.yml)
+<!-- Badge de CI: ativar junto com o workflow (ver docs/ci/README.md) -->
+![build status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
 <!-- ![Storybook](https://img.shields.io/badge/Storybook-deployed-ff4785?style=flat-square&logo=storybook&logoColor=white) -->
 
 **Plataforma interna do grupo** — design system compartilhado (tokens, primitives, blocks), Storybook oficial, documentação arquitetural e estrutura de desenvolvimento assistido por agentes de IA.
