@@ -1,4 +1,4 @@
-# Workflow: criar componente em @supertrans-transportes/ui
+# Workflow: criar componente em @portais-orion/ui
 
 1. Confirmar que é Camada 1 (primitive genérico, sem domínio). Composição de vários primitives → é block, use `create-block.md`.
 2. Ler `ai/rules/components.md` e `packages/ui/src/button/` como referência.

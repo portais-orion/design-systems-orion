@@ -10,9 +10,19 @@ Disponível em `@portais-orion/blocks`, na categoria **Navegação**.
 ## Instalação
 
 ```bash
-# O ecossistema é um monorepo e importamos o package completo:
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
 pnpm add @portais-orion/blocks
 ```
+
+## Import
+
+```tsx
+import { Sidebar } from "@portais-orion/blocks/sidebar";
+```
+
+O import por subpath traz só `sidebar`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso
 
@@ -20,19 +30,21 @@ pnpm add @portais-orion/blocks
 
 ## API Reference
 
-| Prop | Tipo | Padrão |
-| --- | --- | --- |
-| `brand` | `any` | — |
-| `navigation`\* | `NavigationItem[]` | — |
-| `activeItemId` | `string` | — |
-| `collapsed` | `boolean` | — |
-| `defaultCollapsed` | `boolean` | `false` |
-| `onCollapsedChange` | `(collapsed: boolean) => void` | — |
-| `canAccessItem` | `CanAccessNavigationItem` | — |
-| `renderLink` | `RenderLink` | `({ href, children, className, ...props }) => ( 	<a href={href} className={className} {...props}> 		{children} 	</a> )` |
-| `onNavigate` | `() => void` | — |
-| `footer` | `any` | — |
-| `className` | `string` | — |
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `brand` | `any` | — | — |
+| `activeModule` | `SidebarModule` | — | — |
+| `navigation`\* | `NavigationItem[]` | — | — |
+| `activeItemId` | `string` | — | — |
+| `collapsed` | `boolean` | — | — |
+| `defaultCollapsed` | `boolean` | `false` | — |
+| `onCollapsedChange` | `(collapsed: boolean) => void` | — | — |
+| `collapsible` | `boolean` | `true` | Botão de colapso na borda. Padrão `true`. Desligue onde a sidebar não é lateral fixa (ex.: dentro do drawer mobile do AppShell), ou quando o portal já oferece o gesto em outro lugar. Mesmo desligado, `collapsed` continua valendo — só o botão some. |
+| `canAccessItem` | `CanAccessNavigationItem` | — | — |
+| `renderLink` | `RenderLink` | `({ href, children, className, ...props }) => ( 	<a href={href} className={className} {...props}> 		{children} 	</a> )` | — |
+| `onNavigate` | `() => void` | — | — |
+| `footer` | `any` | — | — |
+| `className` | `string` | — | — |
 
 \* Prop obrigatória.
 
@@ -67,6 +79,22 @@ Além destas, `Sidebar` aceita as props do elemento/primitivo que envolve.
 ### With footer
 
 <ComponentPreview name="blocks/sidebar" story="WithFooter" />
+
+### Com modulo ativo
+
+<ComponentPreview name="blocks/sidebar" story="ComModuloAtivo" />
+
+### Com modulo colapsado
+
+<ComponentPreview name="blocks/sidebar" story="ComModuloColapsado" />
+
+### Botao de colapso
+
+<ComponentPreview name="blocks/sidebar" story="BotaoDeColapso" />
+
+### Sem botao de colapso
+
+<ComponentPreview name="blocks/sidebar" story="SemBotaoDeColapso" />
 
 ### Controlled collapsed
 

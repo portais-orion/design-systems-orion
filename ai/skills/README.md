@@ -1,6 +1,22 @@
 # Skills
 
-Reservado para skills executáveis (formato SKILL.md) distribuíveis aos agentes.
-Sprint 0: vazio de propósito. As primeiras skills previstas espelham os workflows:
-criar-componente, recriar-do-aurora, adicionar-tema. Serão criadas quando os
-workflows estabilizarem (2+ execuções reais sem ajuste manual).
+Skills executáveis (formato SKILL.md com frontmatter `name`/`description`). **Fonte de verdade
+é este diretório**; cada skill tem um stub de registro em `.claude/skills/<nome>/SKILL.md` para
+o Claude Code descobrir — o stub só aponta para cá, nunca duplica conteúdo. Ao criar/alterar
+skill: editar aqui e manter o stub (frontmatter idêntico + ponteiro).
+
+| Skill | Cenário |
+|---|---|
+| `new-portal` | criar projeto/portal novo do zero consumindo `@portais-orion` |
+| `portais-orion-adoption` | migrar uma tela de portal existente para o Núcleo |
+| `create-component` | criar primitive em `@portais-orion/ui` (Camada 1) |
+| `create-block` | criar composição em `@portais-orion/blocks` (Camada 2) |
+| `contribute-to-nucleo` | contribuir componente/block de volta via PR (sem merge automático) |
+
+As skills orquestram (e nunca substituem) os artefatos de `ai/workflows/`, `ai/rules/` e
+`ai/checklists/` — mudança de padrão se faz lá, não na skill.
+
+`portais-orion-adoption`, `new-portal` e `contribute-to-nucleo` também são expostas
+globalmente via junction (`C:\Users\marce\.portais-orion\skills\<nome>` → `ai/skills/<nome>`)
+para uso a partir dos repos consumidores. `create-component`/`create-block` só fazem sentido
+dentro deste repo — sem link global.

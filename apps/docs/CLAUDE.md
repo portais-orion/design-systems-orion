@@ -71,11 +71,9 @@ This app loads `tokens/index.css`, which carries **both** brand themes; each the
 
 Live previews are real components imported from the workspace (`workspace:*`), so a token or primitive change is reflected here immediately in dev.
 
-## Formatting conflict — be careful
+## Formatting — two Biome configs
 
-Two Biome versions disagree about this directory:
+- `apps/docs/biome.json` — Biome **2.x**, spaces / width 2, Next + React domains. É o que vale aqui: rode `pnpm lint` de dentro de `apps/docs`.
+- `../../biome.json` (raiz) — Biome **1.9.4**, tabs / 100 cols, mas **ignora `apps/docs`** de propósito (junto com `.next`/`.source`). O `pnpm check` da raiz não lê este app.
 
-- `apps/docs/biome.json` — Biome **2.x**, spaces / width 2, Next + React domains.
-- `../../biome.json` → `packages/biome-config` — Biome **1.9.4**, **tabs / 100 cols**, and its ignore list does *not* exclude `apps/docs`.
-
-Root `pnpm check` runs `biome check .` and therefore reads this app with the tab-based config. Prefer running `pnpm lint` from inside `apps/docs`, and don't "fix" the indentation of these files to satisfy the root run — that just flips the conflict around.
+Não remova `apps/docs` do ignore da raiz nem "corrija" a indentação destes arquivos para o padrão de tabs — as duas versões discordam e o lint local é a fonte de verdade.

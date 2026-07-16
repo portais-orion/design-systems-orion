@@ -10,11 +10,12 @@ Este projeto é o **Núcleo de Portais do Grupo**, não uma biblioteca específi
 
 ```txt
 apps/storybook/        Storybook oficial (toolbar de marca Supertrans/Aurora)
-packages/tokens/       @supertrans-transportes/tokens — base.css + themes/{supertrans,aurora}.css
-packages/ui/           @supertrans-transportes/ui — primitives (Base UI + Tailwind v4 + cva)
-packages/blocks/       @supertrans-transportes/blocks — composições (vazio na Sprint 0)
-packages/tsconfig/     @supertrans-transportes/tsconfig
-packages/biome-config/ @supertrans-transportes/biome-config
+apps/docs/             Fumadocs — docs geradas por scripts/generate-docs.mjs
+packages/tokens/       @portais-orion/tokens — base.css + themes/{supertrans,aurora}.css
+packages/ui/           @portais-orion/ui — primitives (Base UI + Tailwind v4 + cva)
+packages/blocks/       @portais-orion/blocks — composições (page-header, data-table, app-shell...)
+packages/tsconfig/     @portais-orion/tsconfig
+packages/biome-config/ @portais-orion/biome-config
 docs/adr/              decisões de arquitetura (fonte de verdade)
 docs/architecture/     overview, packages, theming, camadas, storybook, migração
 ai/                    context, rules, workflows, skills, prompts, examples, checklists
@@ -95,6 +96,20 @@ Vocabulário canônico padrão: `needs-triage`, `needs-info`, `ready-for-agent`,
 ### Domain docs
 
 Single-context: um `CONTEXT.md` na raiz + `docs/adr/` centralizado. Veja `docs/agents/domain.md`.
+
+## Skills do projeto — cenários de uso
+
+Fonte de verdade em `ai/skills/<nome>/SKILL.md`; stubs de registro em `.claude/skills/` (Claude Code descobre por lá). Editar SEMPRE a fonte em `ai/skills/`.
+
+| Cenário | Skill | Workflow base |
+|---|---|---|
+| Criar portal novo do zero consumindo o Núcleo | `new-portal` | `docs/adoption/consumer-setup.md` |
+| Migrar tela de portal existente | `portais-orion-adoption` | — |
+| Criar primitive (Camada 1) | `create-component` | `ai/workflows/create-component.md` |
+| Criar block (Camada 2) | `create-block` | `ai/workflows/create-block.md` |
+| Contribuir componente/block de volta via PR | `contribute-to-nucleo` | `ai/workflows/contribute-back.md` |
+
+Antes de criar QUALQUER componente: `ai/workflows/find-component.md` (anti-duplicidade). Contribuições terminam em PR aberta (`gh pr create` + `.github/PULL_REQUEST_TEMPLATE.md`) — nunca merge automático.
 
 ## Skill oficial de adoção
 

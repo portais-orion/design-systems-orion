@@ -165,9 +165,7 @@ function extractStories(storySource) {
 
 	for (const statement of sourceFile.statements) {
 		if (!ts.isVariableStatement(statement)) continue;
-		const isExported = statement.modifiers?.some(
-			(m) => m.kind === ts.SyntaxKind.ExportKeyword,
-		);
+		const isExported = statement.modifiers?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword);
 		if (!isExported) continue;
 
 		for (const decl of statement.declarationList.declarations) {
@@ -328,10 +326,69 @@ async function readSource(pkg, name) {
 	const srcDir = path.join(root, "packages", pkg, "src", name);
 	for (const file of [`${name}.tsx`, "index.tsx"]) {
 		try {
-			return { content: await readFile(path.join(srcDir, file), "utf8"), file: path.join(srcDir, file) };
+			return {
+				content: await readFile(path.join(srcDir, file), "utf8"),
+				file: path.join(srcDir, file),
+			};
 		} catch {}
 	}
 	return { content: "", file: null };
+}
+
+/*
+ * Nomes exportados pelo componente, para o snippet de import por subpath. O
+ * `<name>/index.ts` é sempre um `export *`, então a lista real sai do módulo
+ * fonte. Só PascalCase entra: `buttonVariants` e afins são detalhe de
+ * implementação e poluiriam o exemplo.
+ */
+function extractExportNames(sourceContent, compName) {
+	const fallback = compName ? [compName] : [];
+	if (!sourceContent) return fallback;
+
+	const sourceFile = ts.createSourceFile(
+		"component.tsx",
+		sourceContent,
+		ts.ScriptTarget.Latest,
+		true,
+		ts.ScriptKind.TSX,
+	);
+
+	const isExported = (node) =>
+		node.modifiers?.some((mod) => mod.kind === ts.SyntaxKind.ExportKeyword);
+
+	const names = new Set();
+	for (const stmt of sourceFile.statements) {
+		if (ts.isFunctionDeclaration(stmt) && isExported(stmt) && stmt.name) {
+			names.add(stmt.name.text);
+		} else if (ts.isVariableStatement(stmt) && isExported(stmt)) {
+			for (const decl of stmt.declarationList.declarations) {
+				if (ts.isIdentifier(decl.name)) names.add(decl.name.text);
+			}
+		} else if (
+			ts.isExportDeclaration(stmt) &&
+			!stmt.isTypeOnly &&
+			stmt.exportClause &&
+			ts.isNamedExports(stmt.exportClause)
+		) {
+			for (const el of stmt.exportClause.elements) {
+				if (!el.isTypeOnly) names.add(el.name.text);
+			}
+		}
+	}
+
+	const components = [...names].filter((name) => /^[A-Z]/.test(name));
+	if (components.length === 0) return fallback;
+
+	// O componente homônimo da página vem primeiro; o resto mantém a ordem do arquivo.
+	components.sort((a, b) => (a === compName ? -1 : b === compName ? 1 : 0));
+	return components;
+}
+
+// Import de uma linha só; quebra em várias quando a lista não cabe nos 90 colunas.
+function formatImport(names, specifier) {
+	const single = `import { ${names.join(", ")} } from "${specifier}";`;
+	if (single.length <= 90) return single;
+	return ["import {", ...names.map((name) => `\t${name},`), `} from "${specifier}";`].join("\n");
 }
 
 function extractProps(sourceFile) {
@@ -397,11 +454,7 @@ function extractComponentDoc(sourceContent, compName) {
 		) {
 			found = readDoc(node);
 		}
-		if (
-			ts.isFunctionDeclaration(node) &&
-			node.name &&
-			node.name.text === compName
-		) {
+		if (ts.isFunctionDeclaration(node) && node.name && node.name.text === compName) {
 			found = readDoc(node);
 		}
 		if (!found) ts.forEachChild(node, visit);
@@ -430,7 +483,7 @@ function renderPropsTable(props, compName, pkg) {
 			"## API Reference",
 			"",
 			`\`${compName}\` não declara props próprias: repassa as props do primitivo`,
-			`de Base UI que envolve, mais \`className\`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)`,
+			"de Base UI que envolve, mais `className`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)",
 			"para a lista completa.",
 			"",
 		].join("\n");
@@ -451,9 +504,7 @@ function renderPropsTable(props, compName, pkg) {
 		// A coluna Descrição só existe se algum prop tiver JSDoc; senão seria uma
 		// coluna inteira de travessões.
 		const hasDocs = rows.some((row) => row.description.trim());
-		const header = hasDocs
-			? "| Prop | Tipo | Padrão | Descrição |"
-			: "| Prop | Tipo | Padrão |";
+		const header = hasDocs ? "| Prop | Tipo | Padrão | Descrição |" : "| Prop | Tipo | Padrão |";
 		const divider = hasDocs ? "| --- | --- | --- | --- |" : "| --- | --- | --- |";
 		parts.push(header, divider);
 
@@ -474,10 +525,7 @@ function renderPropsTable(props, compName, pkg) {
 		}
 	}
 
-	parts.push(
-		`Além destas, \`${compName}\` aceita as props do elemento/primitivo que envolve.`,
-		"",
-	);
+	parts.push(`Além destas, \`${compName}\` aceita as props do elemento/primitivo que envolve.`, "");
 
 	return parts.join("\n");
 }
@@ -495,6 +543,7 @@ async function generateMdx(name, pkg, category) {
 	const stories = extractStories(storySource);
 	const props = extractProps(sourceFile);
 	const doc = extractComponentDoc(sourceContent, compName);
+	const exportNames = extractExportNames(sourceContent, compName);
 	const registryKey = `${pkg}/${name}`;
 
 	const primary = stories[0];
@@ -542,18 +591,32 @@ async function generateMdx(name, pkg, category) {
 			"## Instalação",
 			"",
 			"```bash",
-			"# O ecossistema é um monorepo e importamos o package completo:",
+			"# Primitives e blocks são packages separados: instale só o que for usar.",
+			...(pkg === "blocks"
+				? ["# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto."]
+				: []),
 			`pnpm add @portais-orion/${pkg}`,
 			"```",
 			"",
-			"## Uso",
+			"## Import",
+			"",
+			"```tsx",
+			formatImport(exportNames, `@portais-orion/${pkg}/${name}`),
+			"```",
+			"",
+			`O import por subpath traz só \`${name}\`. Importar de \`@portais-orion/${pkg}\` também`,
+			"funciona e dá no mesmo bundle — os packages são `sideEffects: false`.",
 			"",
 		);
 
+		// Sem story não há o que renderizar: a seção inteira sai, em vez de virar um heading vazio.
 		if (primary) {
-			lines.push(`<ComponentPreview name="${registryKey}" story="${primary.name}" />`, "");
-		} else {
-			lines.push("```tsx", `import { ${compName} } from "@portais-orion/${pkg}";`, "```", "");
+			lines.push(
+				"## Uso",
+				"",
+				`<ComponentPreview name="${registryKey}" story="${primary.name}" />`,
+				"",
+			);
 		}
 
 		lines.push(renderPropsTable(props, compName, pkg));
