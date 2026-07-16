@@ -19,17 +19,17 @@ const catalog = {
 	],
 };
 
-test("token validator preserves its executable success contract", () => {
+test("brand catalog check preserves its executable success contract", () => {
 	const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 	const result = spawnSync(
 		process.execPath,
-		[path.join(repositoryRoot, "packages/tokens/scripts/validate-tokens.mjs")],
+		[path.join(repositoryRoot, "scripts/brand-catalog.mjs"), "--check"],
 		{ cwd: repositoryRoot, encoding: "utf8" },
 	);
 
 	assert.equal(result.error, undefined);
 	assert.equal(result.status, 0, result.stderr);
-	assert.match(result.stdout, /^validate-tokens OK/);
+	assert.match(result.stdout, /^Brand artifacts are synchronized\./);
 });
 
 test("derives ordered theme imports, exports, toolbar, and default", () => {

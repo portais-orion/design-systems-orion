@@ -1,9 +1,9 @@
 // Build distribuível de @portais-orion/tokens (CSS puro): copia src/ -> dist/.
 // Uso: node scripts/build-tokens.mjs  (a partir de packages/tokens/)
+// O gate de marcas roda antes, encadeado no script `build` do package.json.
 import { cp, rm } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import "./validate-tokens.mjs";
 
 const pkgDir = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const src = resolve(pkgDir, "src");

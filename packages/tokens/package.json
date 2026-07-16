@@ -5,8 +5,8 @@
 	"sideEffects": ["*.css"],
 	"files": ["dist", "brands.json"],
 	"scripts": {
-		"build": "node scripts/build-tokens.mjs",
-		"prepack": "node scripts/build-tokens.mjs"
+		"build": "node ../../scripts/brand-catalog.mjs --check && node scripts/build-tokens.mjs",
+		"prepack": "node ../../scripts/brand-catalog.mjs --check && node scripts/build-tokens.mjs"
 	},
 	"exports": {
 		"./brands.json": "./brands.json",
