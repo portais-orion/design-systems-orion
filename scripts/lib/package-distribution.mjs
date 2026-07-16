@@ -93,3 +93,19 @@ export function validatePackageManifest(manifest, sourceFiles) {
 
 	return diagnostics;
 }
+
+export function validateDistArtifacts(manifest, distFiles) {
+	const diagnostics = [];
+	const distribution = derivePackageDistribution(manifest);
+
+	for (const entry of distribution.entries) {
+		for (const target of [entry.importTarget, entry.typesTarget]) {
+			const artifact = target.slice(2);
+			if (!distFiles.has(artifact)) {
+				diagnostics.push(`${manifest.name}: artefato de distribuição ausente: ${artifact}`);
+			}
+		}
+	}
+
+	return diagnostics;
+}

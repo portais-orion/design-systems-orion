@@ -4,6 +4,7 @@ import test from "node:test";
 import {
 	derivePackageDistribution,
 	synchronizePackageManifest,
+	validateDistArtifacts,
 	validatePackageManifest,
 } from "./lib/package-distribution.mjs";
 
@@ -78,6 +79,23 @@ test("accepts synchronized manifest with every source present", () => {
 		validatePackageManifest(synced, new Set(["src/index.ts", "src/button/index.tsx"])),
 		[],
 	);
+});
+
+test("reports each missing runtime and declaration artifact", () => {
+	const diagnostics = validateDistArtifacts(manifest, new Set(["dist/index.mjs"]));
+	assert.ok(diagnostics.some((item) => item.includes("dist/index.d.mts")));
+	assert.ok(diagnostics.some((item) => item.includes("dist/button/index.mjs")));
+	assert.ok(diagnostics.some((item) => item.includes("dist/button/index.d.mts")));
+});
+
+test("accepts complete dist inventory", () => {
+	const files = new Set([
+		"dist/index.mjs",
+		"dist/index.d.mts",
+		"dist/button/index.mjs",
+		"dist/button/index.d.mts",
+	]);
+	assert.deepEqual(validateDistArtifacts(manifest, files), []);
 });
 
 test("real package catalogs expose their complete tsup entries", () => {

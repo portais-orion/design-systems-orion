@@ -6,7 +6,7 @@
 		"node": ">=22"
 	},
 	"scripts": {
-		"build": "turbo build",
+		"build": "turbo build && node scripts/check-package-dist.mjs",
 		"dev": "turbo dev",
 		"lint": "turbo lint",
 		"typecheck": "turbo typecheck",
