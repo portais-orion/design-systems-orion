@@ -22,6 +22,11 @@ const alignClass = {
 	between: "justify-between",
 } as const;
 
+/**
+ * Barra de ações no rodapé de um formulário. É só composição de slots: não cria
+ * botões nem textos — passe os seus em `primary`, `secondary` e `extra`. Com
+ * `sticky`, a barra gruda no rodapé em formulários longos.
+ */
 export function FormActions({
 	primary,
 	secondary,

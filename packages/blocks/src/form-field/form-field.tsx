@@ -15,6 +15,13 @@ import type { FormFieldProps } from "./form-field.types";
  *   <Input id="nome" aria-describedby="nome-description nome-error" />
  * (a conexão é responsabilidade do consumidor — o FormField não clona filhos).
  */
+/**
+ * Agrupa rótulo, controle e mensagem de ajuda ou erro de um campo. Agnóstico de
+ * biblioteca de formulário: `error` chega por prop. Informando `htmlFor`, as
+ * mensagens ganham os ids `<htmlFor>-description` e `<htmlFor>-error` — cabe ao
+ * consumidor referenciá-los no `aria-describedby` do controle, já que este
+ * bloco não clona os filhos.
+ */
 export function FormField({
 	label,
 	htmlFor,

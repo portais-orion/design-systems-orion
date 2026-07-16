@@ -14,6 +14,11 @@ export type ErrorStateProps = {
 	className?: string;
 };
 
+/**
+ * Estado de falha ao carregar dados, com textos padrão genéricos e um slot
+ * `action` para a tentativa de recuperação. Quando não houve erro e a lista
+ * apenas não tem registros, use `EmptyState`.
+ */
 export function ErrorState({
 	title = "Não foi possível carregar os dados",
 	description = "Ocorreu um erro de comunicação. Tente novamente em alguns instantes.",

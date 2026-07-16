@@ -33,6 +33,12 @@ export type ConfirmDialogProps = {
 	onConfirm: () => void | Promise<void>;
 };
 
+/**
+ * Modal de confirmação para uma ação, com estado de carregamento embutido.
+ * Só fecha quando `onConfirm` resolve: se a promessa rejeitar, o modal
+ * permanece aberto e cabe ao chamador exibir o erro. Use `variant="danger"`
+ * para ações destrutivas.
+ */
 export function ConfirmDialog({
 	open,
 	onOpenChange,

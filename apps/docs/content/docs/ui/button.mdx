@@ -1,78 +1,68 @@
 ---
 title: Button
-description: Componente da biblioteca Base UI.
+description: "Aciona uma ação."
 ---
 
-import { Button } from "@portais-orion/ui";
+Para navegar até outra página, passe `render` com um link — assim o elemento continua sendo um `<a>` para o leitor de tela e o teclado. Ícones passados como filhos são dimensionados automaticamente.
 
-# Button
-
-Um componente da biblioteca `@portais-orion/ui` agrupado em **Layout**.
+Disponível em `@portais-orion/ui`, na categoria **Ações**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/ui
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="ui/button" story="Default" />
 
-```tsx
-import { Button } from "@portais-orion/ui";
+## API Reference
 
-export default function Example() {
-  return (
-    <Button {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `variant` | `"link" \| "default" \| "outline" \| "secondary" \| "ghost" \| "destructive"` | `default` |
+| `size` | `"default" \| "xs" \| "sm" \| "lg" \| "icon" \| "icon-xs" \| "icon-sm" \| "icon-lg"` | `default` |
+
+Além destas, `Button` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-```tsx
-<Button {...{ children: "Button", variant: "default" }} />
-```
-
 ### Outline
-```tsx
-<Button {...{ children: "Outline", variant: "outline" }} />
-```
+
+<ComponentPreview name="ui/button" story="Outline" />
 
 ### Secondary
-```tsx
-<Button {...{ children: "Secondary", variant: "secondary" }} />
-```
+
+<ComponentPreview name="ui/button" story="Secondary" />
 
 ### Ghost
-```tsx
-<Button {...{ children: "Ghost", variant: "ghost" }} />
-```
+
+<ComponentPreview name="ui/button" story="Ghost" />
 
 ### Destructive
-```tsx
-<Button {...{ children: "Excluir", variant: "destructive" }} />
-```
+
+<ComponentPreview name="ui/button" story="Destructive" />
 
 ### Link
-```tsx
-<Button {...{ children: "Link", variant: "link" }} />
-```
+
+<ComponentPreview name="ui/button" story="Link" />
 
 ### Disabled
-```tsx
-<Button {...{ children: "Desabilitado", disabled: true }} />
-```
 
-### WithIcon
-Consulte o Storybook para a variação `WithIcon`.
+<ComponentPreview name="ui/button" story="Disabled" />
 
-### AllSizes
-Consulte o Storybook para a variação `AllSizes`.
+### With icon
+
+<ComponentPreview name="ui/button" story="WithIcon" />
+
+### All sizes
+
+<ComponentPreview name="ui/button" story="AllSizes" />
+
+## Storybook
+
+Todas as variações de `Button`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

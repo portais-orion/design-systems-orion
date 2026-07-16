@@ -1,46 +1,41 @@
 ---
 title: Avatar
-description: Componente da biblioteca Base UI.
+description: "Imagem circular de identificação de uma pessoa ou entidade."
 ---
 
-import { Avatar } from "@portais-orion/ui";
+Use como raiz de `AvatarImage` e `AvatarFallback` — o fallback aparece enquanto a imagem carrega ou quando ela falha.
 
-# Avatar
-
-Um componente da biblioteca `@portais-orion/ui` agrupado em **Data Display**.
+Disponível em `@portais-orion/ui`, na categoria **Exibição de dados**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/ui
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="ui/avatar" story="Default" />
 
-```tsx
-import { Avatar } from "@portais-orion/ui";
+## API Reference
 
-export default function Example() {
-  return (
-    <Avatar {/* props */} />
-  )
-}
-```
+`Avatar` não declara props próprias: repassa as props do primitivo
+de Base UI que envolve, mais `className`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)
+para a lista completa.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
+### With fallback
 
-### WithFallback
-Consulte o Storybook para a variação `WithFallback`.
+<ComponentPreview name="ui/avatar" story="WithFallback" />
 
-### CustomSize
-Consulte o Storybook para a variação `CustomSize`.
+### Custom size
+
+<ComponentPreview name="ui/avatar" story="CustomSize" />
+
+## Storybook
+
+Todas as variações de `Avatar`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

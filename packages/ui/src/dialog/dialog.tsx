@@ -5,6 +5,11 @@ import { X } from "lucide-react";
 import * as React from "react";
 import { cn } from "../utils/cn";
 
+/**
+ * Janela modal que interrompe o fluxo para uma tarefa focada. Controla apenas o
+ * estado de abertura: o conteúdo visível vem de `DialogContent`. Para confirmar
+ * uma ação destrutiva use `AlertDialog`, que impede o fechamento acidental.
+ */
 const Dialog = DialogPrimitive.Root;
 const DialogTrigger = DialogPrimitive.Trigger;
 const DialogPortal = DialogPrimitive.Portal;

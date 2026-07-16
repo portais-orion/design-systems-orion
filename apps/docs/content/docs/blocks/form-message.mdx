@@ -1,57 +1,49 @@
 ---
 title: FormMessage
-description: Componente da biblioteca Blocks.
+description: "Mensagem de apoio ou validação sob um campo."
 ---
 
-import { FormMessage } from "@portais-orion/blocks";
+Com `tone="error"` vira `role="alert"` e é anunciada de imediato; ligue o `id` ao `aria-describedby` do campo para associar mensagem e controle.
 
-# FormMessage
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Forms**.
+Disponível em `@portais-orion/blocks`, na categoria **Formulários**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/form-message" story="Default" />
 
-```tsx
-import { FormMessage } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <FormMessage {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `tone` | `"default" \| "error" \| "warning" \| "success"` | `default` |
+| `className` | `string` | — |
+| `id` | `string` | — |
+
+Além destas, `FormMessage` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-```tsx
-<FormMessage {...{ children: "Texto de apoio do campo." }} />
-```
+### Error story
 
-### ErrorStory
-```tsx
-<FormMessage {...{ tone: "error", children: "Campo obrigatório" }} />
-```
+<ComponentPreview name="blocks/form-message" story="ErrorStory" />
 
 ### Warning
-```tsx
-<FormMessage {...{ tone: "warning", children: "Valor fora do intervalo recomendado" }} />
-```
+
+<ComponentPreview name="blocks/form-message" story="Warning" />
 
 ### Success
-```tsx
-<FormMessage {...{ tone: "success", children: "Disponível" }} />
-```
+
+<ComponentPreview name="blocks/form-message" story="Success" />
+
+## Storybook
+
+Todas as variações de `FormMessage`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

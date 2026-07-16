@@ -266,6 +266,13 @@ function SidebarEntry({
 	);
 }
 
+/**
+ * Navegação lateral do portal, dirigida por dados: a árvore vem em `navigation`
+ * e as peças internas (item, grupo, submenu) não são exportadas, para que os
+ * portais não montem variações divergentes. Colapsada, os rótulos viram
+ * tooltips. Não conhece rota nem permissão — injete `renderLink` e
+ * `canAccessItem`. Normalmente usada via `AppShell`.
+ */
 export function Sidebar({
 	brand,
 	navigation,

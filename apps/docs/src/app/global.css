@@ -5,6 +5,32 @@
 @source "../../../packages/ui/src";
 @source "../../../packages/blocks/src";
 
+/*
+ * Fumadocs pinta o chrome do site com --color-fd-*; os pacotes pintam os
+ * componentes com os tokens semânticos. Sem esta ponte os dois discordam: o
+ * tokens/base.css declara `body { color: var(--foreground) }`, que vencia o
+ * preset do Fumadocs e deixava o texto preto sobre o fundo escuro no dark mode.
+ * Derivando fd-* dos tokens, o chrome passa a seguir marca e modo.
+ */
+:root {
+  --color-fd-background: var(--background);
+  --color-fd-foreground: var(--foreground);
+  --color-fd-muted: var(--muted);
+  --color-fd-muted-foreground: var(--muted-foreground);
+  --color-fd-popover: var(--popover);
+  --color-fd-popover-foreground: var(--popover-foreground);
+  --color-fd-card: var(--card);
+  --color-fd-card-foreground: var(--card-foreground);
+  --color-fd-border: var(--border);
+  --color-fd-primary: var(--primary);
+  --color-fd-primary-foreground: var(--primary-foreground);
+  --color-fd-secondary: var(--secondary);
+  --color-fd-secondary-foreground: var(--secondary-foreground);
+  --color-fd-accent: var(--accent);
+  --color-fd-accent-foreground: var(--accent-foreground);
+  --color-fd-ring: var(--ring);
+}
+
 html {
   scrollbar-gutter: stable;
 }

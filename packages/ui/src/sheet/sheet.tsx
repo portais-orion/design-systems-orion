@@ -12,6 +12,11 @@ import { cn } from "../utils/cn";
  * com painel lateral por variant `side`. Sem equivalente direto nos portais —
  * padrão shadcn adaptado ao Base UI (Backdrop/Popup, render prop).
  */
+/**
+ * Painel que desliza a partir de uma borda da tela, para conteúdo auxiliar sem
+ * trocar de página — filtros, detalhes ou navegação em telas estreitas. O lado
+ * é escolhido em `SheetContent` pela prop `side`.
+ */
 const Sheet = DialogPrimitive.Root;
 const SheetTrigger = DialogPrimitive.Trigger;
 const SheetClose = DialogPrimitive.Close;

@@ -31,6 +31,11 @@ const pillByTone: Record<StatusTone, string> = {
 	muted: "border-border bg-muted/50 text-muted-foreground",
 };
 
+/**
+ * Indicador de status por tom semântico. Sem `label` é só um ponto decorativo
+ * (`aria-hidden`), então o significado precisa vir do contexto; com `label`
+ * vira uma pílula com o texto legível.
+ */
 export function StatusDot({ tone = "default", label, className }: StatusDotProps) {
 	if (!label) {
 		return (

@@ -19,6 +19,11 @@ export type ListPageLayoutProps = {
 	className?: string;
 };
 
+/**
+ * Layout de página de listagem: cabeçalho, indicadores, barra de ferramentas,
+ * filtros aplicados e o conteúdo (normalmente um `DataTable`). Tudo por slots —
+ * o layout não conhece dados nem filtros, só os posiciona.
+ */
 export function ListPageLayout({
 	header,
 	stats,

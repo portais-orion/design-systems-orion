@@ -1,50 +1,50 @@
 ---
 title: LauncherCard
-description: Componente da biblioteca Blocks.
+description: "Card de entrada para um módulo, usado nas grades de home."
 ---
 
-import { LauncherCard } from "@portais-orion/blocks";
+Não conhece rota: passe `onClick` (e navegue com o router do consumidor) ou envolva o card com o seu próprio link. Com `onClick`, renderiza um `<button>`.
 
-# LauncherCard
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Data Display**.
+Disponível em `@portais-orion/blocks`, na categoria **Exibição de dados**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/launcher-card" story="Default" />
 
-```tsx
-import { LauncherCard } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <LauncherCard {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `title`\* | `string` | — | — |
+| `description` | `string` | — | — |
+| `icon` | `ComponentType<{ className?: string; }>` | — | — |
+| `cta` | `any` | — | CTA textual no rodapé (ex.: "Abrir →"). |
+| `onClick` | `() => void` | — | — |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `LauncherCard` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-```tsx
-<LauncherCard {...{ 		icon: Boxes, 		title: "Gestão de Demandas", 		description: "Acompanhe e programe as demandas operacionais.", 		cta: "Abrir →", 	}} />
-```
-
 ### Clicavel
-```tsx
-<LauncherCard {...{ 		icon: Truck, 		title: "Acompanhamento de Cargas", 		description: "Monitoramento de cargas em trânsito.", 		cta: "Abrir →", 		onClick: () => {}} />
-```
+
+<ComponentPreview name="blocks/launcher-card" story="Clicavel" />
 
 ### Grade
-Consulte o Storybook para a variação `Grade`.
+
+<ComponentPreview name="blocks/launcher-card" story="Grade" />
+
+## Storybook
+
+Todas as variações de `LauncherCard`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

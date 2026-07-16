@@ -5,6 +5,10 @@ import { Check } from "lucide-react";
 import * as React from "react";
 import { cn } from "../utils/cn";
 
+/**
+ * Caixa de seleção para escolhas independentes (marcar/desmarcar). Controle com
+ * `checked` e `onCheckedChange`; associe um `Label` via `id`/`htmlFor`.
+ */
 const Checkbox = React.forwardRef<
 	React.ElementRef<typeof CheckboxPrimitive.Root>,
 	React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>

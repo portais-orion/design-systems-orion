@@ -22,6 +22,11 @@ const toneClass: Record<FormMessageTone, string> = {
 	success: "text-emerald-600",
 };
 
+/**
+ * Mensagem de apoio ou validação sob um campo. Com `tone="error"` vira
+ * `role="alert"` e é anunciada de imediato; ligue o `id` ao
+ * `aria-describedby` do campo para associar mensagem e controle.
+ */
 export function FormMessage({ tone = "default", children, className, id }: FormMessageProps) {
 	return (
 		<p

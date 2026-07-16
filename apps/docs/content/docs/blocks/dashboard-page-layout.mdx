@@ -1,49 +1,51 @@
 ---
 title: DashboardPageLayout
-description: Componente da biblioteca Blocks.
+description: "Layout de dashboard: faixa de indicadores no topo, conteúdo principal e `aside` opcional em coluna lateral."
 ---
 
-import { DashboardPageLayout } from "@portais-orion/blocks";
-
-# DashboardPageLayout
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Layout**.
+Disponível em `@portais-orion/blocks`, na categoria **Layout**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/dashboard-page-layout" story="Default" />
 
-```tsx
-import { DashboardPageLayout } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <DashboardPageLayout {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `header` | `any` | — |
+| `stats` | `any` | — |
+| `content`\* | `any` | — |
+| `aside` | `any` | — |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `DashboardPageLayout` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
+### With stats
 
-### WithStats
-Consulte o Storybook para a variação `WithStats`.
+<ComponentPreview name="blocks/dashboard-page-layout" story="WithStats" />
 
-### WithAside
-Consulte o Storybook para a variação `WithAside`.
+### With aside
 
-### WithCardsGrid
-Consulte o Storybook para a variação `WithCardsGrid`.
+<ComponentPreview name="blocks/dashboard-page-layout" story="WithAside" />
+
+### With cards grid
+
+<ComponentPreview name="blocks/dashboard-page-layout" story="WithCardsGrid" />
+
+## Storybook
+
+Todas as variações de `DashboardPageLayout`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

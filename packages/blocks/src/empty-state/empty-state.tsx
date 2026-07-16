@@ -16,6 +16,11 @@ export type EmptyStateProps = {
 	className?: string;
 };
 
+/**
+ * Estado vazio de uma lista ou área de conteúdo. Diz o que está faltando e,
+ * pelo slot `action`, oferece a saída (criar registro, limpar filtros). Para
+ * falha de carregamento use `ErrorState`.
+ */
 export function EmptyState({
 	title,
 	description,

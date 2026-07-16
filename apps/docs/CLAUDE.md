@@ -39,25 +39,35 @@ pnpm typecheck && pnpm build     # turbo across all workspaces
 
 `content/docs/ui/*.mdx` and `content/docs/blocks/*.mdx` are **emitted by `../../scripts/generate-docs.mjs`** and overwritten wholesale on every run. Edits made directly to those files are lost on the next regeneration.
 
-The generator reads each component's `packages/<ui|blocks>/src/<name>/<name>.tsx` and `<name>.stories.tsx`, scraping props off the first `interface *Props` block and example names off `export const X = {…}` in the stories, via regex. Consequences worth knowing:
+The generator reads each component's `packages/<ui|blocks>/src/<name>/<name>.tsx` and `<name>.stories.tsx`. Each section of a page has its own source of truth:
 
-- The component → category mapping (sidebar grouping) is a hardcoded object at the top of the generator. **A new component only appears in the docs once it's added there** — the generator doesn't scan the filesystem.
-- Props declared via type alias, intersection, or `extends` are not picked up; stories whose args span multiple lines fall back to "Consulte o Storybook".
-- To change how every page looks, edit the generator's template — not the MDX.
+- **Props** — `react-docgen-typescript` resolves the real types, so cva variants (`Button` → `variant`/`size`) and inherited props are picked up. Props declared inside `node_modules` are filtered out, otherwise every page would drown in HTML attributes; the ~14 components that only forward a Base UI primitive get an inheritance note instead of a table.
+- **Examples** — the stories are parsed via the TypeScript AST (not regex), so multi-line `args` and `render()` bodies work.
+- **Previews** — `src/components/registry.generated.ts` is emitted alongside the MDX and imports the real stories, so `<ComponentPreview>` renders the actual component. Never edit it by hand.
+- **Descriptions** — the JSDoc block above a component becomes its page description and prop docs. Without JSDoc the page falls back to a generic sentence, so adding JSDoc in the packages is what improves the docs.
 
-`content/docs/index.mdx` and `test.mdx` are hand-written and not touched by the generator.
+The component → category mapping (which drives both the sidebar grouping via `meta.json` and the page text) is a hardcoded object at the top of the generator. **A new component only appears in the docs once it's added there** — the generator doesn't scan the filesystem, on purpose.
+
+To change how every page looks, edit the generator's template — not the MDX.
+
+`content/docs/index.mdx` is hand-written and not touched by the generator.
 
 ## Architecture
 
 - `src/lib/source.ts` — the Fumadocs `loader()`; everything (pages, sidebar, search, llms routes) reads from `source`.
-- `src/lib/shared.ts` — route constants (`docsRoute`, `docsImageRoute`, `docsContentRoute`) plus `appName` and `gitConfig`. **These still hold Create-Fumadocs placeholders** (`My App`, `fuma-nama/fumadocs`); fix them here, they feed the nav and layout.
+- `src/lib/shared.ts` — route constants (`docsRoute`, `docsImageRoute`, `docsContentRoute`) plus `appName`, `gitConfig` and `contentPath` (the repo-relative path used to build "edit on GitHub" links). These feed the nav and layout.
 - `proxy.ts` + `src/app/llms*.txt` / `llms.mdx` routes — content negotiation serving raw Markdown to agents and crawlers (`/docs/x.md`, or `/docs/x` with a Markdown-preferring `Accept`). Depends on `includeProcessedMarkdown: true` in `source.config.ts`.
-- `src/components/mdx.tsx` — MDX component map. `Preview` is registered globally, so MDX files use `<Preview>` without importing it; add new MDX-available components here.
+- `src/components/mdx.tsx` — MDX component map. `ComponentPreview` is registered globally, so generated MDX uses `<ComponentPreview name="ui/button" story="Default" />` without importing it; add new MDX-available components here.
+- `src/components/brand-provider.tsx` / `brand-switcher.tsx` — the brand selector. Brands come from `@portais-orion/tokens/brands.json` (never hardcode them); `BrandScript` applies the stored brand before first paint to avoid a flash of the wrong brand.
 - `src/app/og/docs/[...slug]/route.tsx` — generated OG images, keyed by `getPageImage` in `source.ts`.
 
 ## Styling
 
 `src/app/global.css` layers Tailwind v4 → Fumadocs preset → `@portais-orion/tokens/index.css`, then declares `@source "../../../packages/{ui,blocks}/src"` so Tailwind scans the workspace packages it renders. Adding a package that this app renders requires a matching `@source` line, or its classes get stripped from the build.
+
+Two color systems meet here, and they must agree: Fumadocs paints the site chrome from `--color-fd-*`, while the packages paint components from the semantic tokens. `global.css` bridges them by deriving every `--color-fd-*` from a token — keep it that way. Without the bridge, `tokens/base.css` (which sets `body { color: var(--foreground) }`) wins over the Fumadocs preset and dark mode renders black text on a dark background.
+
+This app loads `tokens/index.css`, which carries **both** brand themes; each theme also claims `:root:not([data-brand])` so it can stand alone in a real product, so with both loaded the brand would fall out of `@import` order. That's why `layout.tsx` always sets `data-brand` explicitly — don't remove it.
 
 Live previews are real components imported from the workspace (`workspace:*`), so a token or primitive change is reflected here immediately in dev.
 

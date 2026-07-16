@@ -11,6 +11,10 @@ export type CodeBadgeProps = {
 	className?: string;
 };
 
+/**
+ * Exibe um código ou identificador de registro em fonte monoespaçada, para que
+ * sequências como `PRC-001` fiquem alinhadas e legíveis numa coluna.
+ */
 export function CodeBadge({ children, className }: CodeBadgeProps) {
 	return (
 		<span

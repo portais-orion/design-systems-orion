@@ -3,12 +3,13 @@
 	"version": "0.1.1",
 	"description": "Tokens semânticos e temas por marca do Núcleo de Portais do Grupo",
 	"sideEffects": ["*.css"],
-	"files": ["dist"],
+	"files": ["dist", "brands.json"],
 	"scripts": {
 		"build": "node scripts/build-tokens.mjs",
 		"prepack": "node scripts/build-tokens.mjs"
 	},
 	"exports": {
+		"./brands.json": "./brands.json",
 		"./index.css": "./src/index.css",
 		"./base.css": "./src/base.css",
 		"./themes/supertrans.css": "./src/themes/supertrans.css",
@@ -18,6 +19,7 @@
 		"access": "restricted",
 		"registry": "https://npm.pkg.github.com",
 		"exports": {
+			"./brands.json": "./brands.json",
 			"./index.css": "./dist/index.css",
 			"./base.css": "./dist/base.css",
 			"./themes/supertrans.css": "./dist/themes/supertrans.css",

@@ -1,9 +1,13 @@
-import { Field } from "@base-ui/react/field";
 import * as React from "react";
 import { cn } from "../utils/cn";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
+/**
+ * Campo de texto de uma linha. Aceita qualquer `type` de `<input>`; associe um
+ * `Label` via `id`/`htmlFor` e use `FormField` (blocks) quando precisar de
+ * rótulo, ajuda e mensagem de erro juntos.
+ */
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
 	({ className, type, ...props }, ref) => {
 		return (

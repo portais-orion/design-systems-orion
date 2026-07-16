@@ -1,58 +1,67 @@
 ---
 title: ListPageLayout
-description: Componente da biblioteca Blocks.
+description: "Layout de página de listagem: cabeçalho, indicadores, barra de ferramentas, filtros aplicados e o conteúdo (normalmente um `DataTable`)."
 ---
 
-import { ListPageLayout } from "@portais-orion/blocks";
+Tudo por slots — o layout não conhece dados nem filtros, só os posiciona.
 
-# ListPageLayout
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Layout**.
+Disponível em `@portais-orion/blocks`, na categoria **Layout**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/list-page-layout" story="Default" />
 
-```tsx
-import { ListPageLayout } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <ListPageLayout {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `header` | `any` | — |
+| `stats` | `any` | — |
+| `toolbar` | `any` | — |
+| `filters` | `any` | — |
+| `content`\* | `any` | — |
+| `footer` | `any` | — |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `ListPageLayout` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
+### With stats
 
-### WithStats
-Consulte o Storybook para a variação `WithStats`.
+<ComponentPreview name="blocks/list-page-layout" story="WithStats" />
 
-### WithToolbar
-Consulte o Storybook para a variação `WithToolbar`.
+### With toolbar
 
-### WithFilters
-Consulte o Storybook para a variação `WithFilters`.
+<ComponentPreview name="blocks/list-page-layout" story="WithToolbar" />
 
-### WithDataTable
-Consulte o Storybook para a variação `WithDataTable`.
+### With filters
 
-### LoadingTable
-Consulte o Storybook para a variação `LoadingTable`.
+<ComponentPreview name="blocks/list-page-layout" story="WithFilters" />
 
-### EmptyTable
-Consulte o Storybook para a variação `EmptyTable`.
+### With data table
+
+<ComponentPreview name="blocks/list-page-layout" story="WithDataTable" />
+
+### Loading table
+
+<ComponentPreview name="blocks/list-page-layout" story="LoadingTable" />
+
+### Empty table
+
+<ComponentPreview name="blocks/list-page-layout" story="EmptyTable" />
+
+## Storybook
+
+Todas as variações de `ListPageLayout`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

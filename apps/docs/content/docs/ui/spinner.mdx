@@ -1,48 +1,48 @@
 ---
 title: Spinner
-description: Componente da biblioteca Base UI.
+description: "Indicador de carregamento em curso."
 ---
 
-import { Spinner } from "@portais-orion/ui";
+Com `label`, vira uma live region (`role="status"`) que anuncia o texto; sem `label`, fica `aria-hidden` e quem anuncia o estado é o contexto ao redor.
 
-# Spinner
-
-Um componente da biblioteca `@portais-orion/ui` agrupado em **Feedback**.
+Disponível em `@portais-orion/ui`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/ui
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="ui/spinner" story="Default" />
 
-```tsx
-import { Spinner } from "@portais-orion/ui";
+## API Reference
 
-export default function Example() {
-  return (
-    <Spinner {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `size` | `"sm" \| "md" \| "lg"` | — | — |
+| `label` | `string` | — | Texto anunciado a leitores de tela. Sem ele o spinner é decorativo. |
+
+Além destas, `Spinner` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
 ### Sizes
-Consulte o Storybook para a variação `Sizes`.
 
-### WithLabel
-```tsx
-<Spinner {...{ label: "Carregando...", size: "sm" }} />
-```
+<ComponentPreview name="ui/spinner" story="Sizes" />
 
-### InsideButton
-Consulte o Storybook para a variação `InsideButton`.
+### With label
+
+<ComponentPreview name="ui/spinner" story="WithLabel" />
+
+### Inside button
+
+<ComponentPreview name="ui/spinner" story="InsideButton" />
+
+## Storybook
+
+Todas as variações de `Spinner`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

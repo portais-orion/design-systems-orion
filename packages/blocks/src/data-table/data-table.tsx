@@ -48,6 +48,13 @@ function columnId<TData>(col: DataTableColumn<TData>, index: number): string {
 	return col.id ?? (col.accessorKey != null ? String(col.accessorKey) : `col-${index}`);
 }
 
+/**
+ * Tabela de listagem do grupo, com carregamento, vazio, erro, paginação e
+ * ordenação já embutidos — não é preciso montar esses estados à mão. Descreva
+ * as colunas com `DataTableColumn<T>`; o motor é o TanStack Table, mas nada
+ * dele aparece na API. A ordenação é controlada pelo consumidor (server-side).
+ * Para uma tabela sem esses estados, use `Table` (ui).
+ */
 export function DataTable<TData>({
 	data,
 	columns,

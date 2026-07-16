@@ -41,6 +41,11 @@ function OptionItem({ option }: { option: AdvancedOption }) {
 	);
 }
 
+/**
+ * Seleção de várias opções com busca, exibindo as escolhas como chips
+ * removíveis. Acima de `maxDisplay` chips, o excedente vira um contador "+N".
+ * `options` aceita itens planos ou agrupados.
+ */
 export function MultiSelect({
 	value,
 	onValueChange,

@@ -1,43 +1,60 @@
 ---
 title: DropdownMenu
-description: Componente da biblioteca Base UI.
+description: "Menu de ações ancorado a um gatilho."
 ---
 
-import { DropdownMenu } from "@portais-orion/ui";
+É para comandos, não para entrada de dados: para escolher um valor de formulário use `Select`. Suporta submenus via `DropdownMenuSub`.
 
-# DropdownMenu
-
-Um componente da biblioteca `@portais-orion/ui` agrupado em **Navigation**.
+Disponível em `@portais-orion/ui`, na categoria **Navegação**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/ui
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="ui/dropdown-menu" story="Default" />
 
-```tsx
-import { DropdownMenu } from "@portais-orion/ui";
+## API Reference
 
-export default function Example() {
-  return (
-    <DropdownMenu {/* props */} />
-  )
-}
-```
+### DropdownMenuContent
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `sideOffset` | `number` | `4` |
+| `align` | `"center" \| "start" \| "end"` | `start` |
+
+### DropdownMenuItem
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `inset` | `boolean` | — |
+
+### DropdownMenuLabel
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `inset` | `boolean` | — |
+
+### DropdownMenuSubTrigger
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `inset` | `boolean` | — |
+
+Além destas, `DropdownMenu` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
+### Com checkbox esubmenu
 
-### ComCheckboxESubmenu
-Consulte o Storybook para a variação `ComCheckboxESubmenu`.
+<ComponentPreview name="ui/dropdown-menu" story="ComCheckboxESubmenu" />
+
+## Storybook
+
+Todas as variações de `DropdownMenu`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

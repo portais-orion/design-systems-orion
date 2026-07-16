@@ -16,6 +16,12 @@ export type FormPageLayoutProps = {
 	className?: string;
 };
 
+/**
+ * Layout de página de criar ou editar registro. Sem `aside`, contém o
+ * formulário numa coluna estreita para não esticar demais as linhas; com
+ * `aside`, abre espaço lateral. Não cria o elemento `<form>` nem conhece
+ * biblioteca de formulário — isso fica com o consumidor.
+ */
 export function FormPageLayout({ header, form, aside, footer, className }: FormPageLayoutProps) {
 	return (
 		<PageLayout header={header} footer={footer} className={className}>

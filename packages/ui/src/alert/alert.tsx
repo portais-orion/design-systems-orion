@@ -24,6 +24,11 @@ const alertVariants = cva(
 	},
 );
 
+/**
+ * Mensagem de destaque exibida no fluxo da página, anunciada por leitores de
+ * tela via `role="alert"`. Componha com `AlertTitle` e `AlertDescription`; um
+ * `<svg>` como primeiro filho é posicionado automaticamente à esquerda.
+ */
 const Alert = React.forwardRef<
 	HTMLDivElement,
 	React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
@@ -32,6 +37,7 @@ const Alert = React.forwardRef<
 ));
 Alert.displayName = "Alert";
 
+/** Título curto do `Alert`. */
 const AlertTitle = React.forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(
 	({ className, ...props }, ref) => (
 		<h5
@@ -43,6 +49,7 @@ const AlertTitle = React.forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTM
 );
 AlertTitle.displayName = "AlertTitle";
 
+/** Corpo explicativo do `Alert`. */
 const AlertDescription = React.forwardRef<
 	HTMLParagraphElement,
 	React.HTMLAttributes<HTMLParagraphElement>

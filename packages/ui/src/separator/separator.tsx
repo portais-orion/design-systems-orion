@@ -4,6 +4,10 @@ import * as React from "react";
 import { cn } from "../utils/cn";
 
 /* Recriado em Base UI. Referência de API: Portal-Aurora ui/separator.tsx (Radix). */
+/**
+ * Linha divisória entre grupos de conteúdo. Na vertical, exige que o pai tenha
+ * altura definida — o traço ocupa 100% da altura disponível.
+ */
 const Separator = React.forwardRef<
 	React.ElementRef<typeof SeparatorPrimitive>,
 	React.ComponentPropsWithoutRef<typeof SeparatorPrimitive>

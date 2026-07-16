@@ -15,6 +15,11 @@ const TabsContext = React.createContext<{ variant?: "default" | "line" }>({
 	variant: "default",
 });
 
+/**
+ * Alterna entre painéis de conteúdo no mesmo contexto, sem navegar. Componha
+ * com `TabsList`, `TabsTrigger` e `TabsContent`; a variante escolhida em
+ * `TabsList` é herdada pelos gatilhos.
+ */
 const Tabs = TabsPrimitive.Root;
 
 const tabsListVariants = cva(
@@ -32,6 +37,7 @@ const tabsListVariants = cva(
 	},
 );
 
+/** Barra que agrupa os `TabsTrigger`. Define a variante visual do conjunto. */
 const TabsList = React.forwardRef<
 	React.ElementRef<typeof TabsPrimitive.List>,
 	React.ComponentPropsWithoutRef<typeof TabsPrimitive.List> & VariantProps<typeof tabsListVariants>
@@ -62,6 +68,7 @@ const tabsTriggerVariants = cva(
 	},
 );
 
+/** Aba clicável. Seu `value` casa com o do `TabsContent` correspondente. */
 const TabsTrigger = React.forwardRef<
 	React.ElementRef<typeof TabsPrimitive.Tab>,
 	React.ComponentPropsWithoutRef<typeof TabsPrimitive.Tab> &
@@ -80,6 +87,7 @@ const TabsTrigger = React.forwardRef<
 });
 TabsTrigger.displayName = "TabsTrigger";
 
+/** Painel exibido quando a aba de mesmo `value` está ativa. */
 const TabsContent = React.forwardRef<
 	React.ElementRef<typeof TabsPrimitive.Panel>,
 	React.ComponentPropsWithoutRef<typeof TabsPrimitive.Panel>

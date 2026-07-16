@@ -3,6 +3,10 @@ import { cn } from "../utils/cn";
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
+/**
+ * Campo de texto de múltiplas linhas. Não cresce sozinho com o conteúdo: ajuste
+ * a altura por `className` ou `rows`.
+ */
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 	({ className, ...props }, ref) => {
 		return (

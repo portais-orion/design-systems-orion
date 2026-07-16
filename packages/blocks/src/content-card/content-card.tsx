@@ -12,6 +12,11 @@ export type ContentCardProps = {
 	contentClassName?: string;
 };
 
+/**
+ * Painel de conteúdo com cabeçalho opcional (título, descrição e ações). Monta
+ * a estrutura de `Card` mais comum sem que você repita header e content a cada
+ * uso; o cabeçalho só é renderizado se houver algum deles.
+ */
 export function ContentCard({
 	title,
 	description,

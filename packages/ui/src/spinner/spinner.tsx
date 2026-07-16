@@ -21,9 +21,15 @@ const spinnerVariants = cva("animate-spin text-muted-foreground", {
 
 export type SpinnerProps = React.HTMLAttributes<HTMLSpanElement> &
 	VariantProps<typeof spinnerVariants> & {
+		/** Texto anunciado a leitores de tela. Sem ele o spinner é decorativo. */
 		label?: string;
 	};
 
+/**
+ * Indicador de carregamento em curso. Com `label`, vira uma live region
+ * (`role="status"`) que anuncia o texto; sem `label`, fica `aria-hidden` e quem
+ * anuncia o estado é o contexto ao redor.
+ */
 function Spinner({ size, label, className, ...props }: SpinnerProps) {
 	if (!label) {
 		return (

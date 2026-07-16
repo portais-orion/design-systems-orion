@@ -1,49 +1,55 @@
 ---
 title: Pagination
-description: Componente da biblioteca Blocks.
+description: "Navegação entre páginas de uma listagem, com contagem de resultados e seletor de itens por página."
 ---
 
-import { Pagination } from "@portais-orion/blocks";
+Casa com o envelope `{ data, total, page, limit }` da API. Não renderiza nada quando `total` é zero, e trocar o limite volta para a primeira página.
 
-# Pagination
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Tabelas**.
+Disponível em `@portais-orion/blocks`, na categoria **Tabelas**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/pagination" story="Default" />
 
-```tsx
-import { Pagination } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <Pagination {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `page`\* | `number` | — |
+| `limit`\* | `number` | — |
+| `total`\* | `number` | — |
+| `limitOptions` | `number[]` | `[10, 20, 50, 100]` |
+| `onPageChange`\* | `(page: number) => void` | — |
+| `onLimitChange` | `(limit: number) => void` | — |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `Pagination` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
+### Sem troca de limite
 
-### SemTrocaDeLimite
-Consulte o Storybook para a variação `SemTrocaDeLimite`.
+<ComponentPreview name="blocks/pagination" story="SemTrocaDeLimite" />
 
-### PaginaUnica
-Consulte o Storybook para a variação `PaginaUnica`.
+### Pagina unica
 
-### TotalZeroNaoRenderiza
-Consulte o Storybook para a variação `TotalZeroNaoRenderiza`.
+<ComponentPreview name="blocks/pagination" story="PaginaUnica" />
+
+### Total zero nao renderiza
+
+<ComponentPreview name="blocks/pagination" story="TotalZeroNaoRenderiza" />
+
+## Storybook
+
+Todas as variações de `Pagination`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

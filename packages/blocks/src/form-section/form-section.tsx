@@ -15,6 +15,11 @@ export type FormSectionProps = {
 	contentClassName?: string;
 };
 
+/**
+ * Agrupa campos relacionados sob um título, separando blocos de um formulário
+ * longo. Renderiza um `<section>` com `<h3>`; use `FieldGroup` dentro para
+ * distribuir os campos em colunas.
+ */
 export function FormSection({
 	title,
 	description,

@@ -4,6 +4,12 @@
  *   @import "@portais-orion/tokens/base.css";
  *   @import "@portais-orion/tokens/themes/aurora.css";
  * Com os dois temas carregados, a marca efetiva é controlada por [data-brand].
+ *
+ * IMPORTANTE: declare data-brand no <html>. Cada tema também reivindica
+ * :root:not([data-brand]) — necessário para valer sozinho no produto —, então
+ * aqui os dois colidem e a marca sem data-brand seria decidida pela ordem dos
+ * @import abaixo (hoje: aurora), não por brands.json. Com data-brand explícito
+ * o seletor de marca vence e a ambiguidade some.
  */
 @import "./base.css";
 @import "./themes/supertrans.css";

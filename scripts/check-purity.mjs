@@ -8,7 +8,17 @@ import { join, relative, sep } from "node:path";
 
 const ROOT = process.cwd();
 const CODE_EXT = new Set([".ts", ".tsx", ".css", ".json"]);
-const SKIP_DIRS = new Set(["node_modules", ".turbo", ".git", "storybook-static", "dist"]);
+// .next/.source são saída de build: contêm CSS de terceiros e código gerado que
+// dispara as regras de pureza sem que haja nada a corrigir no código-fonte.
+const SKIP_DIRS = new Set([
+	"node_modules",
+	".turbo",
+	".git",
+	".next",
+	".source",
+	"storybook-static",
+	"dist",
+]);
 
 function walk(dir, files = []) {
 	for (const name of readdirSync(dir)) {

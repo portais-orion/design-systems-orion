@@ -1,73 +1,101 @@
 ---
 title: DataTable
-description: Componente da biblioteca Blocks.
+description: "Tabela de listagem do grupo, com carregamento, vazio, erro, paginação e ordenação já embutidos — não é preciso montar esses estados à mão."
 ---
 
-import { DataTable } from "@portais-orion/blocks";
+Descreva as colunas com `DataTableColumn<T>`; o motor é o TanStack Table, mas nada dele aparece na API. A ordenação é controlada pelo consumidor (server-side). Para uma tabela sem esses estados, use `Table` (ui).
 
-# DataTable
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Tabelas**.
+Disponível em `@portais-orion/blocks`, na categoria **Tabelas**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/data-table" story="Default" />
 
-```tsx
-import { DataTable } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <DataTable {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `data`\* | `TData[]` | — | — |
+| `columns`\* | `DataTableColumn<TData>[]` | — | — |
+| `keyExtractor`\* | `(row: TData, index: number) => string` | — | — |
+| `isLoading` | `boolean` | `false` | — |
+| `isError` | `boolean` | `false` | — |
+| `errorTitle` | `string` | — | — |
+| `errorDescription` | `string` | — | — |
+| `errorAction` | `any` | — | Slot de ação no ErrorState (ex.: botão tentar novamente). |
+| `emptyTitle` | `string` | `Nenhum registro encontrado` | — |
+| `emptyDescription` | `string` | — | — |
+| `emptyAction` | `any` | — | Slot de ação no EmptyState (ex.: botão novo registro). |
+| `loadingRows` | `number` | `6` | — |
+| `pagination` | `DataTablePagination` | — | — |
+| `sorting` | `DataTableSorting` | — | — |
+| `toolbar` | `any` | — | Área de composição acima da tabela (SearchBar, FilterPills...). Não acoplada. |
+| `footer` | `any` | — | Área abaixo do corpo da tabela (sumários, totais). |
+| `actions` | `(row: TData, index: number) => any` | — | Coluna final de ações por linha. Cliques aqui não disparam onRowClick. |
+| `onRowClick` | `(row: TData, index: number) => void` | — | — |
+| `rowClassName` | `string \| ((row: TData, index: number) => string)` | — | — |
+| `getRowDisabled` | `(row: TData, index: number) => boolean` | — | — |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `DataTable` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
-
 ### Loading
-Consulte o Storybook para a variação `Loading`.
+
+<ComponentPreview name="blocks/data-table" story="Loading" />
 
 ### Empty
-Consulte o Storybook para a variação `Empty`.
 
-### ErrorStory
-Consulte o Storybook para a variação `ErrorStory`.
+<ComponentPreview name="blocks/data-table" story="Empty" />
 
-### WithPagination
-Consulte o Storybook para a variação `WithPagination`.
+### Error story
 
-### WithActions
-Consulte o Storybook para a variação `WithActions`.
+<ComponentPreview name="blocks/data-table" story="ErrorStory" />
 
-### WithRowClick
-Consulte o Storybook para a variação `WithRowClick`.
+### With pagination
 
-### WithToolbar
-Consulte o Storybook para a variação `WithToolbar`.
+<ComponentPreview name="blocks/data-table" story="WithPagination" />
 
-### WithSorting
-Consulte o Storybook para a variação `WithSorting`.
+### With actions
 
-### DenseOperationalExample
-Consulte o Storybook para a variação `DenseOperationalExample`.
+<ComponentPreview name="blocks/data-table" story="WithActions" />
 
-### SupertransInspiredExample
-Consulte o Storybook para a variação `SupertransInspiredExample`.
+### With row click
 
-### AuroraInspiredExample
-Consulte o Storybook para a variação `AuroraInspiredExample`.
+<ComponentPreview name="blocks/data-table" story="WithRowClick" />
+
+### With toolbar
+
+<ComponentPreview name="blocks/data-table" story="WithToolbar" />
+
+### With sorting
+
+<ComponentPreview name="blocks/data-table" story="WithSorting" />
+
+### Dense operational example
+
+<ComponentPreview name="blocks/data-table" story="DenseOperationalExample" />
+
+### Supertrans inspired example
+
+<ComponentPreview name="blocks/data-table" story="SupertransInspiredExample" />
+
+### Aurora inspired example
+
+<ComponentPreview name="blocks/data-table" story="AuroraInspiredExample" />
+
+## Storybook
+
+Todas as variações de `DataTable`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

@@ -1,52 +1,52 @@
 ---
 title: FieldGroup
-description: Componente da biblioteca Blocks.
+description: "Distribui campos de formulário em colunas, sempre empilhando em uma única coluna no mobile."
 ---
 
-import { FieldGroup } from "@portais-orion/blocks";
+`columns` é o teto em telas largas, não um número fixo.
 
-# FieldGroup
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Forms**.
+Disponível em `@portais-orion/blocks`, na categoria **Formulários**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/field-group" story="OneColumn" />
 
-```tsx
-import { FieldGroup } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <FieldGroup {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `columns` | `1 \| 2 \| 3 \| 4` | `2` |
+| `className` | `string` | — |
+
+Além destas, `FieldGroup` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### OneColumn
-Consulte o Storybook para a variação `OneColumn`.
+### Two columns
 
-### TwoColumns
-Consulte o Storybook para a variação `TwoColumns`.
+<ComponentPreview name="blocks/field-group" story="TwoColumns" />
 
-### ThreeColumns
-Consulte o Storybook para a variação `ThreeColumns`.
+### Three columns
 
-### FourColumns
-Consulte o Storybook para a variação `FourColumns`.
+<ComponentPreview name="blocks/field-group" story="ThreeColumns" />
 
-### WithMixedFields
-Consulte o Storybook para a variação `WithMixedFields`.
+### Four columns
+
+<ComponentPreview name="blocks/field-group" story="FourColumns" />
+
+### With mixed fields
+
+<ComponentPreview name="blocks/field-group" story="WithMixedFields" />
+
+## Storybook
+
+Todas as variações de `FieldGroup`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

@@ -1,6 +1,11 @@
 import * as React from "react";
 import { cn } from "../utils/cn";
 
+/**
+ * Rótulo de um campo de formulário. Passe `htmlFor` com o `id` do controle —
+ * sem isso o clique no texto não foca o campo e o leitor de tela não associa
+ * rótulo e campo.
+ */
 const Label = React.forwardRef<HTMLLabelElement, React.LabelHTMLAttributes<HTMLLabelElement>>(
 	({ className, ...props }, ref) => (
 		// biome-ignore lint/a11y/noLabelWithoutControl: htmlFor is passed via {...props} at usage sites

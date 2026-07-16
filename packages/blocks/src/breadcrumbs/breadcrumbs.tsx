@@ -23,6 +23,12 @@ const defaultRenderLink: RenderLink = ({ href, children, className, ...props }) 
 	</a>
 );
 
+/**
+ * Trilha de navegação até a página atual. Não conhece o router: passe
+ * `renderLink` para usar o `Link` do seu framework — sem ele, cai em uma
+ * âncora comum e o consumidor perde a navegação client-side. O último item é
+ * marcado com `aria-current="page"`.
+ */
 export function Breadcrumbs({ items, renderLink, separator, className }: BreadcrumbsProps) {
 	if (items.length === 0) return null;
 	const link = renderLink ?? defaultRenderLink;

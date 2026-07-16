@@ -1,52 +1,56 @@
 ---
 title: FormActions
-description: Componente da biblioteca Blocks.
+description: "Barra de ações no rodapé de um formulário."
 ---
 
-import { FormActions } from "@portais-orion/blocks";
+É só composição de slots: não cria botões nem textos — passe os seus em `primary`, `secondary` e `extra`. Com `sticky`, a barra gruda no rodapé em formulários longos.
 
-# FormActions
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Forms**.
+Disponível em `@portais-orion/blocks`, na categoria **Formulários**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/form-actions" story="Default" />
 
-```tsx
-import { FormActions } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <FormActions {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `primary` | `any` | — |
+| `secondary` | `any` | — |
+| `extra` | `any` | — |
+| `align` | `"left" \| "right" \| "between"` | `right` |
+| `sticky` | `boolean` | `false` |
+| `className` | `string` | — |
+
+Além destas, `FormActions` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
+### Left aligned
 
-### LeftAligned
-Consulte o Storybook para a variação `LeftAligned`.
+<ComponentPreview name="blocks/form-actions" story="LeftAligned" />
 
 ### Between
-Consulte o Storybook para a variação `Between`.
+
+<ComponentPreview name="blocks/form-actions" story="Between" />
 
 ### Sticky
-Consulte o Storybook para a variação `Sticky`.
 
-### WithExtra
-Consulte o Storybook para a variação `WithExtra`.
+<ComponentPreview name="blocks/form-actions" story="Sticky" />
+
+### With extra
+
+<ComponentPreview name="blocks/form-actions" story="WithExtra" />
+
+## Storybook
+
+Todas as variações de `FormActions`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

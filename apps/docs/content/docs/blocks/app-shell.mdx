@@ -1,67 +1,84 @@
 ---
 title: AppShell
-description: Componente da biblioteca Blocks.
+description: "Chrome do portal: sidebar fixa, barra de breadcrumbs e a área de conteúdo."
 ---
 
-import { AppShell } from "@portais-orion/blocks";
+Não tem topbar, por decisão do padrão do grupo. Abaixo de `md` a sidebar vira um drawer com a mesma navegação. Não conhece rota, sessão nem permissão — injete `renderLink` e `canAccessItem`.
 
-# AppShell
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Layout**.
+Disponível em `@portais-orion/blocks`, na categoria **Layout**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/app-shell" story="Default" />
 
-```tsx
-import { AppShell } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <AppShell {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `brand` | `any` | — |
+| `navigation`\* | `NavigationItem[]` | — |
+| `activeItemId` | `string` | — |
+| `breadcrumbs` | `BreadcrumbItem[]` | — |
+| `renderLink` | `RenderLink` | — |
+| `canAccessItem` | `CanAccessNavigationItem` | — |
+| `sidebarFooter` | `any` | — |
+| `collapsed` | `boolean` | — |
+| `defaultCollapsed` | `boolean` | — |
+| `onCollapsedChange` | `(collapsed: boolean) => void` | — |
+| `className` | `string` | — |
+| `contentClassName` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `AppShell` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
+### With breadcrumbs
 
-### WithBreadcrumbs
-Consulte o Storybook para a variação `WithBreadcrumbs`.
+<ComponentPreview name="blocks/app-shell" story="WithBreadcrumbs" />
 
 ### Collapsed
-Consulte o Storybook para a variação `Collapsed`.
 
-### WithFilteredNavigation
-Consulte o Storybook para a variação `WithFilteredNavigation`.
+<ComponentPreview name="blocks/app-shell" story="Collapsed" />
 
-### ControlledCollapsed
-Consulte o Storybook para a variação `ControlledCollapsed`.
+### With filtered navigation
 
-### MobileNavigation
-Consulte o Storybook para a variação `MobileNavigation`.
+<ComponentPreview name="blocks/app-shell" story="WithFilteredNavigation" />
 
-### AppShellWithListPage
-Consulte o Storybook para a variação `AppShellWithListPage`.
+### Controlled collapsed
 
-### AppShellWithFormPage
-Consulte o Storybook para a variação `AppShellWithFormPage`.
+<ComponentPreview name="blocks/app-shell" story="ControlledCollapsed" />
 
-### AppShellWithDetailPage
-Consulte o Storybook para a variação `AppShellWithDetailPage`.
+### Mobile navigation
 
-### AppShellWithDashboardPage
-Consulte o Storybook para a variação `AppShellWithDashboardPage`.
+<ComponentPreview name="blocks/app-shell" story="MobileNavigation" />
+
+### App shell with list page
+
+<ComponentPreview name="blocks/app-shell" story="AppShellWithListPage" />
+
+### App shell with form page
+
+<ComponentPreview name="blocks/app-shell" story="AppShellWithFormPage" />
+
+### App shell with detail page
+
+<ComponentPreview name="blocks/app-shell" story="AppShellWithDetailPage" />
+
+### App shell with dashboard page
+
+<ComponentPreview name="blocks/app-shell" story="AppShellWithDashboardPage" />
+
+## Storybook
+
+Todas as variações de `AppShell`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

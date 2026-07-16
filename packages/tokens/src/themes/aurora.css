@@ -4,6 +4,11 @@
  * para tokens semânticos. A escala 50..900 NÃO é reproduzida: hover/active
  * viram tokens (--primary-hover). Sidebar escura derivada das classes slate
  * de components/layout/Sidebar.tsx.
+ *
+ * :root:not([data-brand]) é o que faz este tema valer sozinho quando o produto
+ * importa base.css + apenas este arquivo. Carregando dois temas (index.css), o
+ * seletor colide com o do supertrans e a marca passa a depender da ordem de
+ * @import — por isso ambientes multi-marca precisam declarar data-brand.
  */
 :root:not([data-brand]),
 :root[data-brand="aurora"],

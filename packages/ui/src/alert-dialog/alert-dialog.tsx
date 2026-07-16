@@ -11,6 +11,11 @@ import { cn } from "../utils/cn";
  * (shadcn/Radix). Mapeamento Base UI: Overlay→Backdrop, Content→Popup.
  * Action/Cancel usam buttonVariants para consistência com o Button do núcleo.
  */
+/**
+ * Modal que exige uma decisão antes de prosseguir, para ações destrutivas ou
+ * irreversíveis. Diferente do `Dialog`, não fecha ao clicar fora nem no Esc: a
+ * saída é sempre por `AlertDialogAction` ou `AlertDialogCancel`.
+ */
 const AlertDialog = AlertDialogPrimitive.Root;
 const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
 const AlertDialogPortal = AlertDialogPrimitive.Portal;

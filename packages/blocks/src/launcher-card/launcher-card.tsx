@@ -20,6 +20,11 @@ export type LauncherCardProps = {
 	className?: string;
 };
 
+/**
+ * Card de entrada para um módulo, usado nas grades de home. Não conhece rota:
+ * passe `onClick` (e navegue com o router do consumidor) ou envolva o card com
+ * o seu próprio link. Com `onClick`, renderiza um `<button>`.
+ */
 export function LauncherCard({
 	title,
 	description,

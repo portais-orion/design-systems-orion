@@ -13,11 +13,18 @@ export type ProgressProps = Omit<
 	React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>,
 	"value"
 > & {
+	/** Progresso atual. `null` (padrão) rende a barra indeterminada. */
 	value?: number | null;
+	/** Valor que representa 100%. */
 	max?: number;
+	/** Classes aplicadas à barra preenchida, não ao trilho. */
 	indicatorClassName?: string;
 };
 
+/**
+ * Barra de progresso de uma tarefa. `value` ausente ou `null` significa
+ * progresso indeterminado e renderiza uma barra animada.
+ */
 const Progress = React.forwardRef<React.ElementRef<typeof ProgressPrimitive.Root>, ProgressProps>(
 	({ className, value = null, max = 100, indicatorClassName, ...props }, ref) => {
 		const indeterminate = value == null;

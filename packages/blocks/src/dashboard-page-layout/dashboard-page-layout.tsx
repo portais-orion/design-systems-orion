@@ -11,6 +11,10 @@ export type DashboardPageLayoutProps = {
 	className?: string;
 };
 
+/**
+ * Layout de dashboard: faixa de indicadores no topo, conteúdo principal e
+ * `aside` opcional em coluna lateral.
+ */
 export function DashboardPageLayout({
 	header,
 	stats,

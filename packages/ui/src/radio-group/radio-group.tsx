@@ -11,6 +11,11 @@ import { cn } from "../utils/cn";
  * ui/radio-group.tsx (Radix, 2 telas). Superfície shadcn: RadioGroup +
  * RadioGroupItem, controlado por value/onValueChange.
  */
+/**
+ * Escolha de exatamente uma opção entre poucas, todas visíveis ao mesmo tempo.
+ * Controle com `value` e `onValueChange`. Se as opções não couberem na tela,
+ * prefira `Select`.
+ */
 const RadioGroup = React.forwardRef<
 	React.ElementRef<typeof RadioGroupPrimitive>,
 	React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive>
@@ -19,6 +24,7 @@ const RadioGroup = React.forwardRef<
 ));
 RadioGroup.displayName = "RadioGroup";
 
+/** Uma opção do `RadioGroup`. Exige `value` único dentro do grupo. */
 const RadioGroupItem = React.forwardRef<
 	React.ElementRef<typeof RadioPrimitive.Root>,
 	React.ComponentPropsWithoutRef<typeof RadioPrimitive.Root>

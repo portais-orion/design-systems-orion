@@ -15,6 +15,11 @@ export type PageHeaderProps = {
 	className?: string;
 };
 
+/**
+ * Cabeçalho principal da página: renderiza o `<h1>`, com descrição, um
+ * `eyebrow` opcional acima do título e slot de ações à direita. Não conhece
+ * rota nem breadcrumb — combine com `Breadcrumbs` quando precisar.
+ */
 export function PageHeader({ title, description, eyebrow, actions, className }: PageHeaderProps) {
 	return (
 		<div className={cn("flex flex-wrap items-start justify-between gap-4", className)}>

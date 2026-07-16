@@ -12,6 +12,11 @@ export type TableSkeletonRowsProps = {
 	className?: string;
 };
 
+/**
+ * Linhas de carregamento para uma `Table`, com larguras variadas para lembrar
+ * texto real. Renderiza apenas `<tr>`: precisa estar dentro de um `TableBody`.
+ * `columns` deve bater com as colunas da tabela para as células não desalinharem.
+ */
 export function TableSkeletonRows({
 	rows = 6,
 	columns,

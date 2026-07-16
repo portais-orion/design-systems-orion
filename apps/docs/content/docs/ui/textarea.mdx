@@ -1,50 +1,41 @@
 ---
 title: Textarea
-description: Componente da biblioteca Base UI.
+description: "Campo de texto de múltiplas linhas."
 ---
 
-import { Textarea } from "@portais-orion/ui";
+Não cresce sozinho com o conteúdo: ajuste a altura por `className` ou `rows`.
 
-# Textarea
-
-Um componente da biblioteca `@portais-orion/ui` agrupado em **Forms**.
+Disponível em `@portais-orion/ui`, na categoria **Formulários**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/ui
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="ui/textarea" story="Default" />
 
-```tsx
-import { Textarea } from "@portais-orion/ui";
+## API Reference
 
-export default function Example() {
-  return (
-    <Textarea {/* props */} />
-  )
-}
-```
+`Textarea` não declara props próprias: repassa as props do primitivo
+de Base UI que envolve, mais `className`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)
+para a lista completa.
 
 ## Exemplos
 
-### Default
-```tsx
-<Textarea {...{ 		placeholder: "Type your message here.", 	}} />
-```
+### With label
 
-### WithLabel
-Consulte o Storybook para a variação `WithLabel`.
+<ComponentPreview name="ui/textarea" story="WithLabel" />
 
 ### Disabled
-```tsx
-<Textarea {...{ 		disabled: true, 		placeholder: "Type your message here.", 	}} />
-```
+
+<ComponentPreview name="ui/textarea" story="Disabled" />
+
+## Storybook
+
+Todas as variações de `Textarea`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

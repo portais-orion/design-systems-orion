@@ -1,47 +1,50 @@
 ---
 title: FiltersCard
-description: Componente da biblioteca Blocks.
+description: "Card colapsável que abriga os controles de filtro de uma listagem."
 ---
 
-import { FiltersCard } from "@portais-orion/blocks";
+Não conhece os filtros: renderiza o que vier em `children` e avisa por `onClear`. Funciona não-controlado (`defaultOpen`) ou controlado (`open` + `onOpenChange`).
 
-# FiltersCard
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Tabelas**.
+Disponível em `@portais-orion/blocks`, na categoria **Tabelas**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/filters-card" story="Default" />
 
-```tsx
-import { FiltersCard } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <FiltersCard {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `title` | `string` | `Filtros` | — |
+| `icon` | `ComponentType<{ className?: string; }>` | — | — |
+| `defaultOpen` | `boolean` | `true` | — |
+| `open` | `boolean` | — | — |
+| `onOpenChange` | `(open: boolean) => void` | — | — |
+| `onClear` | `() => void` | — | — |
+| `clearLabel` | `string` | `Limpar filtros` | — |
+| `children`\* | `any` | — | Controles de filtro (SearchBar, selects, etc.). |
+| `footer` | `any` | — | Ações extras no footer, à esquerda do "Limpar". |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `FiltersCard` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-```tsx
-<FiltersCard {...{ 		onClear: () => {}} />
-```
-
 ### Fechado
-```tsx
-<FiltersCard {...{ 		defaultOpen: false, 		children: <Input placeholder="Buscar..." />, 	}} />
-```
+
+<ComponentPreview name="blocks/filters-card" story="Fechado" />
+
+## Storybook
+
+Todas as variações de `FiltersCard`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

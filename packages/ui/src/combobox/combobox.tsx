@@ -41,6 +41,11 @@ function OptionItem({ option }: { option: AdvancedOption }) {
 	);
 }
 
+/**
+ * Seleção de uma opção com busca por digitação, para listas longas demais para
+ * um `Select`. O próprio campo é o input de busca, e `options` aceita itens
+ * planos ou agrupados. Para seleção múltipla, use `MultiSelect`.
+ */
 export function Combobox({
 	value = null,
 	onValueChange,

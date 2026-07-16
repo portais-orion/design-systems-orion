@@ -21,6 +21,12 @@ const maxWidthClass = {
 	"screen-2xl": "mx-auto w-full max-w-screen-2xl",
 } as const;
 
+/**
+ * Esqueleto base de uma página: padding, largura máxima e o espaçamento
+ * vertical padrão entre header, conteúdo e footer. Não inclui sidebar nem
+ * breadcrumb — isso é o `AppShell`. Os layouts especializados
+ * (`ListPageLayout`, `FormPageLayout`, …) são construídos sobre este.
+ */
 export function PageLayout({
 	header,
 	children,

@@ -44,6 +44,11 @@ const buttonVariants = cva(
 	},
 );
 
+/**
+ * Aciona uma ação. Para navegar até outra página, passe `render` com um link —
+ * assim o elemento continua sendo um `<a>` para o leitor de tela e o teclado.
+ * Ícones passados como filhos são dimensionados automaticamente.
+ */
 const Button = React.forwardRef<
 	React.ElementRef<typeof ButtonPrimitive>,
 	ButtonPrimitive.Props & VariantProps<typeof buttonVariants>

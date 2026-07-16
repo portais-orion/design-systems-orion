@@ -1,55 +1,52 @@
 ---
 title: FilterPill
-description: Componente da biblioteca Blocks.
+description: "Chip que mostra um filtro já aplicado, no formato \"rótulo · valor\"."
 ---
 
-import { FilterPill } from "@portais-orion/blocks";
+O botão de remover só aparece quando `onRemove` é passado. Para escolher o filtro, use `FiltersCard`; este bloco apenas exibe o que está ativo.
 
-# FilterPill
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Tabelas**.
+Disponível em `@portais-orion/blocks`, na categoria **Tabelas**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/filter-pill" story="Default" />
 
-```tsx
-import { FilterPill } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <FilterPill {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `label`\* | `string` | — |
+| `value` | `string \| number` | — |
+| `onRemove` | `() => void` | — |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `FilterPill` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-```tsx
-<FilterPill {...{ label: "Status", value: "Ativo", onRemove: () => {}} />
-```
+### Sem valor
 
-### SemValor
-```tsx
-<FilterPill {...{ label: "Somente pendentes", onRemove: () => {}} />
-```
+<ComponentPreview name="blocks/filter-pill" story="SemValor" />
 
-### SemRemocao
-```tsx
-<FilterPill {...{ label: "Período", value: "Últimos 30 dias" }} />
-```
+### Sem remocao
+
+<ComponentPreview name="blocks/filter-pill" story="SemRemocao" />
 
 ### Grupo
-Consulte o Storybook para a variação `Grupo`.
+
+<ComponentPreview name="blocks/filter-pill" story="Grupo" />
+
+## Storybook
+
+Todas as variações de `FilterPill`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

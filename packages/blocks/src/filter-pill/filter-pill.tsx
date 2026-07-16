@@ -14,6 +14,11 @@ export type FilterPillProps = {
 	className?: string;
 };
 
+/**
+ * Chip que mostra um filtro já aplicado, no formato "rótulo · valor". O botão
+ * de remover só aparece quando `onRemove` é passado. Para escolher o filtro,
+ * use `FiltersCard`; este bloco apenas exibe o que está ativo.
+ */
 export function FilterPill({ label, value, onRemove, className }: FilterPillProps) {
 	return (
 		<span

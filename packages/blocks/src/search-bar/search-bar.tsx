@@ -20,6 +20,11 @@ export type SearchBarProps = {
 	className?: string;
 };
 
+/**
+ * Campo de busca controlado, com ícone e botão de limpar. `onChange` dispara a
+ * cada tecla; `onDebouncedChange` espera `debounceMs` após a última digitação —
+ * use este último para não disparar uma requisição por caractere.
+ */
 export function SearchBar({
 	value,
 	onChange,

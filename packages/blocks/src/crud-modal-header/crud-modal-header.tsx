@@ -27,6 +27,11 @@ export type CrudModalHeaderProps = {
 	className?: string;
 };
 
+/**
+ * Cabeçalho para modais de criar, editar ou detalhar registro: ícone tonalizado,
+ * título, subtítulo e um slot para badges de contexto. Vai dentro do `Dialog` do
+ * consumidor — não abre nem fecha nada por conta própria.
+ */
 export function CrudModalHeader({
 	title,
 	description,

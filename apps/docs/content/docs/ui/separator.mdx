@@ -1,43 +1,37 @@
 ---
 title: Separator
-description: Componente da biblioteca Base UI.
+description: "Linha divisória entre grupos de conteúdo."
 ---
 
-import { Separator } from "@portais-orion/ui";
+Na vertical, exige que o pai tenha altura definida — o traço ocupa 100% da altura disponível.
 
-# Separator
-
-Um componente da biblioteca `@portais-orion/ui` agrupado em **Layout**.
+Disponível em `@portais-orion/ui`, na categoria **Layout**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/ui
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="ui/separator" story="Horizontal" />
 
-```tsx
-import { Separator } from "@portais-orion/ui";
+## API Reference
 
-export default function Example() {
-  return (
-    <Separator {/* props */} />
-  )
-}
-```
+`Separator` não declara props próprias: repassa as props do primitivo
+de Base UI que envolve, mais `className`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)
+para a lista completa.
 
 ## Exemplos
 
-### Horizontal
-Consulte o Storybook para a variação `Horizontal`.
-
 ### Vertical
-Consulte o Storybook para a variação `Vertical`.
+
+<ComponentPreview name="ui/separator" story="Vertical" />
+
+## Storybook
+
+Todas as variações de `Separator`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

@@ -1,6 +1,11 @@
 import * as React from "react";
 import { cn } from "../utils/cn";
 
+/**
+ * Tabela de dados. Primitiva de marcação: já embrulha a `<table>` num contêiner
+ * com rolagem horizontal, mas não traz ordenação, paginação nem estados de
+ * vazio/erro — para isso use `DataTable` (blocks).
+ */
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
 	({ className, ...props }, ref) => (
 		<div className="relative w-full overflow-auto">
@@ -10,6 +15,7 @@ const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableE
 );
 Table.displayName = "Table";
 
+/** Cabeçalho da tabela (`<thead>`). Agrupa as linhas de `TableHead`. */
 const TableHeader = React.forwardRef<
 	HTMLTableSectionElement,
 	React.HTMLAttributes<HTMLTableSectionElement>
@@ -18,6 +24,7 @@ const TableHeader = React.forwardRef<
 ));
 TableHeader.displayName = "TableHeader";
 
+/** Corpo da tabela (`<tbody>`), onde ficam as linhas de dados. */
 const TableBody = React.forwardRef<
 	HTMLTableSectionElement,
 	React.HTMLAttributes<HTMLTableSectionElement>
@@ -26,6 +33,7 @@ const TableBody = React.forwardRef<
 ));
 TableBody.displayName = "TableBody";
 
+/** Rodapé da tabela (`<tfoot>`), para totais e somatórios. */
 const TableFooter = React.forwardRef<
 	HTMLTableSectionElement,
 	React.HTMLAttributes<HTMLTableSectionElement>
@@ -38,6 +46,7 @@ const TableFooter = React.forwardRef<
 ));
 TableFooter.displayName = "TableFooter";
 
+/** Linha da tabela. `data-state="selected"` destaca a linha. */
 const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableRowElement>>(
 	({ className, ...props }, ref) => (
 		<tr
@@ -52,6 +61,7 @@ const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTML
 );
 TableRow.displayName = "TableRow";
 
+/** Célula de cabeçalho (`<th>`), com o rótulo da coluna. */
 const TableHead = React.forwardRef<
 	HTMLTableCellElement,
 	React.ThHTMLAttributes<HTMLTableCellElement>
@@ -67,6 +77,7 @@ const TableHead = React.forwardRef<
 ));
 TableHead.displayName = "TableHead";
 
+/** Célula de dados (`<td>`). */
 const TableCell = React.forwardRef<
 	HTMLTableCellElement,
 	React.TdHTMLAttributes<HTMLTableCellElement>
@@ -79,6 +90,7 @@ const TableCell = React.forwardRef<
 ));
 TableCell.displayName = "TableCell";
 
+/** Legenda da tabela, exibida abaixo do conteúdo. */
 const TableCaption = React.forwardRef<
 	HTMLTableCaptionElement,
 	React.HTMLAttributes<HTMLTableCaptionElement>

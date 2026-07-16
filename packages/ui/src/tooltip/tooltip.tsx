@@ -5,6 +5,12 @@ import * as React from "react";
 import { cn } from "../utils/cn";
 
 const TooltipProvider = TooltipPrimitive.Provider;
+/**
+ * Rótulo curto que aparece ao focar ou passar o mouse sobre o gatilho. Só
+ * aparece no hover/foco, então não coloque aqui informação essencial nem
+ * conteúdo interativo — para isso use `Popover`. Requer um `TooltipProvider`
+ * acima na árvore.
+ */
 const Tooltip = TooltipPrimitive.Root;
 const TooltipPortal = TooltipPrimitive.Portal;
 

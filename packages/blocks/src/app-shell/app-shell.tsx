@@ -19,6 +19,12 @@ import type { AppShellProps } from "./app-shell.types";
  * navegação num Sheet (drawer à esquerda). O shell não conhece rotas,
  * sessão ou permissões — renderLink e canAccessItem são injetados.
  */
+/**
+ * Chrome do portal: sidebar fixa, barra de breadcrumbs e a área de conteúdo.
+ * Não tem topbar, por decisão do padrão do grupo. Abaixo de `md` a sidebar vira
+ * um drawer com a mesma navegação. Não conhece rota, sessão nem permissão —
+ * injete `renderLink` e `canAccessItem`.
+ */
 export function AppShell({
 	brand,
 	navigation,

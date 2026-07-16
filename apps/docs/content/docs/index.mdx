@@ -1,13 +1,63 @@
 ---
-title: Hello World
-description: Your first document
+title: Introdução
+description: Componentes e blocos multi-marca do ecossistema Orion.
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
-
-## What is Next?
+O **Núcleo de Portais** reúne os componentes compartilhados dos portais do Grupo em dois
+pacotes que você instala do monorepo:
 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
+  <Card
+    title="Base UI"
+    description="Primitivas: Button, Input, Dialog, Select, Table…"
+    href="/docs/ui/button"
+  />
+  <Card
+    title="Blocks"
+    description="Composições prontas: DataTable, AppShell, FormPageLayout…"
+    href="/docs/blocks/data-table"
+  />
 </Cards>
+
+## Instalação
+
+```bash
+pnpm add @portais-orion/ui @portais-orion/blocks @portais-orion/tokens
+```
+
+Importe os tokens uma vez, no CSS raiz da aplicação. Produtos reais carregam a base mais
+**um** tema; carregar `index.css` traz as duas marcas e serve para ambientes multi-marca
+como este site e o Storybook.
+
+```css
+@import "@portais-orion/tokens/base.css";
+@import "@portais-orion/tokens/themes/supertrans.css";
+```
+
+## Marcas
+
+Os componentes não recebem prop `brand`. A marca é resolvida por CSS variables a partir do
+atributo `data-brand` no `<html>`, então a mesma árvore de componentes serve qualquer
+portal:
+
+```html
+<html data-brand="aurora">
+```
+
+Sem `data-brand`, os tokens resolvem para **supertrans** (o `defaultBrand` de
+`brands.json`). Use o seletor de marca no topo desta página para ver qualquer componente
+trocar de marca ao vivo.
+
+## Como esta documentação se mantém
+
+As páginas de componente são **geradas** por `scripts/generate-docs.mjs` a partir dos
+próprios pacotes — as tabelas de props saem dos tipos TypeScript e os previews renderizam
+as mesmas stories que o Storybook consome. Editar o MDX à mão não adianta: a próxima
+execução sobrescreve.
+
+```bash
+node scripts/generate-docs.mjs
+```
+
+O [Storybook](http://localhost:6006) continua sendo o lugar dos controles interativos e do
+isolamento visual; esta documentação cobre uso, props e exemplos.

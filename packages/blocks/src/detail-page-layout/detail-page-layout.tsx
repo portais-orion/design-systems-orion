@@ -12,6 +12,10 @@ export type DetailPageLayoutProps = {
 	className?: string;
 };
 
+/**
+ * Layout de página de detalhe de um registro: resumo, abas e conteúdo, com
+ * `aside` opcional para metadados e ações secundárias.
+ */
 export function DetailPageLayout({
 	header,
 	summary,

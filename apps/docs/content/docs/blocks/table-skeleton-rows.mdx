@@ -1,43 +1,44 @@
 ---
 title: TableSkeletonRows
-description: Componente da biblioteca Blocks.
+description: "Linhas de carregamento para uma `Table`, com larguras variadas para lembrar texto real."
 ---
 
-import { TableSkeletonRows } from "@portais-orion/blocks";
+Renderiza apenas `<tr>`: precisa estar dentro de um `TableBody`. `columns` deve bater com as colunas da tabela para as células não desalinharem.
 
-# TableSkeletonRows
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Tabelas**.
+Disponível em `@portais-orion/blocks`, na categoria **Tabelas**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/table-skeleton-rows" story="Default" />
 
-```tsx
-import { TableSkeletonRows } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <TableSkeletonRows {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `rows` | `number` | `6` |
+| `columns`\* | `number` | — |
+| `withActionsColumn` | `boolean` | `false` |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `TableSkeletonRows` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
+### Com coluna de acoes
 
-### ComColunaDeAcoes
-Consulte o Storybook para a variação `ComColunaDeAcoes`.
+<ComponentPreview name="blocks/table-skeleton-rows" story="ComColunaDeAcoes" />
+
+## Storybook
+
+Todas as variações de `TableSkeletonRows`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

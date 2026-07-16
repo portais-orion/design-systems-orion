@@ -1,62 +1,51 @@
 ---
 title: Badge
-description: Componente da biblioteca Base UI.
+description: "Etiqueta compacta para status, categoria ou contagem."
 ---
 
-import { Badge } from "@portais-orion/ui";
+É um elemento estático: para algo clicável use `Button`.
 
-# Badge
-
-Um componente da biblioteca `@portais-orion/ui` agrupado em **Data Display**.
+Disponível em `@portais-orion/ui`, na categoria **Exibição de dados**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/ui
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="ui/badge" story="Default" />
 
-```tsx
-import { Badge } from "@portais-orion/ui";
+## API Reference
 
-export default function Example() {
-  return (
-    <Badge {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `variant` | `"default" \| "secondary" \| "destructive" \| "outline" \| "tinted" \| "success" \| "warning"` | — |
+
+Além destas, `Badge` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-```tsx
-<Badge {...{ 		children: "Badge", 		variant: "default", 	}} />
-```
-
 ### Secondary
-```tsx
-<Badge {...{ 		children: "Secondary", 		variant: "secondary", 	}} />
-```
+
+<ComponentPreview name="ui/badge" story="Secondary" />
 
 ### Destructive
-```tsx
-<Badge {...{ 		children: "Destructive", 		variant: "destructive", 	}} />
-```
+
+<ComponentPreview name="ui/badge" story="Destructive" />
 
 ### Outline
-```tsx
-<Badge {...{ 		children: "Outline", 		variant: "outline", 	}} />
-```
+
+<ComponentPreview name="ui/badge" story="Outline" />
 
 ### Brand
-```tsx
-<Badge {...{ 		children: "Brand Badge", 		variant: "tinted", 	}} />
-```
+
+<ComponentPreview name="ui/badge" story="Brand" />
+
+## Storybook
+
+Todas as variações de `Badge`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

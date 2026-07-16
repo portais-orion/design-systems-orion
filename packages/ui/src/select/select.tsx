@@ -5,6 +5,11 @@ import { Check, ChevronDown } from "lucide-react";
 import * as React from "react";
 import { cn } from "../utils/cn";
 
+/**
+ * Seleção de uma opção entre poucas, a partir de uma lista fechada. Quando a
+ * lista é longa e pede busca, use `Combobox`; para várias opções ao mesmo
+ * tempo, `MultiSelect`.
+ */
 const Select = SelectPrimitive.Root;
 const SelectValue = React.forwardRef<
 	React.ElementRef<typeof SelectPrimitive.Value>,

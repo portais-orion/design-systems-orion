@@ -1,40 +1,34 @@
 ---
 title: Tooltip
-description: Componente da biblioteca Base UI.
+description: "Rótulo curto que aparece ao focar ou passar o mouse sobre o gatilho."
 ---
 
-import { Tooltip } from "@portais-orion/ui";
+Só aparece no hover/foco, então não coloque aqui informação essencial nem conteúdo interativo — para isso use `Popover`. Requer um `TooltipProvider` acima na árvore.
 
-# Tooltip
-
-Um componente da biblioteca `@portais-orion/ui` agrupado em **Feedback**.
+Disponível em `@portais-orion/ui`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/ui
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="ui/tooltip" story="Default" />
 
-```tsx
-import { Tooltip } from "@portais-orion/ui";
+## API Reference
 
-export default function Example() {
-  return (
-    <Tooltip {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `top` |
+| `sideOffset` | `number` | `4` |
 
-## Exemplos
+Além destas, `Tooltip` aceita as props do elemento/primitivo que envolve.
 
-### Default
-Consulte o Storybook para a variação `Default`.
+## Storybook
+
+Todas as variações de `Tooltip`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

@@ -10,6 +10,10 @@ export type SectionHeaderProps = {
 	className?: string;
 };
 
+/**
+ * Cabeçalho de uma seção dentro da página, com título, descrição e ações.
+ * Renderiza um `<h2>`: para o título principal da página use `PageHeader`.
+ */
 export function SectionHeader({ title, description, actions, className }: SectionHeaderProps) {
 	return (
 		<div className={cn("flex flex-wrap items-start justify-between gap-3", className)}>

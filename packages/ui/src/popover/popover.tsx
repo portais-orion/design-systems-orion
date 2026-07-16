@@ -9,6 +9,11 @@ import { cn } from "../utils/cn";
  * Recriado em Base UI. Referência de API: Portal-Aurora ui/popover.tsx
  * (Radix, 5 telas). Polimorfismo via `render` (padrão do núcleo), não asChild.
  */
+/**
+ * Painel flutuante ancorado a um gatilho, para conteúdo secundário e
+ * interativo. Para texto curto e apenas informativo use `Tooltip`; para uma
+ * lista de ações, `DropdownMenu`.
+ */
 const Popover = PopoverPrimitive.Root;
 const PopoverTrigger = PopoverPrimitive.Trigger;
 const PopoverClose = PopoverPrimitive.Close;

@@ -26,6 +26,11 @@ export type FiltersCardProps = {
 	className?: string;
 };
 
+/**
+ * Card colapsável que abriga os controles de filtro de uma listagem. Não conhece
+ * os filtros: renderiza o que vier em `children` e avisa por `onClear`. Funciona
+ * não-controlado (`defaultOpen`) ou controlado (`open` + `onOpenChange`).
+ */
 export function FiltersCard({
 	title = "Filtros",
 	icon: Icon = Filter,

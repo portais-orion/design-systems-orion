@@ -1,49 +1,45 @@
 ---
 title: ScrollArea
-description: Componente da biblioteca Base UI.
+description: "Região rolável com barra de rolagem estilizada por tokens, consistente entre navegadores."
 ---
 
-import { ScrollArea } from "@portais-orion/ui";
+Exige altura ou largura limitada no próprio elemento ou no pai — sem limite não há o que rolar.
 
-# ScrollArea
-
-Um componente da biblioteca `@portais-orion/ui` agrupado em **Layout**.
+Disponível em `@portais-orion/ui`, na categoria **Layout**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/ui
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="ui/scroll-area" story="Vertical" />
 
-```tsx
-import { ScrollArea } from "@portais-orion/ui";
+## API Reference
 
-export default function Example() {
-  return (
-    <ScrollArea {/* props */} />
-  )
-}
-```
+`ScrollArea` não declara props próprias: repassa as props do primitivo
+de Base UI que envolve, mais `className`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)
+para a lista completa.
 
 ## Exemplos
 
-### Vertical
-Consulte o Storybook para a variação `Vertical`.
-
 ### Horizontal
-Consulte o Storybook para a variação `Horizontal`.
 
-### LongList
-Consulte o Storybook para a variação `LongList`.
+<ComponentPreview name="ui/scroll-area" story="Horizontal" />
 
-### InsideCard
-Consulte o Storybook para a variação `InsideCard`.
+### Long list
+
+<ComponentPreview name="ui/scroll-area" story="LongList" />
+
+### Inside card
+
+<ComponentPreview name="ui/scroll-area" story="InsideCard" />
+
+## Storybook
+
+Todas as variações de `ScrollArea`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

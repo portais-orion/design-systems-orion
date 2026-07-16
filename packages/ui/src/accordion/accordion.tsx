@@ -13,9 +13,15 @@ import { cn } from "../utils/cn";
  */
 type AccordionRootProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>;
 
+/**
+ * Lista de seções expansíveis. `type="single"` (padrão) mantém apenas uma
+ * seção aberta; `type="multiple"` permite várias. Componha com `AccordionItem`,
+ * `AccordionTrigger` e `AccordionContent`.
+ */
 const Accordion = React.forwardRef<
 	React.ElementRef<typeof AccordionPrimitive.Root>,
 	Omit<AccordionRootProps, "multiple" | "className"> & {
+		/** `single` mantém uma seção aberta por vez; `multiple` permite várias. */
 		type?: "single" | "multiple";
 		className?: string;
 	}
@@ -29,6 +35,7 @@ const Accordion = React.forwardRef<
 ));
 Accordion.displayName = "Accordion";
 
+/** Uma seção do `Accordion`. Exige `value` único dentro da lista. */
 const AccordionItem = React.forwardRef<
 	React.ElementRef<typeof AccordionPrimitive.Item>,
 	React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
@@ -41,6 +48,7 @@ const AccordionItem = React.forwardRef<
 ));
 AccordionItem.displayName = "AccordionItem";
 
+/** Cabeçalho clicável que abre e fecha o `AccordionItem`. A seta é automática. */
 const AccordionTrigger = React.forwardRef<
 	React.ElementRef<typeof AccordionPrimitive.Trigger>,
 	React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
@@ -61,6 +69,7 @@ const AccordionTrigger = React.forwardRef<
 ));
 AccordionTrigger.displayName = "AccordionTrigger";
 
+/** Conteúdo revelado ao abrir o `AccordionItem`. */
 const AccordionContent = React.forwardRef<
 	React.ElementRef<typeof AccordionPrimitive.Panel>,
 	React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Panel>

@@ -68,6 +68,11 @@ function StatusCardContent({ item }: { item: StatusCardItem }) {
 	);
 }
 
+/**
+ * Faixa de indicadores no topo de uma listagem ou dashboard. Um item com
+ * `onClick` vira botão e pode servir de filtro rápido — use `active` para
+ * marcar o que está aplicado; sem `onClick`, é apenas leitura.
+ */
 export function StatusCards({ items, columns = 4, className }: StatusCardsProps) {
 	return (
 		<div className={cn("grid grid-cols-1 gap-4", gridByColumns[columns], className)}>

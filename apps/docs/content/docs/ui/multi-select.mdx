@@ -1,73 +1,93 @@
 ---
 title: MultiSelect
-description: Componente da biblioteca Base UI.
+description: "Seleção de várias opções com busca, exibindo as escolhas como chips removíveis."
 ---
 
-import { MultiSelect } from "@portais-orion/ui";
+Acima de `maxDisplay` chips, o excedente vira um contador "+N". `options` aceita itens planos ou agrupados.
 
-# MultiSelect
-
-Um componente da biblioteca `@portais-orion/ui` agrupado em **Forms**.
+Disponível em `@portais-orion/ui`, na categoria **Formulários**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/ui
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="ui/multi-select" story="Default" />
 
-```tsx
-import { MultiSelect } from "@portais-orion/ui";
+## API Reference
 
-export default function Example() {
-  return (
-    <MultiSelect {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `value`\* | `string[]` | — | — |
+| `onValueChange`\* | `(value: string[]) => void` | — | — |
+| `options`\* | `AdvancedOptions` | — | — |
+| `placeholder` | `string` | `Selecione...` | — |
+| `searchPlaceholder` | `string` | — | Mantido por compatibilidade de API: no padrão Base UI o próprio campo é a busca. |
+| `emptyMessage` | `string` | `Nenhuma opção encontrada` | — |
+| `disabled` | `boolean` | `false` | — |
+| `clearable` | `boolean` | `false` | — |
+| `maxDisplay` | `number` | `3` | Chips visíveis antes do indicador +N. |
+| `className` | `string` | — | — |
+| `contentClassName` | `string` | — | — |
+| `id` | `string` | — | — |
+| `aria-label` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `MultiSelect` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
+### With search
 
-### WithSearch
-Consulte o Storybook para a variação `WithSearch`.
+<ComponentPreview name="ui/multi-select" story="WithSearch" />
 
-### WithGroups
-Consulte o Storybook para a variação `WithGroups`.
+### With groups
+
+<ComponentPreview name="ui/multi-select" story="WithGroups" />
 
 ### Disabled
-Consulte o Storybook para a variação `Disabled`.
 
-### WithDisabledOptions
-Consulte o Storybook para a variação `WithDisabledOptions`.
+<ComponentPreview name="ui/multi-select" story="Disabled" />
+
+### With disabled options
+
+<ComponentPreview name="ui/multi-select" story="WithDisabledOptions" />
 
 ### Clearable
-Consulte o Storybook para a variação `Clearable`.
 
-### MaxDisplay
-Consulte o Storybook para a variação `MaxDisplay`.
+<ComponentPreview name="ui/multi-select" story="Clearable" />
 
-### EmptySearch
-Consulte o Storybook para a variação `EmptySearch`.
+### Max display
 
-### LongList
-Consulte o Storybook para a variação `LongList`.
+<ComponentPreview name="ui/multi-select" story="MaxDisplay" />
 
-### WithDescriptions
-Consulte o Storybook para a variação `WithDescriptions`.
+### Empty search
 
-### ManySelected
-Consulte o Storybook para a variação `ManySelected`.
+<ComponentPreview name="ui/multi-select" story="EmptySearch" />
 
-### KeyboardInteraction
-Consulte o Storybook para a variação `KeyboardInteraction`.
+### Long list
+
+<ComponentPreview name="ui/multi-select" story="LongList" />
+
+### With descriptions
+
+<ComponentPreview name="ui/multi-select" story="WithDescriptions" />
+
+### Many selected
+
+<ComponentPreview name="ui/multi-select" story="ManySelected" />
+
+### Keyboard interaction
+
+<ComponentPreview name="ui/multi-select" story="KeyboardInteraction" />
+
+## Storybook
+
+Todas as variações de `MultiSelect`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

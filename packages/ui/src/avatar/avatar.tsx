@@ -4,6 +4,11 @@ import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
 import * as React from "react";
 import { cn } from "../utils/cn";
 
+/**
+ * Imagem circular de identificação de uma pessoa ou entidade. Use como raiz de
+ * `AvatarImage` e `AvatarFallback` — o fallback aparece enquanto a imagem
+ * carrega ou quando ela falha.
+ */
 const Avatar = React.forwardRef<
 	React.ElementRef<typeof AvatarPrimitive.Root>,
 	React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
@@ -16,6 +21,7 @@ const Avatar = React.forwardRef<
 ));
 Avatar.displayName = "Avatar";
 
+/** Imagem do `Avatar`. Ao falhar o carregamento, cede lugar ao `AvatarFallback`. */
 const AvatarImage = React.forwardRef<
 	React.ElementRef<typeof AvatarPrimitive.Image>,
 	React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
@@ -28,6 +34,7 @@ const AvatarImage = React.forwardRef<
 ));
 AvatarImage.displayName = "AvatarImage";
 
+/** Conteúdo exibido quando não há imagem — normalmente as iniciais do nome. */
 const AvatarFallback = React.forwardRef<
 	React.ElementRef<typeof AvatarPrimitive.Fallback>,
 	React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>

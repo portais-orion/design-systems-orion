@@ -10,6 +10,10 @@ import { cn } from "../utils/cn";
  * (Radix) — 15 telas consumidoras. Superfície pública idêntica (Switch único
  * com checked/onCheckedChange), o que facilita a migração futura do Aurora.
  */
+/**
+ * Alterna uma opção que vale imediatamente, sem confirmação. Quando a mudança
+ * só se aplica após salvar o formulário, prefira `Checkbox`.
+ */
 const Switch = React.forwardRef<
 	React.ElementRef<typeof SwitchPrimitive.Root>,
 	React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>

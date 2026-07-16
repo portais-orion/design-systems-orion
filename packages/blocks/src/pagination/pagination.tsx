@@ -26,6 +26,12 @@ export type PaginationProps = {
 	className?: string;
 };
 
+/**
+ * Navegação entre páginas de uma listagem, com contagem de resultados e seletor
+ * de itens por página. Casa com o envelope `{ data, total, page, limit }` da
+ * API. Não renderiza nada quando `total` é zero, e trocar o limite volta para a
+ * primeira página.
+ */
 export function Pagination({
 	page,
 	limit,

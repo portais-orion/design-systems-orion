@@ -1,79 +1,91 @@
 import Link from 'next/link';
+import { Accessibility, Blocks, Palette } from 'lucide-react';
+
+const highlights = [
+  {
+    icon: Blocks,
+    title: 'Dois pacotes, um sistema',
+    description:
+      'Primitivas em @portais-orion/ui e composições prontas em @portais-orion/blocks, usadas por todos os portais do Grupo.',
+  },
+  {
+    icon: Palette,
+    title: 'Multi-marca por token',
+    description:
+      'Nenhum componente recebe prop de marca. O tema vem de data-brand no html e resolve por CSS variables.',
+  },
+  {
+    icon: Accessibility,
+    title: 'Acessível por padrão',
+    description:
+      'Construído sobre Base UI: navegação por teclado, foco visível e semântica de leitores de tela em todos os componentes.',
+  },
+];
 
 export default function HomePage() {
   return (
-    <main className="relative flex flex-col min-h-screen overflow-hidden">
-      {/* Decorative Background & Gradients */}
-      <div className="absolute inset-0 -z-10 h-full w-full bg-background dark:bg-[#0a0a0a]">
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-        
-        {/* Glowing orbs */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] opacity-30 dark:opacity-20 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full blur-[100px] mix-blend-screen animate-pulse duration-10000"></div>
-        </div>
+    <main className="relative flex min-h-screen flex-col overflow-hidden">
+      <div className="absolute inset-0 -z-10 h-full w-full bg-background">
+        {/* Grade sutil; a cor vem do token de borda para acompanhar tema e modo. */}
+        <div
+          className="absolute inset-0 opacity-60"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, var(--border) 1px, transparent 1px), linear-gradient(to bottom, var(--border) 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+            maskImage: 'radial-gradient(ellipse 80% 50% at 50% 0%, black 40%, transparent 100%)',
+          }}
+        />
+        <div className="pointer-events-none absolute top-0 left-1/2 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-brand-primary/20 blur-[120px]" />
       </div>
 
-      <div className="container relative z-10 mx-auto flex flex-col items-center justify-center text-center flex-1 px-4 pt-32 pb-20">
-        
-        {/* Badge */}
-        <div className="inline-flex items-center rounded-full border border-border bg-muted/50 px-3 py-1 text-sm font-medium mb-8 backdrop-blur-md transition-colors hover:bg-muted/80 cursor-default">
-          <span className="flex h-2 w-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
-          Supertrans & Aurora Design System v1.0
+      <div className="container relative z-10 mx-auto flex flex-1 flex-col items-center justify-center px-4 pt-32 pb-20 text-center">
+        <div className="mb-8 inline-flex items-center rounded-full border border-border bg-muted/50 px-3 py-1 text-sm font-medium backdrop-blur-md">
+          <span className="mr-2 flex size-2 rounded-full bg-brand-accent" />
+          Design System do Núcleo de Portais
         </div>
 
-        {/* Hero Title */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-6">
-          Construa rápido.<br/>
+        <h1 className="mb-6 text-5xl font-extrabold tracking-tighter md:text-7xl">
+          Construa rápido.
+          <br />
           <span className="bg-gradient-to-br from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-transparent">
             Escale com excelência.
           </span>
         </h1>
-        
-        <p className="text-lg md:text-2xl text-muted-foreground max-w-[700px] mb-12 font-medium leading-relaxed">
-          O <strong>Núcleo de Portais</strong> oferece componentes incrivelmente bonitos, acessíveis e customizáveis. Criados para o ecossistema Orion.
+
+        <p className="mb-12 max-w-[700px] text-lg leading-relaxed text-muted-foreground md:text-xl">
+          Componentes acessíveis e multi-marca para os portais do ecossistema Orion. Uma base de
+          código, qualquer marca.
         </p>
-        
-        {/* Call to Actions */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-          <Link 
-            href="/docs/ui/button" 
-            className="group relative inline-flex h-12 md:h-14 items-center justify-center rounded-full bg-primary px-8 text-sm md:text-base font-semibold text-primary-foreground shadow-lg transition-all hover:scale-105 hover:shadow-primary/25 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+
+        <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
+          <Link
+            href="/docs"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground shadow-lg transition-colors hover:bg-primary-hover focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none md:text-base"
           >
-            Começar a Desenvolver
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            Começar a desenvolver
           </Link>
-          <Link 
-            href="/docs/blocks/app-shell" 
-            className="inline-flex h-12 md:h-14 items-center justify-center rounded-full border border-input bg-background/50 backdrop-blur-sm px-8 text-sm md:text-base font-semibold shadow-sm transition-all hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+          <Link
+            href="/docs/blocks/data-table"
+            className="inline-flex h-12 items-center justify-center rounded-full border border-input bg-background/50 px-8 text-sm font-semibold shadow-sm backdrop-blur-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none md:text-base"
           >
-            Explorar Blocos
+            Explorar blocos
           </Link>
         </div>
 
-        {/* Floating Features / Highlights */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24 text-left w-full max-w-5xl">
-          <div className="flex flex-col p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-md shadow-sm transition-all hover:shadow-md hover:border-primary/50">
-            <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-primary"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+        <div className="mt-24 grid w-full max-w-5xl grid-cols-1 gap-6 text-left md:grid-cols-3">
+          {highlights.map(({ icon: Icon, title, description }) => (
+            <div
+              key={title}
+              className="flex flex-col rounded-2xl border border-border bg-card/50 p-6 shadow-sm backdrop-blur-md transition-colors hover:border-primary/50"
+            >
+              <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-primary/10">
+                <Icon className="size-6 text-primary" />
+              </div>
+              <h2 className="mb-2 text-xl font-bold">{title}</h2>
+              <p className="text-muted-foreground">{description}</p>
             </div>
-            <h3 className="text-xl font-bold mb-2">Performance Extrema</h3>
-            <p className="text-muted-foreground">Otimizado para Server Components e renderização ultra-rápida no Next.js.</p>
-          </div>
-          <div className="flex flex-col p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-md shadow-sm transition-all hover:shadow-md hover:border-primary/50">
-            <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-primary"><circle cx="12" cy="12" r="10"/><path d="M12 2v20"/><path d="M2 12h20"/></svg>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Multi-marcas</h3>
-            <p className="text-muted-foreground">Tokens dinâmicos que se adaptam instantaneamente aos temas da Supertrans e Aurora.</p>
-          </div>
-          <div className="flex flex-col p-6 rounded-2xl border border-border bg-card/50 backdrop-blur-md shadow-sm transition-all hover:shadow-md hover:border-primary/50">
-            <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-primary"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Acessível por Padrão</h3>
-            <p className="text-muted-foreground">Suporte total a navegação por teclado e leitores de tela em todos os componentes.</p>
-          </div>
+          ))}
         </div>
       </div>
     </main>

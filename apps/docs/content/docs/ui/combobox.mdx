@@ -1,67 +1,84 @@
 ---
 title: Combobox
-description: Componente da biblioteca Base UI.
+description: "Seleção de uma opção com busca por digitação, para listas longas demais para um `Select`."
 ---
 
-import { Combobox } from "@portais-orion/ui";
+O próprio campo é o input de busca, e `options` aceita itens planos ou agrupados. Para seleção múltipla, use `MultiSelect`.
 
-# Combobox
-
-Um componente da biblioteca `@portais-orion/ui` agrupado em **Forms**.
+Disponível em `@portais-orion/ui`, na categoria **Formulários**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/ui
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="ui/combobox" story="Default" />
 
-```tsx
-import { Combobox } from "@portais-orion/ui";
+## API Reference
 
-export default function Example() {
-  return (
-    <Combobox {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `value` | `string` | `null` | — |
+| `onValueChange`\* | `(value: string) => void` | — | — |
+| `options`\* | `AdvancedOptions` | — | — |
+| `placeholder` | `string` | `Selecione...` | — |
+| `searchPlaceholder` | `string` | — | Mantido por compatibilidade de API: no padrão Base UI o próprio campo é a busca. |
+| `emptyMessage` | `string` | `Nenhuma opção encontrada` | — |
+| `disabled` | `boolean` | `false` | — |
+| `clearable` | `boolean` | `false` | — |
+| `className` | `string` | — | — |
+| `contentClassName` | `string` | — | — |
+| `id` | `string` | — | id repassado ao input (integração com Label). |
+| `aria-label` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `Combobox` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
+### With search
 
-### WithSearch
-Consulte o Storybook para a variação `WithSearch`.
+<ComponentPreview name="ui/combobox" story="WithSearch" />
 
-### WithGroups
-Consulte o Storybook para a variação `WithGroups`.
+### With groups
+
+<ComponentPreview name="ui/combobox" story="WithGroups" />
 
 ### Disabled
-Consulte o Storybook para a variação `Disabled`.
+
+<ComponentPreview name="ui/combobox" story="Disabled" />
 
 ### Clearable
-Consulte o Storybook para a variação `Clearable`.
 
-### WithDescriptions
-Consulte o Storybook para a variação `WithDescriptions`.
+<ComponentPreview name="ui/combobox" story="Clearable" />
 
-### EmptySearch
-Consulte o Storybook para a variação `EmptySearch`.
+### With descriptions
 
-### LongList
-Consulte o Storybook para a variação `LongList`.
+<ComponentPreview name="ui/combobox" story="WithDescriptions" />
 
-### KeyboardInteraction
-Consulte o Storybook para a variação `KeyboardInteraction`.
+### Empty search
 
-### ComLabelExterno
-Consulte o Storybook para a variação `ComLabelExterno`.
+<ComponentPreview name="ui/combobox" story="EmptySearch" />
+
+### Long list
+
+<ComponentPreview name="ui/combobox" story="LongList" />
+
+### Keyboard interaction
+
+<ComponentPreview name="ui/combobox" story="KeyboardInteraction" />
+
+### Com label externo
+
+<ComponentPreview name="ui/combobox" story="ComLabelExterno" />
+
+## Storybook
+
+Todas as variações de `Combobox`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

@@ -13,6 +13,11 @@ const ignoredDirs = new Set([
 	".turbo",
 	".tmp",
 	".pnpm-store",
+	// Saída de build: bundles minificados carregam U+FFFD legítimo (ex.: a tabela
+	// de escape do css.escape), o que fazia o check falhar sempre que alguém
+	// rodasse dev/build antes dele.
+	".next",
+	".source",
 	"coverage",
 	"dist",
 	"node_modules",

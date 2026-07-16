@@ -1,49 +1,52 @@
 ---
 title: LoadingOverlay
-description: Componente da biblioteca Blocks.
+description: "Cobre uma área com um indicador de carregamento sem desmontar o conteúdo, o que evita o salto de layout ao alternar."
 ---
 
-import { LoadingOverlay } from "@portais-orion/blocks";
+Bloqueia a interação e marca `aria-busy` apenas enquanto `loading` é verdadeiro.
 
-# LoadingOverlay
-
-Um componente da biblioteca `@portais-orion/blocks` agrupado em **Feedback**.
+Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
-# Como nosso ecossistema é um monorepo e importamos o package completo:
+# O ecossistema é um monorepo e importamos o package completo:
 pnpm add @portais-orion/blocks
 ```
 
 ## Uso
 
-<Preview>
-  <div className="text-muted-foreground text-sm">
-    Substitua este texto pela declaração real do componente com suas props obrigatórias.
-  </div>
-</Preview>
+<ComponentPreview name="blocks/loading-overlay" story="Default" />
 
-```tsx
-import { LoadingOverlay } from "@portais-orion/blocks";
+## API Reference
 
-export default function Example() {
-  return (
-    <LoadingOverlay {/* props */} />
-  )
-}
-```
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `loading`\* | `boolean` | — |
+| `label` | `string` | — |
+| `className` | `string` | — |
+| `overlayClassName` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `LoadingOverlay` aceita as props do elemento/primitivo que envolve.
 
 ## Exemplos
 
-### Default
-Consulte o Storybook para a variação `Default`.
+### With card
 
-### WithCard
-Consulte o Storybook para a variação `WithCard`.
+<ComponentPreview name="blocks/loading-overlay" story="WithCard" />
 
-### WithTable
-Consulte o Storybook para a variação `WithTable`.
+### With table
 
-### WithoutLabel
-Consulte o Storybook para a variação `WithoutLabel`.
+<ComponentPreview name="blocks/loading-overlay" story="WithTable" />
+
+### Without label
+
+<ComponentPreview name="blocks/loading-overlay" story="WithoutLabel" />
+
+## Storybook
+
+Todas as variações de `LoadingOverlay`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

@@ -12,6 +12,11 @@ import { cn } from "../utils/cn";
  * Mapeamento: Content→Positioner+Popup, Sub→SubmenuRoot, SubTrigger→SubmenuTrigger.
  * Nomes públicos mantêm o padrão shadcn para facilitar a migração.
  */
+/**
+ * Menu de ações ancorado a um gatilho. É para comandos, não para entrada de
+ * dados: para escolher um valor de formulário use `Select`. Suporta submenus
+ * via `DropdownMenuSub`.
+ */
 const DropdownMenu = MenuPrimitive.Root;
 const DropdownMenuTrigger = MenuPrimitive.Trigger;
 const DropdownMenuGroup = MenuPrimitive.Group;

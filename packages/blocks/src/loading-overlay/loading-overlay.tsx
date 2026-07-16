@@ -17,6 +17,11 @@ export type LoadingOverlayProps = {
 	overlayClassName?: string;
 };
 
+/**
+ * Cobre uma área com um indicador de carregamento sem desmontar o conteúdo,
+ * o que evita o salto de layout ao alternar. Bloqueia a interação e marca
+ * `aria-busy` apenas enquanto `loading` é verdadeiro.
+ */
 export function LoadingOverlay({
 	loading,
 	label,

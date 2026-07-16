@@ -28,6 +28,10 @@ export interface BadgeProps
 	extends React.HTMLAttributes<HTMLDivElement>,
 		VariantProps<typeof badgeVariants> {}
 
+/**
+ * Etiqueta compacta para status, categoria ou contagem. É um elemento estático:
+ * para algo clicável use `Button`.
+ */
 const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
 	({ className, variant, ...props }, ref) => {
 		return <div ref={ref} className={cn(badgeVariants({ variant }), className)} {...props} />;
