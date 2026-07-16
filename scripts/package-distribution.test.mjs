@@ -240,10 +240,74 @@ test("rejects encoded and Windows traversal in packed entry targets", () => {
 test("rejects conventional private key filenames inside dist", () => {
 	const diagnostics = validatePackedArtifact({
 		manifest: packed,
-		files: new Set(["package/package.json", "package/dist/id_ed25519", "package/dist/private.pem"]),
+		files: new Set([
+			"package/package.json",
+			"package/dist/id_ed25519",
+			"package/dist/id-rsa",
+			"package/dist/foo-id-rsa.pem",
+			"package/dist/foo-id_rsa.pem",
+			"package/dist/private.pem",
+			"package/dist/private-key.mjs",
+		]),
 	});
 
-	for (const filename of ["id_ed25519", "private.pem"]) {
+	for (const filename of [
+		"id_ed25519",
+		"id-rsa",
+		"foo-id-rsa.pem",
+		"foo-id_rsa.pem",
+		"private.pem",
+		"private-key.mjs",
+	]) {
 		assert.ok(diagnostics.some((item) => item.includes(filename)));
+	}
+});
+
+test("accepts public SSH keys and private-named runtime modules", () => {
+	assert.deepEqual(
+		validatePackedArtifact({
+			manifest: packed,
+			files: new Set([
+				"package/package.json",
+				"package/dist/id_rsa.pub",
+				"package/dist/id_ed25519.pub",
+				"package/dist/private-api.mjs",
+			]),
+		}),
+		[],
+	);
+});
+
+test("rejects layered, separated, malformed, and excessive encoding in packed targets", () => {
+	for (const target of [
+		"./dist/%252e%252e/package.json",
+		"./dist/folder%2findex.mjs",
+		"./dist/folder%5cindex.mjs",
+		"./dist/%zz/index.mjs",
+		"./dist/%25252525252e/index.mjs",
+	]) {
+		const diagnostics = validatePackedArtifact({
+			manifest: { ...packed, exports: { ".": target } },
+			files: new Set(["package/package.json", "package/dist/index.mjs"]),
+		});
+
+		assert.ok(
+			diagnostics.some((item) => item.includes(target)),
+			`expected ${target} to be rejected`,
+		);
+	}
+});
+
+test("rejects non-canonical packed targets", () => {
+	for (const target of ["./dist/a/../index.mjs", "./dist/a//index.mjs", "./dist/./index.mjs"]) {
+		const diagnostics = validatePackedArtifact({
+			manifest: { ...packed, exports: { ".": target } },
+			files: new Set(["package/package.json", "package/dist/index.mjs"]),
+		});
+
+		assert.ok(
+			diagnostics.some((item) => item.includes(target)),
+			`expected ${target} to be rejected`,
+		);
 	}
 });
