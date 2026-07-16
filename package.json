@@ -11,7 +11,7 @@
 		"lint": "turbo lint",
 		"typecheck": "turbo typecheck",
 		"format": "biome format --write .",
-		"check": "node scripts/check-text-integrity.mjs && node packages/tokens/scripts/validate-tokens.mjs && node scripts/check-storybook-brands.mjs && pnpm test:distribution && pnpm check:packages && biome check .",
+		"check": "node scripts/check-text-integrity.mjs && node scripts/check-purity.mjs && node packages/tokens/scripts/validate-tokens.mjs && node scripts/check-storybook-brands.mjs && pnpm test:distribution && pnpm check:packages && biome check .",
 		"test:distribution": "node --test scripts/package-distribution.test.mjs",
 		"check:packages": "node scripts/gen-dist-exports.mjs --check packages/ui/package.json packages/blocks/package.json",
 		"storybook": "pnpm --filter @nucleo/storybook storybook",
@@ -21,7 +21,7 @@
 		"check:pureza": "node scripts/check-purity.mjs",
 		"test:storybook": "pnpm --filter @nucleo/storybook test-storybook",
 		"chromatic": "pnpm --filter @nucleo/storybook chromatic",
-		"pack:all": "pnpm --filter ./packages/tokens --filter ./packages/ui --filter ./packages/blocks exec npm pack",
+		"pack:all": "node scripts/pack-packages.mjs",
 		"publish:packages": "pnpm --filter ./packages/tokens --filter ./packages/ui --filter ./packages/blocks publish --no-git-checks",
 		"check:tokens": "node packages/tokens/scripts/validate-tokens.mjs",
 		"check:storybook-brands": "node scripts/check-storybook-brands.mjs"

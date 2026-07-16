@@ -6,6 +6,7 @@ import {
 	synchronizePackageManifest,
 	validateDistArtifacts,
 	validatePackageManifest,
+	validatePackedArtifact,
 } from "./lib/package-distribution.mjs";
 
 const manifest = {
@@ -129,4 +130,92 @@ test("real package catalogs expose their complete tsup entries", () => {
 			"src/launcher-card/index.ts",
 		],
 	);
+});
+
+const synchronized = synchronizePackageManifest(manifest);
+const packed = {
+	...synchronized,
+	main: synchronized.publishConfig.main,
+	module: synchronized.publishConfig.module,
+	types: synchronized.publishConfig.types,
+	exports: synchronized.publishConfig.exports,
+	dependencies: { internal: "1.2.3" },
+};
+
+test("accepts package.json plus dist files", () => {
+	assert.deepEqual(
+		validatePackedArtifact({
+			manifest: packed,
+			files: new Set([
+				"package/package.json",
+				"package/dist/index.mjs",
+				"package/dist/index.d.mts",
+				"package/dist/button/index.mjs",
+				"package/dist/button/index.d.mts",
+			]),
+		}),
+		[],
+	);
+});
+
+test("rejects source, credentials, unknown roots, and workspace dependencies", () => {
+	const diagnostics = validatePackedArtifact({
+		manifest: {
+			...packed,
+			exports: { ".": "./src/index.ts" },
+			dependencies: { internal: "workspace:*" },
+		},
+		files: new Set([
+			"package/package.json",
+			"package/dist/../src/hidden.ts",
+			"package/src/index.ts",
+			"package/.npmrc",
+			"package/private.txt",
+		]),
+	});
+	for (const fragment of [
+		"exports",
+		"../src/hidden.ts",
+		"src",
+		".npmrc",
+		"private.txt",
+		"workspace:*",
+	]) {
+		assert.ok(diagnostics.some((item) => item.includes(fragment)));
+	}
+});
+
+test("rejects nested entry targets outside dist and sensitive filenames", () => {
+	const diagnostics = validatePackedArtifact({
+		manifest: {
+			...packed,
+			main: "./index.js",
+			exports: {
+				".": {
+					import: "./dist/index.mjs",
+					development: { types: "./types/index.d.ts" },
+				},
+			},
+			optionalDependencies: { optional: "workspace:^" },
+			peerDependencies: { peer: "workspace:~" },
+		},
+		files: new Set([
+			"package/package.json",
+			"package/dist/index.mjs",
+			"package/dist/client-secret.json",
+			"package/.env.production",
+		]),
+	});
+
+	for (const fragment of [
+		"main",
+		"exports",
+		"types/index.d.ts",
+		"workspace:^",
+		"workspace:~",
+		"client-secret.json",
+		".env.production",
+	]) {
+		assert.ok(diagnostics.some((item) => item.includes(fragment)));
+	}
 });

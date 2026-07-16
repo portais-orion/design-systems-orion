@@ -109,3 +109,96 @@ export function validateDistArtifacts(manifest, distFiles) {
 
 	return diagnostics;
 }
+
+const PACKED_ENTRY_FIELDS = ["main", "module", "types"];
+const DEPENDENCY_FIELDS = ["dependencies", "optionalDependencies", "peerDependencies"];
+
+function visitStrings(value, path, visit) {
+	if (typeof value === "string") {
+		visit(value, path);
+		return;
+	}
+	if (Array.isArray(value)) {
+		for (const [index, item] of value.entries()) {
+			visitStrings(item, `${path}[${index}]`, visit);
+		}
+		return;
+	}
+	if (value !== null && typeof value === "object") {
+		for (const [key, item] of Object.entries(value)) {
+			visitStrings(item, `${path}.${key}`, visit);
+		}
+	}
+}
+
+function isDistTarget(target) {
+	if (!target.startsWith("./dist/")) {
+		return false;
+	}
+	const segments = target.slice(2).split("/");
+	return !segments.includes("") && !segments.includes(".") && !segments.includes("..");
+}
+
+function isAllowedPackedFile(file) {
+	if (file === "package/package.json" || /^package\/(README|LICENSE)[^/]*$/i.test(file)) {
+		return true;
+	}
+	if (!file.startsWith("package/dist/") || file.includes("\\")) {
+		return false;
+	}
+	const segments = file.slice("package/dist/".length).split("/");
+	return (
+		segments.length > 0 &&
+		!segments.some((segment) => segment === "" || segment === "." || segment === "..")
+	);
+}
+
+function isSensitiveFilename(file) {
+	const filename = file.split("/").at(-1);
+	return (
+		/^\.env(?:\..*)?$/i.test(filename) ||
+		/^\.npmrc$/i.test(filename) ||
+		/(^|[._-])(secrets?|credentials?|private[-_]?key|id[-_]?rsa)([._-]|$)/i.test(filename)
+	);
+}
+
+export function validatePackedArtifact({ manifest, files }) {
+	const diagnostics = [];
+	const packageName = manifest.name ?? "pacote sem nome";
+
+	if (!files.has("package/package.json")) {
+		diagnostics.push(`${packageName}: package/package.json ausente do tarball`);
+	}
+
+	for (const file of files) {
+		if (!isAllowedPackedFile(file)) {
+			diagnostics.push(`${packageName}: arquivo fora das raizes permitidas: ${file}`);
+		}
+		if (isSensitiveFilename(file)) {
+			diagnostics.push(`${packageName}: arquivo sensivel no tarball: ${file}`);
+		}
+	}
+
+	for (const field of PACKED_ENTRY_FIELDS) {
+		const target = manifest[field];
+		if (target !== undefined && (typeof target !== "string" || !isDistTarget(target))) {
+			diagnostics.push(`${packageName}: ${field} aponta fora de ./dist/: ${String(target)}`);
+		}
+	}
+
+	visitStrings(manifest.exports, "exports", (target, field) => {
+		if (!isDistTarget(target)) {
+			diagnostics.push(`${packageName}: ${field} aponta fora de ./dist/: ${target}`);
+		}
+	});
+
+	for (const dependencyField of DEPENDENCY_FIELDS) {
+		visitStrings(manifest[dependencyField], dependencyField, (version, field) => {
+			if (version.startsWith("workspace:")) {
+				diagnostics.push(`${packageName}: ${field} preservou protocolo ${version}`);
+			}
+		});
+	}
+
+	return diagnostics;
+}
