@@ -74,7 +74,7 @@ validatePackedArtifact({ manifest, files })
 - Consumes: current `main` working tree
 - Produces: clean checkpoint commit before distribution implementation
 
-- [ ] **Step 1: Inspect pending scope**
+- [x] **Step 1: Inspect pending scope**
 
 Run:
 
@@ -86,7 +86,7 @@ git diff --stat
 
 Expected: no whitespace errors; pending files match user-authorized Núcleo work plus this plan.
 
-- [ ] **Step 2: Run mandatory baseline gates**
+- [x] **Step 2: Run mandatory baseline gates**
 
 Run:
 
@@ -98,7 +98,7 @@ pnpm build
 
 Expected: all three exit 0. If any command fails, stop checkpoint, diagnose failure, write failing regression test where behavior changes, then rerun all three.
 
-- [ ] **Step 3: Commit checkpoint**
+- [x] **Step 3: Commit checkpoint**
 
 ```powershell
 git add -A
@@ -120,7 +120,7 @@ Expected: commit created on `main`; working tree clean.
 - Consumes: manifest object with string TypeScript targets under `exports`
 - Produces: `derivePackageDistribution(manifest)` and `synchronizePackageManifest(manifest)`
 
-- [ ] **Step 1: Write failing derivation tests**
+- [x] **Step 1: Write failing derivation tests**
 
 Create tests containing these assertions:
 
@@ -185,7 +185,7 @@ test("rejects non-TypeScript source exports", () => {
 });
 ```
 
-- [ ] **Step 2: Verify RED**
+- [x] **Step 2: Verify RED**
 
 Run:
 
@@ -195,7 +195,7 @@ node --test scripts/package-distribution.test.mjs
 
 Expected: FAIL because `scripts/lib/package-distribution.mjs` does not exist.
 
-- [ ] **Step 3: Implement minimal derivation**
+- [x] **Step 3: Implement minimal derivation**
 
 Implement exported functions with these rules:
 
@@ -219,7 +219,7 @@ function toEntry(name, subpath, target) {
 
 `derivePackageDistribution` must preserve export insertion order. Root `main`, `module`, and `types` must use root entry targets. `synchronizePackageManifest` must shallow-copy nested objects and preserve non-derived `publishConfig` fields.
 
-- [ ] **Step 4: Verify GREEN**
+- [x] **Step 4: Verify GREEN**
 
 Run:
 
@@ -229,7 +229,7 @@ node --test scripts/package-distribution.test.mjs
 
 Expected: 3 tests pass, 0 fail.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```powershell
 git add scripts/lib/package-distribution.mjs scripts/package-distribution.test.mjs
@@ -250,7 +250,7 @@ git commit -m "feat: derive package distribution metadata"
 - Consumes: Task 2 derivation functions
 - Produces: `validatePackageManifest(manifest, sourceFiles)`, CLI `--check`/`--write`, root `check:packages`
 
-- [ ] **Step 1: Write failing manifest validation tests**
+- [x] **Step 1: Write failing manifest validation tests**
 
 Add:
 
@@ -279,23 +279,23 @@ test("accepts synchronized manifest with every source present", () => {
 });
 ```
 
-- [ ] **Step 2: Verify RED**
+- [x] **Step 2: Verify RED**
 
 Run `node --test scripts/package-distribution.test.mjs`.
 
 Expected: FAIL because `validatePackageManifest` is not exported.
 
-- [ ] **Step 3: Implement minimal validation**
+- [x] **Step 3: Implement minimal validation**
 
 Validation must aggregate diagnostics instead of stopping after first mismatch. Compare derived fields with deep equality through stable JSON serialization. Do not inspect unrelated manifest fields.
 
-- [ ] **Step 4: Verify GREEN**
+- [x] **Step 4: Verify GREEN**
 
 Run `node --test scripts/package-distribution.test.mjs`.
 
 Expected: 5 tests pass, 0 fail.
 
-- [ ] **Step 5: Replace CLI implementation**
+- [x] **Step 5: Replace CLI implementation**
 
 CLI parsing rules:
 
@@ -307,7 +307,7 @@ node scripts/gen-dist-exports.mjs packages/ui/package.json
 
 No-mode invocation equals `--write` for backward compatibility. `--check` reads package files and source inventory, prints all diagnostics, exits 1 on mismatch, and never writes. `--write` applies `synchronizePackageManifest`, writes tab-indented JSON plus final newline, then runs validation.
 
-- [ ] **Step 6: Add root gate and verify current manifests**
+- [x] **Step 6: Add root gate and verify current manifests**
 
 Add to root `package.json`:
 
@@ -326,7 +326,7 @@ node scripts/gen-dist-exports.mjs --check packages/ui/package.json packages/bloc
 
 Expected: exit 0. If stale, run `--write` once, inspect manifest diff, rerun `--check`.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```powershell
 git add scripts/gen-dist-exports.mjs scripts/lib/package-distribution.mjs scripts/package-distribution.test.mjs package.json packages/ui/package.json packages/blocks/package.json
@@ -347,7 +347,7 @@ git commit -m "feat: gate package export parity"
 - Consumes: `derivePackageDistribution(manifest).entries`
 - Produces: tsup entry arrays matching canonical exports; inherited `dist/**` cache outputs
 
-- [ ] **Step 1: Write real-catalog characterization test**
+- [x] **Step 1: Write real-catalog characterization test**
 
 Add a test that reads real UI/Blocks manifests and asserts canonical entry arrays equal expected source targets, including root and latest three Blocks subpaths:
 
@@ -364,17 +364,17 @@ test("real package catalogs expose their complete tsup entries", () => {
 });
 ```
 
-- [ ] **Step 2: Record approved configuration exception**
+- [x] **Step 2: Record approved configuration exception**
 
 Run `node --test scripts/package-distribution.test.mjs`.
 
 Expected: characterization passes. User explicitly authorized no textual implementation test for `tsup.config.ts`; behavior is verified by canonical derivation, build, and dist artifact gates.
 
-- [ ] **Step 3: Update tsup configs**
+- [x] **Step 3: Update tsup configs**
 
 Each config reads its manifest with `readFileSync(new URL("./package.json", import.meta.url), "utf8")`, derives entries, and passes source paths to `defineConfig({ entry })`. Keep format, output extensions, DTS, externals, splitting, treeshake, and clean unchanged.
 
-- [ ] **Step 4: Remove local Turbo output overrides**
+- [x] **Step 4: Remove local Turbo output overrides**
 
 Replace both package `turbo.json` files with:
 
@@ -385,7 +385,7 @@ Replace both package `turbo.json` files with:
 }
 ```
 
-- [ ] **Step 5: Verify GREEN and builds**
+- [x] **Step 5: Verify GREEN and builds**
 
 Run:
 
@@ -397,7 +397,7 @@ pnpm --filter @portais-orion/blocks build
 
 Expected: tests pass; both builds exit 0 and create root plus every subpath output.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```powershell
 git add packages/ui/tsup.config.ts packages/blocks/tsup.config.ts packages/ui/turbo.json packages/blocks/turbo.json scripts/package-distribution.test.mjs
@@ -418,7 +418,7 @@ git commit -m "refactor: derive package build entries"
 - Consumes: canonical manifest and normalized `dist` inventory
 - Produces: `validateDistArtifacts(manifest, distFiles)` and post-build gate
 
-- [ ] **Step 1: Write failing dist tests**
+- [x] **Step 1: Write failing dist tests**
 
 Add:
 
@@ -443,13 +443,13 @@ test("accepts complete dist inventory", () => {
 });
 ```
 
-- [ ] **Step 2: Verify RED**
+- [x] **Step 2: Verify RED**
 
 Run `node --test scripts/package-distribution.test.mjs`.
 
 Expected: FAIL because `validateDistArtifacts` is absent.
 
-- [ ] **Step 3: Implement and wire post-build adapter**
+- [x] **Step 3: Implement and wire post-build adapter**
 
 `scripts/check-package-dist.mjs` must recursively inventory `dist` for UI and Blocks, normalize separators, aggregate diagnostics, print package-qualified errors, and exit 1 on any missing artifact.
 
@@ -459,7 +459,7 @@ Change root build script to:
 "build": "turbo build && node scripts/check-package-dist.mjs"
 ```
 
-- [ ] **Step 4: Verify GREEN**
+- [x] **Step 4: Verify GREEN**
 
 Run:
 
@@ -470,7 +470,7 @@ pnpm build
 
 Expected: tests pass; build and post-build gate exit 0.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```powershell
 git add scripts/lib/package-distribution.mjs scripts/package-distribution.test.mjs scripts/check-package-dist.mjs package.json
@@ -492,7 +492,7 @@ git commit -m "feat: validate package dist artifacts"
 - Consumes: extracted packed manifest and tarball inventory
 - Produces: `validatePackedArtifact({ manifest, files })`; inspected `.tmp/packages/*.tgz`
 
-- [ ] **Step 1: Write failing packed-artifact tests**
+- [x] **Step 1: Write failing packed-artifact tests**
 
 Add tests:
 
@@ -545,17 +545,17 @@ test("rejects source, credentials, unknown roots, and workspace dependencies", (
 });
 ```
 
-- [ ] **Step 2: Verify RED**
+- [x] **Step 2: Verify RED**
 
 Run `node --test scripts/package-distribution.test.mjs`.
 
 Expected: FAIL because `validatePackedArtifact` is absent.
 
-- [ ] **Step 3: Implement tarball policy**
+- [x] **Step 3: Implement tarball policy**
 
 Allowed roots: `package/package.json`, optional `package/README*`, optional `package/LICENSE*`, and `package/dist/**`. Reject `.env*`, `.npmrc`, `src/**`, secrets by filename, unresolved `workspace:*` recursively in dependencies, optionalDependencies, and peerDependencies, and any packed `main`/`module`/`types`/`exports` target outside `./dist/`.
 
-- [ ] **Step 4: Implement pack adapter**
+- [x] **Step 4: Implement pack adapter**
 
 `scripts/pack-packages.mjs` must:
 
@@ -572,11 +572,11 @@ Change root script:
 "pack:all": "node scripts/pack-packages.mjs"
 ```
 
-- [ ] **Step 5: Update release workflow**
+- [x] **Step 5: Update release workflow**
 
 Quality gates remain `pnpm check`, `pnpm typecheck`, `pnpm build`. Run `pnpm pack:all` for both dry-run and publish paths before `pnpm publish:packages`. Remove separate `pnpm check:pureza` once root `check` includes it. Never publish if pack inspection fails.
 
-- [ ] **Step 6: Verify GREEN**
+- [x] **Step 6: Verify GREEN**
 
 Run:
 
@@ -588,7 +588,7 @@ pnpm pack:all
 
 Expected: tests/build pass; three inspected tarballs under `.tmp/packages`; no source, credential, unknown root, or `workspace:*` diagnostic.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```powershell
 git add scripts/lib/package-distribution.mjs scripts/package-distribution.test.mjs scripts/pack-packages.mjs package.json .github/workflows/release-packages.yml
@@ -608,7 +608,7 @@ git commit -m "feat: inspect package tarballs before release"
 - Consumes: final commands and behavior from Tasks 2–6
 - Produces: one current operational narrative; spec status implemented
 
-- [ ] **Step 1: Update architecture documentation**
+- [x] **Step 1: Update architecture documentation**
 
 Document exact pipeline:
 
@@ -623,7 +623,7 @@ package.json.exports
 
 State UI/Blocks use tsup adapter; Tokens uses CSS adapter. Remove source-based/pending-transfer statements contradicted by current manifests.
 
-- [ ] **Step 2: Update release prompt**
+- [x] **Step 2: Update release prompt**
 
 Delete manual `gen-dist-exports` step. Replace with:
 
@@ -636,11 +636,11 @@ pnpm pack:all
 
 Keep external publish/consumer steps, token safety, and no-Aurora constraints.
 
-- [ ] **Step 3: Mark spec in progress**
+- [x] **Step 3: Mark spec in progress**
 
 Change spec status to `em implementação`. Completion status belongs to Task 8 after fresh gates.
 
-- [ ] **Step 4: Run documentation checks**
+- [x] **Step 4: Run documentation checks**
 
 Run:
 
@@ -652,7 +652,7 @@ git diff --check
 
 Expected: all exit 0.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```powershell
 git add docs/architecture/package-distribution.md ai/prompts/release-portais-orion.md docs/superpowers/specs/2026-07-15-package-distribution-deepening-design.md
@@ -671,7 +671,7 @@ git commit -m "docs: align package distribution workflow"
 - Consumes: completed distribution deepening
 - Produces: fresh evidence for completion; clean `main`
 
-- [ ] **Step 1: Run focused tests**
+- [x] **Step 1: Run focused tests**
 
 ```powershell
 node --test scripts/package-distribution.test.mjs
@@ -679,7 +679,7 @@ node --test scripts/package-distribution.test.mjs
 
 Expected: all tests pass, 0 fail.
 
-- [ ] **Step 2: Run mandatory repository gates**
+- [x] **Step 2: Run mandatory repository gates**
 
 ```powershell
 pnpm check
@@ -689,7 +689,7 @@ pnpm build
 
 Expected: all exit 0.
 
-- [ ] **Step 3: Run package artifact gate**
+- [x] **Step 3: Run package artifact gate**
 
 ```powershell
 pnpm pack:all
@@ -697,11 +697,11 @@ pnpm pack:all
 
 Expected: Tokens, UI, and Blocks tarballs inspected successfully.
 
-- [ ] **Step 4: Mark verified spec complete**
+- [x] **Step 4: Mark verified spec complete**
 
 Change spec status from `em implementação` to `implementado e verificado` now that fresh focused, repository, and artifact gates passed.
 
-- [ ] **Step 5: Verify public subpaths unchanged**
+- [x] **Step 5: Verify public subpaths unchanged**
 
 Compare current subpath keys against commit `450d523`:
 
@@ -712,7 +712,7 @@ git show 450d523:packages/blocks/package.json
 
 Expected: `exports` key sets match exactly; only derived distribution fields changed.
 
-- [ ] **Step 6: Review final diff and status**
+- [x] **Step 6: Review final diff and status**
 
 ```powershell
 git diff --check
@@ -722,7 +722,7 @@ git log --oneline -8
 
 Expected: no unstaged implementation changes; commits on `main`; no merge needed because work started and finished on `main` per user instruction.
 
-- [ ] **Step 7: Commit verified spec status or final fixes**
+- [x] **Step 7: Commit verified spec status or final fixes**
 
 ```powershell
 git add -A

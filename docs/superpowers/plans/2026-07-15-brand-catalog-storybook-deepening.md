@@ -33,7 +33,7 @@
 - Consumes: plain catalog/state objects; no filesystem.
 - Produces: `deriveBrandArtifacts(catalog)`, `validateBrandState(input)`, `synchronizeBrandArtifacts(input)`.
 
-- [ ] **Step 1: Write failing derivation tests**
+- [x] **Step 1: Write failing derivation tests**
 
 Create table-driven tests using this canonical fixture:
 
@@ -69,7 +69,7 @@ test("derives ordered theme imports, exports, toolbar, and default", () => {
 });
 ```
 
-- [ ] **Step 2: Run RED for missing module**
+- [x] **Step 2: Run RED for missing module**
 
 Run:
 
@@ -79,7 +79,7 @@ node --test scripts/brand-catalog.test.mjs
 
 Expected: FAIL because `scripts/lib/brand-catalog.mjs` does not exist.
 
-- [ ] **Step 3: Implement catalog parsing and derivation**
+- [x] **Step 3: Implement catalog parsing and derivation**
 
 Implement internal checks for:
 
@@ -93,7 +93,7 @@ function normalizeLabel(value) {
 
 `deriveBrandArtifacts` must preserve catalog order and throw `TypeError` with deterministic messages when catalog shape cannot be derived safely.
 
-- [ ] **Step 4: Write failing validation tests**
+- [x] **Step 4: Write failing validation tests**
 
 Cover exact diagnostics for:
 
@@ -108,11 +108,11 @@ Cover exact diagnostics for:
 
 Also cover missing/orphan themes, each required selector, each required identity token, stale `index.css`, stale source exports, and stale publish exports. Diagnostics must expose `code`, `path`, `actual`, and `expected` where applicable.
 
-- [ ] **Step 5: Run RED for validation**
+- [x] **Step 5: Run RED for validation**
 
 Run the focused test. Expected: derivation tests PASS; new validation tests FAIL.
 
-- [ ] **Step 6: Implement aggregated validation**
+- [x] **Step 6: Implement aggregated validation**
 
 Use diagnostic shape:
 
@@ -128,7 +128,7 @@ Use diagnostic shape:
 
 Required identity tokens are the 15 current variables from `validate-tokens.mjs`. Validation must not read disk, mutate input, throw for user-state errors, or stop after first failure.
 
-- [ ] **Step 7: Write failing synchronization tests**
+- [x] **Step 7: Write failing synchronization tests**
 
 Prove:
 
@@ -138,7 +138,7 @@ Prove:
 - all other manifest fields/exports remain deep-equal;
 - invalid catalog prevents synchronization.
 
-- [ ] **Step 8: Implement pure synchronization**
+- [x] **Step 8: Implement pure synchronization**
 
 Return:
 
@@ -151,7 +151,7 @@ Return:
 
 Do not write files. Reject structural diagnostics, missing/orphan themes, incomplete themes, and invalid defaults before producing output. Derived-drift diagnostics are the only conditions synchronization may repair.
 
-- [ ] **Step 9: Run GREEN and commit**
+- [x] **Step 9: Run GREEN and commit**
 
 Run:
 
@@ -183,7 +183,7 @@ git commit -m "feat: derive internal brand catalog"
 - Consumes: pure functions from Task 1.
 - Produces: `node scripts/brand-catalog.mjs --check|--write`; root scripts `check:brands` and `sync:brands`.
 
-- [ ] **Step 1: Add canonical catalog**
+- [x] **Step 1: Add canonical catalog**
 
 Create exactly:
 
@@ -197,7 +197,7 @@ Create exactly:
 }
 ```
 
-- [ ] **Step 2: Write failing adapter characterization**
+- [x] **Step 2: Write failing adapter characterization**
 
 Extract an adapter function accepting injected dependencies:
 
@@ -214,15 +214,15 @@ Tests must prove:
 - attempts to resolve targets outside `rootDir` fail before writes;
 - successful write preserves unrelated manifest content.
 
-- [ ] **Step 3: Run RED**
+- [x] **Step 3: Run RED**
 
 Run focused tests. Expected: adapter tests FAIL because CLI module/function is absent.
 
-- [ ] **Step 4: Implement adapter and executable entrypoint**
+- [x] **Step 4: Implement adapter and executable entrypoint**
 
 Use shell-free Node filesystem calls. Resolve fixed paths from `rootDir`; confirm each target equals the expected resolved path and remains beneath root. Serialize manifest with tab indentation plus trailing newline. Print every diagnostic as one line containing code/path/actual/expected.
 
-- [ ] **Step 5: Wire root scripts without duplicating check**
+- [x] **Step 5: Wire root scripts without duplicating check**
 
 Set:
 
@@ -235,7 +235,7 @@ Set:
 
 Replace the direct `check:storybook-brands` invocation in root `check` with `pnpm check:brands`. Keep old script temporarily until Task 4 migrates Storybook.
 
-- [ ] **Step 6: Run real check and write no-op**
+- [x] **Step 6: Run real check and write no-op**
 
 Run:
 
@@ -247,7 +247,7 @@ git diff -- packages/tokens/src/index.css packages/tokens/package.json
 
 Expected: check exit 0; write reports no changes; diff empty because existing derivatives already match catalog.
 
-- [ ] **Step 7: Run tests and commit**
+- [x] **Step 7: Run tests and commit**
 
 Run focused tests and `git diff --check`.
 
@@ -271,15 +271,15 @@ git commit -m "feat: synchronize brand artifacts"
 - Consumes: catalog JSON and `validateBrandState` from Task 1.
 - Produces: current `pnpm check:tokens` behavior backed by catalog; token build fails on catalog/theme drift.
 
-- [ ] **Step 1: Characterize the existing executable contract**
+- [x] **Step 1: Characterize the existing executable contract**
 
 Add an integration test that spawns `node packages/tokens/scripts/validate-tokens.mjs` in the real repository and asserts exit 0 plus the current `validate-tokens OK` prefix. The pure fixture tests from Tasks 1–2 already prove that a third catalog brand without CSS returns `theme.missing`; this step protects the executable contract during a behavior-preserving adapter refactor.
 
-- [ ] **Step 2: Run characterization before refactor**
+- [x] **Step 2: Run characterization before refactor**
 
 Run focused tests. Expected: all pass before refactor; record this as characterization, not a RED exception for new behavior.
 
-- [ ] **Step 3: Refactor validator to thin adapter**
+- [x] **Step 3: Refactor validator to thin adapter**
 
 Remove hardcoded `brands` and token loops from `validate-tokens.mjs`. Reuse loader + pure validator. Preserve process contract:
 
@@ -291,7 +291,7 @@ On failure, print count and all deterministic diagnostics, then exit 1.
 
 `build-tokens.mjs` must still validate before deleting/copying `dist`.
 
-- [ ] **Step 4: Run token and catalog gates**
+- [x] **Step 4: Run token and catalog gates**
 
 Run:
 
@@ -303,7 +303,7 @@ pnpm check:brands
 
 Expected: all exit 0.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```powershell
 git add packages/tokens/scripts/validate-tokens.mjs packages/tokens/scripts/build-tokens.mjs scripts/brand-catalog.test.mjs
@@ -327,7 +327,7 @@ Omit unchanged `build-tokens.mjs` from staging.
 - Consumes: `packages/tokens/brands.json`.
 - Produces: toolbar, default brand and comparison driven by catalog order; no duplicated brand declarations.
 
-- [ ] **Step 1: Add failing source-integration assertions**
+- [x] **Step 1: Add failing source-integration assertions**
 
 In `scripts/brand-catalog.test.mjs`, read Storybook sources and assert:
 
@@ -340,11 +340,11 @@ assert.equal(existsSync("apps/storybook/src/brands.ts"), false);
 
 Also assert no non-test source under `apps/storybook` declares `BRANDS` or `BRAND_LABELS`.
 
-- [ ] **Step 2: Run RED**
+- [x] **Step 2: Run RED**
 
 Run focused tests. Expected: FAIL on current imports/hardcoded fallback/existing `brands.ts`.
 
-- [ ] **Step 3: Implement typed local adapter over JSON**
+- [x] **Step 3: Implement typed local adapter over JSON**
 
 In both Storybook files import catalog using the relative JSON path. In preview, derive:
 
@@ -358,11 +358,11 @@ const activeBrand =
 
 Toolbar uses `catalog.brands.map(({ id, label }) => ({ value: id, title: label }))`. `initialGlobals.brand` uses `catalog.defaultBrand`. Comparison maps `catalog.brands` and uses `brand.id`/`brand.label`.
 
-- [ ] **Step 4: Remove textual checker duplication**
+- [x] **Step 4: Remove textual checker duplication**
 
 Delete `apps/storybook/src/brands.ts`. Delete `scripts/check-storybook-brands.mjs` when all its behavior is covered by catalog validation and source-integration tests. Remove `check:storybook-brands` from root scripts; `check:brands` remains canonical.
 
-- [ ] **Step 5: Verify Storybook integration**
+- [x] **Step 5: Verify Storybook integration**
 
 Run:
 
@@ -375,7 +375,7 @@ pnpm build:storybook
 
 Expected: tests/gates exit 0; static Storybook build succeeds with both catalog entries.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```powershell
 git add apps/storybook/.storybook/preview.tsx apps/storybook/stories/marcas.stories.tsx apps/storybook/src/brands.ts scripts/check-storybook-brands.mjs scripts/brand-catalog.test.mjs package.json
@@ -398,7 +398,7 @@ git commit -m "refactor: drive Storybook brands from catalog"
 - Consumes: final CLI commands and catalog behavior.
 - Produces: current operational narrative; fresh evidence; spec status `implementado e verificado`.
 
-- [ ] **Step 1: Update operational documentation**
+- [x] **Step 1: Update operational documentation**
 
 Document exact add-brand flow:
 
@@ -412,7 +412,7 @@ pnpm build:storybook
 
 State catalog is internal, products still import one CSS theme, and derived `index.css`/manifest fields must not be hand-edited.
 
-- [ ] **Step 2: Run focused and repository gates**
+- [x] **Step 2: Run focused and repository gates**
 
 Run:
 
@@ -425,7 +425,7 @@ pnpm build
 
 Expected: all exit 0.
 
-- [ ] **Step 3: Verify public compatibility and internal-only catalog**
+- [x] **Step 3: Verify public compatibility and internal-only catalog**
 
 Compare current token export keys with `2ae074b:packages/tokens/package.json`. Expected: exact key/value equality for `exports` and `publishConfig.exports`.
 
@@ -439,7 +439,7 @@ Inspect Tokens inventory. Expected: `package/dist/base.css`, `package/dist/index
 
 No changeset is created because IDs, CSS, versions, exports and all published bytes remain compatible; this deepening changes only internal authoring and validation.
 
-- [ ] **Step 4: Mark spec verified and review status**
+- [x] **Step 4: Mark spec verified and review status**
 
 Change spec status to `implementado e verificado`. Run:
 
@@ -450,13 +450,13 @@ git status --short
 
 Expected: only planned documentation/spec changes remain unstaged.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```powershell
 git add ai/workflows/add-brand-theme.md ai/context/04-token-rules.md docs/architecture/theming.md docs/architecture/storybook.md docs/superpowers/specs/2026-07-15-brand-catalog-storybook-deepening-design.md
 git commit -m "docs: align internal brand catalog workflow"
 ```
 
-- [ ] **Step 6: Final review evidence**
+- [x] **Step 6: Final review evidence**
 
 Record base/head SHAs, focused test count, repository gates, Storybook build, token export parity, tarball inventory, `git status --short`, and reviewer verdict. No push or publish.

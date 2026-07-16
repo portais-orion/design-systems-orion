@@ -2,9 +2,9 @@
 
 Modelo (ADR 0005): componentes usam apenas tokens semânticos; marcas são CSS.
 
-1. `@supertrans-transportes/tokens/base.css` — bloco `@theme inline` (Tailwind v4) mapeando `--color-*` para CSS variables + defaults neutros em `:root`. Não contém cor de marca.
-2. `@supertrans-transportes/tokens/themes/supertrans.css` — azul petróleo `#00526b`, hover `#005a75`, accent `#3caec4`, sidebar navy `#001e2b`.
-3. `@supertrans-transportes/tokens/themes/aurora.css` — laranja `#f97316`, hover `#ea580c`, accent `#fb923c`, sidebar slate. A escala `primary-50..900` do Aurora foi abolida: variações são tokens (`--primary-hover`).
+1. `@portais-orion/tokens/base.css` — bloco `@theme inline` (Tailwind v4) mapeando `--color-*` para CSS variables + defaults neutros em `:root`. Não contém cor de marca.
+2. `@portais-orion/tokens/themes/supertrans.css` — azul petróleo `#00526b`, hover `#005a75`, accent `#3caec4`, sidebar navy `#001e2b`.
+3. `@portais-orion/tokens/themes/aurora.css` — laranja `#f97316`, hover `#ea580c`, accent `#fb923c`, sidebar slate. A escala `primary-50..900` do Aurora foi abolida: variações são tokens (`--primary-hover`).
 
 Resolução: cada tema define três seletores:
 
@@ -18,4 +18,6 @@ Por que não `:root, [data-brand=...]`: `:root` e `[data-brand]` têm a mesma es
 
 Proibições nos packages compartilhados: hex em componente; classes de marca (`orange-*`, `blue-*`, `primary-600`); prop `brand`; `tailwind.config.ts`.
 
-Marca nova = criar `themes/<marca>.css` redefinindo os tokens de identidade (workflow `ai/workflows/add-brand-theme.md`).
+O conjunto de marcas é declarado em `packages/tokens/brands.json` (catálogo interno — fora do tarball publicado). `index.css` e os exports `./themes/*` do manifesto são derivados dele: `pnpm sync:brands` regrava, `pnpm check:brands` valida (integra o `pnpm check`). Toolbar e comparativo do Storybook consomem o mesmo catálogo.
+
+Marca nova = entrada no `brands.json` + `themes/<id>.css` redefinindo os tokens de identidade (workflow `ai/workflows/add-brand-theme.md`).

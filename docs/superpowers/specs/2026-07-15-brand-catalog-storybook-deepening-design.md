@@ -1,6 +1,6 @@
 # Catálogo interno de marcas e Storybook — design
 
-Status: aprovado para planejamento
+Status: implementado e verificado
 
 Data: 2026-07-15
 
