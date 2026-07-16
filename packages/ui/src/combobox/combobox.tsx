@@ -111,7 +111,7 @@ export function Combobox({
 							contentClassName,
 						)}
 					>
-						<ComboboxPrimitive.Empty className="px-3 py-6 text-center text-sm text-muted-foreground">
+						<ComboboxPrimitive.Empty className="px-3 py-6 text-center text-sm text-muted-foreground empty:hidden">
 							{emptyMessage}
 						</ComboboxPrimitive.Empty>
 						<ComboboxPrimitive.List>

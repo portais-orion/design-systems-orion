@@ -64,7 +64,11 @@ const SelectContent = React.forwardRef<
 	}
 >(({ className, children, position = "popper", ...props }, ref) => (
 	<SelectPortal>
-		<SelectPrimitive.Positioner className="z-50 min-w-[var(--anchor-width)]" sideOffset={4}>
+		<SelectPrimitive.Positioner
+			className="z-50 min-w-[var(--anchor-width)]"
+			sideOffset={4}
+			alignItemWithTrigger={position === "item-aligned"}
+		>
 			<SelectPrimitive.Popup
 				ref={ref}
 				className={cn(
