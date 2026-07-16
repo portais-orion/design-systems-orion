@@ -1,10 +1,9 @@
 # 🏗️ Núcleo de Portais do Grupo
 
-<!-- Badges — substituir pelos links reais quando o CI estiver ativo -->
 ![tokens version](https://img.shields.io/badge/@portais--orion/tokens-0.1.1-blue?style=flat-square)
-![ui version](https://img.shields.io/badge/@portais--orion/ui-0.2.1-blue?style=flat-square)
-![blocks version](https://img.shields.io/badge/@portais--orion/blocks-0.2.1-blue?style=flat-square)
-![build status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
+![ui version](https://img.shields.io/badge/@portais--orion/ui-0.3.0-blue?style=flat-square)
+![blocks version](https://img.shields.io/badge/@portais--orion/blocks-0.3.1-blue?style=flat-square)
+[![CI](https://github.com/portais-orion/nucleo-portais/actions/workflows/ci.yml/badge.svg)](https://github.com/portais-orion/nucleo-portais/actions/workflows/ci.yml)
 <!-- ![Storybook](https://img.shields.io/badge/Storybook-deployed-ff4785?style=flat-square&logo=storybook&logoColor=white) -->
 
 **Plataforma interna do grupo** — design system compartilhado (tokens, primitives, blocks), Storybook oficial, documentação arquitetural e estrutura de desenvolvimento assistido por agentes de IA.
@@ -21,6 +20,7 @@ O `nucleo-portais` é a base oficial para criação, padronização e evolução
 
 - **Design system** — tokens semânticos, primitives (UI) e composições genéricas (blocks)
 - **Storybook oficial** — documentação visual com toolbar de marca (Supertrans/Aurora)
+- **Site de docs** — `apps/docs` (Fumadocs + Next), páginas geradas das fontes via `scripts/generate-docs.mjs`
 - **Documentação arquitetural** — ADRs, guias de arquitetura e decisões de design
 - **Infraestrutura de agentes IA** — contexto, regras, workflows, skills e checklists
 
@@ -57,8 +57,8 @@ Atualmente: **Supertrans** e **Aurora**. Adicionar uma nova marca = criar `theme
 | Camada | Package | Versão | Descrição |
 |---|---|---|---|
 | 0 — Tokens | `@portais-orion/tokens` | 0.1.1 | Tokens semânticos + temas por marca (CSS puro) |
-| 1 — UI | `@portais-orion/ui` | 0.2.1 | 29 primitives (Base UI + Tailwind v4 + cva) |
-| 2 — Blocks | `@portais-orion/blocks` | 0.2.1 | 30 composições genéricas (DataTable, AppShell, layouts…) |
+| 1 — UI | `@portais-orion/ui` | 0.3.0 | 28 primitives (Base UI + Tailwind v4 + cva) |
+| 2 — Blocks | `@portais-orion/blocks` | 0.3.1 | 32 composições genéricas (DataTable, AppShell, layouts…) |
 | Infra | `@portais-orion/tsconfig` | privado | TSConfigs compartilhados (`base`, `react-library`, `nextjs`) |
 | Infra | `@portais-orion/biome-config` | privado | Config Biome compartilhada (tab, 100 col, double quotes) |
 
@@ -69,7 +69,7 @@ Regra de corte entre camadas: se o componente conhece entidade de negócio, rota
 ## 🧩 Catálogo de Componentes
 
 <details>
-<summary><strong>UI Primitives — 29 componentes</strong> (<code>@portais-orion/ui</code>)</summary>
+<summary><strong>UI Primitives — 28 componentes</strong> (<code>@portais-orion/ui</code>)</summary>
 
 | Componente | Import |
 |---|---|
@@ -105,7 +105,7 @@ Regra de corte entre camadas: se o componente conhece entidade de negócio, rota
 </details>
 
 <details>
-<summary><strong>Blocks — 30 composições</strong> (<code>@portais-orion/blocks</code>)</summary>
+<summary><strong>Blocks — 32 composições</strong> (<code>@portais-orion/blocks</code>)</summary>
 
 | Componente | Import |
 |---|---|
@@ -114,6 +114,7 @@ Regra de corte entre camadas: se o componente conhece entidade de negócio, rota
 | Code Badge | `@portais-orion/blocks/code-badge` |
 | Confirm Dialog | `@portais-orion/blocks/confirm-dialog` |
 | Content Card | `@portais-orion/blocks/content-card` |
+| CRUD Modal Header | `@portais-orion/blocks/crud-modal-header` |
 | Dashboard Page Layout | `@portais-orion/blocks/dashboard-page-layout` |
 | Data Table | `@portais-orion/blocks/data-table` |
 | Detail Page Layout | `@portais-orion/blocks/detail-page-layout` |
@@ -121,11 +122,13 @@ Regra de corte entre camadas: se o componente conhece entidade de negócio, rota
 | Error State | `@portais-orion/blocks/error-state` |
 | Field Group | `@portais-orion/blocks/field-group` |
 | Filter Pill | `@portais-orion/blocks/filter-pill` |
+| Filters Card | `@portais-orion/blocks/filters-card` |
 | Form Actions | `@portais-orion/blocks/form-actions` |
 | Form Field | `@portais-orion/blocks/form-field` |
 | Form Message | `@portais-orion/blocks/form-message` |
 | Form Page Layout | `@portais-orion/blocks/form-page-layout` |
 | Form Section | `@portais-orion/blocks/form-section` |
+| Launcher Card | `@portais-orion/blocks/launcher-card` |
 | List Page Layout | `@portais-orion/blocks/list-page-layout` |
 | Loading Overlay | `@portais-orion/blocks/loading-overlay` |
 | Navigation | `@portais-orion/blocks/navigation` |
@@ -192,7 +195,8 @@ Na toolbar do Storybook, o seletor **Marca** alterna os temas Supertrans ↔ Aur
 ```
 nucleo-portais/
 ├── apps/
-│   └── storybook/              # Storybook oficial (toolbar de marca Supertrans/Aurora)
+│   ├── storybook/              # Storybook oficial (toolbar de marca Supertrans/Aurora)
+│   └── docs/                   # Site de documentação (Fumadocs + Next) — MDX gerado das fontes
 ├── packages/
 │   ├── tokens/                 # Camada 0 — base.css + themes/{supertrans,aurora}.css
 │   ├── ui/                     # Camada 1 — primitives (Base UI + TW4 + cva)
