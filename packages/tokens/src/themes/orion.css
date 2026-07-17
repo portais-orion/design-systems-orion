@@ -1,0 +1,37 @@
+/*
+ * Tema Grupo Orion — apenas valores de marca.
+ * Origem: design system Grupo Orion (shadcn/ui + Tailwind + CVA). Primária teal
+ * #29A699 (HSL 175 60% 40%); secundária/brand laranja queimado #D95A11
+ * (HSL 22 85% 45%) — mapeada em --brand-accent (o Núcleo mantém --secondary
+ * neutro; a mesma lista de tokens dos demais temas, nem mais nem menos).
+ * Radius 0.5rem. O design system vive só no código do produto (sem
+ * Storybook/Figma), então aqui só traduzimos identidade para os tokens.
+ *
+ * :root:not([data-brand]) faz este tema valer sozinho quando o produto importa
+ * base.css + apenas este arquivo. Com dois temas carregados (index.css) o
+ * seletor colide e a marca passa a depender de [data-brand] — por isso
+ * ambientes multi-marca precisam declarar data-brand.
+ */
+:root:not([data-brand]),
+:root[data-brand="orion"],
+[data-brand="orion"] {
+	--primary: #29a699;
+	--primary-foreground: oklch(0.985 0 0);
+	--primary-hover: #238b82;
+	--ring: #29a699;
+
+	--brand-primary: #29a699;
+	--brand-hover: #238b82;
+	--brand-accent: #d95a11;
+
+	--sidebar: #0b2b28;
+	--sidebar-foreground: oklch(0.95 0 0);
+	--sidebar-primary: #29a699;
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.3 0.03 180);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: #d95a11;
+
+	--radius: 0.5rem;
+}

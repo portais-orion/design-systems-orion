@@ -15,6 +15,9 @@ const config: StorybookConfig = {
 		"../../../packages/ui/src/**/*.stories.@(ts|tsx)",
 		"../../../packages/blocks/src/**/*.stories.@(ts|tsx)",
 	],
+	// As logos de marca (fonte única em /assets) viram estáticos servidos em
+	// /brands — o switcher de marca e o comparativo referenciam /brands/<id>-logo.png.
+	staticDirs: [{ from: "../../../assets", to: "/brands" }],
 	addons: [
 		getAbsolutePath("@storybook/addon-docs"),
 		getAbsolutePath("@storybook/addon-a11y"),

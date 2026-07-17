@@ -2,8 +2,13 @@
 	"name": "@portais-orion/tokens",
 	"version": "0.1.1",
 	"description": "Tokens semânticos e temas por marca do Núcleo de Portais do Grupo",
-	"sideEffects": ["*.css"],
-	"files": ["dist", "brands.json"],
+	"sideEffects": [
+		"*.css"
+	],
+	"files": [
+		"dist",
+		"brands.json"
+	],
 	"scripts": {
 		"build": "node ../../scripts/brand-catalog.mjs --check && node scripts/build-tokens.mjs",
 		"prepack": "node ../../scripts/brand-catalog.mjs --check && node scripts/build-tokens.mjs"
@@ -13,7 +18,8 @@
 		"./index.css": "./src/index.css",
 		"./base.css": "./src/base.css",
 		"./themes/supertrans.css": "./src/themes/supertrans.css",
-		"./themes/aurora.css": "./src/themes/aurora.css"
+		"./themes/aurora.css": "./src/themes/aurora.css",
+		"./themes/orion.css": "./src/themes/orion.css"
 	},
 	"publishConfig": {
 		"access": "restricted",
@@ -23,7 +29,8 @@
 			"./index.css": "./dist/index.css",
 			"./base.css": "./dist/base.css",
 			"./themes/supertrans.css": "./dist/themes/supertrans.css",
-			"./themes/aurora.css": "./dist/themes/aurora.css"
+			"./themes/aurora.css": "./dist/themes/aurora.css",
+			"./themes/orion.css": "./dist/themes/orion.css"
 		}
 	}
 }

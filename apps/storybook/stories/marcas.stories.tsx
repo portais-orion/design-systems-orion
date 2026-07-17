@@ -35,7 +35,7 @@ export const LadoALado: StoryObj = {
 					data-brand={brand.id}
 					className="rounded-lg border border-border bg-background p-6"
 				>
-					<p className="mb-3 text-sm font-medium text-muted-foreground">{brand.label}</p>
+					<img src={`/brands/${brand.id}-logo.png`} alt={brand.label} className="mb-3 h-6 w-auto" />
 					<Amostra />
 				</section>
 			))}
@@ -52,7 +52,7 @@ export const TokensDeMarca: StoryObj = {
 					data-brand={brand.id}
 					className="rounded-lg border border-border p-6"
 				>
-					<p className="mb-3 text-sm font-medium text-muted-foreground">{brand.label}</p>
+					<img src={`/brands/${brand.id}-logo.png`} alt={brand.label} className="mb-3 h-6 w-auto" />
 					<div className="flex gap-3">
 						<div className="size-16 rounded-md bg-primary" title="--primary" />
 						<div className="size-16 rounded-md bg-primary-hover" title="--primary-hover" />

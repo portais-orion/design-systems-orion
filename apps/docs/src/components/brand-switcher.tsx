@@ -1,7 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useId, useState } from 'react';
-import { brandStorageKey, brands, defaultBrand } from './brand-provider';
+import Image from "next/image";
+import { useEffect, useId, useState } from "react";
+import { brandLogos } from "./brand-logos";
+import { brandStorageKey, brands, defaultBrand } from "./brand-provider";
 
 export function BrandSwitcher() {
   const [brand, setBrand] = useState(defaultBrand);
@@ -24,7 +26,8 @@ export function BrandSwitcher() {
       {brands.map((item) => (
         <label
           key={item.id}
-          className="flex cursor-pointer items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-fd-muted-foreground transition-colors hover:text-fd-foreground has-checked:bg-fd-accent has-checked:text-fd-accent-foreground has-focus-visible:ring-2 has-focus-visible:ring-fd-ring"
+          title={item.label}
+          className="flex cursor-pointer items-center rounded-full px-2 py-1 opacity-60 transition-opacity hover:opacity-100 has-checked:opacity-100 has-checked:bg-fd-accent has-focus-visible:ring-2 has-focus-visible:ring-fd-ring"
         >
           <input
             type="radio"
@@ -34,10 +37,21 @@ export function BrandSwitcher() {
             onChange={() => select(item.id)}
             className="sr-only"
           />
-          {/* data-brand no próprio swatch resolve --brand-primary da marca que ele
-              representa, e não da marca ativa no <html>. */}
-          <span aria-hidden data-brand={item.id} className="size-2 rounded-full bg-brand-primary" />
-          {item.label}
+          {/* Seleção por logo; o texto fica só para leitores de tela. */}
+          <span className="sr-only">{item.label}</span>
+          {brandLogos[item.id] ? (
+            <Image
+              src={brandLogos[item.id]}
+              alt=""
+              aria-hidden
+              height={16}
+              style={{ height: 16, width: "auto" }}
+            />
+          ) : (
+            <span aria-hidden className="text-xs font-medium">
+              {item.label}
+            </span>
+          )}
         </label>
       ))}
     </fieldset>
