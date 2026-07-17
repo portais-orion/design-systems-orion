@@ -1,4 +1,7 @@
 {
 	"defaultBrand": "supertrans",
-	"brands": [{ "id": "supertrans", "label": "Supertrans" }, { "id": "aurora", "label": "Aurora" }]
+	"brands": [
+		{ "id": "supertrans", "label": "Supertrans", "repositories": ["portal-supertrans"] },
+		{ "id": "aurora", "label": "Aurora", "repositories": ["Portal-Aurora", "aurora-eadi"] }
+	]
 }

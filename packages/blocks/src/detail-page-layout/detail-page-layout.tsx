@@ -1,5 +1,6 @@
 import type * as React from "react";
 
+import { ContentWithAside } from "../_internal/content-with-aside";
 import { PageLayout } from "../page-layout";
 
 /* Layout de página de detalhe: resumo + tabs/conteúdo + aside opcional. */
@@ -33,14 +34,7 @@ export function DetailPageLayout({
 	);
 	return (
 		<PageLayout header={header} className={className}>
-			{aside ? (
-				<div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
-					<div className="min-w-0 space-y-6">{main}</div>
-					<div className="space-y-4">{aside}</div>
-				</div>
-			) : (
-				main
-			)}
+			<ContentWithAside content={main} aside={aside} />
 		</PageLayout>
 	);
 }

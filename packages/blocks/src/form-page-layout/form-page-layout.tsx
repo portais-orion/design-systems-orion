@@ -1,7 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@portais-orion/ui";
-
+import { ContentWithAside } from "../_internal/content-with-aside";
 import { PageLayout } from "../page-layout";
 
 /*
@@ -26,10 +25,7 @@ export function FormPageLayout({ header, form, aside, footer, className }: FormP
 	return (
 		<PageLayout header={header} footer={footer} className={className}>
 			{aside ? (
-				<div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
-					<div className={cn("min-w-0")}>{form}</div>
-					<div className="space-y-4">{aside}</div>
-				</div>
+				<ContentWithAside content={form} aside={aside} contentClassName="min-w-0" />
 			) : (
 				<div className="mx-auto w-full max-w-3xl">{form}</div>
 			)}

@@ -11,9 +11,10 @@
 		"lint": "turbo lint",
 		"typecheck": "turbo typecheck",
 		"format": "biome format --write .",
-		"check": "node scripts/check-text-integrity.mjs && node scripts/check-purity.mjs && node packages/tokens/scripts/validate-tokens.mjs && pnpm check:brands && pnpm test:distribution && pnpm check:packages && biome check .",
+		"check": "node scripts/check-text-integrity.mjs && node scripts/check-purity.mjs && pnpm check:brands && pnpm test:scripts && pnpm check:packages && biome check .",
 		"check:brands": "node scripts/brand-catalog.mjs --check",
 		"sync:brands": "node scripts/brand-catalog.mjs --write",
+		"test:scripts": "node --test scripts/*.test.mjs",
 		"test:distribution": "node --test scripts/package-distribution.test.mjs",
 		"check:packages": "node scripts/gen-dist-exports.mjs --check packages/ui/package.json packages/blocks/package.json",
 		"storybook": "pnpm --filter @nucleo/storybook storybook",
@@ -25,7 +26,7 @@
 		"chromatic": "pnpm --filter @nucleo/storybook chromatic",
 		"pack:all": "node scripts/pack-packages.mjs",
 		"publish:packages": "pnpm --filter ./packages/tokens --filter ./packages/ui --filter ./packages/blocks publish --no-git-checks",
-		"check:tokens": "node packages/tokens/scripts/validate-tokens.mjs"
+		"check:tokens": "pnpm check:brands"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",

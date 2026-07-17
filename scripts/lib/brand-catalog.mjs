@@ -1,4 +1,11 @@
 const BRAND_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+/*
+ * Nome de repositório de produto. Restrito a caracteres literais porque o gate
+ * de pureza interpola esses nomes numa RegExp: um metacaractere aqui viraria
+ * uma regra silenciosamente diferente da pretendida.
+ */
+const REPOSITORY_NAME = /^[A-Za-z0-9._-]+$/;
+const BRAND_KEYS = new Set(["id", "label", "repositories"]);
 
 function normalizeLabel(value) {
 	return value.trim().replace(/\s+/g, " ").toLocaleLowerCase("pt-BR");
@@ -29,6 +36,7 @@ function catalogDiagnostics(catalog) {
 
 	const seenIds = new Set();
 	const seenLabels = new Set();
+	const seenRepositories = new Set();
 	for (const [index, brand] of brands.entries()) {
 		if (!brand || typeof brand !== "object" || Array.isArray(brand)) {
 			diagnostics.push({
@@ -38,6 +46,20 @@ function catalogDiagnostics(catalog) {
 				expected: "object",
 			});
 			continue;
+		}
+
+		/*
+		 * Chave desconhecida é erro: um `repositorys` mal digitado passaria por
+		 * campo ausente e o gate de pureza deixaria de vigiar aquela marca.
+		 */
+		for (const key of Object.keys(brand)) {
+			if (BRAND_KEYS.has(key)) continue;
+			diagnostics.push({
+				code: `catalog.brands[${index}].unknown-key`,
+				path: "packages/tokens/brands.json",
+				actual: key,
+				expected: [...BRAND_KEYS],
+			});
 		}
 
 		if (typeof brand.id !== "string" || !BRAND_ID.test(brand.id)) {
@@ -78,6 +100,37 @@ function catalogDiagnostics(catalog) {
 				seenLabels.add(normalizedLabel);
 			}
 		}
+
+		if (brand.repositories !== undefined) {
+			if (!Array.isArray(brand.repositories) || brand.repositories.length === 0) {
+				diagnostics.push({
+					code: `catalog.brands[${index}].repositories`,
+					path: "packages/tokens/brands.json",
+					actual: brand.repositories ?? null,
+					expected: "non-empty array",
+				});
+			} else {
+				for (const repository of brand.repositories) {
+					if (typeof repository !== "string" || !REPOSITORY_NAME.test(repository)) {
+						diagnostics.push({
+							code: `catalog.brands[${index}].repositories[]`,
+							path: "packages/tokens/brands.json",
+							actual: repository ?? null,
+							expected: REPOSITORY_NAME.source,
+						});
+					} else if (seenRepositories.has(repository)) {
+						diagnostics.push({
+							code: "catalog.brand.duplicate-repository",
+							path: "packages/tokens/brands.json",
+							actual: repository,
+							expected: "unique product repository name",
+						});
+					} else {
+						seenRepositories.add(repository);
+					}
+				}
+			}
+		}
 	}
 
 	if (typeof catalog.defaultBrand !== "string" || !seenIds.has(catalog.defaultBrand)) {
@@ -90,6 +143,20 @@ function catalogDiagnostics(catalog) {
 	}
 
 	return diagnostics;
+}
+
+/**
+ * Repositórios de produto declarados no catálogo, na ordem das marcas. É a
+ * fonte dos nomes que o gate de pureza proíbe importar dos packages
+ * compartilhados: uma marca nova só precisa entrar em brands.json.
+ */
+export function brandRepositoryNames(catalog) {
+	const diagnostics = catalogDiagnostics(catalog);
+	if (diagnostics.length > 0) {
+		const first = diagnostics[0];
+		throw new TypeError(`${first.code}: ${first.path}`);
+	}
+	return catalog.brands.flatMap((brand) => brand.repositories ?? []);
 }
 
 export function deriveBrandArtifacts(catalog) {
