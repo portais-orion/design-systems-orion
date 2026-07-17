@@ -1,0 +1,4 @@
+# Normaliza fim de linha: LF na árvore de trabalho em qualquer plataforma.
+# Sem isto, core.autocrlf=true no Windows materializa CRLF e o formatter do
+# biome (que espera LF) falha o `pnpm check` em todo checkout.
+* text=auto eol=lf
