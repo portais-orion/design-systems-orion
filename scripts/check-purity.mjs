@@ -3,34 +3,20 @@
  * check:pureza — verificações automatizadas de vazamento nos packages compartilhados.
  * Cross-platform (Node), sem dependências externas.
  */
-import { readFileSync, readdirSync, statSync } from "node:fs";
-import { join, relative, sep } from "node:path";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
+import { brandRepositoryNames } from "./lib/brand-catalog.mjs";
+import { extensionOf, walkFiles } from "./lib/repo-scan.mjs";
 
 const ROOT = process.cwd();
 const CODE_EXT = new Set([".ts", ".tsx", ".css", ".json"]);
-// .next/.source são saída de build: contêm CSS de terceiros e código gerado que
-// dispara as regras de pureza sem que haja nada a corrigir no código-fonte.
-const SKIP_DIRS = new Set([
-	"node_modules",
-	".turbo",
-	".git",
-	".next",
-	".source",
-	"storybook-static",
-	"dist",
-]);
 
-function walk(dir, files = []) {
-	for (const name of readdirSync(dir)) {
-		if (SKIP_DIRS.has(name)) continue;
-		const full = join(dir, name);
-		if (statSync(full).isDirectory()) walk(full, files);
-		else if (CODE_EXT.has(name.slice(name.lastIndexOf(".")))) files.push(full);
-	}
-	return files;
-}
-
-const norm = (p) => relative(ROOT, p).split(sep).join("/");
+const catalog = JSON.parse(readFileSync(join(ROOT, "packages/tokens/brands.json"), "utf8"));
+// Os nomes dos repositórios de produto saem do catálogo de marcas: marca nova
+// entra em brands.json e o gate passa a vigiá-la sem editar este arquivo.
+const portalRepositories = brandRepositoryNames(catalog);
+const portalImport = new RegExp(`["'][^"']*(${portalRepositories.join("|")})[^"']*["']`);
 
 // Comentários são ignorados nas regras de conteúdo — comentários de
 // proveniência ("Origem: portal-supertrans ...") são documentação desejada.
@@ -53,7 +39,7 @@ const RULES = [
 	],
 	[
 		"import dos portais",
-		/["'][^"']*(portal-supertrans|Portal-Aurora|aurora-eadi)[^"']*["']/,
+		portalImport,
 		(p) => /^(packages|apps)\/.*\.(tsx|ts)$/.test(p),
 		() => false,
 	],
@@ -71,7 +57,7 @@ const RULES = [
 	],
 ];
 
-const files = walk(ROOT).map((f) => ({ full: f, path: norm(f) }));
+const files = [...walkFiles(ROOT, { includeFile: ({ name }) => CODE_EXT.has(extensionOf(name)) })];
 let violations = 0;
 
 for (const [name, regex, applies, isException] of RULES) {
