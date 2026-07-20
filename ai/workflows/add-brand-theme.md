@@ -17,5 +17,5 @@ A fonte única de marcas é `packages/tokens/brands.json` (catálogo interno —
    ```
 
    NUNCA editar à mão os `@import` de tema em `src/index.css` nem os exports `./themes/*` do `package.json` — são derivados do catálogo.
-6. Validar contraste primary × primary-foreground (WCAG AA) na story "Núcleo/Comparativo de Marcas".
+6. Validar contraste primary × primary-foreground (WCAG AA) na story "Orion/Comparativo de Marcas".
 7. Checklist `token-acceptance.md` + changeset (minor).

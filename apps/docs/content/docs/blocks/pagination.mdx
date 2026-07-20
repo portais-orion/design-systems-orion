@@ -3,7 +3,7 @@ title: Pagination
 description: "Navegação entre páginas de uma listagem, com contagem de resultados e seletor de itens por página."
 ---
 
-Casa com o envelope `{ data, total, page, limit }` da API. Não renderiza nada quando `total` é zero, e trocar o limite volta para a primeira página.
+Casa com o envelope `{ data, total, page, limit }` da API. Por padrão não renderiza nada quando `total` é zero; use `showWhenEmpty` para manter o rodapé visível e desabilitado nesse caso. Trocar o limite volta para a primeira página.
 
 Disponível em `@portais-orion/blocks`, na categoria **Tabelas**.
 
@@ -30,15 +30,17 @@ funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## API Reference
 
-| Prop | Tipo | Padrão |
-| --- | --- | --- |
-| `page`\* | `number` | — |
-| `limit`\* | `number` | — |
-| `total`\* | `number` | — |
-| `limitOptions` | `number[]` | `[10, 20, 50, 100]` |
-| `onPageChange`\* | `(page: number) => void` | — |
-| `onLimitChange` | `(limit: number) => void` | — |
-| `className` | `string` | — |
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `page`\* | `number` | — | — |
+| `limit`\* | `number` | — | — |
+| `total`\* | `number` | — | — |
+| `limitOptions` | `number[]` | `[10, 20, 50, 100]` | — |
+| `onPageChange`\* | `(page: number) => void` | — | — |
+| `onLimitChange` | `(limit: number) => void` | — | — |
+| `showWhenEmpty` | `boolean` | `false` | Mantém o rodapé visível (com navegação desabilitada e contadores zerados) quando `total` é zero, em vez de não renderizar nada. Default `false` preserva o comportamento anterior. |
+| `itemLabel` | `string` | `resultados` | Nome do item na contagem (ex.: "clientes", "portos"). Default "resultados". |
+| `className` | `string` | — | — |
 
 \* Prop obrigatória.
 
@@ -57,6 +59,10 @@ Além destas, `Pagination` aceita as props do elemento/primitivo que envolve.
 ### Total zero nao renderiza
 
 <ComponentPreview name="blocks/pagination" story="TotalZeroNaoRenderiza" />
+
+### Total zero visivel
+
+<ComponentPreview name="blocks/pagination" story="TotalZeroVisivel" />
 
 ## Storybook
 

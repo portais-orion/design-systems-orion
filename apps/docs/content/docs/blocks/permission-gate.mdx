@@ -1,0 +1,69 @@
+---
+title: PermissionGate
+description: "Renderiza `children` só se a permissão exigida for concedida; caso contrário renderiza `fallback` (default `null`)."
+---
+
+Enquanto o resolvedor ainda está carregando, não renderiza nada. Precisa de um `PermissionProvider` como ancestral.
+
+Disponível em `@portais-orion/blocks`, na categoria **Utilitários**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import {
+	PermissionGate,
+	PermissionProvider,
+} from "@portais-orion/blocks/permission-gate";
+```
+
+O import por subpath traz só `permission-gate`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/permission-gate" story="Permitido" />
+
+## API Reference
+
+### PermissionProvider
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `value`\* | `PermissionContextValue` | — |
+
+\* Prop obrigatória.
+
+### PermissionGate
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `requires` | `string` | — |
+| `requiresAny` | `string[]` | — |
+| `requiresAll` | `string[]` | — |
+| `fallback` | `any` | `null` |
+
+Além destas, `PermissionGate` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Negado
+
+<ComponentPreview name="blocks/permission-gate" story="Negado" />
+
+### Carregando
+
+<ComponentPreview name="blocks/permission-gate" story="Carregando" />
+
+## Storybook
+
+Todas as variações de `PermissionGate`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

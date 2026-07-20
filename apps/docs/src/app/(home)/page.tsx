@@ -24,7 +24,7 @@ const highlights = [
 
 export default function HomePage() {
   return (
-    <main className="relative flex min-h-screen flex-col overflow-hidden">
+    <main className="relative flex flex-1 flex-col overflow-hidden">
       <div className="absolute inset-0 -z-10 h-full w-full bg-background">
         {/* Grade sutil; a cor vem do token de borda para acompanhar tema e modo. */}
         <div
@@ -42,7 +42,7 @@ export default function HomePage() {
       <div className="container relative z-10 mx-auto flex flex-1 flex-col items-center justify-center px-4 pt-32 pb-20 text-center">
         <div className="mb-8 inline-flex items-center rounded-full border border-border bg-muted/50 px-3 py-1 text-sm font-medium backdrop-blur-md">
           <span className="mr-2 flex size-2 rounded-full bg-brand-accent" />
-          Design System do Núcleo de Portais
+          Design System Orion
         </div>
 
         <h1 className="mb-6 text-5xl font-extrabold tracking-tighter md:text-7xl">

@@ -1,0 +1,52 @@
+---
+title: DynamicFieldListRows
+description: "Linhas de formulário repetíveis (padrão `useFieldArray`): círculo numerado, conteúdo da linha por render-prop, remoção por linha e \"Adicionar\" no rodapé."
+---
+
+Não conhece o formulário — só a estrutura visual da lista.
+
+Disponível em `@portais-orion/blocks`, na categoria **Formulários**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { DynamicFieldListRows } from "@portais-orion/blocks/dynamic-field-list-rows";
+```
+
+O import por subpath traz só `dynamic-field-list-rows`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/dynamic-field-list-rows" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `count`\* | `number` | — | Quantidade atual de linhas. |
+| `renderRow`\* | `(index: number) => any` | — | Renderiza o conteúdo (inputs) de uma linha pelo índice. |
+| `onRemove`\* | `(index: number) => void` | — | — |
+| `onAdd`\* | `() => void` | — | — |
+| `addLabel` | `string` | `Adicionar` | — |
+| `removeLabel` | `string` | `Remover linha` | — |
+| `canRemove` | `(index: number) => boolean` | `() => true` | — |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `DynamicFieldListRows` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `DynamicFieldListRows`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

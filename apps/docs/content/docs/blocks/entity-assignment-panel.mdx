@@ -1,0 +1,57 @@
+---
+title: EntityAssignmentPanel
+description: "Painel de gerenciamento de vínculo N:N: busca com dropdown de candidatos + lista de itens vinculados com remoção."
+---
+
+Não busca dados nem filtra — recebe `candidates` já prontos do consumidor (que decide debounce, API, etc.).
+
+Disponível em `@portais-orion/blocks`, na categoria **Formulários**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { EntityAssignmentPanel } from "@portais-orion/blocks/entity-assignment-panel";
+```
+
+O import por subpath traz só `entity-assignment-panel`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/entity-assignment-panel" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `title`\* | `string` | — | — |
+| `icon` | `ComponentType<{ className?: string; }>` | — | — |
+| `assignedItems`\* | `AssignmentCandidate[]` | — | — |
+| `searchQuery`\* | `string` | — | — |
+| `onSearchQueryChange`\* | `(query: string) => void` | — | — |
+| `searchPlaceholder` | `string` | `Buscar para adicionar...` | — |
+| `candidates`\* | `AssignmentCandidate[]` | — | Candidatos já filtrados pelo consumidor (busca + exclusão dos já atribuídos). |
+| `onAssign`\* | `(candidate: AssignmentCandidate) => void` | — | — |
+| `onUnassign`\* | `(item: AssignmentCandidate) => void` | — | — |
+| `isLoading` | `boolean` | `false` | — |
+| `emptyAssignedMessage` | `string` | `Nenhum item vinculado.` | — |
+| `unassignLabel` | `string` | `Remover` | — |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `EntityAssignmentPanel` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `EntityAssignmentPanel`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

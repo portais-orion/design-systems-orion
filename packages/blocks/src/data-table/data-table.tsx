@@ -30,7 +30,7 @@ import type { DataTableColumn, DataTableProps } from "./data-table.types";
  * DataTable — bloco oficial de listagem do grupo ("melhor dos dois"):
  * API e requisitos: Portal-Aurora (ui/DataTable — Column<T>, keyExtractor,
  *   estados embutidos, paginação, onRowClick, alinhamento, 32 telas reais).
- * Markup/stack: Núcleo (ui/Table do Supertrans, tokens, TW4) + blocks
+ * Markup/stack: Orion (ui/Table do Supertrans, tokens, TW4) + blocks
  *   TableSkeletonRows/EmptyState/ErrorState/Pagination.
  * Motor interno: TanStack Table (getCoreRowModel; sorting controlado/manual).
  * O consumidor comum usa apenas DataTableColumn<T> — nada do TanStack vaza.

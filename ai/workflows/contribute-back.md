@@ -1,4 +1,4 @@
-# Workflow: contribuir componente/block de volta ao Núcleo
+# Workflow: contribuir componente/block de volta ao Orion
 
 Para quando um componente/block reutilizável nasceu num produto (ou numa tarefa) e deve entrar
 neste repo. Termina em **PR aberta para revisão humana — NUNCA merge automático**.
@@ -57,7 +57,7 @@ Corpo: por que é genérico + consumidores previstos. Um componente por PR (rule
 gh pr create --title "feat(blocks): add wizard-steps" --body-file <corpo>
 ```
 
-O corpo segue `.github/PULL_REQUEST_TEMPLATE.md`: o que foi criado, por que pertence ao Núcleo
+O corpo segue `.github/PULL_REQUEST_TEMPLATE.md`: o que foi criado, por que pertence ao Orion
 (consumidores nomeados), validações executadas (com saída dos gates), checklist preenchido.
 
 **Proibido**: `gh pr merge`, auto-approve, push direto na `main`. A PR fica aberta para revisão

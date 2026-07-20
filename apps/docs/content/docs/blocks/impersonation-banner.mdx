@@ -1,0 +1,55 @@
+---
+title: ImpersonationBanner
+description: "Faixa de aviso de sessão simulada (impersonation), de largura total e alto contraste."
+---
+
+Não decide sozinha quando aparecer — o consumidor só a monta quando existir uma sessão simulada ativa.
+
+Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { ImpersonationBanner } from "@portais-orion/blocks/impersonation-banner";
+```
+
+O import por subpath traz só `impersonation-banner`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/impersonation-banner" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `userLabel`\* | `string` | — | Nome ou e-mail de quem está sendo simulado. |
+| `onStop`\* | `() => void` | — | — |
+| `message` | `(userLabel: string) => any` | `(userLabel: string) => ( 	<> 		Você está simulando o acesso como <strong>{userLabel}</strong>. 	</> )` | Mensagem customizada; default em pt-BR usa `userLabel`. |
+| `stopLabel` | `string` | `Encerrar simulação` | Rótulo do botão de encerrar. |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `ImpersonationBanner` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Mensagem customizada
+
+<ComponentPreview name="blocks/impersonation-banner" story="MensagemCustomizada" />
+
+## Storybook
+
+Todas as variações de `ImpersonationBanner`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

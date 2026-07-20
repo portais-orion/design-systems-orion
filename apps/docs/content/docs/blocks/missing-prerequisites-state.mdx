@@ -1,0 +1,52 @@
+---
+title: MissingPrerequisitesState
+description: "Estado de bloqueio quando cadastros básicos necessários não existem."
+---
+
+A ação de cada item (link de cadastro) é fornecida pelo consumidor via `action` — este bloco não conhece rotas.
+
+Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import {
+	MissingPrerequisitesState,
+} from "@portais-orion/blocks/missing-prerequisites-state";
+```
+
+O import por subpath traz só `missing-prerequisites-state`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/missing-prerequisites-state" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `title` | `string` | `Cadastros incompletos` |
+| `description` | `any` | `Para continuar, é necessário que os seguintes cadastros possuam pelo menos um registro no sistema:` |
+| `items`\* | `MissingPrerequisiteItem[]` | — |
+| `onCancel` | `() => void` | — |
+| `cancelLabel` | `string` | `Voltar` |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `MissingPrerequisitesState` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `MissingPrerequisitesState`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

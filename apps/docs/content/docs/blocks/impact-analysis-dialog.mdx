@@ -1,0 +1,56 @@
+---
+title: ImpactAnalysisDialog
+description: "Modal de análise de impacto: \"onde isso é usado\", em grid de categorias (ícone + título + contagem + lista), com um box opcional de última alteração (por/data/ação) destacado no cabeçalho."
+---
+
+Dados via props.
+
+Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { ImpactAnalysisDialog } from "@portais-orion/blocks/impact-analysis-dialog";
+```
+
+O import por subpath traz só `impact-analysis-dialog`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/impact-analysis-dialog" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `open`\* | `boolean` | — | — |
+| `onOpenChange`\* | `(open: boolean) => void` | — | — |
+| `title` | `string` | `Análise de Impacto` | — |
+| `description` | `string` | `Visão geral de como este item está sendo utilizado no sistema.` | — |
+| `subject` | `any` | — | Identificador do assunto analisado (ex.: um Badge com a chave). |
+| `subjectDescription` | `string` | — | — |
+| `lastChange` | `ImpactLastChangeRow[]` | — | — |
+| `categories`\* | `ImpactCategory[]` | — | — |
+| `isLoading` | `boolean` | `false` | — |
+| `loadingMessage` | `string` | `Carregando análise...` | — |
+| `error` | `any` | — | — |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `ImpactAnalysisDialog` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `ImpactAnalysisDialog`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

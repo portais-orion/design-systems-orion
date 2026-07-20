@@ -1,0 +1,62 @@
+---
+title: MonthCalendar
+description: "Calendário mensal com grid de semanas completas (incluindo dias de borda dos meses vizinhos, desabilitados), badges por dia e seleção de um dia."
+---
+
+Não busca dados nem conhece o domínio: `getDayBadges` e `onSelectDate` são a única ponte com o consumidor, que decide o que renderizar abaixo (ex.: uma `DataTable` com a programação do dia selecionado).
+
+Disponível em `@portais-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { MonthCalendar } from "@portais-orion/blocks/month-calendar";
+```
+
+O import por subpath traz só `month-calendar`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/month-calendar" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `month`\* | `Date` | — | Qualquer data dentro do mês exibido — só o ano/mês são considerados. |
+| `monthLabel` | `string` | — | Rótulo do header (ex.: "Junho 2026"). Sem isso, formata `month` em pt-BR. |
+| `weekdayLabels` | `string[]` | `["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"]` | — |
+| `getDayBadges` | `(date: Date) => CalendarDayBadge[]` | — | Badges (contadores de status, eventos, etc.) de um dia do mês exibido. |
+| `isToday` | `(date: Date) => boolean` | — | Por padrão compara com a data atual do ambiente. |
+| `selectedDate` | `Date` | — | — |
+| `onSelectDate` | `(date: Date) => void` | — | — |
+| `onPrevMonth` | `() => void` | — | Omitir esconde/desabilita o botão de navegação correspondente. |
+| `onNextMonth` | `() => void` | — | — |
+| `legend` | `any` | — | Legenda de tons (ex.: bolinhas coloridas + texto) no rodapé. |
+| `footerHint` | `any` | — | Texto auxiliar no rodapé, à direita da legenda (ex.: "Clique em um dia..."). |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `MonthCalendar` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Sem navegacao
+
+<ComponentPreview name="blocks/month-calendar" story="SemNavegacao" />
+
+## Storybook
+
+Todas as variações de `MonthCalendar`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

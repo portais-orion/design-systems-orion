@@ -1,0 +1,47 @@
+---
+title: KanbanBoard
+description: "Quadro Kanban: colunas por status com contagem no header e cards em pilha vertical, colunas deslizando horizontalmente."
+---
+
+Sem drag-and-drop — reordenar é responsabilidade do consumidor (via `onClick` + sua própria mutação).
+
+Disponível em `@portais-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { KanbanBoard } from "@portais-orion/blocks/kanban-board";
+```
+
+O import por subpath traz só `kanban-board`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/kanban-board" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `columns`\* | `KanbanColumn[]` | — |
+| `emptyMessage` | `string` | `Nenhuma coluna.` |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `KanbanBoard` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `KanbanBoard`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

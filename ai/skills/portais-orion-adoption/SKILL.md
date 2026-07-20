@@ -1,18 +1,18 @@
 ---
 name: portais-orion-adoption
-description: Use esta skill quando precisar migrar uma tela de portal interno para consumir o Núcleo @portais-orion (tokens/ui/blocks), preservando regras de negócio, APIs, permissões, layout e gates de validação. Não use para redesign, CRUD complexo sem build real, ou migração em massa.
+description: Use esta skill quando precisar migrar uma tela de portal interno para consumir o Orion @portais-orion (tokens/ui/blocks), preservando regras de negócio, APIs, permissões, layout e gates de validação. Não use para redesign, CRUD complexo sem build real, ou migração em massa.
 ---
 
 # Portais Orion Adoption Skill
 
 Guia operacional para migrar, com segurança, uma tela de um portal interno para consumir o
-Núcleo `@portais-orion`. Baseada nas migrações reais do `portal-supertrans` (Sprints 7–9).
+Orion `@portais-orion`. Baseada nas migrações reais do `portal-supertrans` (Sprints 7–9).
 
 ## 1. Quando usar
 
 - O portal já consome (ou vai consumir) `@portais-orion/tokens`, `@portais-orion/ui`,
   `@portais-orion/blocks` via `node_modules` (GitHub Packages), e você vai migrar **uma** tela
-  para os componentes do Núcleo.
+  para os componentes do Orion.
 
 ## 2. Quando NÃO usar
 
@@ -34,7 +34,7 @@ API, permissões, rotas, dados, validações e ações. Troque só a estrutura v
 5. Migrar componentes visuais via adaptadores locais.
 6. Validar estados (loading/empty/error/busca).
 7. Rodar `typecheck`/`build`/`dev`.
-8. Documentar gaps do Núcleo (backlog).
+8. Documentar gaps do Orion (backlog).
 
 ## 5. Pré-checagem do projeto consumidor
 
@@ -45,7 +45,7 @@ grep -R "@portais-orion" apps/web -n                                      # deps
 
 Confirmar: `apps/web/package.json` tem `@portais-orion/{tokens,ui,blocks}`; `next.config.ts` tem
 `transpilePackages` (enquanto os packages forem source-based); `tsconfig.json` **sem** aliases do
-Núcleo; **sem** caminho local para `nucleo-portais`.
+Orion; **sem** caminho local para `nucleo-portais`.
 
 ## 6. Validar tokens + `@source` do Tailwind
 
@@ -68,9 +68,9 @@ Critérios: administrativa, baixa criticidade, **listagem**, sem fluxo financeir
 mudança de API, fácil de validar. Bom modelo real: `/configurador/permissions` (read-only).
 Evitar telas grandes/CRUD (ex.: `configurador/modules` = 823 linhas com mutations → **não**).
 
-## 8. Mapear componentes locais → Núcleo
+## 8. Mapear componentes locais → Orion
 
-| Padrão local | Preferir Núcleo (`@portais-orion/...`) |
+| Padrão local | Preferir Orion (`@portais-orion/...`) |
 |---|---|
 | header de página manual | `blocks/page-header` → `PageHeader` |
 | tabela custom simples | `blocks/data-table` → `DataTable` |
@@ -129,7 +129,7 @@ const columns: DataTableColumn<TechnicalPermission>[] = [
 
 ## 12. Avaliar AppShell (opcional, controlado)
 
-Não substitua o shell global (`AdminShell`). Se for provar o `AppShell` do Núcleo, faça numa
+Não substitua o shell global (`AdminShell`). Se for provar o `AppShell` do Orion, faça numa
 rota escondida (fora do menu). Contrato:
 
 ```tsx
@@ -149,7 +149,7 @@ const canAccessItem: CanAccessNavigationItem = (item) => {
 ```
 
 Referência real: `portal-supertrans/apps/web/src/app/(admin)/configurador/app-shell-canary/page.tsx`,
-`docs/app-shell-permissions-map.md`. O Núcleo **nunca** importa Next nem conhece permissões.
+`docs/app-shell-permissions-map.md`. O Orion **nunca** importa Next nem conhece permissões.
 
 ## 13. Evitar migração em massa
 
@@ -181,7 +181,7 @@ efeitos colaterais; múltiplas telas de uma vez; permissões/auth/backend junto 
 - [ ] hooks/API/permissões/rotas preservados
 - [ ] estados loading/empty/error/busca revisados
 - [ ] `typecheck`/`build`/`dev` verdes; tela validada no navegador
-- [ ] gaps de API do Núcleo registrados como backlog (não alterar o package por preferência visual)
+- [ ] gaps de API do Orion registrados como backlog (não alterar o package por preferência visual)
 
 ## 17. Referências reais (Supertrans, primeiro consumidor)
 

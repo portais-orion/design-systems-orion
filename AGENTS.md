@@ -1,10 +1,10 @@
-# AGENTS.md — Núcleo de Portais do Grupo
+# AGENTS.md — Design System Orion
 
 Ponto de entrada único para agentes de IA. Contexto detalhado vive em `ai/` — carregue apenas o que a tarefa pedir (ver `ai/context/00-read-first.md`).
 
 ## Natureza do projeto
 
-Este projeto é o **Núcleo de Portais do Grupo**, não uma biblioteca específica da Supertrans ou do Aurora. É a plataforma interna para design system compartilhado, tokens/temas por empresa, Storybook oficial, documentação arquitetural e estrutura de desenvolvimento assistido por agentes. Produtos (portais) vivem em repositórios separados e consomem os packages daqui por versão.
+Este projeto é o **Design System Orion** (nome do repositório: `nucleo-portais`), não uma biblioteca específica da Supertrans ou do Aurora. É a plataforma interna para design system compartilhado, tokens/temas por empresa, Storybook oficial, documentação arquitetural e estrutura de desenvolvimento assistido por agentes. Produtos (portais) vivem em repositórios separados e consomem os packages daqui por versão.
 
 ## Estrutura
 
@@ -37,7 +37,7 @@ pnpm chromatic          # visual tests na nuvem (requer CHROMATIC_PROJECT_TOKEN)
 
 ## Regras fundamentais
 
-- Este projeto é o Núcleo de Portais do Grupo, não uma biblioteca específica da Supertrans ou do Aurora.
+- Este projeto é o Design System Orion, não uma biblioteca específica da Supertrans ou do Aurora.
 - Shared packages não podem conter domínio de negócio.
 - Componentes compartilhados não podem conter rotas, endpoints, permissões reais, services ou hooks de API dos portais.
 - Temas devem ser resolvidos por CSS variables, nunca por props como `brand="aurora"`.
@@ -103,7 +103,7 @@ Fonte de verdade em `ai/skills/<nome>/SKILL.md`; stubs de registro em `.claude/s
 
 | Cenário | Skill | Workflow base |
 |---|---|---|
-| Criar portal novo do zero consumindo o Núcleo | `new-portal` | `docs/adoption/consumer-setup.md` |
+| Criar portal novo do zero consumindo o Orion | `new-portal` | `docs/adoption/consumer-setup.md` |
 | Migrar tela de portal existente | `portais-orion-adoption` | — |
 | Criar primitive (Camada 1) | `create-component` | `ai/workflows/create-component.md` |
 | Criar block (Camada 2) | `create-block` | `ai/workflows/create-block.md` |
@@ -113,7 +113,7 @@ Antes de criar QUALQUER componente: `ai/workflows/find-component.md` (anti-dupli
 
 ## Skill oficial de adoção
 
-A skill oficial para adotar/migrar telas de portais ao Núcleo `@portais-orion` vive AQUI (fonte de verdade):
+A skill oficial para adotar/migrar telas de portais ao Orion (`@portais-orion`) vive AQUI (fonte de verdade):
 
 ```txt
 ai/skills/portais-orion-adoption/SKILL.md

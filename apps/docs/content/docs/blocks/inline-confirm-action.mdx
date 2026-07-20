@@ -1,0 +1,53 @@
+---
+title: InlineConfirmAction
+description: "Ação com confirmação inline (sem modal): o trigger vira \"confirmar + cancelar\" na mesma posição."
+---
+
+Útil para ações rápidas em toolbars onde um ConfirmDialog seria pesado demais.
+
+Disponível em `@portais-orion/blocks`, na categoria **Ações**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { InlineConfirmAction } from "@portais-orion/blocks/inline-confirm-action";
+```
+
+O import por subpath traz só `inline-confirm-action`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/inline-confirm-action" story="Destrutiva" />
+
+## API Reference
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `triggerLabel`\* | `any` | — |
+| `triggerIcon` | `ComponentType<{ className?: string; }>` | — |
+| `confirmQuestion` | `string` | — |
+| `confirmLabel` | `string` | `Confirmar` |
+| `cancelLabel` | `string` | `Cancelar` |
+| `onConfirm`\* | `() => void` | — |
+| `isLoading` | `boolean` | `false` |
+| `tone` | `"default" \| "danger"` | `default` |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `InlineConfirmAction` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `InlineConfirmAction`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

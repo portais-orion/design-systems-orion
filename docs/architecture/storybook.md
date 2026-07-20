@@ -4,7 +4,7 @@
 
 Princípios: independente dos produtos (sem AuthContext, QueryProvider ou mocks de app real); todo componente compartilhado tem story colocalizada (`packages/*/src/**/*.stories.tsx`); toda story deve ser validada nas duas marcas.
 
-Mecânica de marcas: toolbar global "Marca" (Supertrans/Aurora) → decorator aplica `data-brand` no `<html>` → tokens resolvem. A story "Núcleo/Comparativo de Marcas" mostra o mesmo componente sob as duas marcas simultaneamente. As marcas da toolbar, a marca padrão e a ordem do comparativo vêm de `packages/tokens/brands.json` (catálogo interno) — não há lista de marcas hardcoded no Storybook; `pnpm check:brands` garante a sincronia.
+Mecânica de marcas: toolbar global "Marca" (Supertrans/Aurora) → decorator aplica `data-brand` no `<html>` → tokens resolvem. A story "Orion/Comparativo de Marcas" mostra o mesmo componente sob as duas marcas simultaneamente. As marcas da toolbar, a marca padrão e a ordem do comparativo vêm de `packages/tokens/brands.json` (catálogo interno) — não há lista de marcas hardcoded no Storybook; `pnpm check:brands` garante a sincronia.
 
 Comandos: `pnpm storybook` (dev, porta 6006) e `pnpm build:storybook` (estático).
 

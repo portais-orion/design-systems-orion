@@ -1,0 +1,53 @@
+---
+title: OnboardingDialog
+description: "Modal de primeiro acesso com passos numerados."
+---
+
+Controlado: o consumidor decide quando abrir (ex.: primeira visita, feature nova) e onde persistir que o usuário já viu — o bloco não fala com `localStorage` nem nada externo.
+
+Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { OnboardingDialog } from "@portais-orion/blocks/onboarding-dialog";
+```
+
+O import por subpath traz só `onboarding-dialog`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/onboarding-dialog" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `open`\* | `boolean` | — | — |
+| `onOpenChange`\* | `(open: boolean) => void` | — | — |
+| `title`\* | `string` | — | — |
+| `description` | `string` | — | — |
+| `icon` | `ComponentType<{ className?: string; }>` | — | — |
+| `steps`\* | `OnboardingStep[]` | — | Numerados automaticamente 1..n na ordem do array. |
+| `confirmLabel` | `string` | `Começar a usar` | — |
+| `onConfirm`\* | `() => void` | — | — |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `OnboardingDialog` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `OnboardingDialog`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

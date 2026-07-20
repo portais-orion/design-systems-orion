@@ -1,0 +1,55 @@
+---
+title: ModuleIcon
+description: "Caixa tonalizada com o ícone de um módulo, resolvido a partir de uma chave string persistida (ex.: vinda do banco)."
+---
+
+Use `ICON_OPTIONS` para montar um seletor de ícones no formulário de cadastro do módulo.
+
+Disponível em `@portais-orion/blocks`, na categoria **Utilitários**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { ModuleIcon, ICON_OPTIONS, ICON_MAP } from "@portais-orion/blocks/module-icon";
+```
+
+O import por subpath traz só `module-icon`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/module-icon" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `icon` | `string` | — | Chave do catálogo (`ICON_MAP`); cai em `package` se ausente ou desconhecida. |
+| `size` | `"sm" \| "md"` | `md` | — |
+| `className` | `string` | — | — |
+
+Além destas, `ModuleIcon` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Fallback
+
+<ComponentPreview name="blocks/module-icon" story="Fallback" />
+
+### Catalogo
+
+<ComponentPreview name="blocks/module-icon" story="Catalogo" />
+
+## Storybook
+
+Todas as variações de `ModuleIcon`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

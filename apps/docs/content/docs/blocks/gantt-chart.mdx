@@ -1,0 +1,50 @@
+---
+title: GanttChart
+description: "Timeline horizontal (Gantt) com barras por linha posicionadas entre `startDate`/`endDate` dentro de `rangeStart`–`rangeEnd`, cabeçalho de meses proporcional e linha vertical marcando `todayDate`."
+---
+
+Presentational — não calcula datas de negócio, só posiciona o que recebe.
+
+Disponível em `@portais-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { GanttChart } from "@portais-orion/blocks/gantt-chart";
+```
+
+O import por subpath traz só `gantt-chart`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/gantt-chart" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `rangeStart`\* | `Date` | — | — |
+| `rangeEnd`\* | `Date` | — | — |
+| `rows`\* | `GanttRow[]` | — | — |
+| `todayDate` | `Date` | — | Data marcada com uma linha vertical tracejada. Padrão: hoje. |
+| `emptyMessage` | `string` | `Nenhum item no período.` | — |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `GanttChart` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `GanttChart`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

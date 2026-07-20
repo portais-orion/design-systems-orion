@@ -1,6 +1,6 @@
 # Consumer setup — adotando `@portais-orion` num novo portal
 
-Como configurar um portal (Next.js + Tailwind v4) para consumir o Núcleo `@portais-orion`
+Como configurar um portal (Next.js + Tailwind v4) para consumir o Orion `@portais-orion`
 (`tokens`, `ui`, `blocks`) via GitHub Packages. Referência viva: `portal-supertrans`.
 
 ## 1. `.npmrc` (autenticação)
@@ -97,10 +97,10 @@ pnpm --filter <web> dev
 
 Confirmar que `Button`, `PageHeader`, `DataTable` etc. renderizam estilizados (tokens aplicados).
 
-## 8. Quando faltar API no Núcleo
+## 8. Quando faltar API no Orion
 
 Não altere o package por preferência visual local. Abra backlog/issue no `nucleo-portais`
-(`portais-orion/nucleo-portais`) descrevendo o gap genérico. Correções no Núcleo seguem: fix →
+(`portais-orion/nucleo-portais`) descrevendo o gap genérico. Correções no Orion seguem: fix →
 story → gates → changeset → publish patch → atualizar consumidores.
 
 ## 9. Migrar telas existentes

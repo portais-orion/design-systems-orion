@@ -1,7 +1,7 @@
 {
 	"name": "@portais-orion/ui",
-	"version": "0.3.0",
-	"description": "Primitives compartilhadas do Núcleo de Portais do Grupo (Base UI + Tailwind v4 + cva)",
+	"version": "0.3.1",
+	"description": "Primitives compartilhadas do Design System Orion (Base UI + Tailwind v4 + cva)",
 	"sideEffects": false,
 	"exports": {
 		".": "./src/index.ts",
@@ -34,7 +34,9 @@
 		"./combobox": "./src/combobox/index.ts",
 		"./multi-select": "./src/multi-select/index.ts"
 	},
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"build": "tsup",
 		"typecheck": "tsc --noEmit",

@@ -1,5 +1,81 @@
 # @portais-orion/blocks
 
+## 0.4.0
+
+### Minor Changes
+
+- Batch de blocos a partir de um audit completo do Supertrans (26 padrões visuais
+  bespoke mapeados; ver `portal-supertrans/docs/nucleo-crud-visual-gaps.md` para o
+  relatório completo, o que foi resolvido e o que ficou como backlog/ADR).
+
+  Novos blocos:
+
+  - `FileDropzone` — zona de arraste-e-solte/clique para seleção de arquivo(s).
+  - `FileListItem` — card de arquivo selecionado, pendente de envio, com remoção.
+  - `AttachmentList` — lista de anexos com ícone tonalizado, extensão e seleção/remoção.
+  - `ActivityTimeline` — linha do tempo vertical de eventos (auditoria, histórico de status).
+  - `ViewEditField` — campo de detalhe com alternância view/edit inline, sem modal.
+  - `InlineConfirmAction` — ação com confirmação inline (trigger vira confirmar/cancelar).
+  - `JsonDiffDialog` — modal de diff antes/depois para telas de auditoria.
+  - `ComparisonDiffView` — comparação lado a lado entre entidades, por grupos e colunas coloridas.
+  - `MissingPrerequisitesState` — estado de bloqueio por cadastros básicos ausentes.
+  - `DynamicFieldListRows` — linhas de formulário repetíveis (padrão `useFieldArray`).
+  - `MetricGaugeCard` — card de métrica com tom semântico, tooltip e barra de progresso.
+  - `EntityAssignmentPanel` — gerenciador de vínculo N:N (busca + atribuir/remover).
+  - `PresenceAvatarStack` — pilha de avatares de presença com tooltip, sem conhecer sockets.
+
+  Todos presentational — sem domínio, rota, fetch ou dependências novas.
+
+- Adiciona 6 blocos do backlog de padrões visuais do audit Supertrans:
+
+  - `GanttChart` — linha do tempo de barras por intervalo de datas, com marcador de "hoje"
+  - `KanbanBoard` — colunas com cartões (sem drag-and-drop; ver ADR 0010 para @dnd-kit)
+  - `FilterableTreeList` — árvore recursiva com expand/collapse e seleção de nó
+  - `NestedToggleAccordionList` — accordion de seções com toggles aninhados e badges de origem
+  - `KioskModeToggle` — alternância de modo tela cheia com relógio embutido
+  - `ImpactAnalysisDialog` — modal de análise de impacto (dependências, última alteração, categorias)
+
+- Rodada 2 de gaps encontrados na unificação de 7 telas de CRUD do Supertrans
+  (`docs/nucleo-gaps-round-2.md`).
+
+  Blocos novos:
+
+  - `CrudModalFrame` — invólucro completo de modal CRUD (Dialog + `CrudModalHeader` + corpo
+    scrollável + footer opcional + tamanhos `sm/md/lg/xl`).
+  - `TableToggle` — switch compacto (36×20, sem label) para célula de tabela.
+  - `ModuleIcon` + `ICON_MAP` + `ICON_OPTIONS` + `resolveModuleIcon` — ícone de módulo resolvido a
+    partir de chave string persistida, com fallback.
+  - `ImpersonationBanner` — faixa de aviso de sessão simulada, controlada por props (sem auth
+    embutida).
+  - `OnboardingDialog` — modal de primeiro acesso com passos numerados, controlado (sem
+    `localStorage`).
+  - `PermissionGate` + `PermissionProvider` — gate de permissão que recebe o resolvedor via context
+    em vez de importar hook do consumidor.
+
+  Ajustes em blocos existentes (aditivos, sem breaking change):
+
+  - `Pagination` — novas props `showWhenEmpty` (default `false`) e `itemLabel` (default
+    "resultados"). Com `showWhenEmpty`, o rodapé fica visível e desabilitado quando `total = 0` em
+    vez de não renderizar nada.
+  - `ListPageLayout` — novas props `surface` (`"transparent"` default | `"card"`), `loading` e
+    `loadingLabel`. `surface="card"` envolve filters+content+footer numa superfície com
+    borda/sombra/cantos arredondados, cobrindo o caso do `CrudPageShell` bespoke do Supertrans sem
+    criar bloco novo.
+
+  Nenhum bloco novo ou ajuste adiciona dependência externa ao Orion; todos são presentational.
+
+- Novo bloco `MonthCalendar` — calendário mensal com grid de semanas completas,
+  navegação de mês via callback, badges por dia com tons semânticos e seleção de
+  dia. Extraído de `gestao-demandas/grade-programacao` (Supertrans), que tinha
+  mês/ano fixos; aqui o grid é calculado a partir da data recebida. Presentational
+  — não busca dados nem renderiza a tabela de detalhe do dia (isso continua a
+  cargo do consumidor via `DataTable`).
+
+### Patch Changes
+
+- Updated dependencies [7a7e036]
+  - @portais-orion/ui@0.3.1
+
 ## 0.3.1
 
 ### Patch Changes

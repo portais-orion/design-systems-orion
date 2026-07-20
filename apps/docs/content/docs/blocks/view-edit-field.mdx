@@ -1,0 +1,55 @@
+---
+title: ViewEditField
+description: "Campo de detalhe com alternância view/edit inline: mostra `viewValue` normalmente e troca para `children` quando `editing` é true."
+---
+
+Não gerencia o estado de edição nem o valor — só decide o que renderizar.
+
+Disponível em `@portais-orion/blocks`, na categoria **Formulários**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { ViewEditField } from "@portais-orion/blocks/view-edit-field";
+```
+
+O import por subpath traz só `view-edit-field`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/view-edit-field" story="Leitura" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `label`\* | `string` | — | — |
+| `editing`\* | `boolean` | — | — |
+| `viewValue`\* | `any` | — | Conteúdo exibido em modo leitura. |
+| `children`\* | `any` | — | Controle de edição (Input, Select, etc.) fornecido pelo consumidor. |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `ViewEditField` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Edicao
+
+<ComponentPreview name="blocks/view-edit-field" story="Edicao" />
+
+## Storybook
+
+Todas as variações de `ViewEditField`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

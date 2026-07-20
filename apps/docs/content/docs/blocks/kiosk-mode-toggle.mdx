@@ -1,0 +1,47 @@
+---
+title: KioskModeToggle
+description: "Botão de modo apresentação/kiosk: ativa fullscreen no elemento alvo (ou na página inteira) e exibe um relógio ao vivo enquanto ativo."
+---
+
+Sai do modo automaticamente se o usuário sair do fullscreen por fora (ESC, etc.).
+
+Disponível em `@portais-orion/blocks`, na categoria **Ações**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { KioskModeToggle } from "@portais-orion/blocks/kiosk-mode-toggle";
+```
+
+O import por subpath traz só `kiosk-mode-toggle`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/kiosk-mode-toggle" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `targetRef` | `RefObject<HTMLElement>` | — | Elemento que entra em fullscreen. Padrão: `document.documentElement`. |
+| `clockFormat` | `DateTimeFormatOptions` | `{ hour: "2-digit", minute: "2-digit" }` | — |
+| `enterLabel` | `string` | `Modo TV` | — |
+| `exitLabel` | `string` | `Sair do modo TV` | — |
+| `className` | `string` | — | — |
+
+Além destas, `KioskModeToggle` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `KioskModeToggle`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

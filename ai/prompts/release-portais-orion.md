@@ -5,7 +5,7 @@ Não execute publicação em sandbox sem rede.
 
 ---
 
-Você é release engineer do Núcleo de Portais, monorepo pnpm + Turborepo + Changesets. Os
+Você é release engineer do Design System Orion, monorepo pnpm + Turborepo + Changesets. Os
 packages `@portais-orion/tokens`, `@portais-orion/ui` e `@portais-orion/blocks` são publicados
 privadamente no GitHub Packages da organização `portais-orion`.
 
@@ -22,7 +22,7 @@ externo. Pare no primeiro gate que falhar e reporte erro exato.
 - Não migrar telas de produto. Alterações no consumidor limitam-se à adoção da versão.
 - Confirmar Changesets, versões e conteúdo do diff antes de publicar.
 
-## 1. Preparar e validar o Núcleo
+## 1. Preparar e validar o Orion
 
 ```powershell
 Set-Location C:\projetos\nucleo-portais
@@ -41,6 +41,22 @@ Blocks derivam entradas tsup e `publishConfig.exports`; Tokens usa adapter CSS. 
 credenciais, arquivos indevidos, targets fora de `dist` e dependências `workspace:*` não
 resolvidas. Não gere exports manualmente e não substitua a inspeção automatizada por uma lista
 manual de comandos `tar`.
+
+## 1b. Regenerar documentação (Fumadocs)
+
+Sempre que um componente novo entrar em `packages/{ui,blocks}/src`, ele só aparece nos docs se
+estiver listado em `uiCategories`/`blocksCategories` dentro de `scripts/generate-docs.mjs` — o
+gerador não varre o filesystem, é decisão explícita por design. Componentes criados numa sprint
+anterior sem entrada nesse mapa (ex.: os 14 blocos do audit de gaps visuais) não geram `.mdx` até
+alguém adicionar a entrada e rodar o gerador:
+
+```powershell
+node scripts/generate-docs.mjs
+```
+
+Confira que `apps/docs/content/docs/blocks/*.mdx` e `apps/docs/src/components/registry.generated.ts`
+saíram atualizados (novos arquivos + `meta.json` com as novas entradas na sidebar). Faça isso
+antes do `pnpm build:storybook` do passo 1, para pegar drift de docs no mesmo commit.
 
 ## 2. Versionar com Changesets
 
@@ -91,7 +107,7 @@ pnpm build
 O consumidor deve importar CSS por `@portais-orion/tokens/*` e componentes pelos exports
 públicos. Configuração Tailwind deve buscar classes no `dist` de UI e Blocks quando aplicável.
 Se instalação, types, imports ou build falharem, não atualize produto: corrija exports ou
-artefatos no Núcleo, gere nova versão e repita o release.
+artefatos no Orion, gere nova versão e repita o release.
 
 ## 5. Atualizar consumidor autorizado
 
@@ -101,7 +117,7 @@ Somente após consumer test verde:
 - atualize dependências para versões exatas publicadas;
 - mantenha tema por `data-brand` e imports de tokens existentes;
 - valide `typecheck`, build e smoke test das telas afetadas;
-- registre commit e PR separados do release do Núcleo.
+- registre commit e PR separados do release do Orion.
 
 Não tocar no Aurora. Para migração de telas, use outro plano e a skill oficial
 `ai/skills/portais-orion-adoption/SKILL.md`.
@@ -119,5 +135,5 @@ Não tocar no Aurora. Para migração de telas, use outro plano e a skill oficia
 
 - Gate local ou pack falhou: não publicar.
 - Publish falhou: não atualizar consumidor.
-- Consumer test falhou: corrigir Núcleo e publicar nova versão.
+- Consumer test falhou: corrigir o Orion e publicar nova versão.
 - Build do produto falhou: manter mudança isolada, reportar e não ampliar escopo.

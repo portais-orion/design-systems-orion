@@ -1,0 +1,54 @@
+---
+title: JsonDiffDialog
+description: "Modal de diff antes/depois (auditoria): duas colunas com JSON formatado."
+---
+
+Não sabe de onde vêm os valores — só formata e exibe.
+
+Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { JsonDiffDialog } from "@portais-orion/blocks/json-diff-dialog";
+```
+
+O import por subpath traz só `json-diff-dialog`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/json-diff-dialog" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `open`\* | `boolean` | — |
+| `onOpenChange`\* | `(open: boolean) => void` | — |
+| `title` | `string` | `Detalhes da alteração` |
+| `beforeLabel` | `string` | `Valor anterior` |
+| `afterLabel` | `string` | `Valor novo` |
+| `beforeValue` | `unknown` | — |
+| `afterValue` | `unknown` | — |
+| `emptyBeforeLabel` | `string` | `Nenhum valor anterior` |
+| `emptyAfterLabel` | `string` | `Nenhum valor novo` |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `JsonDiffDialog` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `JsonDiffDialog`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

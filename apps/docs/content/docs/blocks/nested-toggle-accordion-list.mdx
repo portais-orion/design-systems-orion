@@ -1,0 +1,49 @@
+---
+title: NestedToggleAccordionList
+description: "Lista de grupos com switch de nível superior + expand/collapse; ao expandir, seções com checklist aninhado, badges de origem (herança) e ações de marcar/desmarcar em lote por seção ou por grupo inteiro."
+---
+
+Disponível em `@portais-orion/blocks`, na categoria **Formulários**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import {
+	NestedToggleAccordionList,
+} from "@portais-orion/blocks/nested-toggle-accordion-list";
+```
+
+O import por subpath traz só `nested-toggle-accordion-list`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/nested-toggle-accordion-list" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `groups`\* | `NestedToggleGroup[]` | — |
+| `expandedIds`\* | `Set<string>` | — |
+| `onToggleExpand`\* | `(id: string) => void` | — |
+| `emptyMessage` | `string` | `Nenhum item encontrado.` |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `NestedToggleAccordionList` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `NestedToggleAccordionList`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

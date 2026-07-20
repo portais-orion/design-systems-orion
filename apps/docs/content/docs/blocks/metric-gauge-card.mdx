@@ -1,0 +1,49 @@
+---
+title: MetricGaugeCard
+description: "Card de métrica com tom semântico (definido pelo consumidor), tooltip explicativo opcional e barra de progresso opcional — para dashboards de monitoramento/desempenho."
+---
+
+Disponível em `@portais-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { MetricGaugeCard } from "@portais-orion/blocks/metric-gauge-card";
+```
+
+O import por subpath traz só `metric-gauge-card`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/metric-gauge-card" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `label`\* | `string` | — | — |
+| `value`\* | `any` | — | — |
+| `unit` | `string` | — | — |
+| `tone` | `"default" \| "success" \| "warning" \| "danger" \| "info" \| "muted"` | `default` | — |
+| `tooltip` | `any` | — | — |
+| `progress` | `number` | — | Progresso opcional 0-100 (ex.: hit rate, ocupação). |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `MetricGaugeCard` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `MetricGaugeCard`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

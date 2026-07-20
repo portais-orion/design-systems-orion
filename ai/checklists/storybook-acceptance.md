@@ -1,7 +1,7 @@
 # Checklist — aceite de story
 
 - [ ] Colocalizada com o componente (`*.stories.tsx` no mesmo dir)
-- [ ] `title` segue hierarquia (`UI/<Nome>` ou `Núcleo/...`)
+- [ ] `title` segue hierarquia (`UI/<Nome>` ou `Orion/...`)
 - [ ] Sem providers de app real (Auth, Query, Router)
 - [ ] Controls para variants e disabled
 - [ ] Verificada com toolbar em Supertrans e em Aurora

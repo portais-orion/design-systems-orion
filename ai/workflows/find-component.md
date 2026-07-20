@@ -15,7 +15,7 @@ Fontes complementares:
 - `apps/storybook` (`pnpm storybook`) — estados e variants reais, toolbar de marca.
 - `apps/docs` — props/exemplos gerados; agentes podem ler `content/docs/{ui,blocks}/*.mdx` direto.
 - `docs/migration/ui-primitives-inventory.md` — inventário da migração.
-- Tabela "padrão local → Núcleo" em `ai/skills/portais-orion-adoption/SKILL.md` §8.
+- Tabela "padrão local → Orion" em `ai/skills/portais-orion-adoption/SKILL.md` §8.
 
 ## 2. Critério de duplicidade
 

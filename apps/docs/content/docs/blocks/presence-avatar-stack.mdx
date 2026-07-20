@@ -1,0 +1,47 @@
+---
+title: PresenceAvatarStack
+description: "Pilha de avatares sobrepostos com indicador \"online\" e tooltip (nome + sublabel, ex.: página atual)."
+---
+
+Não conhece sockets/presença real-time — só renderiza a lista recebida via props.
+
+Disponível em `@portais-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { PresenceAvatarStack } from "@portais-orion/blocks/presence-avatar-stack";
+```
+
+O import por subpath traz só `presence-avatar-stack`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/presence-avatar-stack" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `users`\* | `PresenceUser[]` | — |
+| `countSuffix` | `string` | `online` |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `PresenceAvatarStack` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `PresenceAvatarStack`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

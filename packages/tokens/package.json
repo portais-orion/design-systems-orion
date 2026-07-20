@@ -1,7 +1,7 @@
 {
 	"name": "@portais-orion/tokens",
-	"version": "0.1.1",
-	"description": "Tokens semânticos e temas por marca do Núcleo de Portais do Grupo",
+	"version": "0.2.0",
+	"description": "Tokens semânticos e temas por marca do Design System Orion",
 	"sideEffects": [
 		"*.css"
 	],

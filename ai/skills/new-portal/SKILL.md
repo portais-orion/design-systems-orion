@@ -1,9 +1,9 @@
 ---
 name: new-portal
-description: Use quando for criar um projeto/portal NOVO do zero que consome o Núcleo @portais-orion (tokens/ui/blocks) — scaffold Next.js + Tailwind v4, autenticação no GitHub Packages, tema por data-brand e adaptadores locais. Não use para migrar telas de portal existente (use portais-orion-adoption).
+description: Use quando for criar um projeto/portal NOVO do zero que consome o Orion @portais-orion (tokens/ui/blocks) — scaffold Next.js + Tailwind v4, autenticação no GitHub Packages, tema por data-brand e adaptadores locais. Não use para migrar telas de portal existente (use portais-orion-adoption).
 ---
 
-# Criar portal novo consumindo o Núcleo
+# Criar portal novo consumindo o Orion
 
 Guia de setup: `docs/adoption/consumer-setup.md` (fonte de verdade — seguir seção a seção).
 Esta skill define a ordem e o que validar. O portal vive em **repo separado** (ADR 0007);
@@ -29,7 +29,7 @@ nunca criar produto dentro do nucleo-portais.
 ## Convenções que o portal herda
 
 - Domínio (rotas, APIs, permissões, entidades) é Camada 3 — vive só no portal.
-- Gap de API do Núcleo → issue em `portais-orion/nucleo-portais` (consumer-setup §8); nunca
+- Gap de API do Orion → issue em `portais-orion/nucleo-portais` (consumer-setup §8); nunca
   fork/patch local do package. Componente genérico novo → skill `contribute-to-nucleo`.
 - Telas novas: montar com blocks (`page-header`, `data-table`, `list-page-layout`,
   `empty-state`...) antes de escrever markup próprio — `ai/workflows/find-component.md`.

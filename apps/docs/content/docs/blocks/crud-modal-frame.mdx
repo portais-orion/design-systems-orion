@@ -1,0 +1,60 @@
+---
+title: CrudModalFrame
+description: "Invólucro completo para modais de criar, editar ou detalhar registro: `Dialog` + `CrudModalHeader` + corpo com scroll próprio (`max-h-[85vh]`) + footer opcional com borda superior."
+---
+
+Escolha o tamanho por `size` em vez de sobrescrever largura via `className`.
+
+Disponível em `@portais-orion/blocks`, na categoria **Utilitários**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { CrudModalFrame } from "@portais-orion/blocks/crud-modal-frame";
+```
+
+O import por subpath traz só `crud-modal-frame`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/crud-modal-frame" story="Criar" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `open`\* | `boolean` | — | — |
+| `onOpenChange`\* | `(open: boolean) => void` | — | — |
+| `title`\* | `string` | — | — |
+| `description` | `string` | — | — |
+| `icon` | `ComponentType<{ className?: string; }>` | — | — |
+| `badges` | `any` | — | Badges contextuais no cabeçalho (status, código, etc.). |
+| `tone` | `"default" \| "success" \| "warning" \| "danger" \| "info"` | `default` | — |
+| `footer` | `any` | — | — |
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `lg` | — |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `CrudModalFrame` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Detalhe
+
+<ComponentPreview name="blocks/crud-modal-frame" story="Detalhe" />
+
+## Storybook
+
+Todas as variações de `CrudModalFrame`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

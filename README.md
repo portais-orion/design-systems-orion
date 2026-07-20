@@ -1,4 +1,4 @@
-# 🏗️ Núcleo de Portais do Grupo
+# 🏗️ Design System Orion
 
 ![tokens version](https://img.shields.io/badge/@portais--orion/tokens-0.1.1-blue?style=flat-square)
 ![ui version](https://img.shields.io/badge/@portais--orion/ui-0.3.0-blue?style=flat-square)
@@ -15,7 +15,7 @@
 
 ## 📖 Visão Geral
 
-O `nucleo-portais` é a base oficial para criação, padronização e evolução dos portais das empresas do grupo.
+O `nucleo-portais` (**Design System Orion**) é a base oficial para criação, padronização e evolução dos portais das empresas do grupo.
 
 ### O que vive aqui
 
@@ -311,7 +311,8 @@ As decisões arquiteturais são documentadas como ADRs em [`docs/adr/`](docs/adr
 
 | # | Decisão | Link |
 |---|---|---|
-| 0001 | Núcleo de Portais como plataforma | [ADR](docs/adr/0001-nucleo-de-portais.md) |
+| 0001 | Núcleo de Portais como plataforma (renomeado para Design System Orion — [ADR 0009](docs/adr/0009-rename-design-system-orion.md)) | [ADR](docs/adr/0001-nucleo-de-portais.md) |
+| 0009 | Rename para Design System Orion | [ADR](docs/adr/0009-rename-design-system-orion.md) |
 | 0002 | pnpm + Turborepo | [ADR](docs/adr/0002-pnpm-turborepo.md) |
 | 0003 | Tailwind v4 CSS-first (sem `tailwind.config.ts`) | [ADR](docs/adr/0003-tailwind-v4-css-first.md) |
 | 0004 | Base UI como primitivo headless (substitui Radix) | [ADR](docs/adr/0004-base-ui-como-primitivo-headless.md) |
@@ -338,7 +339,7 @@ ai/
 
 **Ponto de entrada para agentes:** [`AGENTS.md`](AGENTS.md) + [`ai/context/00-read-first.md`](ai/context/00-read-first.md)
 
-**Skill de adoção:** a skill [`portais-orion-adoption`](ai/skills/portais-orion-adoption/SKILL.md) guia a migração de telas de portais existentes para consumir os packages do Núcleo.
+**Skill de adoção:** a skill [`portais-orion-adoption`](ai/skills/portais-orion-adoption/SKILL.md) guia a migração de telas de portais existentes para consumir os packages do Orion.
 
 ---
 
@@ -366,7 +367,7 @@ ai/
 
 > "Este código faria sentido num terceiro portal de outra empresa criado amanhã?"
 
-Se não → é Camada 3 e fica no produto, não no Núcleo.
+Se não → é Camada 3 e fica no produto, não no Orion.
 
 ---
 
@@ -380,7 +381,7 @@ Se não → é Camada 3 e fica no produto, não no Núcleo.
 | [`docs/architecture/component-layering.md`](docs/architecture/component-layering.md) | Regras de camadas de componentes |
 | [`docs/architecture/storybook.md`](docs/architecture/storybook.md) | Arquitetura e configuração do Storybook |
 | [`docs/architecture/package-distribution.md`](docs/architecture/package-distribution.md) | Empacotamento e distribuição |
-| [`docs/adoption/consumer-setup.md`](docs/adoption/consumer-setup.md) | Guia para novos portais consumirem o Núcleo |
+| [`docs/adoption/consumer-setup.md`](docs/adoption/consumer-setup.md) | Guia para novos portais consumirem o Orion |
 | [`docs/migration/ui-primitives-inventory.md`](docs/migration/ui-primitives-inventory.md) | Inventário de primitives para migração |
 
 ---

@@ -60,28 +60,50 @@ const uiCategories = {
 };
 
 const blocksCategories = {
+	"activity-timeline": "Exibição de dados",
 	"app-shell": "Layout",
+	"attachment-list": "Exibição de dados",
 	breadcrumbs: "Navegação",
 	"code-badge": "Utilitários",
+	"comparison-diff-view": "Exibição de dados",
 	"confirm-dialog": "Feedback",
 	"content-card": "Exibição de dados",
+	"crud-modal-frame": "Utilitários",
 	"crud-modal-header": "Utilitários",
 	"dashboard-page-layout": "Layout",
 	"data-table": "Tabelas",
 	"detail-page-layout": "Layout",
+	"dynamic-field-list-rows": "Formulários",
 	"empty-state": "Feedback",
+	"entity-assignment-panel": "Formulários",
 	"error-state": "Feedback",
 	"field-group": "Formulários",
+	"file-dropzone": "Formulários",
+	"file-list-item": "Formulários",
 	"filter-pill": "Tabelas",
+	"filterable-tree-list": "Navegação",
 	"filters-card": "Tabelas",
 	"form-actions": "Formulários",
 	"form-field": "Formulários",
 	"form-message": "Formulários",
 	"form-page-layout": "Layout",
 	"form-section": "Formulários",
+	"gantt-chart": "Exibição de dados",
+	"impact-analysis-dialog": "Feedback",
+	"impersonation-banner": "Feedback",
+	"inline-confirm-action": "Ações",
+	"json-diff-dialog": "Feedback",
+	"kanban-board": "Exibição de dados",
+	"kiosk-mode-toggle": "Ações",
 	"launcher-card": "Exibição de dados",
 	"list-page-layout": "Layout",
 	"loading-overlay": "Feedback",
+	"metric-gauge-card": "Exibição de dados",
+	"missing-prerequisites-state": "Feedback",
+	"module-icon": "Utilitários",
+	"month-calendar": "Exibição de dados",
+	"nested-toggle-accordion-list": "Formulários",
+	"onboarding-dialog": "Feedback",
 	// `navigation` fica de fora de propósito: é um módulo de tipos e utilitários
 	// (NavigationItem, RenderLink, filterNavigation), não um componente — a
 	// página gerada só prometia um preview e uma API que não existem.
@@ -89,12 +111,16 @@ const blocksCategories = {
 	"page-header": "Layout",
 	"page-layout": "Layout",
 	pagination: "Tabelas",
+	"permission-gate": "Utilitários",
+	"presence-avatar-stack": "Exibição de dados",
 	"search-bar": "Tabelas",
 	"section-header": "Layout",
 	sidebar: "Navegação",
 	"status-cards": "Exibição de dados",
 	"status-dot": "Feedback",
 	"table-skeleton-rows": "Tabelas",
+	"table-toggle": "Tabelas",
+	"view-edit-field": "Formulários",
 };
 
 /*
@@ -196,36 +222,176 @@ function extractStories(storySource) {
 }
 
 /*
- * Monta o trecho de código exibido na aba "Code". Para stories com args,
- * reconstrói a chamada JSX; para stories com render(), mostra o corpo do
- * render, que já é JSX escrito à mão.
+ * Monta o trecho de código exibido na aba "Code" — um arquivo standalone e
+ * copiável (imports reais + função exportada), no mesmo espírito do shadcn/ui
+ * ("CalendarDemo" com `import { Calendar } from "@/components/ui/calendar"`
+ * no topo, não só o JSX solto). Passos:
+ *
+ *  1. Resolve o corpo real da story (`findRenderInfo`) — inclusive quando o
+ *     `render` só referencia um helper local (`() => <Demo />`): nesse caso
+ *     puxa a definição inteira do helper, não a chamada vazia.
+ *  2. Envolve numa função exportada quando o corpo ainda não é uma (stories
+ *     com `render: () => (<jsx/>)` ou com `args`).
+ *  3. Inlina outros helpers locais referenciados como tag JSX dentro do
+ *     corpo resolvido — isso é o que faz um exemplo de página (page-examples,
+ *     preview `block`) sair com a composição inteira, não só o layout raiz.
+ *  4. Monta os imports de verdade: resolve imports relativos (`../data-table`,
+ *     `./confirm-dialog`) para o subpath público (`@portais-orion/blocks/...`)
+ *     e reaproveita como estão os imports externos (`@portais-orion/ui`,
+ *     `lucide-react`, `react`) que o corpo final realmente usa.
+ *  5. `fn()` (placeholder de mock do Storybook) vira `() => {}`: código de
+ *     exemplo não deveria pedir `storybook/test` para colar num projeto real.
+ *  6. Prefixa `"use client"` quando o corpo usa hooks.
  */
-function storyCodeSnippet(story, compName, storySource) {
+function storyCodeSnippet(story, compName, storySource, pkg, name, exportNames) {
+	const sourceFile = ts.createSourceFile(
+		"stories.tsx",
+		storySource,
+		ts.ScriptTarget.Latest,
+		true,
+		ts.ScriptKind.TSX,
+	);
+
+	const localHelpers = collectLocalHelpers(sourceFile);
+	const topImports = collectTopLevelImports(sourceFile);
+
+	const demoName = `${compName}${story.name === "Default" ? "Demo" : story.name}`;
+
+	let fnText = null;
+
 	if (story.render) {
-		const sourceFile = ts.createSourceFile(
-			"stories.tsx",
-			storySource,
-			ts.ScriptTarget.Latest,
-			true,
-			ts.ScriptKind.TSX,
-		);
-		// Reparse para localizar o corpo do arrow function do render.
-		const found = findRenderBody(sourceFile, story.name);
-		if (found) return found;
+		const info = findRenderInfo(sourceFile, story.name);
+		if (info?.kind === "ref" && localHelpers.has(info.refName)) {
+			fnText = ensureExported(localHelpers.get(info.refName));
+		} else if (info?.kind === "named-function") {
+			fnText = ensureExported(info.text);
+		} else if (info?.kind === "block") {
+			fnText = `export function ${demoName}() ${info.text}`;
+		} else if (info?.kind === "jsx") {
+			fnText = `export function ${demoName}() {\n\treturn (\n${indentBlock(info.text, 2)}\n\t);\n}`;
+		}
 	}
 
-	if (story.args) {
-		const props = parseArgsToJsx(story.args, compName);
-		if (props) return props;
+	if (!fnText && story.args) {
+		const jsx = parseArgsToJsx(story.args, compName);
+		if (jsx) {
+			fnText = `export function ${demoName}() {\n\treturn (\n${indentBlock(jsx, 2)}\n\t);\n}`;
+		}
 	}
 
-	return `<${compName} />`;
+	if (!fnText) {
+		fnText = `export function ${demoName}() {\n\treturn <${compName} />;\n}`;
+	}
+
+	// Placeholder de mock do Storybook — não faz sentido em código de exemplo.
+	fnText = fnText.replace(/\bfn\(\)/g, "() => {}");
+
+	fnText = inlineReferencedHelpers(fnText, localHelpers, new Set([demoName]));
+
+	const importLines = buildImportLines(fnText, topImports, pkg, name, compName, exportNames);
+	// `(<T>)?` cobre hooks com generic explícito (`useState<Date | null>(...)`).
+	const usesHooks = /\buse[A-Z]\w*\b\s*(?:<[^>]*>)?\s*\(/.test(fnText);
+	const header = usesHooks ? '"use client";\n\n' : "";
+	const importBlock = importLines.length ? `${importLines.join("\n")}\n\n` : "";
+
+	return `${header}${importBlock}${fnText}`;
 }
 
-function findRenderBody(sourceFile, storyName) {
+/** Indenta cada linha não vazia de `text` com `tabs` tabs — para embutir JSX dedentado dentro do wrapper `export function`. */
+function indentBlock(text, tabs) {
+	const pad = "\t".repeat(tabs);
+	return text
+		.split("\n")
+		.map((line) => (line.trim() ? pad + line : line))
+		.join("\n");
+}
+
+/** Prefixa `export` se o texto (função ou const) ainda não começar com ele. */
+function ensureExported(text) {
+	const trimmed = text.trim();
+	if (/^export\b/.test(trimmed)) return trimmed;
+	if (/^(function|const|async function)\b/.test(trimmed)) return `export ${trimmed}`;
+	return trimmed;
+}
+
+/*
+ * Helpers locais (não exportados) declarados no arquivo de stories: os
+ * "Demo"/"Lista"/"Formulario" que o `render` referencia ou que compõem o
+ * exemplo. Cobre `function Nome(...) {...}` e `const Nome = (...) => {...}`.
+ */
+function collectLocalHelpers(sourceFile) {
+	const helpers = new Map();
+
+	for (const stmt of sourceFile.statements) {
+		if (ts.isFunctionDeclaration(stmt) && stmt.name && !isExportedStmt(stmt)) {
+			helpers.set(stmt.name.text, stmt.getText(sourceFile));
+			continue;
+		}
+		if (ts.isVariableStatement(stmt) && !isExportedStmt(stmt)) {
+			for (const decl of stmt.declarationList.declarations) {
+				if (
+					ts.isIdentifier(decl.name) &&
+					decl.initializer &&
+					(ts.isArrowFunction(decl.initializer) || ts.isFunctionExpression(decl.initializer))
+				) {
+					helpers.set(decl.name.text, stmt.getText(sourceFile));
+				}
+			}
+		}
+	}
+
+	return helpers;
+}
+
+function isExportedStmt(node) {
+	return node.modifiers?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword) ?? false;
+}
+
+/*
+ * Imports de topo do arquivo de stories, para decidir quais entram no
+ * snippet final. `names` são os identificadores que, se aparecerem no corpo
+ * resolvido, fazem este import ser incluído (default/namespace/named, com
+ * alias `as` respeitado).
+ */
+function collectTopLevelImports(sourceFile) {
+	const imports = [];
+
+	for (const stmt of sourceFile.statements) {
+		if (!ts.isImportDeclaration(stmt) || !ts.isStringLiteral(stmt.moduleSpecifier)) continue;
+		const specifier = stmt.moduleSpecifier.text;
+		const names = [];
+		const clause = stmt.importClause;
+		if (clause?.name) names.push(clause.name.text);
+		if (clause?.namedBindings) {
+			if (ts.isNamespaceImport(clause.namedBindings)) {
+				names.push(clause.namedBindings.name.text);
+			} else if (ts.isNamedImports(clause.namedBindings)) {
+				for (const el of clause.namedBindings.elements) names.push(el.name.text);
+			}
+		}
+		imports.push({
+			specifier,
+			names,
+			isRelative: specifier.startsWith("."),
+			text: stmt.getText(sourceFile),
+		});
+	}
+
+	return imports;
+}
+
+/*
+ * Localiza a propriedade `render` da story e classifica seu formato:
+ *  - "ref"            -> `() => <Nome />`, referência a um helper local
+ *  - "named-function" -> `render: function Nome() {...}` (nome próprio)
+ *  - "block"           -> `render: () => { ...; return <jsx/>; }`
+ *  - "jsx"             -> `render: () => (<jsx/>)` ou `() => <jsx/>`
+ */
+function findRenderInfo(sourceFile, storyName) {
 	let result = null;
 
 	const visit = (node) => {
+		if (result) return;
 		if (
 			ts.isVariableDeclaration(node) &&
 			ts.isIdentifier(node.name) &&
@@ -235,20 +401,49 @@ function findRenderBody(sourceFile, storyName) {
 		) {
 			for (const prop of node.initializer.properties) {
 				if (
-					ts.isPropertyAssignment(prop) &&
-					prop.name &&
-					ts.isIdentifier(prop.name) &&
-					prop.name.text === "render" &&
-					(ts.isArrowFunction(prop.initializer) || ts.isFunctionExpression(prop.initializer))
+					!ts.isPropertyAssignment(prop) ||
+					!prop.name ||
+					!ts.isIdentifier(prop.name) ||
+					prop.name.text !== "render"
 				) {
-					const body = prop.initializer.body;
-					let text = body.getText(sourceFile);
-					// render: () => ( <jsx/> ) — remove os parênteses externos.
-					if (text.startsWith("(") && text.endsWith(")")) {
-						text = text.slice(1, -1).trim();
-					}
-					result = dedent(text);
+					continue;
 				}
+				const initializer = prop.initializer;
+				if (!ts.isArrowFunction(initializer) && !ts.isFunctionExpression(initializer)) continue;
+
+				if (ts.isFunctionExpression(initializer) && initializer.name) {
+					result = { kind: "named-function", text: initializer.getText(sourceFile) };
+					continue;
+				}
+
+				const body = initializer.body;
+
+				if (ts.isBlock(body)) {
+					result = { kind: "block", text: dedent(body.getText(sourceFile)) };
+					continue;
+				}
+
+				// Corpo de expressão direta: pode ser `<Nome />` (referência) ou JSX de verdade.
+				let expr = body;
+				if (ts.isParenthesizedExpression(expr)) expr = expr.expression;
+
+				if (
+					(ts.isJsxSelfClosingElement(expr) &&
+						ts.isIdentifier(expr.tagName) &&
+						expr.attributes.properties.length === 0) ||
+					(ts.isJsxElement(expr) &&
+						ts.isIdentifier(expr.openingElement.tagName) &&
+						expr.openingElement.attributes.properties.length === 0 &&
+						expr.children.length === 0)
+				) {
+					const tagName = ts.isJsxSelfClosingElement(expr)
+						? expr.tagName.text
+						: expr.openingElement.tagName.text;
+					result = { kind: "ref", refName: tagName };
+					continue;
+				}
+
+				result = { kind: "jsx", text: dedent(expr.getText(sourceFile)) };
 			}
 		}
 		ts.forEachChild(node, visit);
@@ -256,6 +451,92 @@ function findRenderBody(sourceFile, storyName) {
 
 	visit(sourceFile);
 	return result;
+}
+
+/*
+ * Um exemplo de página (`page-examples`) monta o layout raiz a partir de
+ * outros helpers locais no mesmo arquivo (`Cabecalho`, `Tabela`...). Sem
+ * inliná-los, o snippet mostraria `<Cabecalho />` sem a definição — inútil
+ * para copiar. Uma passada extra cobre helper-que-usa-helper.
+ */
+function inlineReferencedHelpers(code, localHelpers, alreadyIncluded) {
+	let result = code;
+	for (let pass = 0; pass < 2; pass++) {
+		let changed = false;
+		for (const [helperName, helperText] of localHelpers) {
+			if (alreadyIncluded.has(helperName)) continue;
+			const usedAsJsxTag = new RegExp(`<${helperName}[\\s/>]`).test(result);
+			if (!usedAsJsxTag) continue;
+			result = `${helperText}\n\n${result}`;
+			alreadyIncluded.add(helperName);
+			changed = true;
+		}
+		if (!changed) break;
+	}
+	return result;
+}
+
+/*
+ * Resolve o subpath público de um import relativo do arquivo de stories:
+ * `../data-table` ou `./confirm-dialog` -> `data-table`/`confirm-dialog`.
+ * A convenção do repo é uma pasta por componente com o mesmo nome do
+ * arquivo, então o basename do especificador já é o slug do subpath.
+ */
+function relativeSpecifierToSubpath(specifier) {
+	return path.basename(specifier).replace(/\.tsx?$/, "");
+}
+
+/*
+ * Monta as linhas de import do snippet final: o componente da própria
+ * página primeiro (via subpath público, nunca o caminho relativo do
+ * monorepo), depois qualquer outro import do arquivo de stories cujo nome
+ * realmente aparece no código resolvido (ícones, outros blocks/ui, react).
+ * `storybook/test` e `@storybook/react` nunca entram — são só do Storybook.
+ */
+function buildImportLines(code, topImports, pkg, name, compName, exportNames) {
+	const lines = [];
+	const seenSpecifiers = new Set();
+	const usesWholeWord = (word) => new RegExp(`\\b${word}\\b`).test(code);
+
+	const ownNames = (exportNames?.length ? exportNames : [compName]).filter(usesWholeWord);
+	if (ownNames.length > 0) {
+		const specifier = `@portais-orion/${pkg}/${name}`;
+		lines.push(formatImport(ownNames, specifier));
+		seenSpecifiers.add(specifier);
+	}
+
+	// Agrupa nomes usados por subpath resolvido, para imports relativos que
+	// apontem para o mesmo componente (ex.: dois named imports de "../foo").
+	const relativeGroups = new Map();
+
+	for (const imp of topImports) {
+		if (imp.specifier === "storybook/test" || imp.specifier === "@storybook/react") continue;
+
+		const used = imp.names.filter(usesWholeWord);
+		if (used.length === 0) continue;
+
+		if (!imp.isRelative) {
+			if (seenSpecifiers.has(imp.specifier)) continue;
+			lines.push(imp.text);
+			seenSpecifiers.add(imp.specifier);
+			continue;
+		}
+
+		const subpath = relativeSpecifierToSubpath(imp.specifier);
+		if (subpath === name) continue; // já coberto pelo import do próprio componente acima
+		const specifier = `@portais-orion/${pkg}/${subpath}`;
+		const existing = relativeGroups.get(specifier) ?? new Set();
+		for (const n of used) existing.add(n);
+		relativeGroups.set(specifier, existing);
+	}
+
+	for (const [specifier, names] of relativeGroups) {
+		if (seenSpecifiers.has(specifier)) continue;
+		lines.push(formatImport([...names], specifier));
+		seenSpecifiers.add(specifier);
+	}
+
+	return lines;
 }
 
 function dedent(text) {
@@ -737,12 +1018,15 @@ async function run() {
 			} catch {}
 			const stories = extractStories(storySource);
 			if (stories.length > 0) {
+				const compName = pascalCase(name);
+				const { content: ownSourceContent } = await readSource(pkg, name);
+				const exportNames = extractExportNames(ownSourceContent, compName);
 				registryEntries.push({
 					pkg,
 					name,
 					stories: stories.map((story) => ({
 						name: story.name,
-						code: storyCodeSnippet(story, pascalCase(name), storySource),
+						code: storyCodeSnippet(story, compName, storySource, pkg, name, exportNames),
 					})),
 				});
 			}

@@ -1,0 +1,58 @@
+---
+title: FileDropzone
+description: "Zona de arraste-e-solte (ou clique) para seleção de arquivo(s)."
+---
+
+Só entrega `File[]` via `onFilesSelected` — validação de tipo/tamanho e upload em si ficam a cargo do consumidor.
+
+Disponível em `@portais-orion/blocks`, na categoria **Formulários**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { FileDropzone } from "@portais-orion/blocks/file-dropzone";
+```
+
+O import por subpath traz só `file-dropzone`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/file-dropzone" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `onFilesSelected`\* | `(files: File[]) => void` | — |
+| `accept` | `string` | — |
+| `multiple` | `boolean` | `false` |
+| `disabled` | `boolean` | `false` |
+| `icon` | `ComponentType<{ className?: string; }>` | — |
+| `title` | `string` | `Clique para fazer upload` |
+| `description` | `string` | — |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `FileDropzone` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Desabilitado
+
+<ComponentPreview name="blocks/file-dropzone" story="Desabilitado" />
+
+## Storybook
+
+Todas as variações de `FileDropzone`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

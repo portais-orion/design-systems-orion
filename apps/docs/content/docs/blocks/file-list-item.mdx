@@ -1,0 +1,56 @@
+---
+title: FileListItem
+description: "Card de arquivo selecionado (antes do envio): ícone, nome, tamanho e remoção opcional."
+---
+
+Não faz upload nem valida — só exibe o que o consumidor já tem em estado local.
+
+Disponível em `@portais-orion/blocks`, na categoria **Formulários**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { FileListItem } from "@portais-orion/blocks/file-list-item";
+```
+
+O import por subpath traz só `file-list-item`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/file-list-item" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `name`\* | `string` | — | — |
+| `size` | `string \| number` | — | Já formatado (ex.: "1.4 KB") ou tamanho em bytes (formata em KB automaticamente). |
+| `icon` | `ComponentType<{ className?: string; }>` | — | — |
+| `onRemove` | `() => void` | — | — |
+| `removeLabel` | `string` | `Remover` | — |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `FileListItem` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Somente leitura
+
+<ComponentPreview name="blocks/file-list-item" story="SomenteLeitura" />
+
+## Storybook
+
+Todas as variações de `FileListItem`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

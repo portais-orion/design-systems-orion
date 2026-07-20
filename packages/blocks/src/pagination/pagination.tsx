@@ -23,14 +23,23 @@ export type PaginationProps = {
 	limitOptions?: number[];
 	onPageChange: (page: number) => void;
 	onLimitChange?: (limit: number) => void;
+	/**
+	 * Mantém o rodapé visível (com navegação desabilitada e contadores
+	 * zerados) quando `total` é zero, em vez de não renderizar nada.
+	 * Default `false` preserva o comportamento anterior.
+	 */
+	showWhenEmpty?: boolean;
+	/** Nome do item na contagem (ex.: "clientes", "portos"). Default "resultados". */
+	itemLabel?: string;
 	className?: string;
 };
 
 /**
  * Navegação entre páginas de uma listagem, com contagem de resultados e seletor
  * de itens por página. Casa com o envelope `{ data, total, page, limit }` da
- * API. Não renderiza nada quando `total` é zero, e trocar o limite volta para a
- * primeira página.
+ * API. Por padrão não renderiza nada quando `total` é zero; use
+ * `showWhenEmpty` para manter o rodapé visível e desabilitado nesse caso.
+ * Trocar o limite volta para a primeira página.
  */
 export function Pagination({
 	page,
@@ -39,13 +48,16 @@ export function Pagination({
 	limitOptions = [10, 20, 50, 100],
 	onPageChange,
 	onLimitChange,
+	showWhenEmpty = false,
+	itemLabel = "resultados",
 	className,
 }: PaginationProps) {
-	if (total === 0) return null;
+	if (total === 0 && !showWhenEmpty) return null;
 
-	const totalPages = Math.max(1, Math.ceil(total / limit));
-	const from = (page - 1) * limit + 1;
-	const to = Math.min(page * limit, total);
+	const isEmpty = total === 0;
+	const totalPages = isEmpty ? 1 : Math.max(1, Math.ceil(total / limit));
+	const from = isEmpty ? 0 : (page - 1) * limit + 1;
+	const to = isEmpty ? 0 : Math.min(page * limit, total);
 	const fmt = new Intl.NumberFormat("pt-BR");
 
 	return (
@@ -83,7 +95,7 @@ export function Pagination({
 				<span>
 					Mostrando <span className="font-medium text-foreground">{fmt.format(from)}</span> a{" "}
 					<span className="font-medium text-foreground">{fmt.format(to)}</span> de{" "}
-					<span className="font-medium text-foreground">{fmt.format(total)}</span> resultados
+					<span className="font-medium text-foreground">{fmt.format(total)}</span> {itemLabel}
 				</span>
 			</div>
 			<div className="flex items-center gap-2">
@@ -91,7 +103,7 @@ export function Pagination({
 					variant="outline"
 					size="icon-sm"
 					aria-label="Página anterior"
-					disabled={page <= 1}
+					disabled={isEmpty || page <= 1}
 					onClick={() => onPageChange(page - 1)}
 				>
 					<ChevronLeft />
@@ -104,7 +116,7 @@ export function Pagination({
 					variant="outline"
 					size="icon-sm"
 					aria-label="Próxima página"
-					disabled={page >= totalPages}
+					disabled={isEmpty || page >= totalPages}
 					onClick={() => onPageChange(page + 1)}
 				>
 					<ChevronRight />

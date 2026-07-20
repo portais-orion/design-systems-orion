@@ -8,7 +8,7 @@ skill: editar aqui e manter o stub (frontmatter idêntico + ponteiro).
 | Skill | Cenário |
 |---|---|
 | `new-portal` | criar projeto/portal novo do zero consumindo `@portais-orion` |
-| `portais-orion-adoption` | migrar uma tela de portal existente para o Núcleo |
+| `portais-orion-adoption` | migrar uma tela de portal existente para o Orion |
 | `create-component` | criar primitive em `@portais-orion/ui` (Camada 1) |
 | `create-block` | criar composição em `@portais-orion/blocks` (Camada 2) |
 | `contribute-to-nucleo` | contribuir componente/block de volta via PR (sem merge automático) |

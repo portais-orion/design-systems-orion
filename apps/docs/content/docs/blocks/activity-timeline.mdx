@@ -1,0 +1,53 @@
+---
+title: ActivityTimeline
+description: "Linha do tempo vertical de eventos (auditoria, histórico de status, etc.): nó circular com ícone, conectado por uma linha, e um card com título/data/descrição."
+---
+
+Dados via props — não busca nada.
+
+Disponível em `@portais-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
+pnpm add @portais-orion/blocks
+```
+
+## Import
+
+```tsx
+import { ActivityTimeline } from "@portais-orion/blocks/activity-timeline";
+```
+
+O import por subpath traz só `activity-timeline`. Importar de `@portais-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/activity-timeline" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão |
+| --- | --- | --- |
+| `items`\* | `TimelineItem[]` | — |
+| `emptyMessage` | `string` | `Nenhum evento registrado.` |
+| `className` | `string` | — |
+
+\* Prop obrigatória.
+
+Além destas, `ActivityTimeline` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Vazio
+
+<ComponentPreview name="blocks/activity-timeline" story="Vazio" />
+
+## Storybook
+
+Todas as variações de `ActivityTimeline`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

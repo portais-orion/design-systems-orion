@@ -1,6 +1,6 @@
 # Distribuição dos packages
 
-Como o Núcleo empacota e distribui packages internos versionados.
+Como o Orion empacota e distribui packages internos versionados.
 
 ## Decisão vigente
 

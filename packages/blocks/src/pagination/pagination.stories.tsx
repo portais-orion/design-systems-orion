@@ -42,7 +42,20 @@ export const TotalZeroNaoRenderiza: Story = {
 	render: () => (
 		<div className="text-sm text-muted-foreground">
 			<Pagination page={1} limit={20} total={0} onPageChange={() => {}} />
-			(total=0 → o componente não renderiza nada)
+			(total=0 → o componente não renderiza nada, comportamento default)
 		</div>
+	),
+};
+
+export const TotalZeroVisivel: Story = {
+	render: () => (
+		<Pagination
+			page={1}
+			limit={20}
+			total={0}
+			itemLabel="clientes"
+			showWhenEmpty
+			onPageChange={() => {}}
+		/>
 	),
 };

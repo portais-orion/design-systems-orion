@@ -1,7 +1,7 @@
 {
 	"name": "@portais-orion/blocks",
-	"version": "0.3.1",
-	"description": "Composições genéricas do Núcleo de Portais (Camada 2) — dados por props, sem domínio.",
+	"version": "0.4.0",
+	"description": "Composições genéricas do Design System Orion (Camada 2) — dados por props, sem domínio.",
 	"sideEffects": false,
 	"exports": {
 		".": "./src/index.ts",
@@ -36,9 +36,37 @@
 		"./sidebar": "./src/sidebar/index.ts",
 		"./crud-modal-header": "./src/crud-modal-header/index.ts",
 		"./filters-card": "./src/filters-card/index.ts",
-		"./launcher-card": "./src/launcher-card/index.ts"
+		"./launcher-card": "./src/launcher-card/index.ts",
+		"./month-calendar": "./src/month-calendar/index.ts",
+		"./file-dropzone": "./src/file-dropzone/index.ts",
+		"./file-list-item": "./src/file-list-item/index.ts",
+		"./attachment-list": "./src/attachment-list/index.ts",
+		"./activity-timeline": "./src/activity-timeline/index.ts",
+		"./view-edit-field": "./src/view-edit-field/index.ts",
+		"./inline-confirm-action": "./src/inline-confirm-action/index.ts",
+		"./json-diff-dialog": "./src/json-diff-dialog/index.ts",
+		"./comparison-diff-view": "./src/comparison-diff-view/index.ts",
+		"./missing-prerequisites-state": "./src/missing-prerequisites-state/index.ts",
+		"./dynamic-field-list-rows": "./src/dynamic-field-list-rows/index.ts",
+		"./metric-gauge-card": "./src/metric-gauge-card/index.ts",
+		"./entity-assignment-panel": "./src/entity-assignment-panel/index.ts",
+		"./presence-avatar-stack": "./src/presence-avatar-stack/index.ts",
+		"./gantt-chart": "./src/gantt-chart/index.ts",
+		"./kanban-board": "./src/kanban-board/index.ts",
+		"./filterable-tree-list": "./src/filterable-tree-list/index.ts",
+		"./nested-toggle-accordion-list": "./src/nested-toggle-accordion-list/index.ts",
+		"./kiosk-mode-toggle": "./src/kiosk-mode-toggle/index.ts",
+		"./impact-analysis-dialog": "./src/impact-analysis-dialog/index.ts",
+		"./crud-modal-frame": "./src/crud-modal-frame/index.ts",
+		"./table-toggle": "./src/table-toggle/index.ts",
+		"./module-icon": "./src/module-icon/index.ts",
+		"./impersonation-banner": "./src/impersonation-banner/index.ts",
+		"./onboarding-dialog": "./src/onboarding-dialog/index.ts",
+		"./permission-gate": "./src/permission-gate/index.ts"
 	},
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"build": "tsup",
 		"typecheck": "tsc --noEmit",
@@ -191,6 +219,110 @@
 			"./launcher-card": {
 				"types": "./dist/launcher-card/index.d.mts",
 				"import": "./dist/launcher-card/index.mjs"
+			},
+			"./month-calendar": {
+				"types": "./dist/month-calendar/index.d.mts",
+				"import": "./dist/month-calendar/index.mjs"
+			},
+			"./file-dropzone": {
+				"types": "./dist/file-dropzone/index.d.mts",
+				"import": "./dist/file-dropzone/index.mjs"
+			},
+			"./file-list-item": {
+				"types": "./dist/file-list-item/index.d.mts",
+				"import": "./dist/file-list-item/index.mjs"
+			},
+			"./attachment-list": {
+				"types": "./dist/attachment-list/index.d.mts",
+				"import": "./dist/attachment-list/index.mjs"
+			},
+			"./activity-timeline": {
+				"types": "./dist/activity-timeline/index.d.mts",
+				"import": "./dist/activity-timeline/index.mjs"
+			},
+			"./view-edit-field": {
+				"types": "./dist/view-edit-field/index.d.mts",
+				"import": "./dist/view-edit-field/index.mjs"
+			},
+			"./inline-confirm-action": {
+				"types": "./dist/inline-confirm-action/index.d.mts",
+				"import": "./dist/inline-confirm-action/index.mjs"
+			},
+			"./json-diff-dialog": {
+				"types": "./dist/json-diff-dialog/index.d.mts",
+				"import": "./dist/json-diff-dialog/index.mjs"
+			},
+			"./comparison-diff-view": {
+				"types": "./dist/comparison-diff-view/index.d.mts",
+				"import": "./dist/comparison-diff-view/index.mjs"
+			},
+			"./missing-prerequisites-state": {
+				"types": "./dist/missing-prerequisites-state/index.d.mts",
+				"import": "./dist/missing-prerequisites-state/index.mjs"
+			},
+			"./dynamic-field-list-rows": {
+				"types": "./dist/dynamic-field-list-rows/index.d.mts",
+				"import": "./dist/dynamic-field-list-rows/index.mjs"
+			},
+			"./metric-gauge-card": {
+				"types": "./dist/metric-gauge-card/index.d.mts",
+				"import": "./dist/metric-gauge-card/index.mjs"
+			},
+			"./entity-assignment-panel": {
+				"types": "./dist/entity-assignment-panel/index.d.mts",
+				"import": "./dist/entity-assignment-panel/index.mjs"
+			},
+			"./presence-avatar-stack": {
+				"types": "./dist/presence-avatar-stack/index.d.mts",
+				"import": "./dist/presence-avatar-stack/index.mjs"
+			},
+			"./gantt-chart": {
+				"types": "./dist/gantt-chart/index.d.mts",
+				"import": "./dist/gantt-chart/index.mjs"
+			},
+			"./kanban-board": {
+				"types": "./dist/kanban-board/index.d.mts",
+				"import": "./dist/kanban-board/index.mjs"
+			},
+			"./filterable-tree-list": {
+				"types": "./dist/filterable-tree-list/index.d.mts",
+				"import": "./dist/filterable-tree-list/index.mjs"
+			},
+			"./nested-toggle-accordion-list": {
+				"types": "./dist/nested-toggle-accordion-list/index.d.mts",
+				"import": "./dist/nested-toggle-accordion-list/index.mjs"
+			},
+			"./kiosk-mode-toggle": {
+				"types": "./dist/kiosk-mode-toggle/index.d.mts",
+				"import": "./dist/kiosk-mode-toggle/index.mjs"
+			},
+			"./impact-analysis-dialog": {
+				"types": "./dist/impact-analysis-dialog/index.d.mts",
+				"import": "./dist/impact-analysis-dialog/index.mjs"
+			},
+			"./crud-modal-frame": {
+				"types": "./dist/crud-modal-frame/index.d.mts",
+				"import": "./dist/crud-modal-frame/index.mjs"
+			},
+			"./table-toggle": {
+				"types": "./dist/table-toggle/index.d.mts",
+				"import": "./dist/table-toggle/index.mjs"
+			},
+			"./module-icon": {
+				"types": "./dist/module-icon/index.d.mts",
+				"import": "./dist/module-icon/index.mjs"
+			},
+			"./impersonation-banner": {
+				"types": "./dist/impersonation-banner/index.d.mts",
+				"import": "./dist/impersonation-banner/index.mjs"
+			},
+			"./onboarding-dialog": {
+				"types": "./dist/onboarding-dialog/index.d.mts",
+				"import": "./dist/onboarding-dialog/index.mjs"
+			},
+			"./permission-gate": {
+				"types": "./dist/permission-gate/index.d.mts",
+				"import": "./dist/permission-gate/index.mjs"
 			}
 		}
 	},

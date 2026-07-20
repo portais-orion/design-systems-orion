@@ -14,7 +14,7 @@ export const Single: Story = {
 	render: () => (
 		<Accordion type="single" className="w-96">
 			<AccordionItem value="item-1">
-				<AccordionTrigger>O que é o Núcleo de Portais?</AccordionTrigger>
+				<AccordionTrigger>O que é o Design System Orion?</AccordionTrigger>
 				<AccordionContent>
 					A base oficial de componentes, tokens e padrões dos portais do grupo.
 				</AccordionContent>

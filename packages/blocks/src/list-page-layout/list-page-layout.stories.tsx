@@ -108,3 +108,32 @@ export const LoadingTable: Story = {
 export const EmptyTable: Story = {
 	render: () => <ListPageLayout header={<Cabecalho />} content={<Tabela data={[]} />} />,
 };
+
+export const SurfaceCard: Story = {
+	render: () => (
+		<ListPageLayout
+			header={<Cabecalho />}
+			surface="card"
+			filters={
+				<>
+					<FilterPill label="Status" value="Ativo" onRemove={() => {}} />
+					<FilterPill label="Período" value="Jul/2026" onRemove={() => {}} />
+				</>
+			}
+			content={<Tabela />}
+			footer={<span className="text-sm text-muted-foreground">6 registros</span>}
+		/>
+	),
+};
+
+export const SurfaceCardLoading: Story = {
+	render: () => (
+		<ListPageLayout
+			header={<Cabecalho />}
+			surface="card"
+			loading
+			loadingLabel="Carregando registros..."
+			content={<Tabela />}
+		/>
+	),
+};
