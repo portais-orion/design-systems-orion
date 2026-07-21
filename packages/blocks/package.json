@@ -68,7 +68,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "tsup",
+		"build": "node ../../scripts/run-tsup-big-heap.mjs",
 		"typecheck": "tsc --noEmit",
 		"lint": "biome check src"
 	},
