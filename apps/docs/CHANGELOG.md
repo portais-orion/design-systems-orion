@@ -1,5 +1,12 @@
 # docs
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @portais-orion/blocks@0.4.1
+
 ## 0.0.7
 
 ### Patch Changes

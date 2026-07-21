@@ -1,5 +1,16 @@
 # @portais-orion/blocks
 
+## 0.4.1
+
+### Patch Changes
+
+- Corrige `.d.mts` ausentes em 26 dos 58 blocks publicados na 0.4.0 (incluindo os 6 blocks
+  da rodada 2 — CrudModalFrame, TableToggle, ModuleIcon, ImpersonationBanner, OnboardingDialog,
+  PermissionGate). O worker de geração de tipos do tsup estourava o heap default do Node ao
+  processar todos os entry points de uma vez; o build publicado saiu parcial. O script de build
+  agora roda o tsup com heap maior via `scripts/run-tsup-big-heap.mjs` (sem depender de
+  `NODE_OPTIONS`, que pode ser bloqueado por política de ambiente corporativa).
+
 ## 0.4.0
 
 ### Minor Changes
