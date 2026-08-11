@@ -3,7 +3,7 @@
 	"version": "0.2.0",
 	"description": "Tokens semânticos e temas por marca do Design System Orion",
 	"sideEffects": ["*.css"],
-	"files": ["dist", "brands.json"],
+	"files": ["dist"],
 	"scripts": {
 		"build": "node ../../scripts/brand-catalog.mjs --check && node scripts/build-tokens.mjs",
 		"prepack": "node ../../scripts/brand-catalog.mjs --check && node scripts/build-tokens.mjs"
@@ -20,7 +20,7 @@
 		"access": "public",
 		"registry": "https://registry.npmjs.org",
 		"exports": {
-			"./brands.json": "./brands.json",
+			"./brands.json": "./dist/brands.json",
 			"./index.css": "./dist/index.css",
 			"./base.css": "./dist/base.css",
 			"./themes/supertrans.css": "./dist/themes/supertrans.css",
