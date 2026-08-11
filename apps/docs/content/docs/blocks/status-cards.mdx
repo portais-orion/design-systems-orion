@@ -1,9 +1,7 @@
 ---
 title: StatusCards
-description: "Faixa de indicadores no topo de uma listagem ou dashboard."
+description: "Componente de exibição de dados da biblioteca Blocks."
 ---
-
-Um item com `onClick` vira botão e pode servir de filtro rápido — use `active` para marcar o que está aplicado; sem `onClick`, é apenas leitura.
 
 Disponível em `@design-systems-orion/blocks`, na categoria **Exibição de dados**.
 
@@ -30,15 +28,9 @@ funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## API Reference
 
-| Prop | Tipo | Padrão |
-| --- | --- | --- |
-| `items`\* | `StatusCardItem[]` | — |
-| `columns` | `2 \| 3 \| 4` | `4` |
-| `className` | `string` | — |
-
-\* Prop obrigatória.
-
-Além destas, `StatusCards` aceita as props do elemento/primitivo que envolve.
+`StatusCards` não declara props próprias: repassa as props do primitivo
+de Base UI que envolve, mais `className`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)
+para a lista completa.
 
 ## Exemplos
 

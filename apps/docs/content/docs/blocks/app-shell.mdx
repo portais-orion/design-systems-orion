@@ -3,7 +3,7 @@ title: AppShell
 description: "Chrome do portal: sidebar fixa, barra de breadcrumbs e a área de conteúdo."
 ---
 
-Não tem topbar, por decisão do padrão do grupo. Abaixo de `md` a sidebar vira um drawer com a mesma navegação. Não conhece rota, sessão nem permissão — injete o Sidebar via `renderSidebar`.
+Não tem topbar, por decisão do padrão do grupo. Abaixo de `md` a sidebar vira um drawer com a mesma navegação. Não conhece rota, sessão nem permissão — passe a navegação em `sidebar` (ou monte a sua com `renderSidebar`).
 
 Disponível em `@design-systems-orion/blocks`, na categoria **Layout**.
 
@@ -32,16 +32,15 @@ funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 | Prop | Tipo | Padrão | Descrição |
 | --- | --- | --- | --- |
-| `renderSidebar`\* | `(props: { isMobile: boolean; onNavigate?: () => void; }) => any` | — | Slot para renderizar a Sidebar. Recebe propriedades para adaptar entre Desktop e Mobile. |
+| `sidebar` | `AppShellSidebar` | — | Navegação do portal — o caminho normal: o shell monta a `Sidebar`. |
+| `renderSidebar` | `(props: AppShellSidebarSlotProps) => any` | — | Escape hatch para quem precisa de outra sidebar. Recebe o estado de colapso já resolvido pelo shell. Use `sidebar` quando puder. |
 | `breadcrumbs` | `BreadcrumbItem[]` | — | — |
 | `renderLink` | `RenderLink` | — | Injetor de links usado pelos breadcrumbs. |
-| `collapsed` | `boolean` | — | — |
-| `defaultCollapsed` | `boolean` | — | — |
+| `collapsed` | `boolean` | — | Colapso controlado. Sem isso, o shell guarda o estado. |
+| `defaultCollapsed` | `boolean` | `false` | — |
 | `onCollapsedChange` | `(collapsed: boolean) => void` | — | — |
 | `className` | `string` | — | — |
 | `contentClassName` | `string` | — | — |
-
-\* Prop obrigatória.
 
 Além destas, `AppShell` aceita as props do elemento/primitivo que envolve.
 
@@ -62,6 +61,10 @@ Além destas, `AppShell` aceita as props do elemento/primitivo que envolve.
 ### Controlled collapsed
 
 <ComponentPreview name="blocks/app-shell" story="ControlledCollapsed" />
+
+### Custom sidebar
+
+<ComponentPreview name="blocks/app-shell" story="CustomSidebar" />
 
 ### Mobile navigation
 

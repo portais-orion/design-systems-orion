@@ -1,9 +1,7 @@
 ---
 title: ListPageLayout
-description: "Layout de página de listagem: cabeçalho, indicadores, barra de ferramentas, filtros aplicados e o conteúdo (normalmente um `DataTable`)."
+description: "Componente de layout da biblioteca Blocks."
 ---
-
-Tudo por slots — o layout não conhece dados nem filtros, só os posiciona. Use `surface="card"` para o visual de superfície única (filtros + conteúdo + footer dentro do mesmo card com borda/sombra).
 
 Disponível em `@design-systems-orion/blocks`, na categoria **Layout**.
 
@@ -30,22 +28,9 @@ funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## API Reference
 
-| Prop | Tipo | Padrão | Descrição |
-| --- | --- | --- | --- |
-| `header` | `any` | — | — |
-| `stats` | `any` | — | — |
-| `toolbar` | `any` | — | — |
-| `filters` | `any` | — | — |
-| `content`\* | `any` | — | — |
-| `footer` | `any` | — | — |
-| `surface` | `"transparent" \| "card"` | `transparent` | `"card"` envolve filters+content+footer numa superfície com borda, sombra e cantos arredondados (padrão Aurora-like). Default `"transparent"`: cada slot fica solto, como hoje. |
-| `loading` | `boolean` | `false` | Cobre `content` com `LoadingOverlay` enquanto `true`. Não afeta `stats`/`toolbar`/`filters`. |
-| `loadingLabel` | `string` | — | — |
-| `className` | `string` | — | — |
-
-\* Prop obrigatória.
-
-Além destas, `ListPageLayout` aceita as props do elemento/primitivo que envolve.
+`ListPageLayout` não declara props próprias: repassa as props do primitivo
+de Base UI que envolve, mais `className`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)
+para a lista completa.
 
 ## Exemplos
 

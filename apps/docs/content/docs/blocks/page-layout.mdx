@@ -1,9 +1,9 @@
 ---
 title: PageLayout
-description: "Esqueleto base de uma página: padding, largura máxima e o espaçamento vertical padrão entre header, conteúdo e footer."
+description: "Esqueleto de uma página: padding, largura máxima e o espaçamento vertical padrão entre header, conteúdo, coluna lateral e footer."
 ---
 
-Não inclui sidebar nem breadcrumb — isso é o `AppShell`. Os layouts especializados (`ListPageLayout`, `FormPageLayout`, …) são construídos sobre este.
+Não inclui sidebar nem breadcrumb — isso é o `AppShell`.
 
 Disponível em `@design-systems-orion/blocks`, na categoria **Layout**.
 
@@ -30,13 +30,15 @@ funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## API Reference
 
-| Prop | Tipo | Padrão |
-| --- | --- | --- |
-| `header` | `any` | — |
-| `footer` | `any` | — |
-| `className` | `string` | — |
-| `contentClassName` | `string` | — |
-| `maxWidth` | `"none" \| "screen-xl" \| "screen-2xl"` | `none` |
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `variant` | `"plain" \| "list" \| "form" \| "detail" \| "dashboard"` | `plain` | Escolhe a largura e o espaçamento da coluna de conteúdo. |
+| `header` | `any` | — | — |
+| `aside` | `any` | — | Coluna lateral de 20rem à direita do conteúdo. |
+| `footer` | `any` | — | — |
+| `className` | `string` | — | — |
+| `contentClassName` | `string` | — | — |
+| `maxWidth` | `"none" \| "screen-xl" \| "screen-2xl"` | `none` | — |
 
 Além destas, `PageLayout` aceita as props do elemento/primitivo que envolve.
 

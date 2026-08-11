@@ -1,9 +1,7 @@
 ---
 title: FormPageLayout
-description: "Layout de página de criar ou editar registro."
+description: "Componente de layout da biblioteca Blocks."
 ---
-
-Sem `aside`, contém o formulário numa coluna estreita para não esticar demais as linhas; com `aside`, abre espaço lateral. Não cria o elemento `<form>` nem conhece biblioteca de formulário — isso fica com o consumidor.
 
 Disponível em `@design-systems-orion/blocks`, na categoria **Layout**.
 
@@ -30,17 +28,9 @@ funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## API Reference
 
-| Prop | Tipo | Padrão |
-| --- | --- | --- |
-| `header` | `any` | — |
-| `form`\* | `any` | — |
-| `aside` | `any` | — |
-| `footer` | `any` | — |
-| `className` | `string` | — |
-
-\* Prop obrigatória.
-
-Além destas, `FormPageLayout` aceita as props do elemento/primitivo que envolve.
+`FormPageLayout` não declara props próprias: repassa as props do primitivo
+de Base UI que envolve, mais `className`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)
+para a lista completa.
 
 ## Exemplos
 

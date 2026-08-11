@@ -1,6 +1,6 @@
 ---
 title: DetailPageLayout
-description: "Layout de página de detalhe de um registro: resumo, abas e conteúdo, com `aside` opcional para metadados e ações secundárias."
+description: "Componente de layout da biblioteca Blocks."
 ---
 
 Disponível em `@design-systems-orion/blocks`, na categoria **Layout**.
@@ -28,16 +28,9 @@ funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## API Reference
 
-| Prop | Tipo | Padrão |
-| --- | --- | --- |
-| `header` | `any` | — |
-| `summary` | `any` | — |
-| `tabs` | `any` | — |
-| `content` | `any` | — |
-| `aside` | `any` | — |
-| `className` | `string` | — |
-
-Além destas, `DetailPageLayout` aceita as props do elemento/primitivo que envolve.
+`DetailPageLayout` não declara props próprias: repassa as props do primitivo
+de Base UI que envolve, mais `className`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)
+para a lista completa.
 
 ## Exemplos
 
