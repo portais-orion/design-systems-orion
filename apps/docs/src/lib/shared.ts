@@ -5,7 +5,7 @@ export const docsContentRoute = '/llms.mdx/docs';
 
 export const gitConfig = {
   user: 'portais-orion',
-  repo: 'nucleo-portais',
+  repo: 'design-systems-orion',
   branch: 'main',
   // Este app é apps/docs dentro do monorepo; page.path é relativo a content/docs.
   contentPath: 'apps/docs/content/docs',
