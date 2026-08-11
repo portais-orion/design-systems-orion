@@ -5,23 +5,23 @@ description: "Trilha de navegação até a página atual."
 
 Não conhece o router: passe `renderLink` para usar o `Link` do seu framework — sem ele, cai em uma âncora comum e o consumidor perde a navegação client-side. O último item é marcado com `aria-current="page"`.
 
-Disponível em `@portais-orion/blocks`, na categoria **Navegação**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Navegação**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { Breadcrumbs } from "@portais-orion/blocks/breadcrumbs";
+import { Breadcrumbs } from "@design-systems-orion/blocks/breadcrumbs";
 ```
 
-O import por subpath traz só `breadcrumbs`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `breadcrumbs`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

@@ -1,4 +1,4 @@
-import brandCatalog from '@portais-orion/tokens/brands.json';
+import brandCatalog from '@design-systems-orion/tokens/brands.json';
 
 export type Brand = (typeof brandCatalog.brands)[number];
 

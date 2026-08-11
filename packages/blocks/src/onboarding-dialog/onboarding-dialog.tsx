@@ -11,7 +11,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 	cn,
-} from "@portais-orion/ui";
+} from "@design-systems-orion/ui";
 
 /*
  * Origem: portal-supertrans components/home/configurador-onboarding.tsx. O

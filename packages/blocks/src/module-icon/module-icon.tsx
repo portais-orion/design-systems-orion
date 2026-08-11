@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Origem: portal-supertrans configurador/modules/components/module-icon.tsx.

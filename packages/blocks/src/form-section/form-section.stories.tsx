@@ -1,4 +1,4 @@
-import { Button, Input } from "@portais-orion/ui";
+import { Button, Input } from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { FormField } from "../form-field";
 import { FormSection } from "./form-section";

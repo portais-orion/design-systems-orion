@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "@portais-orion/ui";
+import { Button } from "@design-systems-orion/ui";
 import { PermissionGate, PermissionProvider } from "./permission-gate";
 
 const meta: Meta<typeof PermissionGate> = {
@@ -34,7 +34,12 @@ export const Permitido: Story = {
 export const Negado: Story = {
 	render: () => (
 		<PermissionProvider value={demoResolver}>
-			<PermissionGate requires="EXCLUIR_DEMANDA" fallback={<span className="text-sm text-muted-foreground">Sem permissão para excluir.</span>}>
+			<PermissionGate
+				requires="EXCLUIR_DEMANDA"
+				fallback={
+					<span className="text-sm text-muted-foreground">Sem permissão para excluir.</span>
+				}
+			>
 				<Button variant="destructive">Excluir demanda</Button>
 			</PermissionGate>
 		</PermissionProvider>

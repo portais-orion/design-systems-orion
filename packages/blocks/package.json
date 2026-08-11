@@ -1,5 +1,5 @@
 {
-	"name": "@portais-orion/blocks",
+	"name": "@design-systems-orion/blocks",
 	"version": "0.4.1",
 	"description": "Composições genéricas do Design System Orion (Camada 2) — dados por props, sem domínio.",
 	"sideEffects": false,
@@ -64,9 +64,7 @@
 		"./onboarding-dialog": "./src/onboarding-dialog/index.ts",
 		"./permission-gate": "./src/permission-gate/index.ts"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"scripts": {
 		"build": "node ../../scripts/run-tsup-big-heap.mjs",
 		"typecheck": "tsc --noEmit",
@@ -79,7 +77,7 @@
 		"react-dom": "^19.0.0"
 	},
 	"dependencies": {
-		"@portais-orion/ui": "workspace:*"
+		"@design-systems-orion/ui": "workspace:*"
 	},
 	"publishConfig": {
 		"access": "public",
@@ -328,7 +326,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@portais-orion/tsconfig": "workspace:*",
+		"@design-systems-orion/tsconfig": "workspace:*",
 		"@storybook/react": "^10.4.1",
 		"@tanstack/react-table": "^8.20.0",
 		"@types/react": "^19.0.0",

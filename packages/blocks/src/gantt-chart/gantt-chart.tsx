@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de components/cronograma/cronograma-page.tsx (GANTT_*, MONTHS,
@@ -151,7 +151,9 @@ export function GanttChart({
 											className={cn(
 												"absolute inset-y-0 rounded-md",
 												barToneClass[row.tone ?? "default"],
-												row.onClick ? "cursor-pointer opacity-90 hover:opacity-100" : "cursor-default",
+												row.onClick
+													? "cursor-pointer opacity-90 hover:opacity-100"
+													: "cursor-default",
 											)}
 										/>
 									)}

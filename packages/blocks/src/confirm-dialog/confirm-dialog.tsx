@@ -11,11 +11,11 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	Button,
-} from "@portais-orion/ui";
+} from "@design-systems-orion/ui";
 
 /*
  * Recriado a partir da API do Portal-Aurora ui/ConfirmDialog.tsx, sobre o
- * AlertDialog do @portais-orion/ui. Diferença deliberada em relação ao original:
+ * AlertDialog do @design-systems-orion/ui. Diferença deliberada em relação ao original:
  * fecha somente quando onConfirm resolve; se lançar/rejeitar, permanece
  * aberto (o original fechava mesmo com erro em voo).
  */

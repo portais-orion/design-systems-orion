@@ -1,9 +1,9 @@
 ---
 name: create-component
-description: Use quando precisar criar um primitive novo em @portais-orion/ui (Camada 1) neste repo — componente genérico sem domínio, com story, tokens semânticos e Base UI. Não use para composições (é block) nem para código de produto.
+description: Use quando precisar criar um primitive novo em @design-systems-orion/ui (Camada 1) neste repo — componente genérico sem domínio, com story, tokens semânticos e Base UI. Não use para composições (é block) nem para código de produto.
 ---
 
-# Criar componente (primitive) em @portais-orion/ui
+# Criar componente (primitive) em @design-systems-orion/ui
 
 Orquestra os artefatos existentes do repo — não os substitui. Fonte de verdade dos padrões:
 `ai/rules/components.md`.

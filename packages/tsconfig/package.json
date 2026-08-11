@@ -1,5 +1,5 @@
 {
-	"name": "@portais-orion/tsconfig",
+	"name": "@design-systems-orion/tsconfig",
 	"version": "0.0.1",
 	"private": true,
 	"files": ["base.json", "react-library.json", "nextjs.json"]

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { Button, cn } from "@portais-orion/ui";
+import { Button, cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de configurador/permissions/orphan-audit ("Purgar órfãs"): ação

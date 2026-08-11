@@ -3,7 +3,14 @@
 import { Menu } from "lucide-react";
 import * as React from "react";
 
-import { Button, Sheet, SheetContent, SheetTitle, SheetTrigger, cn } from "@portais-orion/ui";
+import {
+	Button,
+	Sheet,
+	SheetContent,
+	SheetTitle,
+	SheetTrigger,
+	cn,
+} from "@design-systems-orion/ui";
 
 import { Breadcrumbs } from "../breadcrumbs";
 import { Sidebar } from "../sidebar";

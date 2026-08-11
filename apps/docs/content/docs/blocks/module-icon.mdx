@@ -5,23 +5,27 @@ description: "Caixa tonalizada com o ícone de um módulo, resolvido a partir de
 
 Use `ICON_OPTIONS` para montar um seletor de ícones no formulário de cadastro do módulo.
 
-Disponível em `@portais-orion/blocks`, na categoria **Utilitários**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Utilitários**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { ModuleIcon, ICON_OPTIONS, ICON_MAP } from "@portais-orion/blocks/module-icon";
+import {
+	ModuleIcon,
+	ICON_OPTIONS,
+	ICON_MAP,
+} from "@design-systems-orion/blocks/module-icon";
 ```
 
-O import por subpath traz só `module-icon`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `module-icon`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

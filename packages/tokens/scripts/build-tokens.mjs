@@ -1,4 +1,4 @@
-// Build distribuível de @portais-orion/tokens (CSS puro): copia src/ -> dist/.
+// Build distribuível de @design-systems-orion/tokens (CSS puro): copia src/ -> dist/.
 // Uso: node scripts/build-tokens.mjs  (a partir de packages/tokens/)
 // O gate de marcas roda antes, encadeado no script `build` do package.json.
 import { cp, rm } from "node:fs/promises";

@@ -1,6 +1,13 @@
 import type * as React from "react";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, cn } from "@portais-orion/ui";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+	cn,
+} from "@design-systems-orion/ui";
 
 /* Card de conteúdo com cabeçalho/ações — estrutura comum de painéis. */
 export type ContentCardProps = {

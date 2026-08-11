@@ -1,7 +1,14 @@
 import { Check } from "lucide-react";
 import type * as React from "react";
 
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, cn } from "@portais-orion/ui";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	cn,
+} from "@design-systems-orion/ui";
 
 /*
  * Extraído de configurador/permissions/permission-impact.tsx (PermissionImpact):
@@ -111,7 +118,12 @@ export function ImpactAnalysisDialog({
 							</div>
 						)}
 
-						<div className={cn("grid grid-cols-1 gap-6", gridColsByCount[categories.length] ?? "sm:grid-cols-2")}>
+						<div
+							className={cn(
+								"grid grid-cols-1 gap-6",
+								gridColsByCount[categories.length] ?? "sm:grid-cols-2",
+							)}
+						>
 							{categories.map((category) => {
 								const Icon = category.icon;
 								return (

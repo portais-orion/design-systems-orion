@@ -5,23 +5,23 @@ description: "Zona de arraste-e-solte (ou clique) para seleção de arquivo(s)."
 
 Só entrega `File[]` via `onFilesSelected` — validação de tipo/tamanho e upload em si ficam a cargo do consumidor.
 
-Disponível em `@portais-orion/blocks`, na categoria **Formulários**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Formulários**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { FileDropzone } from "@portais-orion/blocks/file-dropzone";
+import { FileDropzone } from "@design-systems-orion/blocks/file-dropzone";
 ```
 
-O import por subpath traz só `file-dropzone`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `file-dropzone`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

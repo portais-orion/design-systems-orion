@@ -8,7 +8,7 @@ import {
 	TabsContent,
 	TabsList,
 	TabsTrigger,
-} from "@portais-orion/ui";
+} from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { CheckCircle, Clock, Download, FileText, Pencil, Plus } from "lucide-react";
 import * as React from "react";

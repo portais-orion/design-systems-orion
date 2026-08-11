@@ -26,13 +26,13 @@ importers:
 
   apps/docs:
     dependencies:
-      '@portais-orion/blocks':
+      '@design-systems-orion/blocks':
         specifier: workspace:*
         version: link:../../packages/blocks
-      '@portais-orion/tokens':
+      '@design-systems-orion/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@portais-orion/ui':
+      '@design-systems-orion/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       cnfast:
@@ -96,10 +96,10 @@ importers:
 
   apps/storybook:
     dependencies:
-      '@portais-orion/tokens':
+      '@design-systems-orion/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@portais-orion/ui':
+      '@design-systems-orion/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       react:
@@ -115,7 +115,7 @@ importers:
       '@chromatic-com/storybook':
         specifier: ^5.2.1
         version: 5.2.1(storybook@10.4.6(@testing-library/dom@10.4.1)(@types/react@19.2.17)(prettier@2.8.8)(react@19.2.7))
-      '@portais-orion/tsconfig':
+      '@design-systems-orion/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
       '@storybook/addon-a11y':
@@ -177,14 +177,14 @@ importers:
 
   packages/blocks:
     dependencies:
-      '@portais-orion/ui':
+      '@design-systems-orion/ui':
         specifier: workspace:*
         version: link:../ui
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
         version: 1.9.4
-      '@portais-orion/tsconfig':
+      '@design-systems-orion/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@storybook/react':
@@ -231,7 +231,7 @@ importers:
       '@biomejs/biome':
         specifier: 1.9.4
         version: 1.9.4
-      '@portais-orion/tsconfig':
+      '@design-systems-orion/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@storybook/react':

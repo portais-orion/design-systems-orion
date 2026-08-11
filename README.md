@@ -57,11 +57,11 @@ Atualmente: **Supertrans** e **Aurora**. Adicionar uma nova marca = criar `theme
 
 | Camada | Package | Versão | Descrição |
 |---|---|---|---|
-| 0 — Tokens | `@portais-orion/tokens` | 0.1.1 | Tokens semânticos + temas por marca (CSS puro) |
-| 1 — UI | `@portais-orion/ui` | 0.3.0 | 28 primitives (Base UI + Tailwind v4 + cva) |
-| 2 — Blocks | `@portais-orion/blocks` | 0.3.1 | 32 composições genéricas (DataTable, AppShell, layouts…) |
-| Infra | `@portais-orion/tsconfig` | privado | TSConfigs compartilhados (`base`, `react-library`, `nextjs`) |
-| Infra | `@portais-orion/biome-config` | privado | Config Biome compartilhada (tab, 100 col, double quotes) |
+| 0 — Tokens | `@design-systems-orion/tokens` | 0.1.1 | Tokens semânticos + temas por marca (CSS puro) |
+| 1 — UI | `@design-systems-orion/ui` | 0.3.0 | 28 primitives (Base UI + Tailwind v4 + cva) |
+| 2 — Blocks | `@design-systems-orion/blocks` | 0.3.1 | 32 composições genéricas (DataTable, AppShell, layouts…) |
+| Infra | `@design-systems-orion/tsconfig` | privado | TSConfigs compartilhados (`base`, `react-library`, `nextjs`) |
+| Infra | `@design-systems-orion/biome-config` | privado | Config Biome compartilhada (tab, 100 col, double quotes) |
 
 Regra de corte entre camadas: se o componente conhece entidade de negócio, rota, endpoint ou chave de permissão real, é **Camada 3** e fica no produto ([ADR 0006](docs/adr/0006-camadas-ui-blocks-apps.md)).
 
@@ -70,78 +70,78 @@ Regra de corte entre camadas: se o componente conhece entidade de negócio, rota
 ## 🧩 Catálogo de Componentes
 
 <details>
-<summary><strong>UI Primitives — 28 componentes</strong> (<code>@portais-orion/ui</code>)</summary>
+<summary><strong>UI Primitives — 28 componentes</strong> (<code>@design-systems-orion/ui</code>)</summary>
 
 | Componente | Import |
 |---|---|
-| Accordion | `@portais-orion/ui/accordion` |
-| Alert | `@portais-orion/ui/alert` |
-| Alert Dialog | `@portais-orion/ui/alert-dialog` |
-| Avatar | `@portais-orion/ui/avatar` |
-| Badge | `@portais-orion/ui/badge` |
-| Button | `@portais-orion/ui/button` |
-| Card | `@portais-orion/ui/card` |
-| Checkbox | `@portais-orion/ui/checkbox` |
-| Combobox | `@portais-orion/ui/combobox` |
-| Dialog | `@portais-orion/ui/dialog` |
-| Dropdown Menu | `@portais-orion/ui/dropdown-menu` |
-| Input | `@portais-orion/ui/input` |
-| Label | `@portais-orion/ui/label` |
-| Multi Select | `@portais-orion/ui/multi-select` |
-| Popover | `@portais-orion/ui/popover` |
-| Progress | `@portais-orion/ui/progress` |
-| Radio Group | `@portais-orion/ui/radio-group` |
-| Scroll Area | `@portais-orion/ui/scroll-area` |
-| Select | `@portais-orion/ui/select` |
-| Separator | `@portais-orion/ui/separator` |
-| Sheet | `@portais-orion/ui/sheet` |
-| Skeleton | `@portais-orion/ui/skeleton` |
-| Spinner | `@portais-orion/ui/spinner` |
-| Switch | `@portais-orion/ui/switch` |
-| Table | `@portais-orion/ui/table` |
-| Tabs | `@portais-orion/ui/tabs` |
-| Textarea | `@portais-orion/ui/textarea` |
-| Tooltip | `@portais-orion/ui/tooltip` |
+| Accordion | `@design-systems-orion/ui/accordion` |
+| Alert | `@design-systems-orion/ui/alert` |
+| Alert Dialog | `@design-systems-orion/ui/alert-dialog` |
+| Avatar | `@design-systems-orion/ui/avatar` |
+| Badge | `@design-systems-orion/ui/badge` |
+| Button | `@design-systems-orion/ui/button` |
+| Card | `@design-systems-orion/ui/card` |
+| Checkbox | `@design-systems-orion/ui/checkbox` |
+| Combobox | `@design-systems-orion/ui/combobox` |
+| Dialog | `@design-systems-orion/ui/dialog` |
+| Dropdown Menu | `@design-systems-orion/ui/dropdown-menu` |
+| Input | `@design-systems-orion/ui/input` |
+| Label | `@design-systems-orion/ui/label` |
+| Multi Select | `@design-systems-orion/ui/multi-select` |
+| Popover | `@design-systems-orion/ui/popover` |
+| Progress | `@design-systems-orion/ui/progress` |
+| Radio Group | `@design-systems-orion/ui/radio-group` |
+| Scroll Area | `@design-systems-orion/ui/scroll-area` |
+| Select | `@design-systems-orion/ui/select` |
+| Separator | `@design-systems-orion/ui/separator` |
+| Sheet | `@design-systems-orion/ui/sheet` |
+| Skeleton | `@design-systems-orion/ui/skeleton` |
+| Spinner | `@design-systems-orion/ui/spinner` |
+| Switch | `@design-systems-orion/ui/switch` |
+| Table | `@design-systems-orion/ui/table` |
+| Tabs | `@design-systems-orion/ui/tabs` |
+| Textarea | `@design-systems-orion/ui/textarea` |
+| Tooltip | `@design-systems-orion/ui/tooltip` |
 
 </details>
 
 <details>
-<summary><strong>Blocks — 32 composições</strong> (<code>@portais-orion/blocks</code>)</summary>
+<summary><strong>Blocks — 32 composições</strong> (<code>@design-systems-orion/blocks</code>)</summary>
 
 | Componente | Import |
 |---|---|
-| App Shell | `@portais-orion/blocks/app-shell` |
-| Breadcrumbs | `@portais-orion/blocks/breadcrumbs` |
-| Code Badge | `@portais-orion/blocks/code-badge` |
-| Confirm Dialog | `@portais-orion/blocks/confirm-dialog` |
-| Content Card | `@portais-orion/blocks/content-card` |
-| CRUD Modal Header | `@portais-orion/blocks/crud-modal-header` |
-| Dashboard Page Layout | `@portais-orion/blocks/dashboard-page-layout` |
-| Data Table | `@portais-orion/blocks/data-table` |
-| Detail Page Layout | `@portais-orion/blocks/detail-page-layout` |
-| Empty State | `@portais-orion/blocks/empty-state` |
-| Error State | `@portais-orion/blocks/error-state` |
-| Field Group | `@portais-orion/blocks/field-group` |
-| Filter Pill | `@portais-orion/blocks/filter-pill` |
-| Filters Card | `@portais-orion/blocks/filters-card` |
-| Form Actions | `@portais-orion/blocks/form-actions` |
-| Form Field | `@portais-orion/blocks/form-field` |
-| Form Message | `@portais-orion/blocks/form-message` |
-| Form Page Layout | `@portais-orion/blocks/form-page-layout` |
-| Form Section | `@portais-orion/blocks/form-section` |
-| Launcher Card | `@portais-orion/blocks/launcher-card` |
-| List Page Layout | `@portais-orion/blocks/list-page-layout` |
-| Loading Overlay | `@portais-orion/blocks/loading-overlay` |
-| Navigation | `@portais-orion/blocks/navigation` |
-| Page Header | `@portais-orion/blocks/page-header` |
-| Page Layout | `@portais-orion/blocks/page-layout` |
-| Pagination | `@portais-orion/blocks/pagination` |
-| Search Bar | `@portais-orion/blocks/search-bar` |
-| Section Header | `@portais-orion/blocks/section-header` |
-| Sidebar | `@portais-orion/blocks/sidebar` |
-| Status Cards | `@portais-orion/blocks/status-cards` |
-| Status Dot | `@portais-orion/blocks/status-dot` |
-| Table Skeleton Rows | `@portais-orion/blocks/table-skeleton-rows` |
+| App Shell | `@design-systems-orion/blocks/app-shell` |
+| Breadcrumbs | `@design-systems-orion/blocks/breadcrumbs` |
+| Code Badge | `@design-systems-orion/blocks/code-badge` |
+| Confirm Dialog | `@design-systems-orion/blocks/confirm-dialog` |
+| Content Card | `@design-systems-orion/blocks/content-card` |
+| CRUD Modal Header | `@design-systems-orion/blocks/crud-modal-header` |
+| Dashboard Page Layout | `@design-systems-orion/blocks/dashboard-page-layout` |
+| Data Table | `@design-systems-orion/blocks/data-table` |
+| Detail Page Layout | `@design-systems-orion/blocks/detail-page-layout` |
+| Empty State | `@design-systems-orion/blocks/empty-state` |
+| Error State | `@design-systems-orion/blocks/error-state` |
+| Field Group | `@design-systems-orion/blocks/field-group` |
+| Filter Pill | `@design-systems-orion/blocks/filter-pill` |
+| Filters Card | `@design-systems-orion/blocks/filters-card` |
+| Form Actions | `@design-systems-orion/blocks/form-actions` |
+| Form Field | `@design-systems-orion/blocks/form-field` |
+| Form Message | `@design-systems-orion/blocks/form-message` |
+| Form Page Layout | `@design-systems-orion/blocks/form-page-layout` |
+| Form Section | `@design-systems-orion/blocks/form-section` |
+| Launcher Card | `@design-systems-orion/blocks/launcher-card` |
+| List Page Layout | `@design-systems-orion/blocks/list-page-layout` |
+| Loading Overlay | `@design-systems-orion/blocks/loading-overlay` |
+| Navigation | `@design-systems-orion/blocks/navigation` |
+| Page Header | `@design-systems-orion/blocks/page-header` |
+| Page Layout | `@design-systems-orion/blocks/page-layout` |
+| Pagination | `@design-systems-orion/blocks/pagination` |
+| Search Bar | `@design-systems-orion/blocks/search-bar` |
+| Section Header | `@design-systems-orion/blocks/section-header` |
+| Sidebar | `@design-systems-orion/blocks/sidebar` |
+| Status Cards | `@design-systems-orion/blocks/status-cards` |
+| Status Dot | `@design-systems-orion/blocks/status-dot` |
+| Table Skeleton Rows | `@design-systems-orion/blocks/table-skeleton-rows` |
 
 > **Page Examples** (`page-examples`) contém stories de exemplo de telas completas e não é exportado como componente consumível.
 
@@ -187,7 +187,7 @@ Na toolbar do Storybook, o seletor **Marca** alterna os temas Supertrans ↔ Aur
 | `pnpm chromatic` | Visual tests na nuvem (requer `CHROMATIC_PROJECT_TOKEN`) |
 | `pnpm check:pureza` | Valida que packages não contêm domínio de negócio |
 | `pnpm pack:all` | Empacota tokens/ui/blocks como tarballs |
-| `pnpm publish:packages` | Publica no npm público (`@portais-orion`) |
+| `pnpm publish:packages` | Publica no npm público (`@design-systems-orion`) |
 
 ---
 
@@ -257,18 +257,18 @@ Resumo rápido — guia completo em [`docs/adoption/consumer-setup.md`](docs/ado
 
 ### 1. Instalação
 
-Pacotes `@portais-orion` são públicos no npm — sem `.npmrc`, sem token, só instalar:
+Pacotes `@design-systems-orion` são públicos no npm — sem `.npmrc`, sem token, só instalar:
 
 ```bash
-pnpm add @portais-orion/tokens @portais-orion/ui @portais-orion/blocks
+pnpm add @design-systems-orion/tokens @design-systems-orion/ui @design-systems-orion/blocks
 ```
 
 ### 2. Tokens + marca
 
 ```css
 /* globals.css */
-@import "@portais-orion/tokens/base.css";
-@import "@portais-orion/tokens/themes/supertrans.css";
+@import "@design-systems-orion/tokens/base.css";
+@import "@design-systems-orion/tokens/themes/supertrans.css";
 ```
 
 ```tsx
@@ -279,21 +279,21 @@ pnpm add @portais-orion/tokens @portais-orion/ui @portais-orion/blocks
 ### 3. Tailwind `@source` + `transpilePackages`
 
 ```css
-@source "../../node_modules/@portais-orion/ui/src";
-@source "../../node_modules/@portais-orion/blocks/src";
+@source "../../node_modules/@design-systems-orion/ui/src";
+@source "../../node_modules/@design-systems-orion/blocks/src";
 ```
 
 ```ts
 // next.config.ts
-transpilePackages: ["@portais-orion/ui", "@portais-orion/blocks"]
+transpilePackages: ["@design-systems-orion/ui", "@design-systems-orion/blocks"]
 ```
 
 ### 4. Usar componentes
 
 ```tsx
-import { Button } from "@portais-orion/ui/button";
-import { DataTable } from "@portais-orion/blocks/data-table";
-import { PageHeader } from "@portais-orion/blocks/page-header";
+import { Button } from "@design-systems-orion/ui/button";
+import { DataTable } from "@design-systems-orion/blocks/data-table";
+import { PageHeader } from "@design-systems-orion/blocks/page-header";
 ```
 
 ---

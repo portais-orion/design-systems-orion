@@ -1,5 +1,5 @@
-import { CheckCircle2, PlusCircle } from "lucide-react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { CheckCircle2, PlusCircle } from "lucide-react";
 
 import { ActivityTimeline } from "./activity-timeline";
 

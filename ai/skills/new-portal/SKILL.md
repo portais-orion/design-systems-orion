@@ -1,6 +1,6 @@
 ---
 name: new-portal
-description: Use quando for criar um projeto/portal NOVO do zero que consome o Orion @portais-orion (tokens/ui/blocks, público no npm, sem token) — scaffold Next.js + Tailwind v4, tema por data-brand e adaptadores locais. Não use para migrar telas de portal existente (use portais-orion-adoption).
+description: Use quando for criar um projeto/portal NOVO do zero que consome o Orion @design-systems-orion (tokens/ui/blocks, público no npm, sem token) — scaffold Next.js + Tailwind v4, tema por data-brand e adaptadores locais. Não use para migrar telas de portal existente (use portais-orion-adoption).
 ---
 
 # Criar portal novo consumindo o Orion
@@ -13,7 +13,7 @@ nunca criar produto dentro do nucleo-portais.
 
 1. **Scaffold**: Next.js (App Router) + Tailwind v4 (CSS-first, sem `tailwind.config.ts`) +
    TypeScript. Monorepo pnpm com `apps/web` é o padrão dos portais existentes.
-2. **Registry**: pacotes `@portais-orion` são públicos no npm — sem `.npmrc`, sem token
+2. **Registry**: pacotes `@design-systems-orion` são públicos no npm — sem `.npmrc`, sem token
    (consumer-setup §1). Scopes legados (`@grupo`, `@supertrans-transportes`, `@mateusarcestr`)
    proibidos.
 3. **Instalar**: packages + peers (consumer-setup §2).
@@ -22,7 +22,7 @@ nunca criar produto dentro do nucleo-portais.
 5. **`@source` do Tailwind** relativo ao `globals.css` (consumer-setup §4 — erro clássico é
    profundidade errada do caminho) + `transpilePackages` enquanto source-based (§5).
 6. **Adaptadores locais**: barrels `components/nucleo-ui` e `components/nucleo-blocks`
-   re-exportando só o que o portal usa; telas nunca importam `@portais-orion/*` direto (§6).
+   re-exportando só o que o portal usa; telas nunca importam `@design-systems-orion/*` direto (§6).
 7. **Smoke test**: página com `Button`, `PageHeader`, `DataTable` renderizando estilizados;
    `typecheck` + `build` + `dev` verdes (§7).
 

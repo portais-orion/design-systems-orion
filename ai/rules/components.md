@@ -1,4 +1,4 @@
-# Regras de componentes (@portais-orion/ui)
+# Regras de componentes (@design-systems-orion/ui)
 
 Estrutura obrigatória:
 ```
@@ -32,7 +32,7 @@ className="bg-[#00526b]"                           // hex proibido
 - Variants com semântica de domínio (ex.: `origin-profile`, `origin-group` no badge do Supertrans) NÃO sobem para o núcleo — manter apenas variants semânticas (`tinted`, `success`, `warning`).
 - `bg-white` é proibido em componente: usar `bg-background` (quebra dark mode e temas).
 - Classes `animate-in/fade-in/zoom-in` vêm de `tw-animate-css`; o consumidor importa esse CSS (Storybook já importa). Não trocar por keyframes próprios.
-- Ícones em runtime (Check, X, ChevronDown...) fazem `lucide-react` ser dependency (não devDependency) do @portais-orion/ui.
+- Ícones em runtime (Check, X, ChevronDown...) fazem `lucide-react` ser dependency (não devDependency) do @design-systems-orion/ui.
 - Mapa Radix→Base UI usado nas recriações: Content→Popup (+Positioner em menus), Overlay→Backdrop, Sub→SubmenuRoot, SubTrigger→SubmenuTrigger, Tabs Trigger/Content→Tab/Panel, estado `data-[state=checked]`→`data-[checked]`.
 
 ## Aprendizados da Sprint 4

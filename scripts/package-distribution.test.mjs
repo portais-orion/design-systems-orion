@@ -10,7 +10,7 @@ import {
 } from "./lib/package-distribution.mjs";
 
 const manifest = {
-	name: "@portais-orion/example",
+	name: "@design-systems-orion/example",
 	files: ["legacy"],
 	exports: {
 		".": "./src/index.ts",
@@ -72,7 +72,7 @@ test("reports missing source and stale publish map", () => {
 	};
 	const diagnostics = validatePackageManifest(stale, new Set(["src/index.ts"]));
 	for (const fragment of [
-		"@portais-orion/example",
+		"@design-systems-orion/example",
 		"./button",
 		"atual",
 		"esperado",

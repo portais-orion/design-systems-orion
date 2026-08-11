@@ -9,7 +9,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 	cn,
-} from "@portais-orion/ui";
+} from "@design-systems-orion/ui";
 
 /*
  * Extraído de governanca/desempenho (MetricCard/SourceBar): card de métrica

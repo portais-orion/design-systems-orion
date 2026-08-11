@@ -5,23 +5,23 @@ description: "Tabela de listagem do grupo, com carregamento, vazio, erro, pagina
 
 Descreva as colunas com `DataTableColumn<T>`; o motor é o TanStack Table, mas nada dele aparece na API. A ordenação é controlada pelo consumidor (server-side). Para uma tabela sem esses estados, use `Table` (ui).
 
-Disponível em `@portais-orion/blocks`, na categoria **Tabelas**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Tabelas**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { DataTable } from "@portais-orion/blocks/data-table";
+import { DataTable } from "@design-systems-orion/blocks/data-table";
 ```
 
-O import por subpath traz só `data-table`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `data-table`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

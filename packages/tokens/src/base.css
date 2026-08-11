@@ -1,5 +1,5 @@
 /*
- * @portais-orion/tokens — base.css
+ * @design-systems-orion/tokens — base.css
  * Mapeamento semântico (Tailwind v4 CSS-first). NÃO contém valores de marca.
  * Valores de marca vivem em themes/<marca>.css e são resolvidos por CSS variables
  * via :root (fallback) e [data-brand="<marca>"].

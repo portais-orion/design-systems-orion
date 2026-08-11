@@ -1,4 +1,4 @@
-import { Input } from "@portais-orion/ui";
+import { Input } from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { FiltersCard } from "./filters-card";
 

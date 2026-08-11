@@ -2,7 +2,7 @@
 
 import type * as React from "react";
 
-import { Card, cn } from "@portais-orion/ui";
+import { Card, cn } from "@design-systems-orion/ui";
 
 /*
  * Card de lançador de módulo (grid de home/launcher): ícone no topo, título forte,

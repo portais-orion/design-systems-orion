@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, Badge, Button, Input } from "@portais-orion/ui";
+import { Avatar, AvatarFallback, Badge, Button, Input } from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
 	CheckCircle,

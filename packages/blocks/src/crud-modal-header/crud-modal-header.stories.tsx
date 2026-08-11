@@ -1,4 +1,4 @@
-import { Badge } from "@portais-orion/ui";
+import { Badge } from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Pencil, Plus } from "lucide-react";
 import { CrudModalHeader } from "./crud-modal-header";

@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle, cn } from "@portais-orion/ui";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de audit-log/audit-log-view: modal de diff antes/depois para

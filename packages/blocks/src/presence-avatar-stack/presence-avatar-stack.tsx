@@ -8,7 +8,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 	cn,
-} from "@portais-orion/ui";
+} from "@design-systems-orion/ui";
 
 /*
  * Extraído de components/presence/presence-avatars: pilha de avatares

@@ -5,23 +5,23 @@ description: "Estado vazio de uma lista ou área de conteúdo."
 
 Diz o que está faltando e, pelo slot `action`, oferece a saída (criar registro, limpar filtros). Para falha de carregamento use `ErrorState`.
 
-Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { EmptyState } from "@portais-orion/blocks/empty-state";
+import { EmptyState } from "@design-systems-orion/blocks/empty-state";
 ```
 
-O import por subpath traz só `empty-state`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `empty-state`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

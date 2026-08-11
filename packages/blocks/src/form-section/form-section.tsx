@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { Separator, cn } from "@portais-orion/ui";
+import { Separator, cn } from "@design-systems-orion/ui";
 
 /*
  * Agrupamento visual de campos. Origem do padrão: seções com título +

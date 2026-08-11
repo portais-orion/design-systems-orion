@@ -1,4 +1,4 @@
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Indicador de status por tom semântico. Origem conceitual: StatusDot do

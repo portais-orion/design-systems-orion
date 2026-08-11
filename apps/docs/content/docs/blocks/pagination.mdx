@@ -5,23 +5,23 @@ description: "Navegação entre páginas de uma listagem, com contagem de result
 
 Casa com o envelope `{ data, total, page, limit }` da API. Por padrão não renderiza nada quando `total` é zero; use `showWhenEmpty` para manter o rodapé visível e desabilitado nesse caso. Trocar o limite volta para a primeira página.
 
-Disponível em `@portais-orion/blocks`, na categoria **Tabelas**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Tabelas**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { Pagination } from "@portais-orion/blocks/pagination";
+import { Pagination } from "@design-systems-orion/blocks/pagination";
 ```
 
-O import por subpath traz só `pagination`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `pagination`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

@@ -2,7 +2,7 @@
 
 import type * as React from "react";
 
-import { Dialog, DialogContent, DialogFooter, DialogHeader, cn } from "@portais-orion/ui";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, cn } from "@design-systems-orion/ui";
 
 import { CrudModalHeader } from "../crud-modal-header";
 import type { CrudModalHeaderTone } from "../crud-modal-header";

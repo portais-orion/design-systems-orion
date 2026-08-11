@@ -3,7 +3,7 @@
 import { ChevronDown, ChevronRight, Loader2, Lock } from "lucide-react";
 import type * as React from "react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de configurador/access/access-module-tree.tsx (AccessModuleTree):
@@ -180,7 +180,9 @@ export function NestedToggleAccordionList({
 	}
 
 	return (
-		<div className={cn("overflow-hidden rounded-xl border border-border bg-card shadow-sm", className)}>
+		<div
+			className={cn("overflow-hidden rounded-xl border border-border bg-card shadow-sm", className)}
+		>
 			<div className="divide-y divide-border">
 				{groups.map((group) => {
 					const expanded = expandedIds.has(group.id);
@@ -221,9 +223,7 @@ export function NestedToggleAccordionList({
 									<button
 										type="button"
 										disabled={group.isBulkPending}
-										onClick={() =>
-											group.onSelectAll?.(group.activeCount < group.totalCount)
-										}
+										onClick={() => group.onSelectAll?.(group.activeCount < group.totalCount)}
 										className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted disabled:cursor-not-allowed disabled:opacity-60"
 									>
 										{group.isBulkPending && <Loader2 className="size-3.5 animate-spin" />}

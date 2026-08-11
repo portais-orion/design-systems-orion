@@ -1,7 +1,7 @@
 import { WifiOff } from "lucide-react";
 import type * as React from "react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Origem: portal-supertrans gestao-cadastros/shared.tsx (ErrorState).

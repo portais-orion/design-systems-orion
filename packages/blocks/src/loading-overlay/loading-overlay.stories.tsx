@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardHeader, CardTitle } from "@portais-orion/ui";
+import { Button, Card, CardContent, CardHeader, CardTitle } from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { DataTable } from "../data-table";

@@ -2,9 +2,9 @@
 
 Modelo (ADR 0005): componentes usam apenas tokens semânticos; marcas são CSS.
 
-1. `@portais-orion/tokens/base.css` — bloco `@theme inline` (Tailwind v4) mapeando `--color-*` para CSS variables + defaults neutros em `:root`. Não contém cor de marca.
-2. `@portais-orion/tokens/themes/supertrans.css` — azul petróleo `#00526b`, hover `#005a75`, accent `#3caec4`, sidebar navy `#001e2b`.
-3. `@portais-orion/tokens/themes/aurora.css` — laranja `#f97316`, hover `#ea580c`, accent `#fb923c`, sidebar slate. A escala `primary-50..900` do Aurora foi abolida: variações são tokens (`--primary-hover`).
+1. `@design-systems-orion/tokens/base.css` — bloco `@theme inline` (Tailwind v4) mapeando `--color-*` para CSS variables + defaults neutros em `:root`. Não contém cor de marca.
+2. `@design-systems-orion/tokens/themes/supertrans.css` — azul petróleo `#00526b`, hover `#005a75`, accent `#3caec4`, sidebar navy `#001e2b`.
+3. `@design-systems-orion/tokens/themes/aurora.css` — laranja `#f97316`, hover `#ea580c`, accent `#fb923c`, sidebar slate. A escala `primary-50..900` do Aurora foi abolida: variações são tokens (`--primary-hover`).
 
 Resolução: cada tema define três seletores:
 

@@ -236,8 +236,8 @@ function extractStories(storySource) {
  *     corpo resolvido — isso é o que faz um exemplo de página (page-examples,
  *     preview `block`) sair com a composição inteira, não só o layout raiz.
  *  4. Monta os imports de verdade: resolve imports relativos (`../data-table`,
- *     `./confirm-dialog`) para o subpath público (`@portais-orion/blocks/...`)
- *     e reaproveita como estão os imports externos (`@portais-orion/ui`,
+ *     `./confirm-dialog`) para o subpath público (`@design-systems-orion/blocks/...`)
+ *     e reaproveita como estão os imports externos (`@design-systems-orion/ui`,
  *     `lucide-react`, `react`) que o corpo final realmente usa.
  *  5. `fn()` (placeholder de mock do Storybook) vira `() => {}`: código de
  *     exemplo não deveria pedir `storybook/test` para colar num projeto real.
@@ -500,7 +500,7 @@ function buildImportLines(code, topImports, pkg, name, compName, exportNames) {
 
 	const ownNames = (exportNames?.length ? exportNames : [compName]).filter(usesWholeWord);
 	if (ownNames.length > 0) {
-		const specifier = `@portais-orion/${pkg}/${name}`;
+		const specifier = `@design-systems-orion/${pkg}/${name}`;
 		lines.push(formatImport(ownNames, specifier));
 		seenSpecifiers.add(specifier);
 	}
@@ -524,7 +524,7 @@ function buildImportLines(code, topImports, pkg, name, compName, exportNames) {
 
 		const subpath = relativeSpecifierToSubpath(imp.specifier);
 		if (subpath === name) continue; // já coberto pelo import do próprio componente acima
-		const specifier = `@portais-orion/${pkg}/${subpath}`;
+		const specifier = `@design-systems-orion/${pkg}/${subpath}`;
 		const existing = relativeGroups.get(specifier) ?? new Set();
 		for (const n of used) existing.add(n);
 		relativeGroups.set(specifier, existing);
@@ -867,25 +867,25 @@ async function generateMdx(name, pkg, category) {
 		if (docRest) lines.push(docRest, "");
 
 		lines.push(
-			`Disponível em \`@portais-orion/${pkg}\`, na categoria **${category}**.`,
+			`Disponível em \`@design-systems-orion/${pkg}\`, na categoria **${category}**.`,
 			"",
 			"## Instalação",
 			"",
 			"```bash",
 			"# Primitives e blocks são packages separados: instale só o que for usar.",
 			...(pkg === "blocks"
-				? ["# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto."]
+				? ["# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto."]
 				: []),
-			`pnpm add @portais-orion/${pkg}`,
+			`pnpm add @design-systems-orion/${pkg}`,
 			"```",
 			"",
 			"## Import",
 			"",
 			"```tsx",
-			formatImport(exportNames, `@portais-orion/${pkg}/${name}`),
+			formatImport(exportNames, `@design-systems-orion/${pkg}/${name}`),
 			"```",
 			"",
-			`O import por subpath traz só \`${name}\`. Importar de \`@portais-orion/${pkg}\` também`,
+			`O import por subpath traz só \`${name}\`. Importar de \`@design-systems-orion/${pkg}\` também`,
 			"funciona e dá no mesmo bundle — os packages são `sideEffects: false`.",
 			"",
 		);

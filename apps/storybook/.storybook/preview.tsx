@@ -9,7 +9,7 @@ import "../src/styles.css";
  * ícones do set fixo, não imagens — então a marca é escolhida por um switcher
  * in-canvas que grava o global `brand` (persistido pelo Storybook) via
  * useGlobals. O decorator aplica data-brand no <html>, então os temas de
- * @portais-orion/tokens resolvem as CSS variables da marca ativa. As logos
+ * @design-systems-orion/tokens resolvem as CSS variables da marca ativa. As logos
  * vêm de /brands (staticDirs → /assets). Nenhum provider de app real (Auth,
  * Query) é usado aqui — o Storybook do Núcleo é independente dos portais.
  */

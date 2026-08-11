@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Recriado a partir da API do Portal-Aurora ui/DataTable/PageHeader.tsx,

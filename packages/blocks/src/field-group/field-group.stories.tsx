@@ -1,4 +1,4 @@
-import { Input, Textarea } from "@portais-orion/ui";
+import { Input, Textarea } from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { FormField } from "../form-field";
 import { FieldGroup } from "./field-group";

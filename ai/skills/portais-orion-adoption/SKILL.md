@@ -1,17 +1,17 @@
 ---
 name: portais-orion-adoption
-description: Use esta skill quando precisar migrar uma tela de portal interno para consumir o Orion @portais-orion (tokens/ui/blocks), preservando regras de negócio, APIs, permissões, layout e gates de validação. Não use para redesign, CRUD complexo sem build real, ou migração em massa.
+description: Use esta skill quando precisar migrar uma tela de portal interno para consumir o Orion @design-systems-orion (tokens/ui/blocks), preservando regras de negócio, APIs, permissões, layout e gates de validação. Não use para redesign, CRUD complexo sem build real, ou migração em massa.
 ---
 
 # Portais Orion Adoption Skill
 
 Guia operacional para migrar, com segurança, uma tela de um portal interno para consumir o
-Orion `@portais-orion`. Baseada nas migrações reais do `portal-supertrans` (Sprints 7–9).
+Orion `@design-systems-orion`. Baseada nas migrações reais do `portal-supertrans` (Sprints 7–9).
 
 ## 1. Quando usar
 
-- O portal já consome (ou vai consumir) `@portais-orion/tokens`, `@portais-orion/ui`,
-  `@portais-orion/blocks` via `node_modules` (npm público, sem token), e você vai migrar **uma**
+- O portal já consome (ou vai consumir) `@design-systems-orion/tokens`, `@design-systems-orion/ui`,
+  `@design-systems-orion/blocks` via `node_modules` (npm público, sem token), e você vai migrar **uma**
   tela para os componentes do Orion.
 
 ## 2. Quando NÃO usar
@@ -28,7 +28,7 @@ API, permissões, rotas, dados, validações e ações. Troque só a estrutura v
 ## 4. Ordem obrigatória
 
 1. Baseline (`typecheck`/`build`/`dev` verdes; tela alvo funcional).
-2. Auditar scopes (só `@portais-orion` ativo).
+2. Auditar scopes (só `@design-systems-orion` ativo).
 3. Confirmar tokens + `@source` do Tailwind.
 4. Escolher tela de baixo risco (listagem).
 5. Migrar componentes visuais via adaptadores locais.
@@ -40,10 +40,10 @@ API, permissões, rotas, dados, validações e ações. Troque só a estrutura v
 
 ```bash
 grep -R "@grupo/\|@mateusarcestr\|@supertrans-transportes" apps/web -n   # deve dar vazio
-grep -R "@portais-orion" apps/web -n                                      # deps + globals + adaptadores
+grep -R "@design-systems-orion" apps/web -n                                      # deps + globals + adaptadores
 ```
 
-Confirmar: `apps/web/package.json` tem `@portais-orion/{tokens,ui,blocks}`; `next.config.ts` tem
+Confirmar: `apps/web/package.json` tem `@design-systems-orion/{tokens,ui,blocks}`; `next.config.ts` tem
 `transpilePackages` (enquanto os packages forem source-based); `tsconfig.json` **sem** aliases do
 Orion; **sem** caminho local para `nucleo-portais`.
 
@@ -52,10 +52,10 @@ Orion; **sem** caminho local para `nucleo-portais`.
 `apps/web/src/app/globals.css` deve ter:
 
 ```css
-@import "@portais-orion/tokens/base.css";
-@import "@portais-orion/tokens/themes/supertrans.css";
-@source "../../node_modules/@portais-orion/ui/src";     /* ou /dist após hardening */
-@source "../../node_modules/@portais-orion/blocks/src";
+@import "@design-systems-orion/tokens/base.css";
+@import "@design-systems-orion/tokens/themes/supertrans.css";
+@source "../../node_modules/@design-systems-orion/ui/src";     /* ou /dist após hardening */
+@source "../../node_modules/@design-systems-orion/blocks/src";
 ```
 
 O `@source` é **relativo ao globals.css**. De `apps/web/src/app/`, `../../node_modules` =
@@ -70,7 +70,7 @@ Evitar telas grandes/CRUD (ex.: `configurador/modules` = 823 linhas com mutation
 
 ## 8. Mapear componentes locais → Orion
 
-| Padrão local | Preferir Orion (`@portais-orion/...`) |
+| Padrão local | Preferir Orion (`@design-systems-orion/...`) |
 |---|---|
 | header de página manual | `blocks/page-header` → `PageHeader` |
 | tabela custom simples | `blocks/data-table` → `DataTable` |
@@ -85,9 +85,9 @@ Evitar telas grandes/CRUD (ex.: `configurador/modules` = 823 linhas com mutation
 | tabs | `ui/tabs` → `Tabs/TabsList/TabsTrigger/TabsContent` |
 | botão | `ui/button` → `Button` |
 
-## 9. Usar os adaptadores locais (não importar `@portais-orion` direto na tela)
+## 9. Usar os adaptadores locais (não importar `@design-systems-orion` direto na tela)
 
-Importe SEMPRE dos barrels de adaptação, nunca de `@portais-orion/*` direto:
+Importe SEMPRE dos barrels de adaptação, nunca de `@design-systems-orion/*` direto:
 
 ```tsx
 import { Badge, Button, Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/grupo-ui";
@@ -134,9 +134,9 @@ rota escondida (fora do menu). Contrato:
 
 ```tsx
 import Link from "next/link";
-import { AppShell } from "@portais-orion/blocks/app-shell";
+import { AppShell } from "@design-systems-orion/blocks/app-shell";
 import type { CanAccessNavigationItem, NavigationItem, RenderLink }
-  from "@portais-orion/blocks/navigation";
+  from "@design-systems-orion/blocks/navigation";
 
 const renderLink: RenderLink = ({ href, children, className, onClick, ...p }) => (
   <Link href={href} className={className} onClick={onClick} {...p}>{children}</Link>
@@ -164,7 +164,7 @@ pnpm --filter <web> build           # passa
 pnpm --filter <web> dev             # sobe; validar a tela no navegador
 ```
 
-Critério: build/dev verdes; estados (loading/empty/error/busca) corretos; `@portais-orion` único
+Critério: build/dev verdes; estados (loading/empty/error/busca) corretos; `@design-systems-orion` único
 scope ativo; nenhum caminho local para `nucleo-portais`.
 
 ## 15. Proibições
@@ -175,7 +175,7 @@ efeitos colaterais; múltiplas telas de uma vez; permissões/auth/backend junto 
 ## 16. Checklist final
 
 - [ ] baseline verde antes de começar
-- [ ] só `@portais-orion` ativo; `@source` correto; `data-brand` no `<html>`
+- [ ] só `@design-systems-orion` ativo; `@source` correto; `data-brand` no `<html>`
 - [ ] tela de baixo risco (listagem) escolhida
 - [ ] imports via adaptadores `@/components/grupo-{ui,blocks}`
 - [ ] hooks/API/permissões/rotas preservados

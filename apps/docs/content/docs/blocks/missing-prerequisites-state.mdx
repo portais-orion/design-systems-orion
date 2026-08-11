@@ -5,14 +5,14 @@ description: "Estado de bloqueio quando cadastros básicos necessários não exi
 
 A ação de cada item (link de cadastro) é fornecida pelo consumidor via `action` — este bloco não conhece rotas.
 
-Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
@@ -20,10 +20,10 @@ pnpm add @portais-orion/blocks
 ```tsx
 import {
 	MissingPrerequisitesState,
-} from "@portais-orion/blocks/missing-prerequisites-state";
+} from "@design-systems-orion/blocks/missing-prerequisites-state";
 ```
 
-O import por subpath traz só `missing-prerequisites-state`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `missing-prerequisites-state`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

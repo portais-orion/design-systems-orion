@@ -1,7 +1,7 @@
 import { AlertTriangle } from "lucide-react";
 import type * as React from "react";
 
-import { Button, cn } from "@portais-orion/ui";
+import { Button, cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de registrar-demanda-form: estado de bloqueio quando cadastros
@@ -38,7 +38,12 @@ export function MissingPrerequisitesState({
 	className,
 }: MissingPrerequisitesStateProps) {
 	return (
-		<div className={cn("mx-auto max-w-2xl rounded-xl border border-amber-200 bg-amber-50 p-8", className)}>
+		<div
+			className={cn(
+				"mx-auto max-w-2xl rounded-xl border border-amber-200 bg-amber-50 p-8",
+				className,
+			)}
+		>
 			<div className="flex items-start gap-4">
 				<div className="mt-0.5 rounded-full bg-amber-100 p-2">
 					<AlertTriangle className="size-5 text-amber-600" />

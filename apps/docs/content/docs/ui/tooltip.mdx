@@ -5,13 +5,13 @@ description: "Rótulo curto que aparece ao focar ou passar o mouse sobre o gatil
 
 Só aparece no hover/foco, então não coloque aqui informação essencial nem conteúdo interativo — para isso use `Popover`. Requer um `TooltipProvider` acima na árvore.
 
-Disponível em `@portais-orion/ui`, na categoria **Feedback**.
+Disponível em `@design-systems-orion/ui`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-pnpm add @portais-orion/ui
+pnpm add @design-systems-orion/ui
 ```
 
 ## Import
@@ -22,10 +22,10 @@ import {
 	TooltipTrigger,
 	TooltipContent,
 	TooltipProvider,
-} from "@portais-orion/ui/tooltip";
+} from "@design-systems-orion/ui/tooltip";
 ```
 
-O import por subpath traz só `tooltip`. Importar de `@portais-orion/ui` também
+O import por subpath traz só `tooltip`. Importar de `@design-systems-orion/ui` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

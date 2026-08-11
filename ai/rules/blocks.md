@@ -1,6 +1,6 @@
-# Regras de blocks (@portais-orion/blocks)
+# Regras de blocks (@design-systems-orion/blocks)
 
-- Blocks são composições genéricas SOBRE `@portais-orion/ui` — nunca reimplementam primitives nem estilos de marca.
+- Blocks são composições genéricas SOBRE `@design-systems-orion/ui` — nunca reimplementam primitives nem estilos de marca.
 - Dados sempre por props (`data`, `columns`, `isLoading`, `isError`); block NUNCA faz fetch, não importa axios/TanStack Query.
 - Conteúdo via slots ReactNode (`actions`, `empty`, `footer`), não flags (`showX`).
 - Estados obrigatórios em blocks de dados: loading (skeleton), empty, error — com defaults e slots de override.

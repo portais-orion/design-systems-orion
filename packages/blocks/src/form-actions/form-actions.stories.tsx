@@ -1,4 +1,4 @@
-import { Button } from "@portais-orion/ui";
+import { Button } from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "storybook/test";
 import { FormActions } from "./form-actions";

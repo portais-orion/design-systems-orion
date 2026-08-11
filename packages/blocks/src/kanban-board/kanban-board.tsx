@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de components/cronograma/cronograma-page.tsx (KanbanBoardView):
@@ -55,7 +55,11 @@ const cardBorderToneClass: Record<KanbanTone, string> = {
  * vertical, colunas deslizando horizontalmente. Sem drag-and-drop — reordenar
  * é responsabilidade do consumidor (via `onClick` + sua própria mutação).
  */
-export function KanbanBoard({ columns, emptyMessage = "Nenhuma coluna.", className }: KanbanBoardProps) {
+export function KanbanBoard({
+	columns,
+	emptyMessage = "Nenhuma coluna.",
+	className,
+}: KanbanBoardProps) {
 	if (columns.length === 0) {
 		return <p className="py-8 text-center text-sm text-muted-foreground">{emptyMessage}</p>;
 	}
@@ -68,9 +72,7 @@ export function KanbanBoard({ columns, emptyMessage = "Nenhuma coluna.", classNa
 					className="flex w-72 shrink-0 flex-col rounded-xl border border-border bg-muted/20"
 				>
 					<div className="flex items-center gap-2 border-b border-border px-3 py-2.5">
-						<span
-							className={cn("size-2 rounded-full", dotToneClass[column.tone ?? "default"])}
-						/>
+						<span className={cn("size-2 rounded-full", dotToneClass[column.tone ?? "default"])} />
 						<h3 className="text-sm font-semibold text-foreground">{column.title}</h3>
 						<span className="ml-auto rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
 							{column.cards.length}

@@ -5,23 +5,23 @@ description: "Botão de modo apresentação/kiosk: ativa fullscreen no elemento 
 
 Sai do modo automaticamente se o usuário sair do fullscreen por fora (ESC, etc.).
 
-Disponível em `@portais-orion/blocks`, na categoria **Ações**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Ações**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { KioskModeToggle } from "@portais-orion/blocks/kiosk-mode-toggle";
+import { KioskModeToggle } from "@design-systems-orion/blocks/kiosk-mode-toggle";
 ```
 
-O import por subpath traz só `kiosk-mode-toggle`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `kiosk-mode-toggle`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

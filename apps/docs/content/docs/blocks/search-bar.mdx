@@ -5,23 +5,23 @@ description: "Campo de busca controlado, com ícone e botão de limpar."
 
 `onChange` dispara a cada tecla; `onDebouncedChange` espera `debounceMs` após a última digitação — use este último para não disparar uma requisição por caractere.
 
-Disponível em `@portais-orion/blocks`, na categoria **Tabelas**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Tabelas**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { SearchBar } from "@portais-orion/blocks/search-bar";
+import { SearchBar } from "@design-systems-orion/blocks/search-bar";
 ```
 
-O import por subpath traz só `search-bar`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `search-bar`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

@@ -6,7 +6,7 @@ const manifest = JSON.parse(readFileSync(new URL("./package.json", import.meta.u
 const entry = derivePackageDistribution(manifest).entries.map(({ source }) => source);
 
 /*
- * Build distribuível de @portais-orion/ui (Sprint 10 hardening).
+ * Build distribuível de @design-systems-orion/ui (Sprint 10 hardening).
  * Deriva as entradas dos subpaths existentes (src/<componente>/index.ts + src/index.ts),
  * preservando a estrutura em dist/ — sem mapeamento manual frágil.
  *

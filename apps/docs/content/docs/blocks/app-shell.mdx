@@ -5,23 +5,23 @@ description: "Chrome do portal: sidebar fixa, barra de breadcrumbs e a área de 
 
 Não tem topbar, por decisão do padrão do grupo. Abaixo de `md` a sidebar vira um drawer com a mesma navegação. Não conhece rota, sessão nem permissão — injete `renderLink` e `canAccessItem`.
 
-Disponível em `@portais-orion/blocks`, na categoria **Layout**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Layout**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { AppShell } from "@portais-orion/blocks/app-shell";
+import { AppShell } from "@design-systems-orion/blocks/app-shell";
 ```
 
-O import por subpath traz só `app-shell`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `app-shell`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

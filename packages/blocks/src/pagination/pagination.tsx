@@ -10,11 +10,11 @@ import {
 	SelectTrigger,
 	SelectValue,
 	cn,
-} from "@portais-orion/ui";
+} from "@design-systems-orion/ui";
 
 /*
  * Recriado a partir da API do Portal-Aurora ui/Pagination.tsx, tokenizado e
- * sobre @portais-orion/ui. Compatível com o envelope { data, total, page, limit }.
+ * sobre @design-systems-orion/ui. Compatível com o envelope { data, total, page, limit }.
  */
 export type PaginationProps = {
 	page: number;

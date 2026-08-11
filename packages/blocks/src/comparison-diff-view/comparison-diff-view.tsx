@@ -1,4 +1,11 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, cn } from "@portais-orion/ui";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+	cn,
+} from "@design-systems-orion/ui";
 
 /*
  * Extraído de governanca/comparar: comparação lado a lado entre duas (ou
@@ -64,7 +71,9 @@ export function ComparisonDiffView({ groups, className }: ComparisonDiffViewProp
 						{group.description && <CardDescription>{group.description}</CardDescription>}
 					</CardHeader>
 					<CardContent>
-						<div className={cn("grid gap-4", gridByCount[group.columns.length] ?? "md:grid-cols-2")}>
+						<div
+							className={cn("grid gap-4", gridByCount[group.columns.length] ?? "md:grid-cols-2")}
+						>
 							{group.columns.map((column) => (
 								<div
 									key={column.label}

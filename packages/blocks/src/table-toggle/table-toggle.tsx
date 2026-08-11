@@ -1,12 +1,12 @@
 "use client";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Origem: portal-supertrans shared/table-primitives.tsx (TableToggle) —
  * reimplementado sem estilo inline e sem cor hardcoded (#00526b/#b3b3b3):
  * a cor ativa vem do token `primary`, a inativa de `input`. O `Switch` do
- * @portais-orion/ui é dimensionado para formulário (h-5 w-9); este é menor
+ * @design-systems-orion/ui é dimensionado para formulário (h-5 w-9); este é menor
  * (36×20) e sem label, pensado para caber numa célula de tabela.
  */
 export type TableToggleProps = {
@@ -20,7 +20,7 @@ export type TableToggleProps = {
 /**
  * Switch compacto (36×20) para alternar um valor booleano diretamente numa
  * célula de tabela, sem label ao lado. Para alternância em formulário, use o
- * `Switch` padrão do `@portais-orion/ui`.
+ * `Switch` padrão do `@design-systems-orion/ui`.
  */
 export function TableToggle({
 	checked,

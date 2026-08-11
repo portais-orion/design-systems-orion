@@ -1,4 +1,4 @@
-import { Checkbox, Combobox, Input, MultiSelect, Textarea } from "@portais-orion/ui";
+import { Checkbox, Combobox, Input, MultiSelect, Textarea } from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 import { fn } from "storybook/test";

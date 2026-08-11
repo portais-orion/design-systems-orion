@@ -5,23 +5,23 @@ description: "Estado de falha ao carregar dados, com textos padrão genéricos e
 
 Quando não houve erro e a lista apenas não tem registros, use `EmptyState`.
 
-Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { ErrorState } from "@portais-orion/blocks/error-state";
+import { ErrorState } from "@design-systems-orion/blocks/error-state";
 ```
 
-O import por subpath traz só `error-state`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `error-state`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

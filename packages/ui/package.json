@@ -1,5 +1,5 @@
 {
-	"name": "@portais-orion/ui",
+	"name": "@design-systems-orion/ui",
 	"version": "0.3.1",
 	"description": "Primitives compartilhadas do Design System Orion (Base UI + Tailwind v4 + cva)",
 	"sideEffects": false,
@@ -34,9 +34,7 @@
 		"./combobox": "./src/combobox/index.ts",
 		"./multi-select": "./src/multi-select/index.ts"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"scripts": {
 		"build": "tsup",
 		"typecheck": "tsc --noEmit",
@@ -181,7 +179,7 @@
 	"devDependencies": {
 		"@base-ui/react": "^1.5.0",
 		"@biomejs/biome": "1.9.4",
-		"@portais-orion/tsconfig": "workspace:*",
+		"@design-systems-orion/tsconfig": "workspace:*",
 		"@storybook/react": "^10.4.1",
 		"@types/react": "^19.0.0",
 		"class-variance-authority": "^0.7.1",

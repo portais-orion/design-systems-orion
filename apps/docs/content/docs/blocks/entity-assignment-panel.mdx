@@ -5,23 +5,25 @@ description: "Painel de gerenciamento de vínculo N:N: busca com dropdown de can
 
 Não busca dados nem filtra — recebe `candidates` já prontos do consumidor (que decide debounce, API, etc.).
 
-Disponível em `@portais-orion/blocks`, na categoria **Formulários**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Formulários**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { EntityAssignmentPanel } from "@portais-orion/blocks/entity-assignment-panel";
+import {
+	EntityAssignmentPanel,
+} from "@design-systems-orion/blocks/entity-assignment-panel";
 ```
 
-O import por subpath traz só `entity-assignment-panel`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `entity-assignment-panel`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

@@ -12,14 +12,14 @@
 		"chromatic": "chromatic --exit-zero-on-changes"
 	},
 	"dependencies": {
-		"@portais-orion/tokens": "workspace:*",
-		"@portais-orion/ui": "workspace:*",
+		"@design-systems-orion/tokens": "workspace:*",
+		"@design-systems-orion/ui": "workspace:*",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@portais-orion/tsconfig": "workspace:*",
+		"@design-systems-orion/tsconfig": "workspace:*",
 		"@storybook/react": "^10.4.1",
 		"@storybook/react-vite": "^10.4.1",
 		"@tailwindcss/vite": "^4.3.0",

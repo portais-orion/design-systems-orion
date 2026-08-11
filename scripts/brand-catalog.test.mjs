@@ -102,7 +102,7 @@ function createState(overrides = {}) {
 			"",
 		].join("\n"),
 		manifest: {
-			name: "@portais-orion/tokens",
+			name: "@design-systems-orion/tokens",
 			exports: {
 				"./index.css": "./src/index.css",
 				"./base.css": "./src/base.css",
@@ -317,7 +317,7 @@ test("reports stale index, source exports, and publish exports", () => {
 	const state = createState({
 		indexCss: '@import "./themes/aurora.css";\n',
 		manifest: {
-			name: "@portais-orion/tokens",
+			name: "@design-systems-orion/tokens",
 			exports: {
 				"./base.css": "./src/base.css",
 				"./themes/legacy.css": "./src/themes/legacy.css",
@@ -421,7 +421,7 @@ test("separates inserted theme imports from a final import without a newline", (
 
 test("synchronizes only theme exports and does not mutate the manifest", () => {
 	const manifest = {
-		name: "@portais-orion/tokens",
+		name: "@design-systems-orion/tokens",
 		version: "9.9.9",
 		exports: {
 			"./index.css": "./src/index.css",
@@ -594,7 +594,7 @@ test("check aggregates diagnostics and never writes", async () => {
 		baseCss: "",
 		indexCss: '@import "./themes/legacy.css";\n',
 		manifest: {
-			name: "@portais-orion/tokens",
+			name: "@design-systems-orion/tokens",
 			exports: { "./themes/legacy.css": "./src/themes/legacy.css" },
 			publishConfig: {
 				exports: { "./themes/legacy.css": "./dist/themes/legacy.css" },
@@ -635,7 +635,7 @@ test("write changes exactly the absolute index and manifest targets", async () =
 	const fs = createAdapterFileSystem(rootDir, {
 		indexCss: '@import "./base.css";\n@import "./themes/legacy.css";\n',
 		manifest: {
-			name: "@portais-orion/tokens",
+			name: "@design-systems-orion/tokens",
 			exports: {
 				"./index.css": "./src/index.css",
 				"./themes/legacy.css": "./src/themes/legacy.css",
@@ -683,7 +683,7 @@ test("successful write preserves unrelated manifest content and stable serializa
 	const fs = createAdapterFileSystem(rootDir, {
 		indexCss: '@import "./themes/legacy.css";\n',
 		manifest: {
-			name: "@portais-orion/tokens",
+			name: "@design-systems-orion/tokens",
 			version: "9.9.9",
 			custom: { keep: true },
 			exports: {

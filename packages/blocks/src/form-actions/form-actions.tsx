@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Barra de ações de formulário (salvar/cancelar/extra). Origem do padrão:

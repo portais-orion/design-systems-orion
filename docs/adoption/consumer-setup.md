@@ -1,12 +1,12 @@
-# Consumer setup — adotando `@portais-orion` num novo portal
+# Consumer setup — adotando `@design-systems-orion` num novo portal
 
-Como configurar um portal (Next.js + Tailwind v4) para consumir o Orion `@portais-orion`
+Como configurar um portal (Next.js + Tailwind v4) para consumir o Orion `@design-systems-orion`
 (`tokens`, `ui`, `blocks`), publicado público no npm (registry.npmjs.org). Referência viva:
 `portal-supertrans`.
 
 ## 1. Sem autenticação para instalar
 
-Scope oficial: **`@portais-orion`**. Registry: **npm público** (registry.npmjs.org). Não precisa
+Scope oficial: **`@design-systems-orion`**. Registry: **npm público** (registry.npmjs.org). Não precisa
 de `.npmrc`, token ou login — instala igual qualquer pacote público do npm.
 
 > Não use os scopes legados `@grupo`, `@mateusarcestr`, `@supertrans-transportes` (ver "Legados").
@@ -16,7 +16,7 @@ de `.npmrc`, token ou login — instala igual qualquer pacote público do npm.
 ## 2. Instalar os packages
 
 ```bash
-pnpm add @portais-orion/tokens @portais-orion/ui @portais-orion/blocks
+pnpm add @design-systems-orion/tokens @design-systems-orion/ui @design-systems-orion/blocks
 # peers (se ainda não existirem no app):
 pnpm add react react-dom @base-ui/react @tanstack/react-table \
          class-variance-authority tailwind-merge lucide-react
@@ -27,8 +27,8 @@ pnpm add react react-dom @base-ui/react @tanstack/react-table \
 Em `globals.css` (topo, após os imports do Tailwind):
 
 ```css
-@import "@portais-orion/tokens/base.css";
-@import "@portais-orion/tokens/themes/supertrans.css";  /* tema da marca do portal */
+@import "@design-systems-orion/tokens/base.css";
+@import "@design-systems-orion/tokens/themes/supertrans.css";  /* tema da marca do portal */
 ```
 
 No root layout, marque a marca no `<html>`:
@@ -43,8 +43,8 @@ O Tailwind precisa escanear o código dos packages para gerar as classes usadas.
 **relativo ao `globals.css`**. Para `apps/web/src/app/globals.css`:
 
 ```css
-@source "../../node_modules/@portais-orion/ui/src";     /* /dist após hardening dist */
-@source "../../node_modules/@portais-orion/blocks/src";
+@source "../../node_modules/@design-systems-orion/ui/src";     /* /dist após hardening dist */
+@source "../../node_modules/@design-systems-orion/blocks/src";
 ```
 
 `../../node_modules` = `apps/web/node_modules` (onde o pnpm instala). Ajuste a profundidade se o
@@ -56,7 +56,7 @@ Os packages 0.1.0 são source-based → o Next precisa transpilá-los:
 
 ```ts
 // next.config.ts
-transpilePackages: ["@portais-orion/ui", "@portais-orion/blocks"]
+transpilePackages: ["@design-systems-orion/ui", "@design-systems-orion/blocks"]
 ```
 
 > Após o hardening `dist` (ESM + `.d.ts`), teste **remover** `transpilePackages` e trocar o
@@ -65,7 +65,7 @@ transpilePackages: ["@portais-orion/ui", "@portais-orion/blocks"]
 ## 6. Importar componentes
 
 ```tsx
-import { Button } from "@portais-orion/ui/button";
+import { Button } from "@design-systems-orion/ui/button";
 
 export function Example() {
   return <Button>Salvar</Button>;
@@ -73,8 +73,8 @@ export function Example() {
 ```
 
 ```tsx
-import { PageHeader } from "@portais-orion/blocks/page-header";
-import { DataTable, type DataTableColumn } from "@portais-orion/blocks/data-table";
+import { PageHeader } from "@design-systems-orion/blocks/page-header";
+import { DataTable, type DataTableColumn } from "@design-systems-orion/blocks/data-table";
 ```
 
 Recomendado: crie barrels de adaptação locais (`components/nucleo-ui`, `components/nucleo-blocks`)
@@ -104,6 +104,6 @@ de baixa criticidade por vez, preservando hooks/API/permissões.
 
 ## Legados (NÃO usar)
 
-`@grupo`, `@mateusarcestr`, `@supertrans-transportes` são scopes legados. Não instale em novos
-projetos. Os packages legados publicados não devem ser apagados sem autorização (ver
-`docs/architecture/package-distribution.md`).
+`@grupo`, `@mateusarcestr`, `@supertrans-transportes`, `@portais-orion` são scopes legados. Não
+instale em novos projetos. Os packages legados publicados não devem ser apagados sem autorização
+(ver `docs/architecture/package-distribution.md`).

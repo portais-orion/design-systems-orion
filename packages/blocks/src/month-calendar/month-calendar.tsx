@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import * as React from "react";
 
-import { Button, Card, cn } from "@portais-orion/ui";
+import { Button, Card, cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de gestao-demandas/grade-programacao (Supertrans): calendário mensal

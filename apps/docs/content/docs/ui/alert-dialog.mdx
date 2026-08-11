@@ -5,13 +5,13 @@ description: "Modal que exige uma decisão antes de prosseguir, para ações des
 
 Diferente do `Dialog`, não fecha ao clicar fora nem no Esc: a saída é sempre por `AlertDialogAction` ou `AlertDialogCancel`.
 
-Disponível em `@portais-orion/ui`, na categoria **Feedback**.
+Disponível em `@design-systems-orion/ui`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-pnpm add @portais-orion/ui
+pnpm add @design-systems-orion/ui
 ```
 
 ## Import
@@ -29,10 +29,10 @@ import {
 	AlertDialogDescription,
 	AlertDialogAction,
 	AlertDialogCancel,
-} from "@portais-orion/ui/alert-dialog";
+} from "@design-systems-orion/ui/alert-dialog";
 ```
 
-O import por subpath traz só `alert-dialog`. Importar de `@portais-orion/ui` também
+O import por subpath traz só `alert-dialog`. Importar de `@design-systems-orion/ui` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

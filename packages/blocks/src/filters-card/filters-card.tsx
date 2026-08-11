@@ -3,7 +3,7 @@
 import { ChevronDown, Filter, X } from "lucide-react";
 import * as React from "react";
 
-import { Button, Card, CardContent, cn } from "@portais-orion/ui";
+import { Button, Card, CardContent, cn } from "@design-systems-orion/ui";
 
 /*
  * Card de filtros colapsável para listagens CRUD: título com ícone + toggle

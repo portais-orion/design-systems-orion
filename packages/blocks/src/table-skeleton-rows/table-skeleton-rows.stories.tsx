@@ -1,4 +1,4 @@
-import { Table, TableBody, TableHead, TableHeader, TableRow } from "@portais-orion/ui";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { TableSkeletonRows } from "./table-skeleton-rows";
 

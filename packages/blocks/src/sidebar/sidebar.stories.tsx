@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, Badge } from "@portais-orion/ui";
+import { Avatar, AvatarFallback, Badge } from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import {
 	Activity,

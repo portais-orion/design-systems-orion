@@ -1,4 +1,4 @@
-# Prompt — Release dos packages `@portais-orion`
+# Prompt — Release dos packages `@design-systems-orion`
 
 Cole este prompt num agente, ou execute-o numa máquina com `pnpm`, `gh` autenticado e rede.
 Não execute publicação em sandbox sem rede.
@@ -6,8 +6,8 @@ Não execute publicação em sandbox sem rede.
 ---
 
 Você é release engineer do Design System Orion, monorepo pnpm + Turborepo + Changesets. Os
-packages `@portais-orion/tokens`, `@portais-orion/ui` e `@portais-orion/blocks` são publicados
-publicamente no npm (registry.npmjs.org), scope `@portais-orion`.
+packages `@design-systems-orion/tokens`, `@design-systems-orion/ui` e `@design-systems-orion/blocks` são publicados
+publicamente no npm (registry.npmjs.org), scope `@design-systems-orion`.
 
 Objetivo: validar, versionar, empacotar, publicar e testar os packages em um consumidor
 externo. Pare no primeiro gate que falhar e reporte erro exato.
@@ -18,7 +18,7 @@ externo. Pare no primeiro gate que falhar e reporte erro exato.
   (`NPM_TOKEN`).
 - Publicação é pública — o código dos packages fica visível a qualquer um; nunca vaze
   segredos/credenciais no source ou no `dist` empacotado.
-- Scope válido: somente `@portais-orion`. Não publicar scopes legados.
+- Scope válido: somente `@design-systems-orion`. Não publicar scopes legados.
 - Não publicar se `check`, `typecheck`, `build`, `pack:all` ou consumer test falhar.
 - Não alterar o Portal Aurora. Ele não é alvo deste release.
 - Não migrar telas de produto. Alterações no consumidor limitam-se à adoção da versão.
@@ -106,7 +106,7 @@ pnpm typecheck
 pnpm build
 ```
 
-O consumidor deve importar CSS por `@portais-orion/tokens/*` e componentes pelos exports
+O consumidor deve importar CSS por `@design-systems-orion/tokens/*` e componentes pelos exports
 públicos. Configuração Tailwind deve buscar classes no `dist` de UI e Blocks quando aplicável.
 Se instalação, types, imports ou build falharem, não atualize produto: corrija exports ou
 artefatos no Orion, gere nova versão e repita o release.
@@ -128,7 +128,7 @@ Não tocar no Aurora. Para migração de telas, use outro plano e a skill oficia
 
 - `pnpm check`, `pnpm typecheck`, `pnpm build` e `pnpm pack:all` verdes.
 - Tarballs inspecionados automaticamente, contendo apenas artefatos permitidos.
-- Packages privados publicados sob `@portais-orion` nas versões previstas.
+- Packages privados publicados sob `@design-systems-orion` nas versões previstas.
 - Consumer test instala, tipa e builda imports públicos.
 - Nenhum token, `.npmrc`, source ou `workspace:*` indevido publicado.
 - Nenhuma alteração no Portal Aurora.

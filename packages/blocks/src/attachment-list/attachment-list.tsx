@@ -2,7 +2,7 @@
 
 import { File as FileIcon, Trash2 } from "lucide-react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de gestao-demandas/[id] (lista de documentos anexados): ícone

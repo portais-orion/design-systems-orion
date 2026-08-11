@@ -3,7 +3,7 @@
 import { ChevronDown, ChevronRight, Info } from "lucide-react";
 import type * as React from "react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de components/cronograma/cronograma-tree.tsx (CronogramaTree):

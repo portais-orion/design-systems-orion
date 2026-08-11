@@ -1,4 +1,4 @@
-import { Button } from "@portais-orion/ui";
+import { Button } from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Inbox, SearchX } from "lucide-react";
 import { EmptyState } from "./empty-state";

@@ -3,7 +3,7 @@
 import { UploadCloud } from "lucide-react";
 import * as React from "react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de 4 pontos do Supertrans (import-csv-modal, ContainerInspection

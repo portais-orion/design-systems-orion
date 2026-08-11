@@ -18,7 +18,7 @@ import {
 	TableHeader,
 	TableRow,
 	cn,
-} from "@portais-orion/ui";
+} from "@design-systems-orion/ui";
 
 import { EmptyState } from "../empty-state";
 import { ErrorState } from "../error-state";

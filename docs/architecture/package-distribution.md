@@ -4,7 +4,7 @@ Como o Orion empacota e distribui packages internos versionados.
 
 ## Decisão vigente
 
-- scope oficial: `@portais-orion`
+- scope oficial: `@design-systems-orion`
 - registry público: npm (registry.npmjs.org) — instalar não exige token
 - packages consumíveis: `tokens`, `ui` e `blocks`
 - packages internos: `tsconfig` e `biome-config`

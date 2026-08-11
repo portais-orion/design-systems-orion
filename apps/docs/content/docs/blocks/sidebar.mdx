@@ -5,23 +5,23 @@ description: "Navegação lateral do portal, dirigida por dados: a árvore vem e
 
 Colapsada, os rótulos viram tooltips. Não conhece rota nem permissão — injete `renderLink` e `canAccessItem`. Normalmente usada via `AppShell`.
 
-Disponível em `@portais-orion/blocks`, na categoria **Navegação**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Navegação**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { Sidebar } from "@portais-orion/blocks/sidebar";
+import { Sidebar } from "@design-systems-orion/blocks/sidebar";
 ```
 
-O import por subpath traz só `sidebar`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `sidebar`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

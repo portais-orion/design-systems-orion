@@ -1,7 +1,7 @@
 import { Plus, X } from "lucide-react";
 import type * as React from "react";
 
-import { Button, cn } from "@portais-orion/ui";
+import { Button, cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de registrar-demanda-form (lista de containers), scenarios-form e

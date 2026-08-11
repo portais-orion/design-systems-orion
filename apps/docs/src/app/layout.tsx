@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: `%s — ${appName}`,
   },
   description:
-    'Componentes e blocos multi-marca do ecossistema Orion: @portais-orion/ui e @portais-orion/blocks.',
+    'Componentes e blocos multi-marca do ecossistema Orion: @design-systems-orion/ui e @design-systems-orion/blocks.',
 };
 
 export default function Layout({ children }: LayoutProps<'/'>) {

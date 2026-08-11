@@ -6,7 +6,7 @@ const highlights = [
     icon: Blocks,
     title: 'Dois pacotes, um sistema',
     description:
-      'Primitivas em @portais-orion/ui e composições prontas em @portais-orion/blocks, usadas por todos os portais do Grupo.',
+      'Primitivas em @design-systems-orion/ui e composições prontas em @design-systems-orion/blocks, usadas por todos os portais do Grupo.',
   },
   {
     icon: Palette,

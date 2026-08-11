@@ -25,5 +25,7 @@ function Demo() {
 
 export const Default: Story = { render: () => <Demo /> };
 export const Disabled: Story = {
-	render: () => <TableToggle checked={false} onToggle={() => {}} disabled aria-label="Indisponível" />,
+	render: () => (
+		<TableToggle checked={false} onToggle={() => {}} disabled aria-label="Indisponível" />
+	),
 };

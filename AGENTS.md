@@ -11,11 +11,11 @@ Este projeto é o **Design System Orion** (nome do repositório: `nucleo-portais
 ```txt
 apps/storybook/        Storybook oficial (toolbar de marca Supertrans/Aurora)
 apps/docs/             Fumadocs — docs geradas por scripts/generate-docs.mjs
-packages/tokens/       @portais-orion/tokens — base.css + themes/{supertrans,aurora}.css
-packages/ui/           @portais-orion/ui — primitives (Base UI + Tailwind v4 + cva)
-packages/blocks/       @portais-orion/blocks — composições (page-header, data-table, app-shell...)
-packages/tsconfig/     @portais-orion/tsconfig
-packages/biome-config/ @portais-orion/biome-config
+packages/tokens/       @design-systems-orion/tokens — base.css + themes/{supertrans,aurora}.css
+packages/ui/           @design-systems-orion/ui — primitives (Base UI + Tailwind v4 + cva)
+packages/blocks/       @design-systems-orion/blocks — composições (page-header, data-table, app-shell...)
+packages/tsconfig/     @design-systems-orion/tsconfig
+packages/biome-config/ @design-systems-orion/biome-config
 docs/adr/              decisões de arquitetura (fonte de verdade)
 docs/architecture/     overview, packages, theming, camadas, storybook, migração
 ai/                    context, rules, workflows, skills, prompts, examples, checklists
@@ -113,7 +113,7 @@ Antes de criar QUALQUER componente: `ai/workflows/find-component.md` (anti-dupli
 
 ## Skill oficial de adoção
 
-A skill oficial para adotar/migrar telas de portais ao Orion (`@portais-orion`) vive AQUI (fonte de verdade):
+A skill oficial para adotar/migrar telas de portais ao Orion (`@design-systems-orion`) vive AQUI (fonte de verdade):
 
 ```txt
 ai/skills/portais-orion-adoption/SKILL.md

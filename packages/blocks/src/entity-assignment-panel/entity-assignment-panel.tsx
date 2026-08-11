@@ -3,7 +3,7 @@
 import { Loader2, Plus, Search, X } from "lucide-react";
 import type * as React from "react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de profile-assignments-panel e user-groups-selector (configurador):

@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { Card, CardContent, cn } from "@portais-orion/ui";
+import { Card, CardContent, cn } from "@design-systems-orion/ui";
 
 import { LoadingOverlay } from "../loading-overlay";
 import { PageLayout } from "../page-layout";
@@ -71,7 +71,9 @@ export function ListPageLayout({
 				{toolbar}
 				<Card className="overflow-hidden rounded-2xl">
 					{filters ? (
-						<div className={cn("flex flex-wrap items-center gap-2 border-b border-border px-4 py-4")}>
+						<div
+							className={cn("flex flex-wrap items-center gap-2 border-b border-border px-4 py-4")}
+						>
 							{filters}
 						</div>
 					) : null}

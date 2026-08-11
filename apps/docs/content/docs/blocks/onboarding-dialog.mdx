@@ -5,23 +5,23 @@ description: "Modal de primeiro acesso com passos numerados."
 
 Controlado: o consumidor decide quando abrir (ex.: primeira visita, feature nova) e onde persistir que o usuário já viu — o bloco não fala com `localStorage` nem nada externo.
 
-Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { OnboardingDialog } from "@portais-orion/blocks/onboarding-dialog";
+import { OnboardingDialog } from "@design-systems-orion/blocks/onboarding-dialog";
 ```
 
-O import por subpath traz só `onboarding-dialog`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `onboarding-dialog`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

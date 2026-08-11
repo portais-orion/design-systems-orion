@@ -5,23 +5,23 @@ description: "Indicador de status por tom semântico."
 
 Sem `label` é só um ponto decorativo (`aria-hidden`), então o significado precisa vir do contexto; com `label` vira uma pílula com o texto legível.
 
-Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { StatusDot } from "@portais-orion/blocks/status-dot";
+import { StatusDot } from "@design-systems-orion/blocks/status-dot";
 ```
 
-O import por subpath traz só `status-dot`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `status-dot`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

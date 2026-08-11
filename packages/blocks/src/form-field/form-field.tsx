@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { Label, cn } from "@portais-orion/ui";
+import { Label, cn } from "@design-systems-orion/ui";
 
 import { FormMessage } from "../form-message";
 import type { FormFieldProps } from "./form-field.types";

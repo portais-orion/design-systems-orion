@@ -1,8 +1,8 @@
 /*
  * Entrada de conveniência para ambientes multi-marca (Storybook, previews).
  * Produtos reais importam base.css + UM tema:
- *   @import "@portais-orion/tokens/base.css";
- *   @import "@portais-orion/tokens/themes/aurora.css";
+ *   @import "@design-systems-orion/tokens/base.css";
+ *   @import "@design-systems-orion/tokens/themes/aurora.css";
  * Com os dois temas carregados, a marca efetiva é controlada por [data-brand].
  *
  * IMPORTANTE: declare data-brand no <html>. Cada tema também reivindica

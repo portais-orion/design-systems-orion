@@ -1,8 +1,8 @@
-import { Truck } from "lucide-react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Truck } from "lucide-react";
 import * as React from "react";
 
-import { Badge, Button } from "@portais-orion/ui";
+import { Badge, Button } from "@design-systems-orion/ui";
 import { CrudModalFrame } from "./crud-modal-frame";
 
 const meta: Meta<typeof CrudModalFrame> = {

@@ -2,7 +2,7 @@
 @import 'tw-animate-css';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
-@import '@portais-orion/tokens/index.css';
+@import '@design-systems-orion/tokens/index.css';
 @source "../../../../packages/ui/src";
 @source "../../../../packages/blocks/src";
 

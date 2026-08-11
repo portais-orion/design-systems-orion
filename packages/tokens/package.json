@@ -1,14 +1,9 @@
 {
-	"name": "@portais-orion/tokens",
+	"name": "@design-systems-orion/tokens",
 	"version": "0.2.0",
 	"description": "Tokens semânticos e temas por marca do Design System Orion",
-	"sideEffects": [
-		"*.css"
-	],
-	"files": [
-		"dist",
-		"brands.json"
-	],
+	"sideEffects": ["*.css"],
+	"files": ["dist", "brands.json"],
 	"scripts": {
 		"build": "node ../../scripts/brand-catalog.mjs --check && node scripts/build-tokens.mjs",
 		"prepack": "node ../../scripts/brand-catalog.mjs --check && node scripts/build-tokens.mjs"

@@ -5,23 +5,23 @@ description: "Layout de página de criar ou editar registro."
 
 Sem `aside`, contém o formulário numa coluna estreita para não esticar demais as linhas; com `aside`, abre espaço lateral. Não cria o elemento `<form>` nem conhece biblioteca de formulário — isso fica com o consumidor.
 
-Disponível em `@portais-orion/blocks`, na categoria **Layout**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Layout**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { FormPageLayout } from "@portais-orion/blocks/form-page-layout";
+import { FormPageLayout } from "@design-systems-orion/blocks/form-page-layout";
 ```
 
-O import por subpath traz só `form-page-layout`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `form-page-layout`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

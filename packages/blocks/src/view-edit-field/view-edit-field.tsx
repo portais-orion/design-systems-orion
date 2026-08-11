@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@portais-orion/ui";
+import { cn } from "@design-systems-orion/ui";
 
 /*
  * Extraído de gestao-demandas/[id]: campo de detalhe que alterna entre
@@ -22,7 +22,13 @@ export type ViewEditFieldProps = {
  * normalmente e troca para `children` quando `editing` é true. Não gerencia
  * o estado de edição nem o valor — só decide o que renderizar.
  */
-export function ViewEditField({ label, editing, viewValue, children, className }: ViewEditFieldProps) {
+export function ViewEditField({
+	label,
+	editing,
+	viewValue,
+	children,
+	className,
+}: ViewEditFieldProps) {
 	return (
 		<div className={cn("space-y-1", className)}>
 			<p className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">

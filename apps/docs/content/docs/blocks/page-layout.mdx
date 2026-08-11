@@ -5,23 +5,23 @@ description: "Esqueleto base de uma página: padding, largura máxima e o espaç
 
 Não inclui sidebar nem breadcrumb — isso é o `AppShell`. Os layouts especializados (`ListPageLayout`, `FormPageLayout`, …) são construídos sobre este.
 
-Disponível em `@portais-orion/blocks`, na categoria **Layout**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Layout**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { PageLayout } from "@portais-orion/blocks/page-layout";
+import { PageLayout } from "@design-systems-orion/blocks/page-layout";
 ```
 
-O import por subpath traz só `page-layout`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `page-layout`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

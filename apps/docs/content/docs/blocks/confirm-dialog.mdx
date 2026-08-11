@@ -5,23 +5,23 @@ description: "Modal de confirmação para uma ação, com estado de carregamento
 
 Só fecha quando `onConfirm` resolve: se a promessa rejeitar, o modal permanece aberto e cabe ao chamador exibir o erro. Use `variant="danger"` para ações destrutivas.
 
-Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { ConfirmDialog } from "@portais-orion/blocks/confirm-dialog";
+import { ConfirmDialog } from "@design-systems-orion/blocks/confirm-dialog";
 ```
 
-O import por subpath traz só `confirm-dialog`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `confirm-dialog`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

@@ -4,7 +4,7 @@
 # Pre-requisitos:
 #   - Secret NPM_TOKEN no repo/org: token de automacao da conta/org npm "portais-orion"
 #     (https://www.npmjs.com/settings/<org>/tokens), tipo "Automation".
-#   - Confirme o scope @portais-orion e siga o runbook de distribuicao
+#   - Confirme o scope @design-systems-orion e siga o runbook de distribuicao
 #     (docs/architecture/package-distribution.md) ANTES do primeiro publish real.
 name: Release packages
 
@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
-          scope: "@portais-orion"
+          scope: "@design-systems-orion"
 
       - run: pnpm install --frozen-lockfile
 

@@ -5,23 +5,25 @@ description: "Modal de análise de impacto: \"onde isso é usado\", em grid de c
 
 Dados via props.
 
-Disponível em `@portais-orion/blocks`, na categoria **Feedback**.
+Disponível em `@design-systems-orion/blocks`, na categoria **Feedback**.
 
 ## Instalação
 
 ```bash
 # Primitives e blocks são packages separados: instale só o que for usar.
-# Os blocks compõem as primitives, então este já traz @portais-orion/ui junto.
-pnpm add @portais-orion/blocks
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
 ```
 
 ## Import
 
 ```tsx
-import { ImpactAnalysisDialog } from "@portais-orion/blocks/impact-analysis-dialog";
+import {
+	ImpactAnalysisDialog,
+} from "@design-systems-orion/blocks/impact-analysis-dialog";
 ```
 
-O import por subpath traz só `impact-analysis-dialog`. Importar de `@portais-orion/blocks` também
+O import por subpath traz só `impact-analysis-dialog`. Importar de `@design-systems-orion/blocks` também
 funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## Uso

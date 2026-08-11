@@ -3,7 +3,13 @@
 import { ChevronDown, ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
 import * as React from "react";
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, cn } from "@portais-orion/ui";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+	cn,
+} from "@design-systems-orion/ui";
 
 import {
 	type NavigationItem,

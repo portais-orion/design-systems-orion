@@ -12,7 +12,7 @@ This is `apps/docs` inside the **nucleo-portais** monorepo (pnpm workspaces + Tu
 
 ## What this app is
 
-A **Fumadocs 16 + Next 16 (App Router)** site documenting the two consumable packages, `@portais-orion/ui` (primitives) and `@portais-orion/blocks` (compositions). It complements `apps/storybook`, which stays the interactive/visual source of truth — docs pages link back to it for variations they can't render.
+A **Fumadocs 16 + Next 16 (App Router)** site documenting the two consumable packages, `@design-systems-orion/ui` (primitives) and `@design-systems-orion/blocks` (compositions). It complements `apps/storybook`, which stays the interactive/visual source of truth — docs pages link back to it for variations they can't render.
 
 ## Commands
 
@@ -58,12 +58,12 @@ To change how every page looks, edit the generator's template — not the MDX.
 - `src/lib/shared.ts` — route constants (`docsRoute`, `docsImageRoute`, `docsContentRoute`) plus `appName`, `gitConfig` and `contentPath` (the repo-relative path used to build "edit on GitHub" links). These feed the nav and layout.
 - `proxy.ts` + `src/app/llms*.txt` / `llms.mdx` routes — content negotiation serving raw Markdown to agents and crawlers (`/docs/x.md`, or `/docs/x` with a Markdown-preferring `Accept`). Depends on `includeProcessedMarkdown: true` in `source.config.ts`.
 - `src/components/mdx.tsx` — MDX component map. `ComponentPreview` is registered globally, so generated MDX uses `<ComponentPreview name="ui/button" story="Default" />` without importing it; add new MDX-available components here.
-- `src/components/brand-provider.tsx` / `brand-switcher.tsx` — the brand selector. Brands come from `@portais-orion/tokens/brands.json` (never hardcode them); `BrandScript` applies the stored brand before first paint to avoid a flash of the wrong brand.
+- `src/components/brand-provider.tsx` / `brand-switcher.tsx` — the brand selector. Brands come from `@design-systems-orion/tokens/brands.json` (never hardcode them); `BrandScript` applies the stored brand before first paint to avoid a flash of the wrong brand.
 - `src/app/og/docs/[...slug]/route.tsx` — generated OG images, keyed by `getPageImage` in `source.ts`.
 
 ## Styling
 
-`src/app/global.css` layers Tailwind v4 → Fumadocs preset → `@portais-orion/tokens/index.css`, then declares `@source "../../../packages/{ui,blocks}/src"` so Tailwind scans the workspace packages it renders. Adding a package that this app renders requires a matching `@source` line, or its classes get stripped from the build.
+`src/app/global.css` layers Tailwind v4 → Fumadocs preset → `@design-systems-orion/tokens/index.css`, then declares `@source "../../../packages/{ui,blocks}/src"` so Tailwind scans the workspace packages it renders. Adding a package that this app renders requires a matching `@source` line, or its classes get stripped from the build.
 
 Two color systems meet here, and they must agree: Fumadocs paints the site chrome from `--color-fd-*`, while the packages paint components from the semantic tokens. `global.css` bridges them by deriving every `--color-fd-*` from a token — keep it that way. Without the bridge, `tokens/base.css` (which sets `body { color: var(--foreground) }`) wins over the Fumadocs preset and dark mode renders black text on a dark background.
 

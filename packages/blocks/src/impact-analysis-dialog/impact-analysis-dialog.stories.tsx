@@ -1,8 +1,8 @@
-import { Activity, Box } from "lucide-react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Activity, Box } from "lucide-react";
 import * as React from "react";
 
-import { Badge, Button } from "@portais-orion/ui";
+import { Badge, Button } from "@design-systems-orion/ui";
 import { ImpactAnalysisDialog } from "./impact-analysis-dialog";
 
 const meta: Meta<typeof ImpactAnalysisDialog> = {

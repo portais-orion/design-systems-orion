@@ -6,7 +6,7 @@ import { Meta, Title } from "@storybook/addon-docs/blocks";
 
 ## Modelo
 
-Duas camadas em `@portais-orion/tokens`:
+Duas camadas em `@design-systems-orion/tokens`:
 
 1. **`base.css`** — o mapeamento semântico (`@theme inline` do Tailwind v4) + defaults neutros. Não contém nenhuma cor de marca.
 2. **`themes/<marca>.css`** — somente valores de identidade da marca (primary, hover, accent, sidebar), aplicados via CSS variables.
@@ -33,11 +33,11 @@ Use a toolbar **Marca** deste Storybook, ou a story *Orion → Comparativo de Ma
 ## Uso nos produtos
 
 ```css
-@import "@portais-orion/tokens/base.css";
-@import "@portais-orion/tokens/themes/aurora.css";  /* UM tema por produto */
+@import "@design-systems-orion/tokens/base.css";
+@import "@design-systems-orion/tokens/themes/aurora.css";  /* UM tema por produto */
 ```
 
-Ambientes multi-marca (como este Storybook) importam `@portais-orion/tokens/index.css` e controlam a marca por `data-brand` no elemento raiz.
+Ambientes multi-marca (como este Storybook) importam `@design-systems-orion/tokens/index.css` e controlam a marca por `data-brand` no elemento raiz.
 
 ## Regras
 

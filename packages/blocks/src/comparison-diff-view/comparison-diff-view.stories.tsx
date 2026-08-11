@@ -19,7 +19,11 @@ export const Default: Story = {
 				description: "Permissões que um usuário possui e o outro não.",
 				columns: [
 					{ label: "Somente Usuário A possui", tone: "danger", items: ["CRIAR_DEMANDA"] },
-					{ label: "Somente Usuário B possui", tone: "info", items: ["APROVAR_DEMANDA", "EXCLUIR_DEMANDA"] },
+					{
+						label: "Somente Usuário B possui",
+						tone: "info",
+						items: ["APROVAR_DEMANDA", "EXCLUIR_DEMANDA"],
+					},
 				],
 			},
 			{

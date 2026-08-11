@@ -2,7 +2,7 @@
 
 Estado: doador das APIs de composição (DataTable com `Column<T>`/`keyExtractor`/estados embutidos, Pagination, ConfirmDialog, PageHeader, SearchBar, StatusCards, Kanban) e de ~11 primitives que o Supertrans não tem (tabs, popover, dropdown-menu, switch, radio-group, scroll-area, separator, alert, alert-dialog, command, multi-select).
 
-Regra de ouro: APIs do Aurora são a inspiração; o CÓDIGO (Radix, TW3, `bg-white`/`text-gray-*`/`primary-500` hardcoded) nunca é copiado — sempre recriado sobre `@portais-orion/ui` + tokens.
+Regra de ouro: APIs do Aurora são a inspiração; o CÓDIGO (Radix, TW3, `bg-white`/`text-gray-*`/`primary-500` hardcoded) nunca é copiado — sempre recriado sobre `@design-systems-orion/ui` + tokens.
 
 Pré-requisitos de convergência (no repo dele, fase futura): npm → pnpm, ESLint → Biome, TW3 → v4, remoção da escala `primary-50..900`, saneamento de services (há mock jsonplaceholder esquecido em faturamento).
 

@@ -1,9 +1,9 @@
 ---
 name: create-block
-description: Use quando precisar criar uma composição nova em @portais-orion/blocks (Camada 2) neste repo — padrão de página/formulário/tabela reutilizável entre portais. Não use para primitive simples (é ui) nem para composição usada por um único portal (fica no produto).
+description: Use quando precisar criar uma composição nova em @design-systems-orion/blocks (Camada 2) neste repo — padrão de página/formulário/tabela reutilizável entre portais. Não use para primitive simples (é ui) nem para composição usada por um único portal (fica no produto).
 ---
 
-# Criar block em @portais-orion/blocks
+# Criar block em @design-systems-orion/blocks
 
 Orquestra os artefatos existentes do repo. Fonte de verdade dos padrões: `ai/rules/blocks.md`.
 
@@ -16,7 +16,7 @@ Orquestra os artefatos existentes do repo. Fonte de verdade dos padrões: `ai/ru
 3. **API primeiro**: definir props/slots/estados e validar contra 1 tela real de CADA portal
    antes de implementar (`ai/workflows/create-block.md` passos 3–4). Dados por props, conteúdo
    por slots, integrações por providers injetados; nada de Next/rotas/permissões no block.
-4. **Implementar** sobre `@portais-orion/ui` + tokens. Referências de padrão:
+4. **Implementar** sobre `@design-systems-orion/ui` + tokens. Referências de padrão:
    `confirm-dialog` (estado assíncrono), `status-cards` (tons semânticos), `pagination`
    (envelope `{data,total,page,limit}`), `data-table` (server-first, TanStack não vaza).
 5. **Story** cobrindo dados normais / vazio / erro / loading, nas 2 marcas. Comentário de

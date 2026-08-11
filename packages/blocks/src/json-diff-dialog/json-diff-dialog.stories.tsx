@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import * as React from "react";
 
-import { Button } from "@portais-orion/ui";
+import { Button } from "@design-systems-orion/ui";
 import { JsonDiffDialog } from "./json-diff-dialog";
 
 const meta: Meta<typeof JsonDiffDialog> = {

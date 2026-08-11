@@ -14,24 +14,24 @@ O Design System Orion é a base oficial para criação, padronização e evoluç
 
 | Pacote | Camada | Conteúdo |
 |---|---|---|
-| `@portais-orion/tokens` | 0 | tokens semânticos + temas por marca (CSS puro) |
-| `@portais-orion/ui` | 1 | 26 primitives (Base UI + Tailwind v4 + cva) |
-| `@portais-orion/blocks` | 2 | composições genéricas: DataTable, PageHeader, Pagination, ConfirmDialog... |
+| `@design-systems-orion/tokens` | 0 | tokens semânticos + temas por marca (CSS puro) |
+| `@design-systems-orion/ui` | 1 | 26 primitives (Base UI + Tailwind v4 + cva) |
+| `@design-systems-orion/blocks` | 2 | composições genéricas: DataTable, PageHeader, Pagination, ConfirmDialog... |
 
 ## Instalação (produtos)
 
 ```sh
-pnpm add @portais-orion/tokens @portais-orion/ui @portais-orion/blocks
+pnpm add @design-systems-orion/tokens @design-systems-orion/ui @design-systems-orion/blocks
 ```
 
 ```css
 /* entrada CSS do produto */
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@portais-orion/tokens/base.css";
-@import "@portais-orion/tokens/themes/supertrans.css"; /* UM tema por produto */
-@source "../node_modules/@portais-orion/ui/src";
-@source "../node_modules/@portais-orion/blocks/src";
+@import "@design-systems-orion/tokens/base.css";
+@import "@design-systems-orion/tokens/themes/supertrans.css"; /* UM tema por produto */
+@source "../node_modules/@design-systems-orion/ui/src";
+@source "../node_modules/@design-systems-orion/blocks/src";
 ```
 
 ## Temas

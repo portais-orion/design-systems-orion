@@ -1,8 +1,8 @@
-import { Sparkles } from "lucide-react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Sparkles } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "@portais-orion/ui";
+import { Button } from "@design-systems-orion/ui";
 import { OnboardingDialog } from "./onboarding-dialog";
 
 const meta: Meta<typeof OnboardingDialog> = {
@@ -40,7 +40,8 @@ function Demo() {
 					},
 					{
 						title: "Alternância fácil",
-						description: "Precisa de recursos avançados? Alterne pelo menu lateral a qualquer momento.",
+						description:
+							"Precisa de recursos avançados? Alterne pelo menu lateral a qualquer momento.",
 						tone: "warning",
 					},
 				]}

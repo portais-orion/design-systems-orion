@@ -6,7 +6,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from "@portais-orion/ui";
+} from "@design-systems-orion/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Download, Eye, MoreHorizontal, Pencil, Plus, Trash2 } from "lucide-react";
 import * as React from "react";
