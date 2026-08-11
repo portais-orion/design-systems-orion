@@ -11,6 +11,7 @@ import {
 	cn,
 } from "@design-systems-orion/ui";
 
+import { useControllable } from "../_internal/use-controllable";
 import {
 	type NavigationItem,
 	type RenderLink,
@@ -48,23 +49,6 @@ const defaultRenderLink: RenderLink = ({ href, children, className, ...props }) 
 		{children}
 	</a>
 );
-
-function useControllableCollapsed(
-	collapsed: boolean | undefined,
-	defaultCollapsed: boolean,
-	onCollapsedChange?: (c: boolean) => void,
-) {
-	const [internal, setInternal] = React.useState(defaultCollapsed);
-	const value = collapsed ?? internal;
-	const set = React.useCallback(
-		(next: boolean) => {
-			if (collapsed === undefined) setInternal(next);
-			onCollapsedChange?.(next);
-		},
-		[collapsed, onCollapsedChange],
-	);
-	return [value, set] as const;
-}
 
 /*
  * Item ativo = barra de 3px na borda esquerda + fundo sutil, não fill sólido
@@ -386,7 +370,7 @@ export function Sidebar({
 	footer,
 	className,
 }: SidebarProps) {
-	const [collapsed, setCollapsed] = useControllableCollapsed(
+	const [collapsed, setCollapsed] = useControllable(
 		collapsedProp,
 		defaultCollapsed,
 		onCollapsedChange,

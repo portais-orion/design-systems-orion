@@ -57,7 +57,10 @@ const SheetContent = React.forwardRef<
 		<SheetOverlay />
 		<DialogPrimitive.Popup ref={ref} className={cn(sheetVariants({ side }), className)} {...props}>
 			{children}
-			<DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 outline-none transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring">
+			{/* z-10: o conteúdo do sheet pode ter superfícies próprias (uma sidebar inteira,
+			    por exemplo); o botão de fechar fica acima delas sem que o consumidor
+			    precise alcançar este elemento por seletor de filho. */}
+			<DialogPrimitive.Close className="absolute right-4 top-4 z-10 rounded-sm opacity-70 outline-none transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring">
 				<X className="size-4" />
 				<span className="sr-only">Fechar</span>
 			</DialogPrimitive.Close>

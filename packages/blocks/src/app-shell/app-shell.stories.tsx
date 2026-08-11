@@ -116,9 +116,7 @@ const Miolo = () => (
 export const Default: Story = {
 	render: () => (
 		<AppShell
-			renderSidebar={(props) => (
-				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="registros" {...props} />
-			)}
+			sidebar={{ brand: <Marca />, navigation: NAV, activeItemId: "registros" }}
 		>
 			<Miolo />
 		</AppShell>
@@ -129,9 +127,7 @@ export const WithBreadcrumbs: Story = {
 	render: () => (
 		<AppShell
 			breadcrumbs={TRILHA}
-			renderSidebar={(props) => (
-				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="registros" {...props} />
-			)}
+			sidebar={{ brand: <Marca />, navigation: NAV, activeItemId: "registros" }}
 		>
 			<Miolo />
 		</AppShell>
@@ -142,15 +138,8 @@ export const Collapsed: Story = {
 	render: () => (
 		<AppShell
 			breadcrumbs={TRILHA}
-			renderSidebar={(props) => (
-				<Sidebar
-					brand={<Marca />}
-					navigation={NAV}
-					activeItemId="registros"
-					defaultCollapsed
-					{...props}
-				/>
-			)}
+			defaultCollapsed
+			sidebar={{ brand: <Marca />, navigation: NAV, activeItemId: "registros" }}
 		>
 			<Miolo />
 		</AppShell>
@@ -161,15 +150,12 @@ export const WithFilteredNavigation: Story = {
 	render: () => (
 		<AppShell
 			breadcrumbs={TRILHA}
-			renderSidebar={(props) => (
-				<Sidebar
-					brand={<Marca />}
-					navigation={NAV}
-					activeItemId="registros"
-					canAccessItem={(item) => item.meta?.requiredPermission !== "admin.only"}
-					{...props}
-				/>
-			)}
+			sidebar={{
+				brand: <Marca />,
+				navigation: NAV,
+				activeItemId: "registros",
+				canAccessItem: (item) => item.meta?.requiredPermission !== "admin.only",
+			}}
 		>
 			<Miolo />
 		</AppShell>
@@ -191,16 +177,9 @@ export const ControlledCollapsed: Story = {
 		return (
 			<AppShell
 				breadcrumbs={TRILHA}
-				renderSidebar={(props) => (
-					<Sidebar
-						brand={<Marca />}
-						navigation={NAV}
-						activeItemId="registros"
-						collapsed={collapsed}
-						onCollapsedChange={setCollapsed}
-						{...props}
-					/>
-				)}
+				collapsed={collapsed}
+				onCollapsedChange={setCollapsed}
+				sidebar={{ brand: <Marca />, navigation: NAV, activeItemId: "registros" }}
 			>
 				<div className="m-6 space-y-3">
 					<Button variant="outline" onClick={() => setCollapsed((c) => !c)}>
@@ -213,15 +192,38 @@ export const ControlledCollapsed: Story = {
 	},
 };
 
+/**
+ * Escape hatch: quem precisa de outra navegação monta a sua com
+ * `renderSidebar` e recebe o colapso já resolvido pelo shell.
+ */
+export const CustomSidebar: Story = {
+	render: () => (
+		<AppShell
+			breadcrumbs={TRILHA}
+			renderSidebar={(props) => (
+				<Sidebar
+					brand={<Marca />}
+					navigation={NAV}
+					activeItemId="registros"
+					collapsed={props.collapsed}
+					onCollapsedChange={props.onCollapsedChange}
+					collapsible={props.collapsible}
+					onNavigate={props.onNavigate}
+				/>
+			)}
+		>
+			<Miolo />
+		</AppShell>
+	),
+};
+
 export const MobileNavigation: Story = {
 	name: "MobileNavigation (viewport mobile)",
 	globals: { viewport: { value: "mobile1" } },
 	render: () => (
 		<AppShell
 			breadcrumbs={TRILHA}
-			renderSidebar={(props) => (
-				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="registros" {...props} />
-			)}
+			sidebar={{ brand: <Marca />, navigation: NAV, activeItemId: "registros" }}
 		>
 			<Miolo />
 		</AppShell>
@@ -238,15 +240,12 @@ export const AppShellWithListPage: Story = {
 		return (
 			<AppShell
 				breadcrumbs={TRILHA}
-				renderSidebar={(props) => (
-					<Sidebar
-						brand={<Marca />}
-						navigation={NAV}
-						activeItemId="registros"
-						footer={<Rodape />}
-						{...props}
-					/>
-				)}
+				sidebar={{
+					brand: <Marca />,
+					navigation: NAV,
+					activeItemId: "registros",
+					footer: <Rodape />,
+				}}
 			>
 				<ListPageLayout>
 					<PageHeader
@@ -318,9 +317,7 @@ export const AppShellWithFormPage: Story = {
 				{ label: "Registros", href: "#" },
 				{ label: "Novo", current: true },
 			]}
-			renderSidebar={(props) => (
-				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="registros" {...props} />
-			)}
+			sidebar={{ brand: <Marca />, navigation: NAV, activeItemId: "registros" }}
 		>
 			<FormPageLayout>
 				<PageHeader title="Novo registro" />
@@ -359,9 +356,7 @@ export const AppShellWithDetailPage: Story = {
 				{ label: "Registros", href: "#" },
 				{ label: "REG-003", current: true },
 			]}
-			renderSidebar={(props) => (
-				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="registros" {...props} />
-			)}
+			sidebar={{ brand: <Marca />, navigation: NAV, activeItemId: "registros" }}
 		>
 			<DetailPageLayout>
 				<PageHeader eyebrow="Registros" title="Registro REG-003" />
@@ -389,9 +384,7 @@ export const AppShellWithDashboardPage: Story = {
 	render: () => (
 		<AppShell
 			breadcrumbs={[{ label: "Início", current: true }]}
-			renderSidebar={(props) => (
-				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="inicio" {...props} />
-			)}
+			sidebar={{ brand: <Marca />, navigation: NAV, activeItemId: "inicio" }}
 		>
 			<DashboardPageLayout
 				header={<PageHeader title="Painel operacional" />}
