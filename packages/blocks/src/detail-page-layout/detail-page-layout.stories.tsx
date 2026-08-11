@@ -53,40 +53,58 @@ const Abas = () => (
 
 export const Default: Story = {
 	render: () => (
-		<DetailPageLayout
-			header={<Cabecalho />}
-			content={
+		<DetailPageLayout>
+			<Cabecalho />
+			<DetailPageLayout.Content>
 				<ContentCard>
 					<p className="text-sm text-muted-foreground">Conteúdo do detalhe.</p>
 				</ContentCard>
-			}
-		/>
+			</DetailPageLayout.Content>
+		</DetailPageLayout>
 	),
 };
 export const WithSummary: Story = {
-	render: () => <DetailPageLayout header={<Cabecalho />} summary={<Resumo />} content={<Abas />} />,
+	render: () => (
+		<DetailPageLayout>
+			<Cabecalho />
+			<DetailPageLayout.Content>
+				<Resumo />
+				<Abas />
+			</DetailPageLayout.Content>
+		</DetailPageLayout>
+	),
 };
 export const WithTabs: Story = {
-	render: () => <DetailPageLayout header={<Cabecalho />} tabs={<Abas />} />,
+	render: () => (
+		<DetailPageLayout>
+			<Cabecalho />
+			<DetailPageLayout.Content>
+				<Abas />
+			</DetailPageLayout.Content>
+		</DetailPageLayout>
+	),
 };
 export const WithAside: Story = {
 	render: () => (
-		<DetailPageLayout
-			header={<Cabecalho />}
-			summary={<Resumo />}
-			tabs={<Abas />}
-			aside={
-				<ContentCard title="Ações rápidas">
-					<div className="grid gap-2">
-						<Button variant="outline" size="sm">
-							Duplicar
-						</Button>
-						<Button variant="destructive" size="sm">
-							Excluir
-						</Button>
-					</div>
-				</ContentCard>
-			}
-		/>
+		<DetailPageLayout>
+			<Cabecalho />
+			<DetailPageLayout.Content
+				aside={
+					<ContentCard title="Ações rápidas">
+						<div className="grid gap-2">
+							<Button variant="outline" size="sm">
+								Duplicar
+							</Button>
+							<Button variant="destructive" size="sm">
+								Excluir
+							</Button>
+						</div>
+					</ContentCard>
+				}
+			>
+				<Resumo />
+				<Abas />
+			</DetailPageLayout.Content>
+		</DetailPageLayout>
 	),
 };

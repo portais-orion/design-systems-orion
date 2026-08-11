@@ -68,10 +68,15 @@ const renderLink: RenderLink = ({ href, children, className, ...props }) => (
 ```tsx
 const { hasPermission } = usePermissions();
 <AppShell
-  canAccessItem={(item) =>
-    !item.meta?.requiredPermission || hasPermission(String(item.meta.requiredPermission))
-  }
-  activeItemId={findActiveId(pathname, navigation)}
+  renderSidebar={(props) => (
+    <Sidebar
+      canAccessItem={(item) =>
+        !item.meta?.requiredPermission || hasPermission(String(item.meta.requiredPermission))
+      }
+      activeItemId={findActiveId(pathname, navigation)}
+      {...props}
+    />
+  )}
   ...
 />
 ```

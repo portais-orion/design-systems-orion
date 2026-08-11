@@ -1,40 +1,43 @@
 import type * as React from "react";
 
+import { cn } from "@design-systems-orion/ui";
 import { ContentWithAside } from "../_internal/content-with-aside";
-import { PageLayout } from "../page-layout";
 
-/* Layout de página de detalhe: resumo + tabs/conteúdo + aside opcional. */
 export type DetailPageLayoutProps = {
-	header?: React.ReactNode;
-	summary?: React.ReactNode;
-	tabs?: React.ReactNode;
-	content?: React.ReactNode;
+	className?: string;
+	children?: React.ReactNode;
+};
+
+export type DetailPageLayoutContentProps = {
 	aside?: React.ReactNode;
 	className?: string;
+	children?: React.ReactNode;
 };
 
 /**
- * Layout de página de detalhe de um registro: resumo, abas e conteúdo, com
- * `aside` opcional para metadados e ações secundárias.
+ * Raiz do layout de página de detalhe.
  */
-export function DetailPageLayout({
-	header,
-	summary,
-	tabs,
-	content,
-	aside,
-	className,
-}: DetailPageLayoutProps) {
-	const main = (
-		<>
-			{summary}
-			{tabs}
-			{content}
-		</>
-	);
-	return (
-		<PageLayout header={header} className={className}>
-			<ContentWithAside content={main} aside={aside} />
-		</PageLayout>
-	);
+function DetailPageLayoutRoot({ className, children }: DetailPageLayoutProps) {
+	return <div className={cn("space-y-6 p-6", className)}>{children}</div>;
 }
+
+/**
+ * Área principal do detalhe (geralmente contém resumo, abas e conteúdo).
+ * Com `aside`, abre espaço lateral para ações secundárias ou metadados.
+ */
+function DetailPageLayoutContent({ aside, className, children }: DetailPageLayoutContentProps) {
+	if (aside) {
+		return (
+			<ContentWithAside
+				content={children}
+				aside={aside}
+				contentClassName={cn("min-w-0 space-y-6", className)}
+			/>
+		);
+	}
+	return <div className={cn("space-y-6", className)}>{children}</div>;
+}
+
+export const DetailPageLayout = Object.assign(DetailPageLayoutRoot, {
+	Content: DetailPageLayoutContent,
+});

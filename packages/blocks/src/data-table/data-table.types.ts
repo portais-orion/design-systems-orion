@@ -20,7 +20,7 @@ export type DataTableColumn<TData> = {
 };
 
 /** Compatível com o envelope { data, total, page, limit } da API padrão do grupo. */
-export type DataTablePagination = {
+export type DataTablePaginationProps = {
 	page: number;
 	limit: number;
 	total: number;
@@ -36,31 +36,42 @@ export type DataTableSorting = {
 	onSortChange?: (sortBy: string, sortOrder: "asc" | "desc") => void;
 };
 
-export type DataTableProps<TData> = {
+export type DataTableRootProps<TData> = {
 	data: TData[];
 	columns: DataTableColumn<TData>[];
 	keyExtractor: (row: TData, index: number) => string;
 	isLoading?: boolean;
 	isError?: boolean;
-	errorTitle?: string;
-	errorDescription?: string;
-	/** Slot de ação no ErrorState (ex.: botão tentar novamente). */
-	errorAction?: React.ReactNode;
-	emptyTitle?: string;
-	emptyDescription?: string;
-	/** Slot de ação no EmptyState (ex.: botão novo registro). */
-	emptyAction?: React.ReactNode;
-	loadingRows?: number;
-	pagination?: DataTablePagination;
 	sorting?: DataTableSorting;
-	/** Área de composição acima da tabela (SearchBar, FilterPills...). Não acoplada. */
-	toolbar?: React.ReactNode;
-	/** Área abaixo do corpo da tabela (sumários, totais). */
-	footer?: React.ReactNode;
 	/** Coluna final de ações por linha. Cliques aqui não disparam onRowClick. */
 	actions?: (row: TData, index: number) => React.ReactNode;
+	children: React.ReactNode;
+	className?: string;
+};
+
+export type DataTableContentProps<TData> = {
+	loadingRows?: number;
 	onRowClick?: (row: TData, index: number) => void;
 	rowClassName?: string | ((row: TData, index: number) => string | undefined);
 	getRowDisabled?: (row: TData, index: number) => boolean;
-	className?: string;
+};
+
+export type DataTableToolbarProps = {
+	children: React.ReactNode;
+};
+
+export type DataTableFooterProps = {
+	children: React.ReactNode;
+};
+
+export type DataTableEmptyProps = {
+	title?: string;
+	description?: string;
+	action?: React.ReactNode;
+};
+
+export type DataTableErrorProps = {
+	title?: string;
+	description?: string;
+	action?: React.ReactNode;
 };

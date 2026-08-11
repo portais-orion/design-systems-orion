@@ -3,7 +3,7 @@ title: AppShell
 description: "Chrome do portal: sidebar fixa, barra de breadcrumbs e a área de conteúdo."
 ---
 
-Não tem topbar, por decisão do padrão do grupo. Abaixo de `md` a sidebar vira um drawer com a mesma navegação. Não conhece rota, sessão nem permissão — injete `renderLink` e `canAccessItem`.
+Não tem topbar, por decisão do padrão do grupo. Abaixo de `md` a sidebar vira um drawer com a mesma navegação. Não conhece rota, sessão nem permissão — injete o Sidebar via `renderSidebar`.
 
 Disponível em `@design-systems-orion/blocks`, na categoria **Layout**.
 
@@ -32,14 +32,9 @@ funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 | Prop | Tipo | Padrão | Descrição |
 | --- | --- | --- | --- |
-| `brand` | `any` | — | — |
-| `activeModule` | `SidebarModule` | — | Módulo ativo, repassado à Sidebar. |
-| `navigation`\* | `NavigationItem[]` | — | — |
-| `activeItemId` | `string` | — | — |
+| `renderSidebar`\* | `(props: { isMobile: boolean; onNavigate?: () => void; }) => any` | — | Slot para renderizar a Sidebar. Recebe propriedades para adaptar entre Desktop e Mobile. |
 | `breadcrumbs` | `BreadcrumbItem[]` | — | — |
-| `renderLink` | `RenderLink` | — | — |
-| `canAccessItem` | `CanAccessNavigationItem` | — | — |
-| `sidebarFooter` | `any` | — | — |
+| `renderLink` | `RenderLink` | — | Injetor de links usado pelos breadcrumbs. |
 | `collapsed` | `boolean` | — | — |
 | `defaultCollapsed` | `boolean` | — | — |
 | `onCollapsedChange` | `(collapsed: boolean) => void` | — | — |

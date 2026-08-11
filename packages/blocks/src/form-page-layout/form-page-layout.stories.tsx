@@ -44,29 +44,37 @@ const Formulario = ({ sticky = false }: { sticky?: boolean }) => (
 
 export const Default: Story = {
 	render: () => (
-		<FormPageLayout header={<PageHeader title="Novo registro" />} form={<Formulario />} />
+		<FormPageLayout>
+			<PageHeader title="Novo registro" />
+			<FormPageLayout.Content>
+				<Formulario />
+			</FormPageLayout.Content>
+		</FormPageLayout>
 	),
 };
 
 export const WithAside: Story = {
 	render: () => (
-		<FormPageLayout
-			header={<PageHeader title="Editar registro" />}
-			form={<Formulario />}
-			aside={
-				<ContentCard title="Dicas">
-					<p className="text-sm text-muted-foreground">O código não pode ser alterado depois.</p>
-				</ContentCard>
-			}
-		/>
+		<FormPageLayout>
+			<PageHeader title="Editar registro" />
+			<FormPageLayout.Content
+				aside={
+					<ContentCard title="Dicas">
+						<p className="text-sm text-muted-foreground">O código não pode ser alterado depois.</p>
+					</ContentCard>
+				}
+			>
+				<Formulario />
+			</FormPageLayout.Content>
+		</FormPageLayout>
 	),
 };
 
 export const MultipleSections: Story = {
 	render: () => (
-		<FormPageLayout
-			header={<PageHeader title="Novo registro" />}
-			form={
+		<FormPageLayout>
+			<PageHeader title="Novo registro" />
+			<FormPageLayout.Content>
 				<form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
 					<FormSection title="Dados gerais">
 						<FieldGroup>
@@ -90,13 +98,18 @@ export const MultipleSections: Story = {
 					</FormSection>
 					<FormActions primary={<Button onClick={fn()}>Salvar</Button>} />
 				</form>
-			}
-		/>
+			</FormPageLayout.Content>
+		</FormPageLayout>
 	),
 };
 
 export const WithStickyActions: Story = {
 	render: () => (
-		<FormPageLayout header={<PageHeader title="Novo registro" />} form={<Formulario sticky />} />
+		<FormPageLayout>
+			<PageHeader title="Novo registro" />
+			<FormPageLayout.Content>
+				<Formulario sticky />
+			</FormPageLayout.Content>
+		</FormPageLayout>
 	),
 };

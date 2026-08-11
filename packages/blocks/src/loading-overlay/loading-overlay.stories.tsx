@@ -59,7 +59,11 @@ export const WithTable: Story = {
 							{ header: "Qtd.", accessorKey: "qtd", align: "right" },
 						]}
 						keyExtractor={(r) => r.id}
-					/>
+					>
+						<DataTable.Card>
+							<DataTable.Content />
+						</DataTable.Card>
+					</DataTable>
 				</LoadingOverlay>
 			</div>
 		);

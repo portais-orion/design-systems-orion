@@ -26,6 +26,7 @@ import { ListPageLayout } from "../list-page-layout";
 import type { NavigationItem } from "../navigation";
 import { PageHeader } from "../page-header";
 import { SearchBar } from "../search-bar";
+import { Sidebar } from "../sidebar";
 import { StatusCards } from "../status-cards";
 import { StatusDot } from "../status-dot";
 import { AppShell } from "./app-shell";
@@ -114,7 +115,11 @@ const Miolo = () => (
 
 export const Default: Story = {
 	render: () => (
-		<AppShell brand={<Marca />} navigation={NAV} activeItemId="registros">
+		<AppShell
+			renderSidebar={(props) => (
+				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="registros" {...props} />
+			)}
+		>
 			<Miolo />
 		</AppShell>
 	),
@@ -122,7 +127,12 @@ export const Default: Story = {
 
 export const WithBreadcrumbs: Story = {
 	render: () => (
-		<AppShell brand={<Marca />} navigation={NAV} activeItemId="registros" breadcrumbs={TRILHA}>
+		<AppShell
+			breadcrumbs={TRILHA}
+			renderSidebar={(props) => (
+				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="registros" {...props} />
+			)}
+		>
 			<Miolo />
 		</AppShell>
 	),
@@ -131,11 +141,16 @@ export const WithBreadcrumbs: Story = {
 export const Collapsed: Story = {
 	render: () => (
 		<AppShell
-			brand={<Marca />}
-			navigation={NAV}
-			activeItemId="registros"
-			defaultCollapsed
 			breadcrumbs={TRILHA}
+			renderSidebar={(props) => (
+				<Sidebar
+					brand={<Marca />}
+					navigation={NAV}
+					activeItemId="registros"
+					defaultCollapsed
+					{...props}
+				/>
+			)}
 		>
 			<Miolo />
 		</AppShell>
@@ -145,11 +160,16 @@ export const Collapsed: Story = {
 export const WithFilteredNavigation: Story = {
 	render: () => (
 		<AppShell
-			brand={<Marca />}
-			navigation={NAV}
-			activeItemId="registros"
 			breadcrumbs={TRILHA}
-			canAccessItem={(item) => item.meta?.requiredPermission !== "admin.only"}
+			renderSidebar={(props) => (
+				<Sidebar
+					brand={<Marca />}
+					navigation={NAV}
+					activeItemId="registros"
+					canAccessItem={(item) => item.meta?.requiredPermission !== "admin.only"}
+					{...props}
+				/>
+			)}
 		>
 			<Miolo />
 		</AppShell>
@@ -170,12 +190,17 @@ export const ControlledCollapsed: Story = {
 		const [collapsed, setCollapsed] = React.useState(false);
 		return (
 			<AppShell
-				brand={<Marca />}
-				navigation={NAV}
-				activeItemId="registros"
-				collapsed={collapsed}
-				onCollapsedChange={setCollapsed}
 				breadcrumbs={TRILHA}
+				renderSidebar={(props) => (
+					<Sidebar
+						brand={<Marca />}
+						navigation={NAV}
+						activeItemId="registros"
+						collapsed={collapsed}
+						onCollapsedChange={setCollapsed}
+						{...props}
+					/>
+				)}
 			>
 				<div className="m-6 space-y-3">
 					<Button variant="outline" onClick={() => setCollapsed((c) => !c)}>
@@ -192,7 +217,12 @@ export const MobileNavigation: Story = {
 	name: "MobileNavigation (viewport mobile)",
 	globals: { viewport: { value: "mobile1" } },
 	render: () => (
-		<AppShell brand={<Marca />} navigation={NAV} activeItemId="registros" breadcrumbs={TRILHA}>
+		<AppShell
+			breadcrumbs={TRILHA}
+			renderSidebar={(props) => (
+				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="registros" {...props} />
+			)}
+		>
 			<Miolo />
 		</AppShell>
 	),
@@ -207,55 +237,74 @@ export const AppShellWithListPage: Story = {
 		const dados = REGISTROS.filter((r) => r.nome.toLowerCase().includes(busca.toLowerCase()));
 		return (
 			<AppShell
-				brand={<Marca />}
-				navigation={NAV}
-				activeItemId="registros"
 				breadcrumbs={TRILHA}
-				sidebarFooter={<Rodape />}
+				renderSidebar={(props) => (
+					<Sidebar
+						brand={<Marca />}
+						navigation={NAV}
+						activeItemId="registros"
+						footer={<Rodape />}
+						{...props}
+					/>
+				)}
 			>
-				<ListPageLayout
-					header={
-						<PageHeader
-							title="Registros"
-							description="Gerencie os registros e acompanhe seus status."
-							actions={
-								<Button onClick={fn()}>
-									<Plus /> Novo registro
-								</Button>
-							}
-						/>
-					}
-					stats={
-						<StatusCards
-							columns={3}
-							items={[
-								{ label: "Total", value: REGISTROS.length, icon: FileText },
-								{
-									label: "Ativos",
-									value: REGISTROS.filter((r) => r.status === "ativo").length,
-									icon: CheckCircle,
-									tone: "success",
-								},
-								{
-									label: "Pendentes",
-									value: REGISTROS.filter((r) => r.status === "pendente").length,
-									icon: Clock,
-									tone: "warning",
-								},
-							]}
-						/>
-					}
-					toolbar={<SearchBar className="w-72" value={busca} onChange={setBusca} />}
-					content={
+				<ListPageLayout>
+					<PageHeader
+						title="Registros"
+						description="Gerencie os registros e acompanhe seus status."
+						actions={
+							<Button onClick={fn()}>
+								<Plus /> Novo registro
+							</Button>
+						}
+					/>
+					<StatusCards columns={3}>
+						<StatusCards.Item>
+							<StatusCards.Icon as={FileText} />
+							<StatusCards.Content>
+								<StatusCards.Label>Total</StatusCards.Label>
+								<StatusCards.Value>{REGISTROS.length}</StatusCards.Value>
+							</StatusCards.Content>
+						</StatusCards.Item>
+						<StatusCards.Item tone="success">
+							<StatusCards.Icon as={CheckCircle} />
+							<StatusCards.Content>
+								<StatusCards.Label>Ativos</StatusCards.Label>
+								<StatusCards.Value>
+									{REGISTROS.filter((r) => r.status === "ativo").length}
+								</StatusCards.Value>
+							</StatusCards.Content>
+						</StatusCards.Item>
+						<StatusCards.Item tone="warning">
+							<StatusCards.Icon as={Clock} />
+							<StatusCards.Content>
+								<StatusCards.Label>Pendentes</StatusCards.Label>
+								<StatusCards.Value>
+									{REGISTROS.filter((r) => r.status === "pendente").length}
+								</StatusCards.Value>
+							</StatusCards.Content>
+						</StatusCards.Item>
+					</StatusCards>
+					<SearchBar className="w-72" value={busca} onChange={setBusca} />
+					<ListPageLayout.Content>
 						<DataTable
 							data={dados.slice((page - 1) * 5, page * 5)}
 							columns={COLS}
 							keyExtractor={(r) => r.id}
-							onRowClick={fn()}
-							pagination={{ page, limit: 5, total: dados.length, onPageChange: setPage }}
-						/>
-					}
-				/>
+						>
+							<DataTable.Card>
+								<DataTable.Empty />
+								<DataTable.Content onRowClick={fn()} />
+							</DataTable.Card>
+							<DataTable.Pagination
+								page={page}
+								limit={5}
+								total={dados.length}
+								onPageChange={setPage}
+							/>
+						</DataTable>
+					</ListPageLayout.Content>
+				</ListPageLayout>
 			</AppShell>
 		);
 	},
@@ -264,18 +313,18 @@ export const AppShellWithListPage: Story = {
 export const AppShellWithFormPage: Story = {
 	render: () => (
 		<AppShell
-			brand={<Marca />}
-			navigation={NAV}
-			activeItemId="registros"
 			breadcrumbs={[
 				...TRILHA.slice(0, 1),
 				{ label: "Registros", href: "#" },
 				{ label: "Novo", current: true },
 			]}
+			renderSidebar={(props) => (
+				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="registros" {...props} />
+			)}
 		>
-			<FormPageLayout
-				header={<PageHeader title="Novo registro" />}
-				form={
+			<FormPageLayout>
+				<PageHeader title="Novo registro" />
+				<FormPageLayout.Content>
 					<form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
 						<FormSection title="Dados gerais">
 							<FieldGroup columns={2}>
@@ -296,8 +345,8 @@ export const AppShellWithFormPage: Story = {
 							}
 						/>
 					</form>
-				}
-			/>
+				</FormPageLayout.Content>
+			</FormPageLayout>
 		</AppShell>
 	),
 };
@@ -305,18 +354,18 @@ export const AppShellWithFormPage: Story = {
 export const AppShellWithDetailPage: Story = {
 	render: () => (
 		<AppShell
-			brand={<Marca />}
-			navigation={NAV}
-			activeItemId="registros"
 			breadcrumbs={[
 				...TRILHA.slice(0, 1),
 				{ label: "Registros", href: "#" },
 				{ label: "REG-003", current: true },
 			]}
+			renderSidebar={(props) => (
+				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="registros" {...props} />
+			)}
 		>
-			<DetailPageLayout
-				header={<PageHeader eyebrow="Registros" title="Registro REG-003" />}
-				summary={
+			<DetailPageLayout>
+				<PageHeader eyebrow="Registros" title="Registro REG-003" />
+				<DetailPageLayout.Content>
 					<ContentCard title="Resumo">
 						<div className="flex flex-wrap items-center gap-4 text-sm">
 							<CodeBadge>REG-003</CodeBadge>
@@ -324,11 +373,14 @@ export const AppShellWithDetailPage: Story = {
 							<Badge variant="secondary">Categoria A</Badge>
 						</div>
 					</ContentCard>
-				}
-				content={
-					<DataTable data={REGISTROS.slice(0, 4)} columns={COLS} keyExtractor={(r) => r.id} />
-				}
-			/>
+					<DataTable data={REGISTROS.slice(0, 4)} columns={COLS} keyExtractor={(r) => r.id}>
+						<DataTable.Card>
+							<DataTable.Empty />
+							<DataTable.Content />
+						</DataTable.Card>
+					</DataTable>
+				</DetailPageLayout.Content>
+			</DetailPageLayout>
 		</AppShell>
 	),
 };
@@ -336,22 +388,37 @@ export const AppShellWithDetailPage: Story = {
 export const AppShellWithDashboardPage: Story = {
 	render: () => (
 		<AppShell
-			brand={<Marca />}
-			navigation={NAV}
-			activeItemId="inicio"
 			breadcrumbs={[{ label: "Início", current: true }]}
+			renderSidebar={(props) => (
+				<Sidebar brand={<Marca />} navigation={NAV} activeItemId="inicio" {...props} />
+			)}
 		>
 			<DashboardPageLayout
 				header={<PageHeader title="Painel operacional" />}
 				stats={
-					<StatusCards
-						items={[
-							{ label: "Total", value: 128, icon: FileText },
-							{ label: "Pendentes", value: 12, icon: Clock, tone: "warning" },
-							{ label: "Concluídos", value: 98, icon: CheckCircle, tone: "success" },
-						]}
-						columns={3}
-					/>
+					<StatusCards columns={3}>
+						<StatusCards.Item>
+							<StatusCards.Icon as={FileText} />
+							<StatusCards.Content>
+								<StatusCards.Label>Total</StatusCards.Label>
+								<StatusCards.Value>128</StatusCards.Value>
+							</StatusCards.Content>
+						</StatusCards.Item>
+						<StatusCards.Item tone="warning">
+							<StatusCards.Icon as={Clock} />
+							<StatusCards.Content>
+								<StatusCards.Label>Pendentes</StatusCards.Label>
+								<StatusCards.Value>12</StatusCards.Value>
+							</StatusCards.Content>
+						</StatusCards.Item>
+						<StatusCards.Item tone="success">
+							<StatusCards.Icon as={CheckCircle} />
+							<StatusCards.Content>
+								<StatusCards.Label>Concluídos</StatusCards.Label>
+								<StatusCards.Value>98</StatusCards.Value>
+							</StatusCards.Content>
+						</StatusCards.Item>
+					</StatusCards>
 				}
 				content={
 					<div className="grid gap-6 lg:grid-cols-2">
@@ -360,7 +427,12 @@ export const AppShellWithDashboardPage: Story = {
 								data={REGISTROS.slice(0, 5)}
 								columns={COLS.slice(0, 2)}
 								keyExtractor={(r) => r.id}
-							/>
+							>
+								<DataTable.Card>
+									<DataTable.Empty />
+									<DataTable.Content />
+								</DataTable.Card>
+							</DataTable>
 						</ContentCard>
 						<ContentCard title="Distribuição">
 							<div className="flex h-64 items-center justify-center rounded bg-muted/40 text-sm text-muted-foreground">

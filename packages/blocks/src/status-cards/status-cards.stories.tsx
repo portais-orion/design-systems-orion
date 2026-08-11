@@ -13,50 +13,110 @@ export default meta;
 type Story = StoryObj<typeof StatusCards>;
 
 export const Default: Story = {
-	args: {
-		items: [
-			{ label: "Total", value: 128, icon: FileText, tone: "default" },
-			{
-				label: "Pendentes",
-				value: 12,
-				icon: Clock,
-				tone: "warning",
-				description: "Aguardando análise",
-			},
-			{ label: "Concluídos", value: 98, icon: CheckCircle, tone: "success" },
-			{ label: "Com erro", value: 18, icon: AlertTriangle, tone: "danger" },
-		],
-	},
+	render: () => (
+		<StatusCards columns={4}>
+			<StatusCards.Item tone="default">
+				<StatusCards.Icon as={FileText} />
+				<StatusCards.Content>
+					<StatusCards.Label>Total</StatusCards.Label>
+					<StatusCards.Value>128</StatusCards.Value>
+				</StatusCards.Content>
+			</StatusCards.Item>
+
+			<StatusCards.Item tone="warning">
+				<StatusCards.Icon as={Clock} />
+				<StatusCards.Content>
+					<StatusCards.Label>Pendentes</StatusCards.Label>
+					<StatusCards.Value>12</StatusCards.Value>
+					<StatusCards.Description>Aguardando análise</StatusCards.Description>
+				</StatusCards.Content>
+			</StatusCards.Item>
+
+			<StatusCards.Item tone="success">
+				<StatusCards.Icon as={CheckCircle} />
+				<StatusCards.Content>
+					<StatusCards.Label>Concluídos</StatusCards.Label>
+					<StatusCards.Value>98</StatusCards.Value>
+				</StatusCards.Content>
+			</StatusCards.Item>
+
+			<StatusCards.Item tone="danger">
+				<StatusCards.Icon as={AlertTriangle} />
+				<StatusCards.Content>
+					<StatusCards.Label>Com erro</StatusCards.Label>
+					<StatusCards.Value>18</StatusCards.Value>
+				</StatusCards.Content>
+			</StatusCards.Item>
+		</StatusCards>
+	),
 };
 
 export const SemIcones: Story = {
-	args: {
-		columns: 3,
-		items: [
-			{ label: "Abertos", value: 42 },
-			{ label: "Em andamento", value: 7, tone: "info" },
-			{ label: "Arquivados", value: 315, tone: "muted" },
-		],
-	},
+	render: () => (
+		<StatusCards columns={3}>
+			<StatusCards.Item>
+				<StatusCards.Content>
+					<StatusCards.Label>Abertos</StatusCards.Label>
+					<StatusCards.Value>42</StatusCards.Value>
+				</StatusCards.Content>
+			</StatusCards.Item>
+			<StatusCards.Item tone="info">
+				<StatusCards.Content>
+					<StatusCards.Label>Em andamento</StatusCards.Label>
+					<StatusCards.Value>7</StatusCards.Value>
+				</StatusCards.Content>
+			</StatusCards.Item>
+			<StatusCards.Item tone="muted">
+				<StatusCards.Content>
+					<StatusCards.Label>Arquivados</StatusCards.Label>
+					<StatusCards.Value>315</StatusCards.Value>
+				</StatusCards.Content>
+			</StatusCards.Item>
+		</StatusCards>
+	),
 };
 
 export const ComoFiltroClicavel: Story = {
 	render: function Filtro() {
 		const [ativo, setAtivo] = React.useState("Pendentes");
-		const itens = [
-			{ label: "Pendentes", value: 12, icon: Clock, tone: "warning" as const },
-			{ label: "Concluídos", value: 98, icon: CheckCircle, tone: "success" as const },
-			{ label: "Com erro", value: 18, icon: AlertTriangle, tone: "danger" as const },
-		];
 		return (
-			<StatusCards
-				columns={3}
-				items={itens.map((i) => ({
-					...i,
-					onClick: () => setAtivo(i.label),
-					active: ativo === i.label,
-				}))}
-			/>
+			<StatusCards columns={3}>
+				<StatusCards.Item
+					tone="warning"
+					onClick={() => setAtivo("Pendentes")}
+					active={ativo === "Pendentes"}
+				>
+					<StatusCards.Icon as={Clock} />
+					<StatusCards.Content>
+						<StatusCards.Label>Pendentes</StatusCards.Label>
+						<StatusCards.Value>12</StatusCards.Value>
+					</StatusCards.Content>
+				</StatusCards.Item>
+
+				<StatusCards.Item
+					tone="success"
+					onClick={() => setAtivo("Concluídos")}
+					active={ativo === "Concluídos"}
+				>
+					<StatusCards.Icon as={CheckCircle} />
+					<StatusCards.Content>
+						<StatusCards.Label>Concluídos</StatusCards.Label>
+						<StatusCards.Value>98</StatusCards.Value>
+					</StatusCards.Content>
+				</StatusCards.Item>
+
+				<StatusCards.Item
+					tone="danger"
+					onClick={() => setAtivo("Com erro")}
+					active={ativo === "Com erro"}
+				>
+					<StatusCards.Icon as={AlertTriangle} />
+					<StatusCards.Content>
+						<StatusCards.Label>Com erro</StatusCards.Label>
+						<StatusCards.Value>18</StatusCards.Value>
+					</StatusCards.Content>
+				</StatusCards.Item>
+			</StatusCards>
 		);
 	},
 };

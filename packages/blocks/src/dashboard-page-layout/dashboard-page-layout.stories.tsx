@@ -15,14 +15,36 @@ export default meta;
 type Story = StoryObj<typeof DashboardPageLayout>;
 
 const Stats = () => (
-	<StatusCards
-		items={[
-			{ label: "Total", value: 128, icon: FileText },
-			{ label: "Pendentes", value: 12, icon: Clock, tone: "warning" },
-			{ label: "Concluídos", value: 98, icon: CheckCircle, tone: "success" },
-			{ label: "Com erro", value: 18, icon: AlertTriangle, tone: "danger" },
-		]}
-	/>
+	<StatusCards>
+		<StatusCards.Item tone="default">
+			<StatusCards.Icon as={FileText} />
+			<StatusCards.Content>
+				<StatusCards.Label>Total</StatusCards.Label>
+				<StatusCards.Value>128</StatusCards.Value>
+			</StatusCards.Content>
+		</StatusCards.Item>
+		<StatusCards.Item tone="warning">
+			<StatusCards.Icon as={Clock} />
+			<StatusCards.Content>
+				<StatusCards.Label>Pendentes</StatusCards.Label>
+				<StatusCards.Value>12</StatusCards.Value>
+			</StatusCards.Content>
+		</StatusCards.Item>
+		<StatusCards.Item tone="success">
+			<StatusCards.Icon as={CheckCircle} />
+			<StatusCards.Content>
+				<StatusCards.Label>Concluídos</StatusCards.Label>
+				<StatusCards.Value>98</StatusCards.Value>
+			</StatusCards.Content>
+		</StatusCards.Item>
+		<StatusCards.Item tone="danger">
+			<StatusCards.Icon as={AlertTriangle} />
+			<StatusCards.Content>
+				<StatusCards.Label>Com erro</StatusCards.Label>
+				<StatusCards.Value>18</StatusCards.Value>
+			</StatusCards.Content>
+		</StatusCards.Item>
+	</StatusCards>
 );
 const Bloco = ({ titulo }: { titulo: string }) => (
 	<ContentCard title={titulo}>

@@ -22,19 +22,19 @@ import {
 
 import { EmptyState } from "../empty-state";
 import { ErrorState } from "../error-state";
-import { Pagination } from "../pagination";
+import { Pagination as PaginationBlock } from "../pagination";
 import { TableSkeletonRows } from "../table-skeleton-rows";
-import type { DataTableColumn, DataTableProps } from "./data-table.types";
-
-/*
- * DataTable — bloco oficial de listagem do grupo ("melhor dos dois"):
- * API e requisitos: Portal-Aurora (ui/DataTable — Column<T>, keyExtractor,
- *   estados embutidos, paginação, onRowClick, alinhamento, 32 telas reais).
- * Markup/stack: Orion (ui/Table do Supertrans, tokens, TW4) + blocks
- *   TableSkeletonRows/EmptyState/ErrorState/Pagination.
- * Motor interno: TanStack Table (getCoreRowModel; sorting controlado/manual).
- * O consumidor comum usa apenas DataTableColumn<T> — nada do TanStack vaza.
- */
+import type {
+	DataTableColumn,
+	DataTableContentProps,
+	DataTableEmptyProps,
+	DataTableErrorProps,
+	DataTableFooterProps,
+	DataTablePaginationProps,
+	DataTableRootProps,
+	DataTableSorting,
+	DataTableToolbarProps,
+} from "./data-table.types";
 
 const ACTIONS_COL_ID = "__actions";
 
@@ -48,36 +48,39 @@ function columnId<TData>(col: DataTableColumn<TData>, index: number): string {
 	return col.id ?? (col.accessorKey != null ? String(col.accessorKey) : `col-${index}`);
 }
 
-/**
- * Tabela de listagem do grupo, com carregamento, vazio, erro, paginação e
- * ordenação já embutidos — não é preciso montar esses estados à mão. Descreva
- * as colunas com `DataTableColumn<T>`; o motor é o TanStack Table, mas nada
- * dele aparece na API. A ordenação é controlada pelo consumidor (server-side).
- * Para uma tabela sem esses estados, use `Table` (ui).
- */
-export function DataTable<TData>({
+// biome-ignore lint/suspicious/noExplicitAny: Context genérico do Tanstack Table requer any como default
+type DataTableContextValue<TData = any> = {
+	table: ReturnType<typeof useReactTable<TData>>;
+	isLoading: boolean;
+	isError: boolean;
+	data: TData[];
+	columns: DataTableColumn<TData>[];
+	actions?: (row: TData, index: number) => React.ReactNode;
+	sorting?: DataTableSorting;
+	handleSortClick: (id: string) => void;
+};
+
+const DataTableContext = React.createContext<DataTableContextValue | null>(null);
+
+function useDataTableContext<TData>() {
+	const ctx = React.useContext(DataTableContext);
+	if (!ctx) {
+		throw new Error("DataTable compound components must be used within a DataTable.Root");
+	}
+	return ctx as DataTableContextValue<TData>;
+}
+
+function DataTableRoot<TData>({
 	data,
 	columns,
 	keyExtractor,
 	isLoading = false,
 	isError = false,
-	errorTitle,
-	errorDescription,
-	errorAction,
-	emptyTitle = "Nenhum registro encontrado",
-	emptyDescription,
-	emptyAction,
-	loadingRows = 6,
-	pagination,
 	sorting,
-	toolbar,
-	footer,
 	actions,
-	onRowClick,
-	rowClassName,
-	getRowDisabled,
+	children,
 	className,
-}: DataTableProps<TData>) {
+}: DataTableRootProps<TData>) {
 	const columnDefs = React.useMemo<ColumnDef<TData>[]>(() => {
 		const defs: ColumnDef<TData>[] = columns.map((col, index) => {
 			const accessor =
@@ -124,13 +127,80 @@ export function DataTable<TData>({
 		state: { sorting: sortingState },
 	});
 
-	const totalColumns = columns.length + (actions ? 1 : 0);
+	const handleSortClick = React.useCallback(
+		(id: string) => {
+			if (!sorting?.onSortChange) return;
+			const nextOrder = sorting.sortBy === id && sorting.sortOrder === "asc" ? "desc" : "asc";
+			sorting.onSortChange(id, nextOrder);
+		},
+		[sorting],
+	);
 
-	const handleSortClick = (id: string) => {
-		if (!sorting?.onSortChange) return;
-		const nextOrder = sorting.sortBy === id && sorting.sortOrder === "asc" ? "desc" : "asc";
-		sorting.onSortChange(id, nextOrder);
-	};
+	const contextValue = React.useMemo(
+		() => ({
+			table,
+			isLoading,
+			isError,
+			data,
+			columns,
+			actions,
+			sorting,
+			handleSortClick,
+		}),
+		[table, isLoading, isError, data, columns, actions, sorting, handleSortClick],
+	);
+
+	return (
+		<DataTableContext.Provider value={contextValue}>
+			<div className={cn("space-y-4", className)}>{children}</div>
+		</DataTableContext.Provider>
+	);
+}
+
+function DataTableToolbar({ children }: DataTableToolbarProps) {
+	return <div className="border-b border-border p-4">{children}</div>;
+}
+
+function DataTableFooter({ children }: DataTableFooterProps) {
+	const { isError } = useDataTableContext();
+	if (isError) return null;
+	return <div className="border-t border-border">{children}</div>;
+}
+
+function DataTableError({ title, description, action }: DataTableErrorProps) {
+	const { isError } = useDataTableContext();
+	if (!isError) return null;
+	return <ErrorState title={title} description={description} action={action} />;
+}
+
+function DataTableEmpty({
+	title = "Nenhum registro encontrado",
+	description,
+	action,
+}: DataTableEmptyProps) {
+	const { isError, isLoading, data } = useDataTableContext();
+	if (isError || isLoading || data.length > 0) return null;
+	return <EmptyState title={title} description={description} action={action} />;
+}
+
+function DataTablePagination(props: DataTablePaginationProps) {
+	const { isError } = useDataTableContext();
+	if (isError) return null;
+	return <PaginationBlock {...props} />;
+}
+
+function DataTableContent<TData>({
+	loadingRows = 6,
+	onRowClick,
+	rowClassName,
+	getRowDisabled,
+}: DataTableContentProps<TData>) {
+	const { table, isLoading, isError, columns, actions, sorting, handleSortClick, data } =
+		useDataTableContext<TData>();
+
+	if (isError) return null;
+	const showTable = isLoading || data.length > 0;
+	if (!showTable) return null;
 
 	const renderBody = () => {
 		if (isLoading) {
@@ -180,87 +250,93 @@ export function DataTable<TData>({
 		});
 	};
 
-	const showTable = !isError && (isLoading || data.length > 0);
-
 	return (
-		<div className={cn("space-y-4", className)}>
-			<div className="overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-sm">
-				{toolbar && <div className="border-b border-border p-4">{toolbar}</div>}
-
-				{isError && (
-					<ErrorState title={errorTitle} description={errorDescription} action={errorAction} />
-				)}
-
-				{!isError && !isLoading && data.length === 0 && (
-					<EmptyState title={emptyTitle} description={emptyDescription} action={emptyAction} />
-				)}
-
-				{showTable && (
-					<div className="overflow-x-auto">
-						<Table>
-							<TableHeader>
-								{table.getHeaderGroups().map((headerGroup) => (
-									<TableRow key={headerGroup.id}>
-										{headerGroup.headers.map((header) => {
-											const meta = (header.column.columnDef.meta ?? {}) as DataTableColumn<TData>;
-											const sortable = header.column.getCanSort() && !!sorting?.onSortChange;
-											const isSorted = sorting?.sortBy === header.column.id;
-											const width = meta.width;
-											return (
-												<TableHead
-													key={header.id}
-													style={width != null ? { width } : undefined}
-													className={cn(
-														"whitespace-nowrap text-xs",
-														meta.align && alignClass[meta.align],
-														meta.headerClassName,
-													)}
-													aria-sort={
-														isSorted
-															? sorting?.sortOrder === "asc"
-																? "ascending"
-																: "descending"
-															: undefined
-													}
-												>
-													{sortable ? (
-														<button
-															type="button"
-															onClick={() => handleSortClick(header.column.id)}
-															className={cn(
-																"inline-flex items-center gap-1 rounded outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring",
-																isSorted && "text-foreground",
-															)}
-														>
-															{flexRender(header.column.columnDef.header, header.getContext())}
-															{isSorted ? (
-																sorting?.sortOrder === "asc" ? (
-																	<ChevronUp className="size-3.5" />
-																) : (
-																	<ChevronDown className="size-3.5" />
-																)
-															) : (
-																<ChevronsUpDown className="size-3.5 opacity-50" />
-															)}
-														</button>
+		<div className="overflow-x-auto">
+			<Table>
+				<TableHeader>
+					{table.getHeaderGroups().map((headerGroup) => (
+						<TableRow key={headerGroup.id}>
+							{headerGroup.headers.map((header) => {
+								const meta = (header.column.columnDef.meta ?? {}) as DataTableColumn<TData>;
+								const sortable = header.column.getCanSort() && !!sorting?.onSortChange;
+								const isSorted = sorting?.sortBy === header.column.id;
+								const width = meta.width;
+								return (
+									<TableHead
+										key={header.id}
+										style={width != null ? { width } : undefined}
+										className={cn(
+											"whitespace-nowrap text-xs",
+											meta.align && alignClass[meta.align],
+											meta.headerClassName,
+										)}
+										aria-sort={
+											isSorted
+												? sorting?.sortOrder === "asc"
+													? "ascending"
+													: "descending"
+												: undefined
+										}
+									>
+										{sortable ? (
+											<button
+												type="button"
+												onClick={() => handleSortClick(header.column.id)}
+												className={cn(
+													"inline-flex items-center gap-1 rounded outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring",
+													isSorted && "text-foreground",
+												)}
+											>
+												{flexRender(header.column.columnDef.header, header.getContext())}
+												{isSorted ? (
+													sorting?.sortOrder === "asc" ? (
+														<ChevronUp className="size-3.5" />
 													) : (
-														flexRender(header.column.columnDef.header, header.getContext())
-													)}
-												</TableHead>
-											);
-										})}
-									</TableRow>
-								))}
-							</TableHeader>
-							<TableBody>{renderBody()}</TableBody>
-						</Table>
-					</div>
-				)}
-
-				{footer && !isError && <div className="border-t border-border">{footer}</div>}
-			</div>
-
-			{pagination && !isError && <Pagination {...pagination} />}
+														<ChevronDown className="size-3.5" />
+													)
+												) : (
+													<ChevronsUpDown className="size-3.5 opacity-50" />
+												)}
+											</button>
+										) : (
+											flexRender(header.column.columnDef.header, header.getContext())
+										)}
+									</TableHead>
+								);
+							})}
+						</TableRow>
+					))}
+				</TableHeader>
+				<TableBody>{renderBody()}</TableBody>
+			</Table>
 		</div>
 	);
 }
+
+function DataTableCard({ children, className }: { children: React.ReactNode; className?: string }) {
+	return (
+		<div
+			className={cn(
+				"overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-sm",
+				className,
+			)}
+		>
+			{children}
+		</div>
+	);
+}
+
+/**
+ * Tabela de listagem do grupo, com carregamento, vazio, erro, paginação e ordenação.
+ * Refatorado para o padrão Compound Components.
+ */
+export const DataTable = Object.assign(DataTableRoot, {
+	Root: DataTableRoot,
+	Card: DataTableCard,
+	Toolbar: DataTableToolbar,
+	Content: DataTableContent,
+	Empty: DataTableEmpty,
+	Error: DataTableError,
+	Pagination: DataTablePagination,
+	Footer: DataTableFooter,
+});

@@ -67,19 +67,19 @@ const PROCESSOS: Processo[] = Array.from({ length: 12 }).map((_, i) => ({
 }));
 
 const columns: DataTableColumn<Processo>[] = [
-	{ header: "Código", cell: (row) => <CodeBadge>{row.codigo}</CodeBadge>, width: 110 },
+	{ header: "Código", cell: (row: Processo) => <CodeBadge>{row.codigo}</CodeBadge>, width: 110 },
 	{ header: "Descrição", accessorKey: "descricao" },
 	{ header: "Responsável", accessorKey: "responsavel" },
 	{
 		header: "Status",
-		cell: (row) => (
+		cell: (row: Processo) => (
 			<StatusDot tone={STATUS_LABEL[row.status].tone} label={STATUS_LABEL[row.status].label} />
 		),
 	},
 	{ header: "Qtd.", accessorKey: "quantidade", align: "right", width: 80 },
 	{
 		header: "Valor (R$)",
-		cell: (row) => fmtBR.format(row.valor),
+		cell: (row: Processo) => fmtBR.format(row.valor),
 		align: "right",
 	},
 ];
@@ -88,55 +88,62 @@ const columns: DataTableColumn<Processo>[] = [
 
 export const Default: Story = {
 	render: () => (
-		<DataTable data={PROCESSOS.slice(0, 6)} columns={columns} keyExtractor={(r) => r.id} />
+		<DataTable data={PROCESSOS.slice(0, 6)} columns={columns} keyExtractor={(r: Processo) => r.id}>
+			<DataTable.Card>
+				<DataTable.Empty />
+				<DataTable.Content />
+			</DataTable.Card>
+		</DataTable>
 	),
 };
 
 export const Loading: Story = {
 	render: () => (
-		<DataTable
-			data={[]}
-			columns={columns}
-			keyExtractor={(r: Processo) => r.id}
-			isLoading
-			loadingRows={5}
-		/>
+		<DataTable data={[]} columns={columns} keyExtractor={(r: Processo) => r.id} isLoading>
+			<DataTable.Card>
+				<DataTable.Empty />
+				<DataTable.Content loadingRows={5} />
+			</DataTable.Card>
+		</DataTable>
 	),
 };
 
 export const Empty: Story = {
 	render: () => (
-		<DataTable
-			data={[]}
-			columns={columns}
-			keyExtractor={(r: Processo) => r.id}
-			emptyTitle="Nenhum processo encontrado"
-			emptyDescription="Ajuste os filtros ou crie um novo processo."
-			emptyAction={
-				<Button size="sm">
-					<Plus /> Novo processo
-				</Button>
-			}
-		/>
+		<DataTable data={[]} columns={columns} keyExtractor={(r: Processo) => r.id}>
+			<DataTable.Card>
+				<DataTable.Empty
+					title="Nenhum processo encontrado"
+					description="Ajuste os filtros ou crie um novo processo."
+					action={
+						<Button size="sm">
+							<Plus /> Novo processo
+						</Button>
+					}
+				/>
+				<DataTable.Content />
+			</DataTable.Card>
+		</DataTable>
 	),
 };
 
 export const ErrorStory: Story = {
 	name: "Error",
 	render: () => (
-		<DataTable
-			data={[]}
-			columns={columns}
-			keyExtractor={(r: Processo) => r.id}
-			isError
-			errorTitle="Não foi possível carregar os processos"
-			errorDescription="Tente novamente em alguns instantes."
-			errorAction={
-				<Button variant="outline" size="sm">
-					Tentar novamente
-				</Button>
-			}
-		/>
+		<DataTable data={[]} columns={columns} keyExtractor={(r: Processo) => r.id} isError>
+			<DataTable.Card>
+				<DataTable.Error
+					title="Não foi possível carregar os processos"
+					description="Tente novamente em alguns instantes."
+					action={
+						<Button variant="outline" size="sm">
+							Tentar novamente
+						</Button>
+					}
+				/>
+				<DataTable.Content />
+			</DataTable.Card>
+		</DataTable>
 	),
 };
 
@@ -149,16 +156,21 @@ export const WithPagination: Story = {
 			<DataTable
 				data={PROCESSOS.slice(start, start + limit)}
 				columns={columns}
-				keyExtractor={(r) => r.id}
-				pagination={{
-					page,
-					limit,
-					total: PROCESSOS.length,
-					limitOptions: [5, 10, 20],
-					onPageChange: setPage,
-					onLimitChange: setLimit,
-				}}
-			/>
+				keyExtractor={(r: Processo) => r.id}
+			>
+				<DataTable.Card>
+					<DataTable.Empty />
+					<DataTable.Content />
+				</DataTable.Card>
+				<DataTable.Pagination
+					page={page}
+					limit={limit}
+					total={PROCESSOS.length}
+					limitOptions={[5, 10, 20]}
+					onPageChange={setPage}
+					onLimitChange={setLimit}
+				/>
+			</DataTable>
 		);
 	},
 };
@@ -168,9 +180,8 @@ export const WithActions: Story = {
 		<DataTable
 			data={PROCESSOS.slice(0, 5)}
 			columns={columns}
-			keyExtractor={(r) => r.id}
-			onRowClick={() => {}}
-			actions={(row) => (
+			keyExtractor={(r: Processo) => r.id}
+			actions={(row: Processo) => (
 				<DropdownMenu>
 					<DropdownMenuTrigger
 						render={
@@ -193,7 +204,12 @@ export const WithActions: Story = {
 					</DropdownMenuContent>
 				</DropdownMenu>
 			)}
-		/>
+		>
+			<DataTable.Card>
+				<DataTable.Empty />
+				<DataTable.Content onRowClick={() => {}} />
+			</DataTable.Card>
+		</DataTable>
 	),
 };
 
@@ -208,11 +224,19 @@ export const WithRowClick: Story = {
 				<DataTable
 					data={PROCESSOS.slice(0, 5)}
 					columns={columns}
-					keyExtractor={(r) => r.id}
-					onRowClick={(row) => setSelecionado(row.codigo)}
-					rowClassName={(row) => (row.codigo === selecionado ? "bg-primary/5" : undefined)}
-					getRowDisabled={(row) => row.status === "bloqueado"}
-				/>
+					keyExtractor={(r: Processo) => r.id}
+				>
+					<DataTable.Card>
+						<DataTable.Empty />
+						<DataTable.Content
+							onRowClick={(row: Processo) => setSelecionado(row.codigo)}
+							rowClassName={(row: Processo) =>
+								row.codigo === selecionado ? "bg-primary/5" : undefined
+							}
+							getRowDisabled={(row: Processo) => row.status === "bloqueado"}
+						/>
+					</DataTable.Card>
+				</DataTable>
 			</div>
 		);
 	},
@@ -225,23 +249,23 @@ export const WithToolbar: Story = {
 			`${p.codigo} ${p.descricao}`.toLowerCase().includes(busca.toLowerCase()),
 		);
 		return (
-			<DataTable
-				data={dados}
-				columns={columns}
-				keyExtractor={(r) => r.id}
-				toolbar={
-					<div className="flex flex-wrap items-center gap-3">
-						<SearchBar
-							className="w-72"
-							value={busca}
-							onChange={setBusca}
-							placeholder="Buscar processo..."
-						/>
-						<FilterPill label="Período" value="Jun/2026" onRemove={() => {}} />
-					</div>
-				}
-				emptyTitle="Nenhum resultado para a busca"
-			/>
+			<DataTable data={dados} columns={columns} keyExtractor={(r: Processo) => r.id}>
+				<DataTable.Card>
+					<DataTable.Toolbar>
+						<div className="flex flex-wrap items-center gap-3">
+							<SearchBar
+								className="w-72"
+								value={busca}
+								onChange={setBusca}
+								placeholder="Buscar processo..."
+							/>
+							<FilterPill label="Período" value="Jun/2026" onRemove={() => {}} />
+						</div>
+					</DataTable.Toolbar>
+					<DataTable.Empty title="Nenhum resultado para a busca" />
+					<DataTable.Content />
+				</DataTable.Card>
+			</DataTable>
 		);
 	},
 };
@@ -266,7 +290,7 @@ export const WithSorting: Story = {
 			<DataTable
 				data={dados}
 				columns={cols}
-				keyExtractor={(r) => r.id}
+				keyExtractor={(r: Processo) => r.id}
 				sorting={{
 					sortBy,
 					sortOrder,
@@ -275,7 +299,12 @@ export const WithSorting: Story = {
 						setSortOrder(order);
 					},
 				}}
-			/>
+			>
+				<DataTable.Card>
+					<DataTable.Empty />
+					<DataTable.Content />
+				</DataTable.Card>
+			</DataTable>
 		);
 	},
 };
@@ -291,19 +320,24 @@ export const DenseOperationalExample: Story = {
 					...columns,
 					{ header: "Criado em", accessorKey: "criadoEm", align: "center", width: 110 },
 				]}
-				keyExtractor={(r) => r.id}
-				footer={
-					<div className="flex justify-end gap-8 px-4 py-3 text-sm">
-						<span className="text-muted-foreground">
-							Qtd. total: <span className="font-semibold text-foreground">{totalQtd}</span>
-						</span>
-						<span className="text-muted-foreground">
-							Valor total:{" "}
-							<span className="font-semibold text-foreground">R$ {fmtBR.format(totalValor)}</span>
-						</span>
-					</div>
-				}
-			/>
+				keyExtractor={(r: Processo) => r.id}
+			>
+				<DataTable.Card>
+					<DataTable.Empty />
+					<DataTable.Content />
+					<DataTable.Footer>
+						<div className="flex justify-end gap-8 px-4 py-3 text-sm">
+							<span className="text-muted-foreground">
+								Qtd. total: <span className="font-semibold text-foreground">{totalQtd}</span>
+							</span>
+							<span className="text-muted-foreground">
+								Valor total:{" "}
+								<span className="font-semibold text-foreground">R$ {fmtBR.format(totalValor)}</span>
+							</span>
+						</div>
+					</DataTable.Footer>
+				</DataTable.Card>
+			</DataTable>
 		);
 	},
 };
@@ -326,11 +360,15 @@ export const SupertransInspiredExample: Story = {
 				<DataTable
 					data={PROCESSOS.slice((page - 1) * 5, page * 5)}
 					columns={[
-						{ header: "Código", cell: (r) => <CodeBadge>{r.codigo}</CodeBadge>, width: 110 },
+						{
+							header: "Código",
+							cell: (r: Processo) => <CodeBadge>{r.codigo}</CodeBadge>,
+							width: 110,
+						},
 						{ header: "Nome", accessorKey: "descricao" },
 						{
 							header: "Situação",
-							cell: (r) =>
+							cell: (r: Processo) =>
 								r.status === "concluido" ? (
 									<StatusDot tone="success" label="Ativo" />
 								) : (
@@ -339,14 +377,24 @@ export const SupertransInspiredExample: Story = {
 						},
 						{ header: "Em uso", accessorKey: "quantidade", align: "right", width: 90 },
 					]}
-					keyExtractor={(r) => r.id}
-					pagination={{ page, limit: 5, total: PROCESSOS.length, onPageChange: setPage }}
-					actions={(r) => (
+					keyExtractor={(r: Processo) => r.id}
+					actions={(r: Processo) => (
 						<Button variant="ghost" size="icon-sm" aria-label={`Editar ${r.codigo}`}>
 							<Pencil />
 						</Button>
 					)}
-				/>
+				>
+					<DataTable.Card>
+						<DataTable.Empty />
+						<DataTable.Content />
+					</DataTable.Card>
+					<DataTable.Pagination
+						page={page}
+						limit={5}
+						total={PROCESSOS.length}
+						onPageChange={setPage}
+					/>
+				</DataTable>
 			</div>
 		);
 	},
@@ -363,52 +411,58 @@ export const AuroraInspiredExample: Story = {
 		const contagem = (s: Processo["status"]) => PROCESSOS.filter((p) => p.status === s).length;
 		return (
 			<div className="space-y-4">
-				<StatusCards
-					columns={4}
-					items={[
-						{
-							label: "Todos",
-							value: PROCESSOS.length,
-							onClick: () => setStatus("Todos"),
-							active: status === "Todos",
-						},
-						{
-							label: "Pendente",
-							value: contagem("pendente"),
-							tone: "warning",
-							onClick: () => setStatus("Pendente"),
-							active: status === "Pendente",
-						},
-						{
-							label: "Em andamento",
-							value: contagem("em_andamento"),
-							tone: "info",
-							onClick: () => setStatus("Em andamento"),
-							active: status === "Em andamento",
-						},
-						{
-							label: "Concluído",
-							value: contagem("concluido"),
-							tone: "success",
-							onClick: () => setStatus("Concluído"),
-							active: status === "Concluído",
-						},
-					]}
-				/>
-				<DataTable
-					data={dados}
-					columns={columns}
-					keyExtractor={(r) => r.id}
-					onRowClick={() => {}}
-					toolbar={
-						<div className="flex items-center justify-between gap-3">
-							<span className="text-sm text-muted-foreground">{dados.length} processo(s)</span>
-							<Button variant="outline" size="sm">
-								<Download /> Exportar
-							</Button>
-						</div>
-					}
-				/>
+				<StatusCards columns={4}>
+					<StatusCards.Item onClick={() => setStatus("Todos")} active={status === "Todos"}>
+						<StatusCards.Content>
+							<StatusCards.Label>Todos</StatusCards.Label>
+							<StatusCards.Value>{PROCESSOS.length}</StatusCards.Value>
+						</StatusCards.Content>
+					</StatusCards.Item>
+					<StatusCards.Item
+						tone="warning"
+						onClick={() => setStatus("Pendente")}
+						active={status === "Pendente"}
+					>
+						<StatusCards.Content>
+							<StatusCards.Label>Pendente</StatusCards.Label>
+							<StatusCards.Value>{contagem("pendente")}</StatusCards.Value>
+						</StatusCards.Content>
+					</StatusCards.Item>
+					<StatusCards.Item
+						tone="info"
+						onClick={() => setStatus("Em andamento")}
+						active={status === "Em andamento"}
+					>
+						<StatusCards.Content>
+							<StatusCards.Label>Em andamento</StatusCards.Label>
+							<StatusCards.Value>{contagem("em_andamento")}</StatusCards.Value>
+						</StatusCards.Content>
+					</StatusCards.Item>
+					<StatusCards.Item
+						tone="success"
+						onClick={() => setStatus("Concluído")}
+						active={status === "Concluído"}
+					>
+						<StatusCards.Content>
+							<StatusCards.Label>Concluído</StatusCards.Label>
+							<StatusCards.Value>{contagem("concluido")}</StatusCards.Value>
+						</StatusCards.Content>
+					</StatusCards.Item>
+				</StatusCards>
+				<DataTable data={dados} columns={columns} keyExtractor={(r: Processo) => r.id}>
+					<DataTable.Card>
+						<DataTable.Toolbar>
+							<div className="flex items-center justify-between gap-3">
+								<span className="text-sm text-muted-foreground">{dados.length} processo(s)</span>
+								<Button variant="outline" size="sm">
+									<Download /> Exportar
+								</Button>
+							</div>
+						</DataTable.Toolbar>
+						<DataTable.Empty />
+						<DataTable.Content onRowClick={() => {}} />
+					</DataTable.Card>
+				</DataTable>
 			</div>
 		);
 	},

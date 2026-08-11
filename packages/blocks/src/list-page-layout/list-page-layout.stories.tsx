@@ -38,34 +38,51 @@ const Cabecalho = () => (
 		}
 	/>
 );
-const Tabela = (p: { data?: Registro[]; isLoading?: boolean }) => (
-	<DataTable
-		data={p.data ?? dados}
-		isLoading={p.isLoading}
-		columns={colunas}
-		keyExtractor={(r) => r.id}
-	/>
+
+const TabelaConteudo = (p: { data?: Registro[] }) => (
+	<DataTable data={p.data ?? dados} columns={colunas} keyExtractor={(r) => r.id}>
+		<DataTable.Card>
+			<DataTable.Empty />
+			<DataTable.Content />
+		</DataTable.Card>
+	</DataTable>
 );
 
 export const Default: Story = {
-	render: () => <ListPageLayout header={<Cabecalho />} content={<Tabela />} />,
+	render: () => (
+		<ListPageLayout>
+			<Cabecalho />
+			<ListPageLayout.Content>
+				<TabelaConteudo />
+			</ListPageLayout.Content>
+		</ListPageLayout>
+	),
 };
 
 export const WithStats: Story = {
 	render: () => (
-		<ListPageLayout
-			header={<Cabecalho />}
-			stats={
-				<StatusCards
-					items={[
-						{ label: "Total", value: 128, icon: FileText },
-						{ label: "Pendentes", value: 12, icon: Clock, tone: "warning" },
-					]}
-					columns={2}
-				/>
-			}
-			content={<Tabela />}
-		/>
+		<ListPageLayout>
+			<Cabecalho />
+			<StatusCards columns={2}>
+				<StatusCards.Item>
+					<StatusCards.Icon as={FileText} />
+					<StatusCards.Content>
+						<StatusCards.Label>Total</StatusCards.Label>
+						<StatusCards.Value>128</StatusCards.Value>
+					</StatusCards.Content>
+				</StatusCards.Item>
+				<StatusCards.Item tone="warning">
+					<StatusCards.Icon as={Clock} />
+					<StatusCards.Content>
+						<StatusCards.Label>Pendentes</StatusCards.Label>
+						<StatusCards.Value>12</StatusCards.Value>
+					</StatusCards.Content>
+				</StatusCards.Item>
+			</StatusCards>
+			<ListPageLayout.Content>
+				<TabelaConteudo />
+			</ListPageLayout.Content>
+		</ListPageLayout>
 	),
 };
 
@@ -73,67 +90,94 @@ export const WithToolbar: Story = {
 	render: function ComToolbar() {
 		const [busca, setBusca] = React.useState("");
 		return (
-			<ListPageLayout
-				header={<Cabecalho />}
-				toolbar={<SearchBar className="w-72" value={busca} onChange={setBusca} />}
-				content={<Tabela data={dados.filter((d) => d.nome.includes(busca))} />}
-			/>
+			<ListPageLayout>
+				<Cabecalho />
+				<SearchBar className="w-72" value={busca} onChange={setBusca} />
+				<ListPageLayout.Content>
+					<TabelaConteudo data={dados.filter((d) => d.nome.includes(busca))} />
+				</ListPageLayout.Content>
+			</ListPageLayout>
 		);
 	},
 };
 
 export const WithFilters: Story = {
 	render: () => (
-		<ListPageLayout
-			header={<Cabecalho />}
-			filters={
-				<>
-					<FilterPill label="Status" value="Ativo" onRemove={() => {}} />
-					<FilterPill label="Período" value="Jul/2026" onRemove={() => {}} />
-				</>
-			}
-			content={<Tabela />}
-		/>
+		<ListPageLayout>
+			<Cabecalho />
+			<ListPageLayout.Filters>
+				<FilterPill label="Status" value="Ativo" onRemove={() => {}} />
+				<FilterPill label="Período" value="Jul/2026" onRemove={() => {}} />
+			</ListPageLayout.Filters>
+			<ListPageLayout.Content>
+				<TabelaConteudo />
+			</ListPageLayout.Content>
+		</ListPageLayout>
 	),
 };
 
 export const WithDataTable: Story = {
-	render: () => <ListPageLayout header={<Cabecalho />} content={<Tabela />} />,
+	render: () => (
+		<ListPageLayout>
+			<Cabecalho />
+			<ListPageLayout.Content>
+				<TabelaConteudo />
+			</ListPageLayout.Content>
+		</ListPageLayout>
+	),
 };
 
 export const LoadingTable: Story = {
-	render: () => <ListPageLayout header={<Cabecalho />} content={<Tabela isLoading />} />,
+	render: () => (
+		<ListPageLayout>
+			<Cabecalho />
+			<ListPageLayout.Content loading>
+				<TabelaConteudo />
+			</ListPageLayout.Content>
+		</ListPageLayout>
+	),
 };
 
 export const EmptyTable: Story = {
-	render: () => <ListPageLayout header={<Cabecalho />} content={<Tabela data={[]} />} />,
+	render: () => (
+		<ListPageLayout>
+			<Cabecalho />
+			<ListPageLayout.Content>
+				<TabelaConteudo data={[]} />
+			</ListPageLayout.Content>
+		</ListPageLayout>
+	),
 };
 
 export const SurfaceCard: Story = {
 	render: () => (
-		<ListPageLayout
-			header={<Cabecalho />}
-			surface="card"
-			filters={
-				<>
+		<ListPageLayout>
+			<Cabecalho />
+			<ListPageLayout.Card>
+				<ListPageLayout.Filters>
 					<FilterPill label="Status" value="Ativo" onRemove={() => {}} />
 					<FilterPill label="Período" value="Jul/2026" onRemove={() => {}} />
-				</>
-			}
-			content={<Tabela />}
-			footer={<span className="text-sm text-muted-foreground">6 registros</span>}
-		/>
+				</ListPageLayout.Filters>
+				<ListPageLayout.Content>
+					<TabelaConteudo />
+				</ListPageLayout.Content>
+				<ListPageLayout.Footer>
+					<span className="text-sm text-muted-foreground">6 registros</span>
+				</ListPageLayout.Footer>
+			</ListPageLayout.Card>
+		</ListPageLayout>
 	),
 };
 
 export const SurfaceCardLoading: Story = {
 	render: () => (
-		<ListPageLayout
-			header={<Cabecalho />}
-			surface="card"
-			loading
-			loadingLabel="Carregando registros..."
-			content={<Tabela />}
-		/>
+		<ListPageLayout>
+			<Cabecalho />
+			<ListPageLayout.Card>
+				<ListPageLayout.Content loading loadingLabel="Carregando registros...">
+					<TabelaConteudo />
+				</ListPageLayout.Content>
+			</ListPageLayout.Card>
+		</ListPageLayout>
 	),
 };

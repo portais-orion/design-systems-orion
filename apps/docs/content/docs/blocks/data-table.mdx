@@ -1,9 +1,9 @@
 ---
 title: DataTable
-description: "Tabela de listagem do grupo, com carregamento, vazio, erro, paginação e ordenação já embutidos — não é preciso montar esses estados à mão."
+description: "Tabela de listagem do grupo, com carregamento, vazio, erro, paginação e ordenação."
 ---
 
-Descreva as colunas com `DataTableColumn<T>`; o motor é o TanStack Table, mas nada dele aparece na API. A ordenação é controlada pelo consumidor (server-side). Para uma tabela sem esses estados, use `Table` (ui).
+Refatorado para o padrão Compound Components.
 
 Disponível em `@design-systems-orion/blocks`, na categoria **Tabelas**.
 
@@ -30,33 +30,9 @@ funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
 
 ## API Reference
 
-| Prop | Tipo | Padrão | Descrição |
-| --- | --- | --- | --- |
-| `data`\* | `TData[]` | — | — |
-| `columns`\* | `DataTableColumn<TData>[]` | — | — |
-| `keyExtractor`\* | `(row: TData, index: number) => string` | — | — |
-| `isLoading` | `boolean` | `false` | — |
-| `isError` | `boolean` | `false` | — |
-| `errorTitle` | `string` | — | — |
-| `errorDescription` | `string` | — | — |
-| `errorAction` | `any` | — | Slot de ação no ErrorState (ex.: botão tentar novamente). |
-| `emptyTitle` | `string` | `Nenhum registro encontrado` | — |
-| `emptyDescription` | `string` | — | — |
-| `emptyAction` | `any` | — | Slot de ação no EmptyState (ex.: botão novo registro). |
-| `loadingRows` | `number` | `6` | — |
-| `pagination` | `DataTablePagination` | — | — |
-| `sorting` | `DataTableSorting` | — | — |
-| `toolbar` | `any` | — | Área de composição acima da tabela (SearchBar, FilterPills...). Não acoplada. |
-| `footer` | `any` | — | Área abaixo do corpo da tabela (sumários, totais). |
-| `actions` | `(row: TData, index: number) => any` | — | Coluna final de ações por linha. Cliques aqui não disparam onRowClick. |
-| `onRowClick` | `(row: TData, index: number) => void` | — | — |
-| `rowClassName` | `string \| ((row: TData, index: number) => string)` | — | — |
-| `getRowDisabled` | `(row: TData, index: number) => boolean` | — | — |
-| `className` | `string` | — | — |
-
-\* Prop obrigatória.
-
-Além destas, `DataTable` aceita as props do elemento/primitivo que envolve.
+`DataTable` não declara props próprias: repassa as props do primitivo
+de Base UI que envolve, mais `className`. Consulte a [documentação do Base UI](https://base-ui.com/react/overview/quick-start)
+para a lista completa.
 
 ## Exemplos
 

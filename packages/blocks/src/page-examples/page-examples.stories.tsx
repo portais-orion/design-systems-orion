@@ -61,49 +61,60 @@ export const ListPageExample: StoryObj = {
 		const [page, setPage] = React.useState(1);
 		const dados = REGISTROS.filter((r) => r.nome.toLowerCase().includes(busca.toLowerCase()));
 		return (
-			<ListPageLayout
-				header={
-					<PageHeader
-						title="Registros"
-						description="Gerencie os registros e acompanhe seus status."
-						actions={
-							<Button onClick={fn()}>
-								<Plus /> Novo registro
-							</Button>
-						}
-					/>
-				}
-				stats={
-					<StatusCards
-						columns={3}
-						items={[
-							{ label: "Total", value: REGISTROS.length, icon: FileText },
-							{
-								label: "Ativos",
-								value: REGISTROS.filter((r) => r.status === "ativo").length,
-								icon: CheckCircle,
-								tone: "success",
-							},
-							{
-								label: "Pendentes",
-								value: REGISTROS.filter((r) => r.status === "pendente").length,
-								icon: Clock,
-								tone: "warning",
-							},
-						]}
-					/>
-				}
-				toolbar={<SearchBar className="w-72" value={busca} onChange={setBusca} />}
-				filters={<FilterPill label="Período" value="Jul/2026" onRemove={fn()} />}
-				content={
+			<ListPageLayout>
+				<PageHeader
+					title="Registros"
+					description="Gerencie os registros e acompanhe seus status."
+					actions={
+						<Button onClick={fn()}>
+							<Plus /> Novo registro
+						</Button>
+					}
+				/>
+				<StatusCards columns={3}>
+					<StatusCards.Item>
+						<StatusCards.Icon as={FileText} />
+						<StatusCards.Content>
+							<StatusCards.Label>Total</StatusCards.Label>
+							<StatusCards.Value>{REGISTROS.length}</StatusCards.Value>
+						</StatusCards.Content>
+					</StatusCards.Item>
+					<StatusCards.Item tone="success">
+						<StatusCards.Icon as={CheckCircle} />
+						<StatusCards.Content>
+							<StatusCards.Label>Ativos</StatusCards.Label>
+							<StatusCards.Value>
+								{REGISTROS.filter((r) => r.status === "ativo").length}
+							</StatusCards.Value>
+						</StatusCards.Content>
+					</StatusCards.Item>
+					<StatusCards.Item tone="warning">
+						<StatusCards.Icon as={Clock} />
+						<StatusCards.Content>
+							<StatusCards.Label>Pendentes</StatusCards.Label>
+							<StatusCards.Value>
+								{REGISTROS.filter((r) => r.status === "pendente").length}
+							</StatusCards.Value>
+						</StatusCards.Content>
+					</StatusCards.Item>
+				</StatusCards>
+				<SearchBar className="w-72" value={busca} onChange={setBusca} />
+				<ListPageLayout.Filters>
+					<FilterPill label="Período" value="Jul/2026" onRemove={fn()} />
+				</ListPageLayout.Filters>
+				<ListPageLayout.Content>
 					<DataTable
 						data={dados.slice((page - 1) * 5, page * 5)}
 						columns={[
-							{ header: "Código", cell: (r) => <CodeBadge>{r.codigo}</CodeBadge>, width: 110 },
+							{
+								header: "Código",
+								cell: (r: Registro) => <CodeBadge>{r.codigo}</CodeBadge>,
+								width: 110,
+							},
 							{ header: "Nome", accessorKey: "nome" },
 							{
 								header: "Status",
-								cell: (r) =>
+								cell: (r: Registro) =>
 									r.status === "ativo" ? (
 										<StatusDot tone="success" label="Ativo" />
 									) : (
@@ -112,13 +123,21 @@ export const ListPageExample: StoryObj = {
 							},
 							{ header: "Qtd.", accessorKey: "qtd", align: "right", width: 80 },
 						]}
-						keyExtractor={(r) => r.id}
-						onRowClick={fn()}
-						pagination={{ page, limit: 5, total: dados.length, onPageChange: setPage }}
-						emptyTitle="Nenhum registro para a busca"
-					/>
-				}
-			/>
+						keyExtractor={(r: Registro) => r.id}
+					>
+						<DataTable.Card>
+							<DataTable.Empty title="Nenhum registro para a busca" />
+							<DataTable.Content onRowClick={fn()} />
+						</DataTable.Card>
+						<DataTable.Pagination
+							page={page}
+							limit={5}
+							total={dados.length}
+							onPageChange={setPage}
+						/>
+					</DataTable>
+				</ListPageLayout.Content>
+			</ListPageLayout>
 		);
 	},
 };
@@ -131,9 +150,9 @@ export const FormPageExample: StoryObj = {
 		const [erros, setErros] = React.useState<{ nome?: string }>({});
 		const salvar = fn();
 		return (
-			<FormPageLayout
-				header={<PageHeader title="Novo registro" description="Preencha os dados abaixo." />}
-				form={
+			<FormPageLayout>
+				<PageHeader title="Novo registro" description="Preencha os dados abaixo." />
+				<FormPageLayout.Content>
 					<form
 						className="space-y-8"
 						onSubmit={(e) => {
@@ -193,8 +212,8 @@ export const FormPageExample: StoryObj = {
 							}
 						/>
 					</form>
-				}
-			/>
+				</FormPageLayout.Content>
+			</FormPageLayout>
 		);
 	},
 	play: async ({ canvasElement }) => {
@@ -211,19 +230,17 @@ export const FormPageExample: StoryObj = {
 
 export const DetailPageExample: StoryObj = {
 	render: () => (
-		<DetailPageLayout
-			header={
-				<PageHeader
-					eyebrow="Registros"
-					title="Registro REG-003"
-					actions={
-						<Button variant="outline" onClick={fn()}>
-							<Pencil /> Editar
-						</Button>
-					}
-				/>
-			}
-			summary={
+		<DetailPageLayout>
+			<PageHeader
+				eyebrow="Registros"
+				title="Registro REG-003"
+				actions={
+					<Button variant="outline" onClick={fn()}>
+						<Pencil /> Editar
+					</Button>
+				}
+			/>
+			<DetailPageLayout.Content>
 				<ContentCard title="Resumo">
 					<div className="flex flex-wrap items-center gap-4 text-sm">
 						<CodeBadge>REG-003</CodeBadge>
@@ -232,8 +249,6 @@ export const DetailPageExample: StoryObj = {
 						<span className="text-muted-foreground">Atualizado em 03/07/2026</span>
 					</div>
 				</ContentCard>
-			}
-			tabs={
 				<Tabs defaultValue="itens">
 					<TabsList>
 						<TabsTrigger value="itens">Itens</TabsTrigger>
@@ -243,12 +258,17 @@ export const DetailPageExample: StoryObj = {
 						<DataTable
 							data={REGISTROS.slice(0, 4)}
 							columns={[
-								{ header: "Código", cell: (r) => <CodeBadge>{r.codigo}</CodeBadge> },
+								{ header: "Código", cell: (r: Registro) => <CodeBadge>{r.codigo}</CodeBadge> },
 								{ header: "Nome", accessorKey: "nome" },
 								{ header: "Qtd.", accessorKey: "qtd", align: "right" },
 							]}
-							keyExtractor={(r) => r.id}
-						/>
+							keyExtractor={(r: Registro) => r.id}
+						>
+							<DataTable.Card>
+								<DataTable.Empty />
+								<DataTable.Content />
+							</DataTable.Card>
+						</DataTable>
 					</TabsContent>
 					<TabsContent value="historico">
 						<ContentCard>
@@ -256,8 +276,8 @@ export const DetailPageExample: StoryObj = {
 						</ContentCard>
 					</TabsContent>
 				</Tabs>
-			}
-		/>
+			</DetailPageLayout.Content>
+		</DetailPageLayout>
 	),
 };
 
@@ -275,14 +295,29 @@ export const DashboardPageExample: StoryObj = {
 				/>
 			}
 			stats={
-				<StatusCards
-					items={[
-						{ label: "Total", value: 128, icon: FileText },
-						{ label: "Pendentes", value: 12, icon: Clock, tone: "warning" },
-						{ label: "Concluídos", value: 98, icon: CheckCircle, tone: "success" },
-					]}
-					columns={3}
-				/>
+				<StatusCards columns={3}>
+					<StatusCards.Item>
+						<StatusCards.Icon as={FileText} />
+						<StatusCards.Content>
+							<StatusCards.Label>Total</StatusCards.Label>
+							<StatusCards.Value>128</StatusCards.Value>
+						</StatusCards.Content>
+					</StatusCards.Item>
+					<StatusCards.Item tone="warning">
+						<StatusCards.Icon as={Clock} />
+						<StatusCards.Content>
+							<StatusCards.Label>Pendentes</StatusCards.Label>
+							<StatusCards.Value>12</StatusCards.Value>
+						</StatusCards.Content>
+					</StatusCards.Item>
+					<StatusCards.Item tone="success">
+						<StatusCards.Icon as={CheckCircle} />
+						<StatusCards.Content>
+							<StatusCards.Label>Concluídos</StatusCards.Label>
+							<StatusCards.Value>98</StatusCards.Value>
+						</StatusCards.Content>
+					</StatusCards.Item>
+				</StatusCards>
 			}
 			content={
 				<div className="grid gap-6 lg:grid-cols-2">
@@ -293,8 +328,13 @@ export const DashboardPageExample: StoryObj = {
 								{ header: "Nome", accessorKey: "nome" },
 								{ header: "Qtd.", accessorKey: "qtd", align: "right" },
 							]}
-							keyExtractor={(r) => r.id}
-						/>
+							keyExtractor={(r: Registro) => r.id}
+						>
+							<DataTable.Card>
+								<DataTable.Empty />
+								<DataTable.Content />
+							</DataTable.Card>
+						</DataTable>
 					</ContentCard>
 					<ContentCard title="Distribuição">
 						<div className="flex h-64 items-center justify-center rounded bg-muted/40 text-sm text-muted-foreground">

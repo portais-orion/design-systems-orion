@@ -12,29 +12,30 @@ export default meta;
 type Story = StoryObj<typeof KanbanBoard>;
 
 export const Default: Story = {
-	args: {
-		columns: [
-			{
-				id: "impedido",
-				title: "Impedido",
-				tone: "danger",
-				cards: [{ id: "1", title: "Tarefa A", subtitle: "Aguardando terceiros" }],
-			},
-			{
-				id: "progresso",
-				title: "Em progresso",
-				tone: "info",
-				cards: [
-					{ id: "2", title: "Tarefa B", subtitle: "Responsável: Maria" },
-					{ id: "3", title: "Tarefa C" },
-				],
-			},
-			{
-				id: "concluido",
-				title: "Concluído",
-				tone: "success",
-				cards: [{ id: "4", title: "Tarefa D" }],
-			},
-		],
-	},
+	render: () => (
+		<KanbanBoard>
+			<KanbanBoard.Column title="Impedido" tone="danger">
+				<KanbanBoard.Card tone="danger">
+					<p className="text-sm font-medium text-foreground">Tarefa A</p>
+					<p className="mt-0.5 text-xs text-muted-foreground">Aguardando terceiros</p>
+				</KanbanBoard.Card>
+			</KanbanBoard.Column>
+
+			<KanbanBoard.Column title="Em progresso" tone="info">
+				<KanbanBoard.Card tone="info">
+					<p className="text-sm font-medium text-foreground">Tarefa B</p>
+					<p className="mt-0.5 text-xs text-muted-foreground">Responsável: Maria</p>
+				</KanbanBoard.Card>
+				<KanbanBoard.Card tone="info">
+					<p className="text-sm font-medium text-foreground">Tarefa C</p>
+				</KanbanBoard.Card>
+			</KanbanBoard.Column>
+
+			<KanbanBoard.Column title="Concluído" tone="success">
+				<KanbanBoard.Card tone="success">
+					<p className="text-sm font-medium text-foreground">Tarefa D</p>
+				</KanbanBoard.Card>
+			</KanbanBoard.Column>
+		</KanbanBoard>
+	),
 };

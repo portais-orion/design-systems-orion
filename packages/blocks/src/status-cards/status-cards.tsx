@@ -1,31 +1,39 @@
 "use client";
 
-import type * as React from "react";
+import * as React from "react";
 
 import { Card, cn } from "@design-systems-orion/ui";
 
-/*
- * Recriado a partir do Portal-Aurora ui/DataTable/StatusCards.tsx.
- * Diferenças: itens por props com tons semânticos (o original recebia
- * bgColor/textColor como strings de classe); clique é opcional por item
- * (no original todo card era botão de filtro).
- */
 export type StatusCardTone = "default" | "success" | "warning" | "danger" | "info" | "muted";
 
-export type StatusCardItem = {
-	label: string;
-	value: React.ReactNode;
-	description?: string;
-	icon?: React.ComponentType<{ className?: string }>;
+export type StatusCardsProps = {
+	columns?: 2 | 3 | 4;
+	className?: string;
+	children?: React.ReactNode;
+};
+
+export type StatusCardItemProps = {
 	tone?: StatusCardTone;
 	onClick?: () => void;
 	active?: boolean;
+	className?: string;
+	children?: React.ReactNode;
 };
 
-export type StatusCardsProps = {
-	items: StatusCardItem[];
-	columns?: 2 | 3 | 4;
+export type StatusCardIconProps = {
+	as: React.ComponentType<{ className?: string }>;
 	className?: string;
+};
+
+export type StatusCardContentProps = {
+	className?: string;
+	children?: React.ReactNode;
+};
+
+const gridByColumns: Record<2 | 3 | 4, string> = {
+	2: "sm:grid-cols-2",
+	3: "sm:grid-cols-2 lg:grid-cols-3",
+	4: "sm:grid-cols-2 lg:grid-cols-4",
 };
 
 const iconBoxByTone: Record<StatusCardTone, string> = {
@@ -37,65 +45,121 @@ const iconBoxByTone: Record<StatusCardTone, string> = {
 	muted: "bg-muted text-muted-foreground",
 };
 
-const gridByColumns: Record<2 | 3 | 4, string> = {
-	2: "sm:grid-cols-2",
-	3: "sm:grid-cols-2 lg:grid-cols-3",
-	4: "sm:grid-cols-2 lg:grid-cols-4",
-};
+// Contexto para repassar o tom (tone) do Item para os filhos (Icon)
+const StatusCardContext = React.createContext<{ tone: StatusCardTone }>({ tone: "default" });
 
-function StatusCardContent({ item }: { item: StatusCardItem }) {
-	const Icon = item.icon;
+/**
+ * Faixa de indicadores (Status Cards). Container para os cards.
+ */
+function StatusCardsRoot({ columns = 4, className, children }: StatusCardsProps) {
 	return (
-		<div className="flex items-center gap-4 p-5">
-			{Icon && (
-				<div
-					className={cn(
-						"flex size-11 shrink-0 items-center justify-center rounded-lg",
-						iconBoxByTone[item.tone ?? "default"],
-					)}
-				>
-					<Icon className="size-5" />
-				</div>
-			)}
-			<div className="min-w-0 text-left">
-				<p className="truncate text-sm text-muted-foreground">{item.label}</p>
-				<p className="text-2xl font-bold text-foreground">{item.value}</p>
-				{item.description && (
-					<p className="truncate text-xs text-muted-foreground">{item.description}</p>
-				)}
-			</div>
+		<div className={cn("grid grid-cols-1 gap-4", gridByColumns[columns], className)}>
+			{children}
 		</div>
 	);
 }
 
 /**
- * Faixa de indicadores no topo de uma listagem ou dashboard. Um item com
- * `onClick` vira botão e pode servir de filtro rápido — use `active` para
- * marcar o que está aplicado; sem `onClick`, é apenas leitura.
+ * Um Card individual. Se receber `onClick`, renderiza como `<button>`.
  */
-export function StatusCards({ items, columns = 4, className }: StatusCardsProps) {
+function StatusCardItem({
+	tone = "default",
+	onClick,
+	active,
+	className,
+	children,
+}: StatusCardItemProps) {
+	const Comp = onClick ? "button" : "div";
+	const isButton = Boolean(onClick);
+
+	const content = (
+		<StatusCardContext.Provider value={{ tone }}>
+			<div className="flex items-center gap-4 p-5 text-left">{children}</div>
+		</StatusCardContext.Provider>
+	);
+
+	if (isButton) {
+		return (
+			<button
+				type="button"
+				onClick={onClick}
+				aria-pressed={active}
+				className={cn(
+					"rounded-xl border bg-card text-card-foreground shadow-sm outline-none transition-all hover:shadow-md focus-visible:ring-2 focus-visible:ring-ring w-full text-left",
+					active ? "border-primary ring-2 ring-primary/20" : "border-border",
+					className,
+				)}
+			>
+				{content}
+			</button>
+		);
+	}
+
+	return <Card className={cn("p-0 overflow-hidden", className)}>{content}</Card>;
+}
+
+/**
+ * Ícone do card, renderizado com o fundo correspondente ao tom (tone) do Item.
+ */
+function StatusCardIcon({ as: Icon, className }: StatusCardIconProps) {
+	const { tone } = React.useContext(StatusCardContext);
 	return (
-		<div className={cn("grid grid-cols-1 gap-4", gridByColumns[columns], className)}>
-			{items.map((item) =>
-				item.onClick ? (
-					<button
-						key={item.label}
-						type="button"
-						onClick={item.onClick}
-						aria-pressed={item.active}
-						className={cn(
-							"rounded-xl border bg-card text-card-foreground shadow-sm outline-none transition-all hover:shadow-md focus-visible:ring-2 focus-visible:ring-ring",
-							item.active ? "border-primary ring-2 ring-primary/20" : "border-border",
-						)}
-					>
-						<StatusCardContent item={item} />
-					</button>
-				) : (
-					<Card key={item.label} className="p-0">
-						<StatusCardContent item={item} />
-					</Card>
-				),
+		<div
+			className={cn(
+				"flex size-11 shrink-0 items-center justify-center rounded-lg",
+				iconBoxByTone[tone],
+				className,
 			)}
+		>
+			<Icon className="size-5" />
 		</div>
 	);
 }
+
+/**
+ * Container para os textos (label, valor, descrição).
+ */
+function StatusCardContent({ className, children }: StatusCardContentProps) {
+	return <div className={cn("min-w-0 flex-1", className)}>{children}</div>;
+}
+
+/**
+ * Título/Rótulo superior do card.
+ */
+function StatusCardLabel({
+	className,
+	children,
+}: { className?: string; children?: React.ReactNode }) {
+	return <p className={cn("truncate text-sm text-muted-foreground", className)}>{children}</p>;
+}
+
+/**
+ * Valor em destaque no card.
+ */
+function StatusCardValue({
+	className,
+	children,
+}: { className?: string; children?: React.ReactNode }) {
+	return <p className={cn("text-2xl font-bold text-foreground", className)}>{children}</p>;
+}
+
+/**
+ * Descrição adicional abaixo do valor.
+ */
+function StatusCardDescription({
+	className,
+	children,
+}: { className?: string; children?: React.ReactNode }) {
+	return (
+		<p className={cn("truncate text-xs text-muted-foreground mt-0.5", className)}>{children}</p>
+	);
+}
+
+export const StatusCards = Object.assign(StatusCardsRoot, {
+	Item: StatusCardItem,
+	Icon: StatusCardIcon,
+	Content: StatusCardContent,
+	Label: StatusCardLabel,
+	Value: StatusCardValue,
+	Description: StatusCardDescription,
+});

@@ -13,7 +13,6 @@ import {
 } from "@design-systems-orion/ui";
 
 import { Breadcrumbs } from "../breadcrumbs";
-import { Sidebar } from "../sidebar";
 import type { AppShellProps } from "./app-shell.types";
 
 /*
@@ -24,23 +23,18 @@ import type { AppShellProps } from "./app-shell.types";
  * Responsividade: no desktop (md+) a sidebar é fixa lateral; abaixo de md
  * ela desaparece e um botão minimalista na barra de breadcrumbs abre a MESMA
  * navegação num Sheet (drawer à esquerda). O shell não conhece rotas,
- * sessão ou permissões — renderLink e canAccessItem são injetados.
+ * sessão ou permissões — o Sidebar é injetado através da propriedade `renderSidebar`.
  */
 /**
  * Chrome do portal: sidebar fixa, barra de breadcrumbs e a área de conteúdo.
  * Não tem topbar, por decisão do padrão do grupo. Abaixo de `md` a sidebar vira
  * um drawer com a mesma navegação. Não conhece rota, sessão nem permissão —
- * injete `renderLink` e `canAccessItem`.
+ * injete o Sidebar via `renderSidebar`.
  */
 export function AppShell({
-	brand,
-	activeModule,
-	navigation,
-	activeItemId,
+	renderSidebar,
 	breadcrumbs,
 	renderLink,
-	canAccessItem,
-	sidebarFooter,
 	children,
 	collapsed,
 	defaultCollapsed,
@@ -50,25 +44,10 @@ export function AppShell({
 }: AppShellProps) {
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 
-	const sidebarProps = {
-		brand,
-		activeModule,
-		navigation,
-		activeItemId,
-		canAccessItem,
-		renderLink,
-		footer: sidebarFooter,
-	};
-
 	return (
 		<div className={cn("flex h-screen overflow-hidden bg-muted/30", className)}>
 			<div className="hidden h-full md:block">
-				<Sidebar
-					{...sidebarProps}
-					collapsed={collapsed}
-					defaultCollapsed={defaultCollapsed}
-					onCollapsedChange={onCollapsedChange}
-				/>
+				<div className="h-full">{renderSidebar({ isMobile: false })}</div>
 			</div>
 
 			<div className="flex min-w-0 flex-1 flex-col">
@@ -89,12 +68,7 @@ export function AppShell({
 						<SheetContent side="left" className="w-72 max-w-full p-0 [&>button]:z-10">
 							<SheetTitle className="sr-only">Menu de navegação</SheetTitle>
 							{/* No drawer a sidebar já ocupa a tela toda: colapsar não faz sentido. */}
-							<Sidebar
-								{...sidebarProps}
-								collapsible={false}
-								className="h-full w-full border-r-0"
-								onNavigate={() => setMobileOpen(false)}
-							/>
+							{renderSidebar({ isMobile: true, onNavigate: () => setMobileOpen(false) })}
 						</SheetContent>
 					</Sheet>
 					{breadcrumbs && breadcrumbs.length > 0 && (

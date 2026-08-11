@@ -1,99 +1,115 @@
-import type * as React from "react";
+import * as React from "react";
 
 import { Card, CardContent, cn } from "@design-systems-orion/ui";
-
 import { LoadingOverlay } from "../loading-overlay";
-import { PageLayout } from "../page-layout";
 
-/*
- * Layout de página de listagem — formaliza o esqueleto repetido em 30+ telas
- * do Aurora (PageHeader + StatusCards + busca + tabela) e nas views do
- * Supertrans. Tudo por slots; o layout não conhece dados nem filtros.
- *
- * `surface="card"` foi adicionado a partir da comparação com o `CrudPageShell`
- * bespoke do Supertrans (docs/nucleo-gaps-round-2.md): a diferença real entre
- * os dois não era estrutural, era só envolver filters+content+footer numa
- * superfície com borda/sombra. Default `"transparent"` preserva o
- * comportamento anterior — nenhum dos consumidores existentes quebra.
- */
-export type ListPageLayoutSurface = "transparent" | "card";
+// Contexto para detectar se estamos dentro de um ListPageLayout.Card
+const ListPageCardContext = React.createContext<boolean>(false);
 
 export type ListPageLayoutProps = {
-	header?: React.ReactNode;
-	stats?: React.ReactNode;
-	toolbar?: React.ReactNode;
-	filters?: React.ReactNode;
-	content: React.ReactNode;
-	footer?: React.ReactNode;
-	/**
-	 * `"card"` envolve filters+content+footer numa superfície com borda,
-	 * sombra e cantos arredondados (padrão Aurora-like). Default
-	 * `"transparent"`: cada slot fica solto, como hoje.
-	 */
-	surface?: ListPageLayoutSurface;
-	/** Cobre `content` com `LoadingOverlay` enquanto `true`. Não afeta `stats`/`toolbar`/`filters`. */
+	className?: string;
+	children?: React.ReactNode;
+};
+
+export type ListPageLayoutCardProps = {
+	className?: string;
+	children?: React.ReactNode;
+};
+
+export type ListPageLayoutFiltersProps = {
+	className?: string;
+	children?: React.ReactNode;
+};
+
+export type ListPageLayoutContentProps = {
 	loading?: boolean;
 	loadingLabel?: string;
 	className?: string;
+	children?: React.ReactNode;
+};
+
+export type ListPageLayoutFooterProps = {
+	className?: string;
+	children?: React.ReactNode;
 };
 
 /**
- * Layout de página de listagem: cabeçalho, indicadores, barra de ferramentas,
- * filtros aplicados e o conteúdo (normalmente um `DataTable`). Tudo por slots —
- * o layout não conhece dados nem filtros, só os posiciona. Use
- * `surface="card"` para o visual de superfície única (filtros + conteúdo +
- * footer dentro do mesmo card com borda/sombra).
+ * Raiz do layout de página de listagem.
  */
-export function ListPageLayout({
-	header,
-	stats,
-	toolbar,
-	filters,
-	content,
-	footer,
-	surface = "transparent",
+function ListPageLayoutRoot({ className, children }: ListPageLayoutProps) {
+	return <div className={cn("space-y-6 p-6", className)}>{children}</div>;
+}
+
+/**
+ * Container opcional para agrupar Filtros, Conteúdo e Footer dentro de um Card com borda e sombra.
+ * Substitui o antigo modelo `surface="card"`.
+ */
+function ListPageLayoutCard({ className, children }: ListPageLayoutCardProps) {
+	return (
+		<ListPageCardContext.Provider value={true}>
+			<Card className={cn("overflow-hidden rounded-2xl", className)}>{children}</Card>
+		</ListPageCardContext.Provider>
+	);
+}
+
+/**
+ * Faixa de filtros. Aplica bordas e paddings automaticamente caso esteja dentro de um Card.
+ */
+function ListPageLayoutFilters({ className, children }: ListPageLayoutFiltersProps) {
+	const inCard = React.useContext(ListPageCardContext);
+	return (
+		<div
+			className={cn(
+				"flex flex-wrap items-center gap-2",
+				inCard ? "border-b border-border px-4 py-4" : "",
+				className,
+			)}
+		>
+			{children}
+		</div>
+	);
+}
+
+/**
+ * Área de conteúdo (geralmente tabela).
+ * Gerencia o estado de loading e padding automático se dentro de um Card.
+ */
+function ListPageLayoutContent({
 	loading = false,
 	loadingLabel,
 	className,
-}: ListPageLayoutProps) {
+	children,
+}: ListPageLayoutContentProps) {
+	const inCard = React.useContext(ListPageCardContext);
 	const body = loading ? (
 		<LoadingOverlay loading={loading} label={loadingLabel} className="min-h-72">
-			{content}
+			{children}
 		</LoadingOverlay>
 	) : (
-		content
+		children
 	);
 
-	if (surface === "card") {
-		return (
-			<PageLayout header={header} className={className}>
-				{stats}
-				{toolbar}
-				<Card className="overflow-hidden rounded-2xl">
-					{filters ? (
-						<div
-							className={cn("flex flex-wrap items-center gap-2 border-b border-border px-4 py-4")}
-						>
-							{filters}
-						</div>
-					) : null}
-					<CardContent className="p-0">{body}</CardContent>
-					{footer ? <div className="border-t border-border px-4 py-3">{footer}</div> : null}
-				</Card>
-			</PageLayout>
-		);
+	if (inCard) {
+		return <CardContent className={cn("p-0", className)}>{body}</CardContent>;
 	}
+	return <div className={className}>{body}</div>;
+}
 
+/**
+ * Rodapé da listagem (geralmente agregações ou botões secundários).
+ */
+function ListPageLayoutFooter({ className, children }: ListPageLayoutFooterProps) {
+	const inCard = React.useContext(ListPageCardContext);
 	return (
-		<PageLayout header={header} footer={footer} className={className}>
-			{stats}
-			{(toolbar || filters) && (
-				<div className="space-y-3">
-					{toolbar}
-					{filters && <div className={cn("flex flex-wrap items-center gap-2")}>{filters}</div>}
-				</div>
-			)}
-			{body}
-		</PageLayout>
+		<div className={cn(inCard ? "border-t border-border px-4 py-3" : "pt-4", className)}>
+			{children}
+		</div>
 	);
 }
+
+export const ListPageLayout = Object.assign(ListPageLayoutRoot, {
+	Card: ListPageLayoutCard,
+	Filters: ListPageLayoutFilters,
+	Content: ListPageLayoutContent,
+	Footer: ListPageLayoutFooter,
+});
