@@ -41,6 +41,7 @@ export function ImpersonationBanner({
 	className,
 }: ImpersonationBannerProps) {
 	return (
+		// biome-ignore lint/a11y/useSemanticElements: role="status" é a live region correta; não existe elemento nativo equivalente
 		<div
 			role="status"
 			className={cn(

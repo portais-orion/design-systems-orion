@@ -24,6 +24,7 @@ const withBrand: Decorator = (Story) => {
 					<button
 						key={b.id}
 						type="button"
+						// biome-ignore lint/a11y/useSemanticElements: role="radio" dentro de radiogroup custom; não existe elemento nativo equivalente para swatch de marca
 						role="radio"
 						aria-checked={brand === b.id}
 						title={b.label}

@@ -51,7 +51,7 @@ function DemoDetalhe() {
 			<CrudModalFrame
 				open={open}
 				onOpenChange={setOpen}
-				title="Carga #4821"
+				title="Carga Nº 4821"
 				description="Detalhes da carga em trânsito."
 				icon={Truck}
 				tone="info"
