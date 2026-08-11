@@ -4,6 +4,8 @@ import type * as React from "react";
 
 import { cn } from "@design-systems-orion/ui";
 
+import { toneClass } from "../_internal/tone";
+
 /*
  * Origem: portal-supertrans components/impersonation-banner.tsx — o original
  * falava direto com authClient (Better Auth) e navigation. Aqui a lógica de
@@ -45,7 +47,8 @@ export function ImpersonationBanner({
 		<div
 			role="status"
 			className={cn(
-				"relative z-[100] flex items-center justify-between gap-4 bg-amber-500 px-4 py-2 text-sm font-medium text-amber-950 shadow-md",
+				"relative z-[100] flex items-center justify-between gap-4 px-4 py-2 text-sm font-medium shadow-md",
+				toneClass("warning", "solid"),
 				className,
 			)}
 		>
@@ -53,7 +56,7 @@ export function ImpersonationBanner({
 			<button
 				type="button"
 				onClick={onStop}
-				className="cursor-pointer rounded-md bg-amber-950 px-3 py-1.5 text-xs font-bold text-amber-500 transition-colors hover:bg-amber-900"
+				className="cursor-pointer rounded-md bg-warning-foreground px-3 py-1.5 text-xs font-bold text-warning transition-colors hover:opacity-90"
 			>
 				{stopLabel}
 			</button>

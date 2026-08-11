@@ -25,6 +25,21 @@
 	--color-accent: var(--accent);
 	--color-accent-foreground: var(--accent-foreground);
 	--color-destructive: var(--destructive);
+	--color-destructive-foreground: var(--destructive-foreground);
+	--color-destructive-subtle: var(--destructive-subtle);
+	--color-destructive-subtle-foreground: var(--destructive-subtle-foreground);
+	--color-success: var(--success);
+	--color-success-foreground: var(--success-foreground);
+	--color-success-subtle: var(--success-subtle);
+	--color-success-subtle-foreground: var(--success-subtle-foreground);
+	--color-warning: var(--warning);
+	--color-warning-foreground: var(--warning-foreground);
+	--color-warning-subtle: var(--warning-subtle);
+	--color-warning-subtle-foreground: var(--warning-subtle-foreground);
+	--color-info: var(--info);
+	--color-info-foreground: var(--info-foreground);
+	--color-info-subtle: var(--info-subtle);
+	--color-info-subtle-foreground: var(--info-subtle-foreground);
 	--color-border: var(--border);
 	--color-input: var(--input);
 	--color-ring: var(--ring);
@@ -72,6 +87,27 @@
 	--border: oklch(0.922 0 0);
 	--input: oklch(0.922 0 0);
 	--ring: oklch(0.708 0 0);
+	/*
+	 * Tons semânticos de estado. Não pertencem à identidade da marca: um alerta
+	 * é âmbar em todos os portais. Uma marca pode redefini-los no seu tema, mas
+	 * não precisa — por isso ficam aqui, e não em REQUIRED_IDENTITY_TOKENS.
+	 * `-subtle` é o par superfície/texto de fundo claro; sem sufixo é o sólido.
+	 */
+	--destructive-foreground: oklch(0.985 0 0);
+	--destructive-subtle: oklch(0.958 0.024 17.38);
+	--destructive-subtle-foreground: oklch(0.505 0.213 27.518);
+	--success: oklch(0.596 0.145 163.225);
+	--success-foreground: oklch(0.985 0 0);
+	--success-subtle: oklch(0.962 0.044 156.743);
+	--success-subtle-foreground: oklch(0.508 0.118 165.612);
+	--warning: oklch(0.769 0.188 70.08);
+	--warning-foreground: oklch(0.279 0.077 45.635);
+	--warning-subtle: oklch(0.973 0.071 103.193);
+	--warning-subtle-foreground: oklch(0.555 0.163 48.998);
+	--info: oklch(0.546 0.245 262.881);
+	--info-foreground: oklch(0.985 0 0);
+	--info-subtle: oklch(0.97 0.014 254.604);
+	--info-subtle-foreground: oklch(0.488 0.243 264.376);
 	--chart-1: oklch(0.87 0 0);
 	--chart-2: oklch(0.556 0 0);
 	--chart-3: oklch(0.439 0 0);
@@ -112,6 +148,21 @@
 	--accent: oklch(0.269 0 0);
 	--accent-foreground: oklch(0.985 0 0);
 	--destructive: oklch(0.704 0.191 22.216);
+	--destructive-foreground: oklch(0.145 0 0);
+	--destructive-subtle: oklch(0.32 0.09 25.5);
+	--destructive-subtle-foreground: oklch(0.85 0.09 22.216);
+	--success: oklch(0.696 0.17 162.48);
+	--success-foreground: oklch(0.145 0 0);
+	--success-subtle: oklch(0.32 0.07 163.2);
+	--success-subtle-foreground: oklch(0.87 0.09 163.2);
+	--warning: oklch(0.828 0.189 84.429);
+	--warning-foreground: oklch(0.145 0 0);
+	--warning-subtle: oklch(0.34 0.07 70.08);
+	--warning-subtle-foreground: oklch(0.9 0.1 84.429);
+	--info: oklch(0.707 0.165 254.624);
+	--info-foreground: oklch(0.145 0 0);
+	--info-subtle: oklch(0.33 0.08 262.881);
+	--info-subtle-foreground: oklch(0.88 0.07 254.624);
 	--border: oklch(1 0 0 / 10%);
 	--input: oklch(1 0 0 / 15%);
 	--ring: oklch(0.556 0 0);

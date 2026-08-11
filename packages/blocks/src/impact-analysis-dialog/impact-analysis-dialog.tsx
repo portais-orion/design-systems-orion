@@ -10,6 +10,8 @@ import {
 	cn,
 } from "@design-systems-orion/ui";
 
+import { toneClass } from "../_internal/tone";
+
 /*
  * Extraído de configurador/permissions/permission-impact.tsx (PermissionImpact):
  * modal com grid de categorias (cada uma com ícone + título + contagem +
@@ -136,7 +138,7 @@ export function ImpactAnalysisDialog({
 											{category.items.length > 0 ? (
 												category.items.map((item) => (
 													<div key={item} className="flex items-center gap-2 text-sm">
-														<Check className="size-3.5 text-emerald-600" />
+														<Check className={cn("size-3.5", toneClass("success", "text"))} />
 														<span>{item}</span>
 													</div>
 												))

@@ -3,6 +3,8 @@ import type * as React from "react";
 
 import { Button, cn } from "@design-systems-orion/ui";
 
+import { toneClass } from "../_internal/tone";
+
 /*
  * Extraído de registrar-demanda-form: estado de bloqueio quando cadastros
  * básicos necessários não existem — substitui o formulário/tela inteira.
@@ -38,20 +40,15 @@ export function MissingPrerequisitesState({
 	className,
 }: MissingPrerequisitesStateProps) {
 	return (
-		<div
-			className={cn(
-				"mx-auto max-w-2xl rounded-xl border border-amber-200 bg-amber-50 p-8",
-				className,
-			)}
-		>
+		<div className={cn("mx-auto max-w-2xl rounded-xl p-8", toneClass("warning", "surface"), className)}>
 			<div className="flex items-start gap-4">
-				<div className="mt-0.5 rounded-full bg-amber-100 p-2">
-					<AlertTriangle className="size-5 text-amber-600" />
+				<div className={cn("mt-0.5 rounded-full p-2", toneClass("warning", "solid"))}>
+					<AlertTriangle className="size-5" />
 				</div>
 				<div className="flex-1">
-					<h3 className="text-lg font-semibold text-amber-800">{title}</h3>
-					<p className="mt-2 text-amber-700">{description}</p>
-					<ul className="mt-4 list-disc space-y-2 pl-5 text-amber-700">
+					<h3 className="text-lg font-semibold">{title}</h3>
+					<p className="mt-2">{description}</p>
+					<ul className="mt-4 list-disc space-y-2 pl-5">
 						{items.map((item) => (
 							<li key={item.label}>
 								<strong>{item.label}</strong>
@@ -65,7 +62,7 @@ export function MissingPrerequisitesState({
 								type="button"
 								variant="outline"
 								onClick={onCancel}
-								className="border-amber-300 text-amber-800 hover:bg-amber-100"
+								className={toneClass("warning", "border")}
 							>
 								{cancelLabel}
 							</Button>

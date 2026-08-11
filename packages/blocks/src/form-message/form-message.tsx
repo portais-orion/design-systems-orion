@@ -2,6 +2,8 @@ import type * as React from "react";
 
 import { cn } from "@design-systems-orion/ui";
 
+import { toneClass } from "../_internal/tone";
+
 /*
  * Mensagem de apoio/validação de formulário. Origem do padrão: os
  * `text-xs text-destructive` repetidos à mão nos forms do Supertrans.
@@ -15,12 +17,6 @@ export type FormMessageProps = {
 	id?: string;
 };
 
-const toneClass: Record<FormMessageTone, string> = {
-	default: "text-muted-foreground",
-	error: "text-destructive",
-	warning: "text-amber-600",
-	success: "text-emerald-600",
-};
 
 /**
  * Mensagem de apoio ou validação sob um campo. Com `tone="error"` vira
@@ -32,7 +28,7 @@ export function FormMessage({ tone = "default", children, className, id }: FormM
 		<p
 			id={id}
 			role={tone === "error" ? "alert" : undefined}
-			className={cn("text-xs", toneClass[tone], className)}
+			className={cn("text-xs", toneClass(tone, "text"), className)}
 		>
 			{children}
 		</p>

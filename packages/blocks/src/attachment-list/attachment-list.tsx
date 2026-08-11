@@ -4,6 +4,8 @@ import { File as FileIcon, Trash2 } from "lucide-react";
 
 import { cn } from "@design-systems-orion/ui";
 
+import { type Tone, toneClass } from "../_internal/tone";
+
 /*
  * Extraído de gestao-demandas/[id] (lista de documentos anexados): ícone
  * tonalizado por extensão, nome, data, badge de extensão, clique abre preview
@@ -29,13 +31,14 @@ export type AttachmentListProps = {
 	className?: string;
 };
 
-const iconBoxByTone: Record<AttachmentTone, string> = {
-	default: "bg-primary/10 text-primary",
-	success: "bg-emerald-50 text-emerald-600",
-	warning: "bg-amber-50 text-amber-600",
-	danger: "bg-rose-50 text-rose-600",
-	info: "bg-sky-50 text-sky-600",
-	muted: "bg-muted text-muted-foreground",
+/* Os tons públicos deste bloco traduzidos para os tons semânticos do núcleo. */
+const semanticTone: Record<AttachmentTone, Tone> = {
+	default: "brand",
+	success: "success",
+	warning: "warning",
+	danger: "danger",
+	info: "info",
+	muted: "neutral",
 };
 
 /**
@@ -85,7 +88,7 @@ export function AttachmentList({
 							<div
 								className={cn(
 									"flex size-9 shrink-0 items-center justify-center rounded-lg",
-									iconBoxByTone[item.tone ?? "default"],
+									toneClass(semanticTone[item.tone ?? "default"], "subtle"),
 								)}
 							>
 								<FileIcon className="size-4" />

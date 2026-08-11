@@ -1,0 +1,4 @@
+{
+	"//": "Somente para o runner de testes: marca os *.test.ts deste diretório como ESM. Não é publicado (o package só empacota dist/).",
+	"type": "module"
+}

@@ -13,6 +13,8 @@ import {
 	cn,
 } from "@design-systems-orion/ui";
 
+import { type Tone, toneClass } from "../_internal/tone";
+
 /*
  * Origem: portal-supertrans components/home/configurador-onboarding.tsx. O
  * original persistia em localStorage e decidia sozinho quando abrir — aqui o
@@ -21,11 +23,12 @@ import {
  */
 export type OnboardingStepTone = "default" | "info" | "success" | "warning";
 
-const circleClassByTone: Record<OnboardingStepTone, string> = {
-	default: "bg-muted text-muted-foreground",
-	info: "bg-sky-100 text-sky-600",
-	success: "bg-emerald-100 text-emerald-600",
-	warning: "bg-amber-100 text-amber-600",
+/* Os tons públicos deste bloco traduzidos para os tons semânticos do núcleo. */
+const semanticTone: Record<OnboardingStepTone, Tone> = {
+	default: "neutral",
+	info: "info",
+	success: "success",
+	warning: "warning",
 };
 
 export type OnboardingStep = {
@@ -85,7 +88,7 @@ export function OnboardingDialog({
 							<div
 								className={cn(
 									"flex size-8 shrink-0 items-center justify-center rounded-full text-sm font-semibold",
-									circleClassByTone[step.tone ?? "default"],
+									toneClass(semanticTone[step.tone ?? "default"], "subtle"),
 								)}
 							>
 								{index + 1}

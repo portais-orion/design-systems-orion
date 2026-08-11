@@ -5,6 +5,8 @@ import * as React from "react";
 
 import { Button, Card, cn } from "@design-systems-orion/ui";
 
+import { type Tone, toneClass } from "../_internal/tone";
+
 /*
  * Extraído de gestao-demandas/grade-programacao (Supertrans): calendário mensal
  * com badges de contagem por dia e seleção de dia (a tela mostra uma tabela
@@ -44,13 +46,14 @@ export type MonthCalendarProps = {
 
 const DEFAULT_WEEKDAY_LABELS = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"];
 
-const badgeToneClass: Record<CalendarDayTone, string> = {
-	default: "bg-primary/10 text-primary",
-	success: "bg-emerald-100 text-emerald-700",
-	warning: "bg-amber-100 text-amber-700",
-	danger: "bg-rose-100 text-rose-700",
-	info: "bg-sky-100 text-sky-700",
-	muted: "bg-muted text-muted-foreground",
+/* Os tons públicos deste bloco traduzidos para os tons semânticos do núcleo. */
+const semanticTone: Record<CalendarDayTone, Tone> = {
+	default: "brand",
+	success: "success",
+	warning: "warning",
+	danger: "danger",
+	info: "info",
+	muted: "neutral",
 };
 
 function isSameDay(a: Date, b: Date): boolean {
@@ -203,7 +206,7 @@ export function MonthCalendar({
 											key={`${badge.label}-${index}`}
 											className={cn(
 												"w-full truncate rounded px-1.5 py-0.5 text-center text-[9px] font-bold",
-												badgeToneClass[badge.tone ?? "default"],
+												toneClass(semanticTone[badge.tone ?? "default"], "subtle"),
 											)}
 										>
 											{badge.label}

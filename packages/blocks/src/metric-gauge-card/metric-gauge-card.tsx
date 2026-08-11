@@ -11,6 +11,8 @@ import {
 	cn,
 } from "@design-systems-orion/ui";
 
+import { type Tone, toneClass } from "../_internal/tone";
+
 /*
  * Extraído de governanca/desempenho (MetricCard/SourceBar): card de métrica
  * com tooltip explicativo e barra de progresso opcional. Mais rico que
@@ -31,22 +33,14 @@ export type MetricGaugeCardProps = {
 	className?: string;
 };
 
-const valueColorByTone: Record<MetricGaugeTone, string> = {
-	default: "text-primary",
-	success: "text-emerald-600",
-	warning: "text-amber-600",
-	danger: "text-rose-600",
-	info: "text-sky-600",
-	muted: "text-muted-foreground",
-};
-
-const barColorByTone: Record<MetricGaugeTone, string> = {
-	default: "bg-primary",
-	success: "bg-emerald-500",
-	warning: "bg-amber-500",
-	danger: "bg-rose-500",
-	info: "bg-sky-500",
-	muted: "bg-muted-foreground",
+/* Os tons públicos deste bloco traduzidos para os tons semânticos do núcleo. */
+const semanticTone: Record<MetricGaugeTone, Tone> = {
+	default: "brand",
+	success: "success",
+	warning: "warning",
+	danger: "danger",
+	info: "info",
+	muted: "neutral",
 };
 
 /**
@@ -90,13 +84,18 @@ export function MetricGaugeCard({
 				)}
 			</div>
 			<div className="mt-3 flex items-baseline gap-1">
-				<span className={cn("text-3xl font-bold", valueColorByTone[tone])}>{value}</span>
+				<span className={cn("text-3xl font-bold", toneClass(semanticTone[tone], "text"))}>
+					{value}
+				</span>
 				{unit && <span className="text-sm text-muted-foreground">{unit}</span>}
 			</div>
 			{progress !== undefined && (
 				<div className="mt-3 h-2 overflow-hidden rounded-full bg-muted">
 					<div
-						className={cn("h-full rounded-full transition-all", barColorByTone[tone])}
+						className={cn(
+							"h-full rounded-full transition-all",
+							toneClass(semanticTone[tone], "dot"),
+						)}
 						style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
 					/>
 				</div>

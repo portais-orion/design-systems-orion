@@ -2,6 +2,8 @@ import * as React from "react";
 
 import { cn } from "@design-systems-orion/ui";
 
+import { type Tone, toneClass } from "../_internal/tone";
+
 export type KanbanTone = "default" | "success" | "warning" | "danger" | "info" | "muted";
 
 export type KanbanBoardProps = {
@@ -25,22 +27,14 @@ export type KanbanCardProps = {
 	children?: React.ReactNode;
 };
 
-const dotToneClass: Record<KanbanTone, string> = {
-	default: "bg-foreground/60",
-	success: "bg-emerald-500",
-	warning: "bg-amber-500",
-	danger: "bg-rose-500",
-	info: "bg-sky-500",
-	muted: "bg-muted-foreground/50",
-};
-
-const cardBorderToneClass: Record<KanbanTone, string> = {
-	default: "border-l-foreground/40",
-	success: "border-l-emerald-500",
-	warning: "border-l-amber-500",
-	danger: "border-l-rose-500",
-	info: "border-l-sky-500",
-	muted: "border-l-muted-foreground/40",
+/* Os tons públicos deste bloco traduzidos para os tons semânticos do núcleo. */
+const semanticTone: Record<KanbanTone, Tone> = {
+	default: "neutral",
+	success: "success",
+	warning: "warning",
+	danger: "danger",
+	info: "info",
+	muted: "neutral",
 };
 
 /**
@@ -86,7 +80,7 @@ function KanbanColumn({ title, count, tone = "default", className, children }: K
 			)}
 		>
 			<div className="flex items-center gap-2 border-b border-border px-3 py-2.5">
-				<span className={cn("size-2 rounded-full", dotToneClass[tone])} />
+				<span className={cn("size-2 rounded-full", toneClass(semanticTone[tone], "dot"))} />
 				<h3 className="text-sm font-semibold text-foreground">{title}</h3>
 				<span className="ml-auto rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
 					{displayCount}
@@ -114,7 +108,7 @@ function KanbanCard({ tone = "default", onClick, className, children }: KanbanCa
 			onClick={onClick}
 			className={cn(
 				"rounded-lg border border-l-4 bg-card p-3 text-left shadow-sm transition-shadow",
-				cardBorderToneClass[tone],
+				toneClass(semanticTone[tone], "edge"),
 				onClick ? "cursor-pointer hover:shadow-md" : "cursor-default",
 				className,
 			)}

@@ -10,6 +10,8 @@ import {
 	cn,
 } from "@design-systems-orion/ui";
 
+import { toneClass } from "../_internal/tone";
+
 /*
  * Extraído de components/presence/presence-avatars: pilha de avatares
  * sobrepostos com indicador "online" e tooltip. Generalizado sem
@@ -72,7 +74,12 @@ export function PresenceAvatarStack({
 									{initialsFor(user.label)}
 								</AvatarFallback>
 							</Avatar>
-							<span className="absolute right-0 bottom-0 block size-2 rounded-full bg-emerald-500 ring-2 ring-background" />
+							<span
+								className={cn(
+									"absolute right-0 bottom-0 block size-2 rounded-full ring-2 ring-background",
+									toneClass("success", "dot"),
+								)}
+							/>
 						</TooltipTrigger>
 						<TooltipContent side="bottom" className="text-xs">
 							<p className="font-semibold">

@@ -2,6 +2,8 @@ import type * as React from "react";
 
 import { cn } from "@design-systems-orion/ui";
 
+import { type Tone, toneClass } from "../_internal/tone";
+
 /*
  * Cabeçalho de modal com identidade de CRUD (criar/editar/detalhe):
  * bloco de ícone tonalizado + título forte + subtítulo + slot de badges contextuais.
@@ -9,12 +11,13 @@ import { cn } from "@design-systems-orion/ui";
  */
 export type CrudModalHeaderTone = "default" | "success" | "warning" | "danger" | "info";
 
-const iconBoxByTone: Record<CrudModalHeaderTone, string> = {
-	default: "bg-primary/10 text-primary",
-	success: "bg-emerald-50 text-emerald-600",
-	warning: "bg-amber-50 text-amber-600",
-	danger: "bg-destructive/10 text-destructive",
-	info: "bg-sky-50 text-sky-600",
+/* Os tons públicos deste bloco traduzidos para os tons semânticos do núcleo. */
+const semanticTone: Record<CrudModalHeaderTone, Tone> = {
+	default: "brand",
+	success: "success",
+	warning: "warning",
+	danger: "danger",
+	info: "info",
 };
 
 export type CrudModalHeaderProps = {
@@ -46,7 +49,7 @@ export function CrudModalHeader({
 				<div
 					className={cn(
 						"flex size-11 shrink-0 items-center justify-center rounded-lg",
-						iconBoxByTone[tone],
+						toneClass(semanticTone[tone], "subtle"),
 					)}
 				>
 					<Icon className="size-5" />

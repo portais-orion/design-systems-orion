@@ -2,6 +2,8 @@ import type * as React from "react";
 
 import { cn } from "@design-systems-orion/ui";
 
+import { type Tone, toneClass } from "../_internal/tone";
+
 /*
  * Extraído de gestao-demandas/[id] ("Histórico") e ContainerInspection
  * HistoryView ("Linha do Tempo"): linha vertical conectando nós circulares
@@ -27,13 +29,14 @@ export type ActivityTimelineProps = {
 	className?: string;
 };
 
-const iconBoxByTone: Record<TimelineTone, string> = {
-	default: "bg-primary/10 text-primary",
-	success: "bg-emerald-50 text-emerald-600",
-	warning: "bg-amber-50 text-amber-600",
-	danger: "bg-rose-50 text-rose-600",
-	info: "bg-sky-50 text-sky-600",
-	muted: "bg-muted text-muted-foreground",
+/* Os tons públicos deste bloco traduzidos para os tons semânticos do núcleo. */
+const semanticTone: Record<TimelineTone, Tone> = {
+	default: "brand",
+	success: "success",
+	warning: "warning",
+	danger: "danger",
+	info: "info",
+	muted: "neutral",
 };
 
 /**
@@ -59,7 +62,7 @@ export function ActivityTimeline({
 						<div
 							className={cn(
 								"absolute -left-[17px] flex size-8 items-center justify-center rounded-full ring-4 ring-background",
-								iconBoxByTone[item.tone ?? "default"],
+								toneClass(semanticTone[item.tone ?? "default"], "subtle"),
 							)}
 						>
 							{Icon && <Icon className="size-4" />}

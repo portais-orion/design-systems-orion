@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { Card, cn } from "@design-systems-orion/ui";
 
+import { type Tone, toneClass } from "../_internal/tone";
+
 export type StatusCardTone = "default" | "success" | "warning" | "danger" | "info" | "muted";
 
 export type StatusCardsProps = {
@@ -36,13 +38,14 @@ const gridByColumns: Record<2 | 3 | 4, string> = {
 	4: "sm:grid-cols-2 lg:grid-cols-4",
 };
 
-const iconBoxByTone: Record<StatusCardTone, string> = {
-	default: "bg-primary/10 text-primary",
-	success: "bg-emerald-50 text-emerald-600",
-	warning: "bg-amber-50 text-amber-600",
-	danger: "bg-destructive/10 text-destructive",
-	info: "bg-sky-50 text-sky-600",
-	muted: "bg-muted text-muted-foreground",
+/* Os tons públicos deste bloco traduzidos para os tons semânticos do núcleo. */
+const semanticTone: Record<StatusCardTone, Tone> = {
+	default: "brand",
+	success: "success",
+	warning: "warning",
+	danger: "danger",
+	info: "info",
+	muted: "neutral",
 };
 
 // Contexto para repassar o tom (tone) do Item para os filhos (Icon)
@@ -107,7 +110,7 @@ function StatusCardIcon({ as: Icon, className }: StatusCardIconProps) {
 		<div
 			className={cn(
 				"flex size-11 shrink-0 items-center justify-center rounded-lg",
-				iconBoxByTone[tone],
+				toneClass(semanticTone[tone], "subtle"),
 				className,
 			)}
 		>

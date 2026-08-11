@@ -5,6 +5,8 @@ import type * as React from "react";
 
 import { cn } from "@design-systems-orion/ui";
 
+import { type Tone, toneClass } from "../_internal/tone";
+
 /*
  * Extraído de configurador/access/access-module-tree.tsx (AccessModuleTree):
  * lista de grupos (módulos), cada um com switch de nível superior + contador
@@ -60,10 +62,11 @@ export type NestedToggleAccordionListProps = {
 	className?: string;
 };
 
-const originBadgeToneClass: Record<NonNullable<OriginBadge["tone"]>, string> = {
-	default: "border-border bg-muted/50 text-muted-foreground",
-	info: "border-primary/30 bg-primary/5 text-primary",
-	warning: "border-amber-300 bg-amber-50 text-amber-700",
+/* Os tons públicos deste bloco traduzidos para os tons semânticos do núcleo. */
+const semanticTone: Record<NonNullable<OriginBadge["tone"]>, Tone> = {
+	default: "neutral",
+	info: "brand",
+	warning: "warning",
 };
 
 function Switch({
@@ -106,8 +109,8 @@ function OriginBadges({ badges }: { badges?: OriginBadge[] }) {
 				<span
 					key={`${badge.label}-${index}`}
 					className={cn(
-						"rounded-full border px-2 py-0.5 text-[10px] font-medium",
-						originBadgeToneClass[badge.tone ?? "default"],
+						"rounded-full px-2 py-0.5 text-[10px] font-medium",
+						toneClass(semanticTone[badge.tone ?? "default"], "surface"),
 					)}
 				>
 					{badge.label}
@@ -155,7 +158,9 @@ function SectionBlock({ section }: { section: NestedToggleSection }) {
 						/>
 						<span className="text-sm font-medium text-foreground">{item.label}</span>
 						<OriginBadges badges={item.originBadges} />
-						{item.locked && <Lock className="ml-auto size-3.5 shrink-0 text-amber-500" />}
+						{item.locked && (
+						<Lock className={cn("ml-auto size-3.5 shrink-0", toneClass("warning", "text"))} />
+					)}
 					</label>
 				))}
 			</div>

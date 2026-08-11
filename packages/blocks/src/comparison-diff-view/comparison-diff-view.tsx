@@ -7,6 +7,8 @@ import {
 	cn,
 } from "@design-systems-orion/ui";
 
+import { type Tone, toneClass } from "../_internal/tone";
+
 /*
  * Extraído de governanca/comparar: comparação lado a lado entre duas (ou
  * mais) entidades, organizada em grupos (ex.: "Permissões", "Módulos"), cada
@@ -32,22 +34,14 @@ export type ComparisonDiffViewProps = {
 	className?: string;
 };
 
-const boxByTone: Record<DiffColumnTone, string> = {
-	default: "border-border bg-muted/30",
-	success: "border-emerald-100 bg-emerald-50/50",
-	warning: "border-amber-100 bg-amber-50/50",
-	danger: "border-rose-100 bg-rose-50/50",
-	info: "border-sky-100 bg-sky-50/50",
-	muted: "border-border bg-muted/20",
-};
-
-const textByTone: Record<DiffColumnTone, string> = {
-	default: "text-foreground",
-	success: "text-emerald-900",
-	warning: "text-amber-900",
-	danger: "text-rose-900",
-	info: "text-sky-900",
-	muted: "text-muted-foreground",
+/* Os tons públicos deste bloco traduzidos para os tons semânticos do núcleo. */
+const semanticTone: Record<DiffColumnTone, Tone> = {
+	default: "neutral",
+	success: "success",
+	warning: "warning",
+	danger: "danger",
+	info: "info",
+	muted: "neutral",
 };
 
 const gridByCount: Record<number, string> = {
@@ -74,34 +68,28 @@ export function ComparisonDiffView({ groups, className }: ComparisonDiffViewProp
 						<div
 							className={cn("grid gap-4", gridByCount[group.columns.length] ?? "md:grid-cols-2")}
 						>
-							{group.columns.map((column) => (
-								<div
-									key={column.label}
-									className={cn("rounded-lg border p-4", boxByTone[column.tone ?? "default"])}
-								>
-									<h4 className={cn("mb-3 font-medium", textByTone[column.tone ?? "default"])}>
-										{column.label}
-									</h4>
-									{column.items.length > 0 ? (
-										<ul
-											className={cn(
-												"list-inside list-disc space-y-1 text-sm",
-												textByTone[column.tone ?? "default"],
-											)}
-										>
-											{column.items.map((item) => (
-												<li key={item} className="font-mono text-xs">
-													{item}
-												</li>
-											))}
-										</ul>
-									) : (
-										<p className={cn("text-sm opacity-70", textByTone[column.tone ?? "default"])}>
-											{column.emptyMessage ?? "Nenhum item."}
-										</p>
-									)}
-								</div>
-							))}
+							{group.columns.map((column) => {
+								const tone = semanticTone[column.tone ?? "default"];
+								return (
+									<div
+										key={column.label}
+										className={cn("rounded-lg p-4", toneClass(tone, "surface"))}
+									>
+										<h4 className="mb-3 font-medium">{column.label}</h4>
+										{column.items.length > 0 ? (
+											<ul className="list-inside list-disc space-y-1 text-sm">
+												{column.items.map((item) => (
+													<li key={item} className="font-mono text-xs">
+														{item}
+													</li>
+												))}
+											</ul>
+										) : (
+											<p className="text-sm opacity-70">{column.emptyMessage ?? "Nenhum item."}</p>
+										)}
+									</div>
+								);
+							})}
 						</div>
 					</CardContent>
 				</Card>

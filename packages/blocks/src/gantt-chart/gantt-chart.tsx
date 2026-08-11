@@ -2,6 +2,8 @@ import type * as React from "react";
 
 import { cn } from "@design-systems-orion/ui";
 
+import { type Tone, toneClass } from "../_internal/tone";
+
 /*
  * Extraído de components/cronograma/cronograma-page.tsx (GANTT_*, MONTHS,
  * pxOf/pctOf): timeline horizontal com cabeçalho de meses proporcional ao
@@ -33,13 +35,14 @@ export type GanttChartProps = {
 	className?: string;
 };
 
-const barToneClass: Record<GanttTone, string> = {
-	default: "bg-primary",
-	success: "bg-emerald-500",
-	warning: "bg-amber-500",
-	danger: "bg-rose-500",
-	info: "bg-sky-500",
-	muted: "bg-muted-foreground",
+/* Os tons públicos deste bloco traduzidos para os tons semânticos do núcleo. */
+const semanticTone: Record<GanttTone, Tone> = {
+	default: "brand",
+	success: "success",
+	warning: "warning",
+	danger: "danger",
+	info: "info",
+	muted: "neutral",
 };
 
 function toDate(value: string | Date | null): Date | null {
@@ -150,7 +153,7 @@ export function GanttChart({
 											style={{ left: `${left}%`, width: `${width}%` }}
 											className={cn(
 												"absolute inset-y-0 rounded-md",
-												barToneClass[row.tone ?? "default"],
+												toneClass(semanticTone[row.tone ?? "default"], "dot"),
 												row.onClick
 													? "cursor-pointer opacity-90 hover:opacity-100"
 													: "cursor-default",
