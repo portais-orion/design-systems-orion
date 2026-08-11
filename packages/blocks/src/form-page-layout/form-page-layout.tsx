@@ -1,8 +1,13 @@
 import type * as React from "react";
 
-import { cn } from "@design-systems-orion/ui";
-import { ContentWithAside } from "../_internal/content-with-aside";
+import { PageContent, PageShell } from "../_internal/page-parts";
 
+/*
+ * Variação de formulário do `PageLayout`: a coluna de conteúdo é centralizada
+ * e limitada quando está sozinha, e abre a coluna lateral quando há `aside`.
+ * Toda a montagem mora em `PageLayout`/`_internal/page-parts` — aqui só se
+ * escolhe a variante.
+ */
 export type FormPageLayoutProps = {
 	className?: string;
 	children?: React.ReactNode;
@@ -18,7 +23,7 @@ export type FormPageLayoutContentProps = {
  * Raiz do layout de página de formulário.
  */
 function FormPageLayoutRoot({ className, children }: FormPageLayoutProps) {
-	return <div className={cn("space-y-6 p-6", className)}>{children}</div>;
+	return <PageShell className={className}>{children}</PageShell>;
 }
 
 /**
@@ -26,16 +31,11 @@ function FormPageLayoutRoot({ className, children }: FormPageLayoutProps) {
  * Sem `aside`, centraliza e limita a largura. Com `aside`, abre a barra lateral.
  */
 function FormPageLayoutContent({ aside, className, children }: FormPageLayoutContentProps) {
-	if (aside) {
-		return (
-			<ContentWithAside
-				content={children}
-				aside={aside}
-				contentClassName={cn("min-w-0", className)}
-			/>
-		);
-	}
-	return <div className={cn("mx-auto w-full max-w-3xl", className)}>{children}</div>;
+	return (
+		<PageContent variant="form" aside={aside} className={className}>
+			{children}
+		</PageContent>
+	);
 }
 
 export const FormPageLayout = Object.assign(FormPageLayoutRoot, {

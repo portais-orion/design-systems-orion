@@ -1,45 +1,51 @@
 import type * as React from "react";
 
-import { cn } from "@design-systems-orion/ui";
+import { PageContent, PageShell } from "../_internal/page-parts";
+import type { PageMaxWidth, PageVariant } from "../_internal/page-regions";
 
 /*
- * Layout base de página (sem shell/sidebar/breadcrumb — Sprint 6).
- * Padrão de espaçamento observado nos dois portais: pilha space-y-6.
+ * Layout de página (sem shell/sidebar/breadcrumb — isso é o `AppShell`).
+ *
+ * Este é o único módulo que sabe montar uma página: padding, largura máxima,
+ * pilha vertical, header, coluna lateral e rodapé. `ListPageLayout`,
+ * `FormPageLayout`, `DetailPageLayout` e `DashboardPageLayout` são variações
+ * dele, não implementações paralelas.
  */
 export type PageLayoutProps = {
+	/** Escolhe a largura e o espaçamento da coluna de conteúdo. */
+	variant?: PageVariant;
 	header?: React.ReactNode;
 	children: React.ReactNode;
+	/** Coluna lateral de 20rem à direita do conteúdo. */
+	aside?: React.ReactNode;
 	footer?: React.ReactNode;
 	className?: string;
 	contentClassName?: string;
-	maxWidth?: "none" | "screen-xl" | "screen-2xl";
+	maxWidth?: PageMaxWidth;
 };
 
-const maxWidthClass = {
-	none: "",
-	"screen-xl": "mx-auto w-full max-w-screen-xl",
-	"screen-2xl": "mx-auto w-full max-w-screen-2xl",
-} as const;
-
 /**
- * Esqueleto base de uma página: padding, largura máxima e o espaçamento
- * vertical padrão entre header, conteúdo e footer. Não inclui sidebar nem
- * breadcrumb — isso é o `AppShell`. Os layouts especializados
- * (`ListPageLayout`, `FormPageLayout`, …) são construídos sobre este.
+ * Esqueleto de uma página: padding, largura máxima e o espaçamento vertical
+ * padrão entre header, conteúdo, coluna lateral e footer. Não inclui sidebar
+ * nem breadcrumb — isso é o `AppShell`.
  */
 export function PageLayout({
+	variant = "plain",
 	header,
 	children,
+	aside,
 	footer,
 	className,
 	contentClassName,
 	maxWidth = "none",
 }: PageLayoutProps) {
 	return (
-		<div className={cn("space-y-6 p-6", maxWidthClass[maxWidth], className)}>
+		<PageShell maxWidth={maxWidth} className={className}>
 			{header}
-			<div className={cn("space-y-6", contentClassName)}>{children}</div>
+			<PageContent variant={variant} aside={aside} className={contentClassName}>
+				{children}
+			</PageContent>
 			{footer}
-		</div>
+		</PageShell>
 	);
 }

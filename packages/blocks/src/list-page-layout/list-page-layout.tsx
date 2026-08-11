@@ -1,7 +1,17 @@
 import * as React from "react";
 
-import { Card, CardContent, cn } from "@design-systems-orion/ui";
+import { CardContent, cn } from "@design-systems-orion/ui";
+
+import { BAND_BOTTOM_CLASS, BAND_TOP_CLASS } from "../_internal/page-regions";
+import { PageShell } from "../_internal/page-parts";
+import { SurfaceCard } from "../_internal/surface-card";
 import { LoadingOverlay } from "../loading-overlay";
+
+/*
+ * Variação de listagem do `PageLayout`: a página é o `PageShell` comum e o
+ * que este layout acrescenta é o cartão que agrupa filtros, conteúdo e
+ * rodapé — as faixas separadoras só aparecem dentro dele.
+ */
 
 // Contexto para detectar se estamos dentro de um ListPageLayout.Card
 const ListPageCardContext = React.createContext<boolean>(false);
@@ -37,7 +47,7 @@ export type ListPageLayoutFooterProps = {
  * Raiz do layout de página de listagem.
  */
 function ListPageLayoutRoot({ className, children }: ListPageLayoutProps) {
-	return <div className={cn("space-y-6 p-6", className)}>{children}</div>;
+	return <PageShell className={className}>{children}</PageShell>;
 }
 
 /**
@@ -47,7 +57,7 @@ function ListPageLayoutRoot({ className, children }: ListPageLayoutProps) {
 function ListPageLayoutCard({ className, children }: ListPageLayoutCardProps) {
 	return (
 		<ListPageCardContext.Provider value={true}>
-			<Card className={cn("overflow-hidden rounded-2xl", className)}>{children}</Card>
+			<SurfaceCard className={className}>{children}</SurfaceCard>
 		</ListPageCardContext.Provider>
 	);
 }
@@ -61,7 +71,7 @@ function ListPageLayoutFilters({ className, children }: ListPageLayoutFiltersPro
 		<div
 			className={cn(
 				"flex flex-wrap items-center gap-2",
-				inCard ? "border-b border-border px-4 py-4" : "",
+				inCard && cn(BAND_BOTTOM_CLASS, "px-4 py-4"),
 				className,
 			)}
 		>
@@ -101,7 +111,7 @@ function ListPageLayoutContent({
 function ListPageLayoutFooter({ className, children }: ListPageLayoutFooterProps) {
 	const inCard = React.useContext(ListPageCardContext);
 	return (
-		<div className={cn(inCard ? "border-t border-border px-4 py-3" : "pt-4", className)}>
+		<div className={cn(inCard ? cn(BAND_TOP_CLASS, "px-4 py-3") : "pt-4", className)}>
 			{children}
 		</div>
 	);

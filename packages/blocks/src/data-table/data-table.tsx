@@ -20,10 +20,18 @@ import {
 	cn,
 } from "@design-systems-orion/ui";
 
+import { BAND_BOTTOM_CLASS, BAND_TOP_CLASS } from "../_internal/page-regions";
+import { SurfaceCard } from "../_internal/surface-card";
 import { EmptyState } from "../empty-state";
 import { ErrorState } from "../error-state";
 import { Pagination as PaginationBlock } from "../pagination";
 import { TableSkeletonRows } from "../table-skeleton-rows";
+import {
+	type DataTableView,
+	columnId,
+	nextSortOrder,
+	resolveDataTableView,
+} from "./data-table.logic";
 import type {
 	DataTableColumn,
 	DataTableContentProps,
@@ -44,15 +52,10 @@ const alignClass = {
 	right: "text-right",
 } as const;
 
-function columnId<TData>(col: DataTableColumn<TData>, index: number): string {
-	return col.id ?? (col.accessorKey != null ? String(col.accessorKey) : `col-${index}`);
-}
-
-// biome-ignore lint/suspicious/noExplicitAny: Context genérico do Tanstack Table requer any como default
-type DataTableContextValue<TData = any> = {
+type DataTableContextValue<TData> = {
 	table: ReturnType<typeof useReactTable<TData>>;
-	isLoading: boolean;
-	isError: boolean;
+	/** Estado único da tabela, decidido pelo Root — ver data-table.logic.ts. */
+	view: DataTableView;
 	data: TData[];
 	columns: DataTableColumn<TData>[];
 	actions?: (row: TData, index: number) => React.ReactNode;
@@ -60,9 +63,14 @@ type DataTableContextValue<TData = any> = {
 	handleSortClick: (id: string) => void;
 };
 
-const DataTableContext = React.createContext<DataTableContextValue | null>(null);
+/*
+ * O contexto é guardado sobre `unknown` e reaberto com o `TData` de quem lê:
+ * o React não carrega o parâmetro de tipo do Provider até o Consumer, então a
+ * conversão acontece aqui, uma vez, em vez de `any` espalhado.
+ */
+const DataTableContext = React.createContext<DataTableContextValue<unknown> | null>(null);
 
-function useDataTableContext<TData>() {
+function useDataTableContext<TData>(): DataTableContextValue<TData> {
 	const ctx = React.useContext(DataTableContext);
 	if (!ctx) {
 		throw new Error("DataTable compound components must be used within a DataTable.Root");
@@ -130,46 +138,46 @@ function DataTableRoot<TData>({
 	const handleSortClick = React.useCallback(
 		(id: string) => {
 			if (!sorting?.onSortChange) return;
-			const nextOrder = sorting.sortBy === id && sorting.sortOrder === "asc" ? "desc" : "asc";
-			sorting.onSortChange(id, nextOrder);
+			sorting.onSortChange(id, nextSortOrder(sorting, id));
 		},
 		[sorting],
 	);
 
+	const view = resolveDataTableView({ isLoading, isError, rowCount: data.length });
+
 	const contextValue = React.useMemo(
 		() => ({
 			table,
-			isLoading,
-			isError,
+			view,
 			data,
 			columns,
 			actions,
 			sorting,
 			handleSortClick,
 		}),
-		[table, isLoading, isError, data, columns, actions, sorting, handleSortClick],
+		[table, view, data, columns, actions, sorting, handleSortClick],
 	);
 
 	return (
-		<DataTableContext.Provider value={contextValue}>
+		<DataTableContext.Provider value={contextValue as DataTableContextValue<unknown>}>
 			<div className={cn("space-y-4", className)}>{children}</div>
 		</DataTableContext.Provider>
 	);
 }
 
 function DataTableToolbar({ children }: DataTableToolbarProps) {
-	return <div className="border-b border-border p-4">{children}</div>;
+	return <div className={cn(BAND_BOTTOM_CLASS, "p-4")}>{children}</div>;
 }
 
 function DataTableFooter({ children }: DataTableFooterProps) {
-	const { isError } = useDataTableContext();
-	if (isError) return null;
-	return <div className="border-t border-border">{children}</div>;
+	const { view } = useDataTableContext();
+	if (view === "error") return null;
+	return <div className={BAND_TOP_CLASS}>{children}</div>;
 }
 
 function DataTableError({ title, description, action }: DataTableErrorProps) {
-	const { isError } = useDataTableContext();
-	if (!isError) return null;
+	const { view } = useDataTableContext();
+	if (view !== "error") return null;
 	return <ErrorState title={title} description={description} action={action} />;
 }
 
@@ -178,14 +186,14 @@ function DataTableEmpty({
 	description,
 	action,
 }: DataTableEmptyProps) {
-	const { isError, isLoading, data } = useDataTableContext();
-	if (isError || isLoading || data.length > 0) return null;
+	const { view } = useDataTableContext();
+	if (view !== "empty") return null;
 	return <EmptyState title={title} description={description} action={action} />;
 }
 
 function DataTablePagination(props: DataTablePaginationProps) {
-	const { isError } = useDataTableContext();
-	if (isError) return null;
+	const { view } = useDataTableContext();
+	if (view === "error") return null;
 	return <PaginationBlock {...props} />;
 }
 
@@ -195,15 +203,13 @@ function DataTableContent<TData>({
 	rowClassName,
 	getRowDisabled,
 }: DataTableContentProps<TData>) {
-	const { table, isLoading, isError, columns, actions, sorting, handleSortClick, data } =
+	const { table, view, columns, actions, sorting, handleSortClick } =
 		useDataTableContext<TData>();
 
-	if (isError) return null;
-	const showTable = isLoading || data.length > 0;
-	if (!showTable) return null;
+	if (view !== "loading" && view !== "rows") return null;
 
 	const renderBody = () => {
-		if (isLoading) {
+		if (view === "loading") {
 			return (
 				<TableSkeletonRows
 					rows={loadingRows}
@@ -314,16 +320,7 @@ function DataTableContent<TData>({
 }
 
 function DataTableCard({ children, className }: { children: React.ReactNode; className?: string }) {
-	return (
-		<div
-			className={cn(
-				"overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-sm",
-				className,
-			)}
-		>
-			{children}
-		</div>
-	);
+	return <SurfaceCard className={className}>{children}</SurfaceCard>;
 }
 
 /**

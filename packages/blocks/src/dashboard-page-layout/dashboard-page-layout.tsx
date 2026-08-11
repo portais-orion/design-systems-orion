@@ -1,7 +1,6 @@
 import type * as React from "react";
 
-import { ContentWithAside } from "../_internal/content-with-aside";
-import { PageLayout } from "../page-layout";
+import { PageContent, PageShell } from "../_internal/page-parts";
 
 /* Layout de dashboard simples: stats + conteúdo + aside opcional. */
 export type DashboardPageLayoutProps = {
@@ -14,7 +13,8 @@ export type DashboardPageLayoutProps = {
 
 /**
  * Layout de dashboard: faixa de indicadores no topo, conteúdo principal e
- * `aside` opcional em coluna lateral.
+ * `aside` opcional em coluna lateral. Variação do `PageLayout` — a montagem
+ * da página mora lá.
  */
 export function DashboardPageLayout({
 	header,
@@ -24,9 +24,12 @@ export function DashboardPageLayout({
 	className,
 }: DashboardPageLayoutProps) {
 	return (
-		<PageLayout header={header} className={className}>
+		<PageShell className={className}>
+			{header}
 			{stats}
-			<ContentWithAside content={content} aside={aside} />
-		</PageLayout>
+			<PageContent variant="dashboard" aside={aside}>
+				{content}
+			</PageContent>
+		</PageShell>
 	);
 }

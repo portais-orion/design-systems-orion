@@ -1,8 +1,12 @@
 import type * as React from "react";
 
-import { cn } from "@design-systems-orion/ui";
-import { ContentWithAside } from "../_internal/content-with-aside";
+import { PageContent, PageShell } from "../_internal/page-parts";
 
+/*
+ * Variação de detalhe do `PageLayout`: conteúdo em largura cheia, com coluna
+ * lateral opcional para metadados e ações secundárias. A montagem mora em
+ * `PageLayout`/`_internal/page-parts`.
+ */
 export type DetailPageLayoutProps = {
 	className?: string;
 	children?: React.ReactNode;
@@ -18,7 +22,7 @@ export type DetailPageLayoutContentProps = {
  * Raiz do layout de página de detalhe.
  */
 function DetailPageLayoutRoot({ className, children }: DetailPageLayoutProps) {
-	return <div className={cn("space-y-6 p-6", className)}>{children}</div>;
+	return <PageShell className={className}>{children}</PageShell>;
 }
 
 /**
@@ -26,16 +30,11 @@ function DetailPageLayoutRoot({ className, children }: DetailPageLayoutProps) {
  * Com `aside`, abre espaço lateral para ações secundárias ou metadados.
  */
 function DetailPageLayoutContent({ aside, className, children }: DetailPageLayoutContentProps) {
-	if (aside) {
-		return (
-			<ContentWithAside
-				content={children}
-				aside={aside}
-				contentClassName={cn("min-w-0 space-y-6", className)}
-			/>
-		);
-	}
-	return <div className={cn("space-y-6", className)}>{children}</div>;
+	return (
+		<PageContent variant="detail" aside={aside} className={className}>
+			{children}
+		</PageContent>
+	);
 }
 
 export const DetailPageLayout = Object.assign(DetailPageLayoutRoot, {
