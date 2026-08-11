@@ -14,14 +14,19 @@ export default meta;
 
 type Story = StoryObj<typeof EntityAssignmentPanel>;
 
+const FIRST_USER: AssignmentCandidate = {
+	id: "1",
+	label: "Maria Silva",
+	sublabel: "maria@empresa.com",
+};
 const ALL_USERS: AssignmentCandidate[] = [
-	{ id: "1", label: "Maria Silva", sublabel: "maria@empresa.com" },
+	FIRST_USER,
 	{ id: "2", label: "João Souza", sublabel: "joao@empresa.com" },
 ];
 
 export const Default: Story = {
 	render: () => {
-		const [assigned, setAssigned] = React.useState<AssignmentCandidate[]>([ALL_USERS[0]!]);
+		const [assigned, setAssigned] = React.useState<AssignmentCandidate[]>([FIRST_USER]);
 		const [query, setQuery] = React.useState("");
 		const assignedIds = new Set(assigned.map((u) => u.id));
 		const candidates = ALL_USERS.filter(
