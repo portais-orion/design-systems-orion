@@ -187,7 +187,7 @@ Na toolbar do Storybook, o seletor **Marca** alterna os temas Supertrans ↔ Aur
 | `pnpm chromatic` | Visual tests na nuvem (requer `CHROMATIC_PROJECT_TOKEN`) |
 | `pnpm check:pureza` | Valida que packages não contêm domínio de negócio |
 | `pnpm pack:all` | Empacota tokens/ui/blocks como tarballs |
-| `pnpm publish:packages` | Publica no GitHub Packages (`@portais-orion`) |
+| `pnpm publish:packages` | Publica no npm público (`@portais-orion`) |
 
 ---
 
@@ -255,22 +255,15 @@ Para detalhes, veja [`docs/architecture/theming.md`](docs/architecture/theming.m
 
 Resumo rápido — guia completo em [`docs/adoption/consumer-setup.md`](docs/adoption/consumer-setup.md).
 
-### 1. Autenticação
+### 1. Instalação
 
-Configure o `.npmrc` com o scope `@portais-orion` apontando para GitHub Packages:
-
-```ini
-@portais-orion:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${GITHUB_PACKAGES_TOKEN}
-```
-
-### 2. Instalação
+Pacotes `@portais-orion` são públicos no npm — sem `.npmrc`, sem token, só instalar:
 
 ```bash
 pnpm add @portais-orion/tokens @portais-orion/ui @portais-orion/blocks
 ```
 
-### 3. Tokens + marca
+### 2. Tokens + marca
 
 ```css
 /* globals.css */
@@ -283,7 +276,7 @@ pnpm add @portais-orion/tokens @portais-orion/ui @portais-orion/blocks
 <html lang="pt-BR" data-brand="supertrans">
 ```
 
-### 4. Tailwind `@source` + `transpilePackages`
+### 3. Tailwind `@source` + `transpilePackages`
 
 ```css
 @source "../../node_modules/@portais-orion/ui/src";
@@ -295,7 +288,7 @@ pnpm add @portais-orion/tokens @portais-orion/ui @portais-orion/blocks
 transpilePackages: ["@portais-orion/ui", "@portais-orion/blocks"]
 ```
 
-### 5. Usar componentes
+### 4. Usar componentes
 
 ```tsx
 import { Button } from "@portais-orion/ui/button";

@@ -1,6 +1,6 @@
 ---
 name: new-portal
-description: Use quando for criar um projeto/portal NOVO do zero que consome o Orion @portais-orion (tokens/ui/blocks) — scaffold Next.js + Tailwind v4, autenticação no GitHub Packages, tema por data-brand e adaptadores locais. Não use para migrar telas de portal existente (use portais-orion-adoption).
+description: Use quando for criar um projeto/portal NOVO do zero que consome o Orion @portais-orion (tokens/ui/blocks, público no npm, sem token) — scaffold Next.js + Tailwind v4, tema por data-brand e adaptadores locais. Não use para migrar telas de portal existente (use portais-orion-adoption).
 ---
 
 # Criar portal novo consumindo o Orion
@@ -13,9 +13,9 @@ nunca criar produto dentro do nucleo-portais.
 
 1. **Scaffold**: Next.js (App Router) + Tailwind v4 (CSS-first, sem `tailwind.config.ts`) +
    TypeScript. Monorepo pnpm com `apps/web` é o padrão dos portais existentes.
-2. **Registry**: `.npmrc` com scope `@portais-orion` → GitHub Packages (consumer-setup §1).
-   Token via env, nunca commitado. Scopes legados (`@grupo`, `@supertrans-transportes`,
-   `@mateusarcestr`) proibidos.
+2. **Registry**: pacotes `@portais-orion` são públicos no npm — sem `.npmrc`, sem token
+   (consumer-setup §1). Scopes legados (`@grupo`, `@supertrans-transportes`, `@mateusarcestr`)
+   proibidos.
 3. **Instalar**: packages + peers (consumer-setup §2).
 4. **Tokens + marca**: imports no `globals.css` e `data-brand="<marca>"` no `<html>`
    (consumer-setup §3). Tema NUNCA por prop.

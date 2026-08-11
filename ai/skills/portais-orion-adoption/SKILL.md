@@ -11,8 +11,8 @@ Orion `@portais-orion`. Baseada nas migrações reais do `portal-supertrans` (Sp
 ## 1. Quando usar
 
 - O portal já consome (ou vai consumir) `@portais-orion/tokens`, `@portais-orion/ui`,
-  `@portais-orion/blocks` via `node_modules` (GitHub Packages), e você vai migrar **uma** tela
-  para os componentes do Orion.
+  `@portais-orion/blocks` via `node_modules` (npm público, sem token), e você vai migrar **uma**
+  tela para os componentes do Orion.
 
 ## 2. Quando NÃO usar
 

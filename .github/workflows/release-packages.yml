@@ -1,11 +1,11 @@
-# Publicacao dos pacotes do Nucleo no GitHub Packages.
+# Publicacao dos pacotes do Orion no npm publico (registry.npmjs.org).
 # Manual (workflow_dispatch), dry-run por padrao. NAO publica em push.
 #
 # Pre-requisitos:
-#   - Repo transferido para a org portais-orion (scope == owner == @portais-orion).
+#   - Secret NPM_TOKEN no repo/org: token de automacao da conta/org npm "portais-orion"
+#     (https://www.npmjs.com/settings/<org>/tokens), tipo "Automation".
 #   - Confirme o scope @portais-orion e siga o runbook de distribuicao
 #     (docs/architecture/package-distribution.md) ANTES do primeiro publish real.
-#   - GITHUB_TOKEN do job tem `packages: write` (definido em permissions abaixo).
 name: Release packages
 
 on:
@@ -18,7 +18,6 @@ on:
 
 permissions:
   contents: read
-  packages: write
 
 jobs:
   release:
@@ -33,7 +32,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: https://npm.pkg.github.com
+          registry-url: https://registry.npmjs.org
           scope: "@portais-orion"
 
       - run: pnpm install --frozen-lockfile
@@ -51,4 +50,4 @@ jobs:
         if: ${{ !inputs.dry-run }}
         run: pnpm publish:packages
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

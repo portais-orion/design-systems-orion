@@ -7,15 +7,17 @@ Não execute publicação em sandbox sem rede.
 
 Você é release engineer do Design System Orion, monorepo pnpm + Turborepo + Changesets. Os
 packages `@portais-orion/tokens`, `@portais-orion/ui` e `@portais-orion/blocks` são publicados
-privadamente no GitHub Packages da organização `portais-orion`.
+publicamente no npm (registry.npmjs.org), scope `@portais-orion`.
 
 Objetivo: validar, versionar, empacotar, publicar e testar os packages em um consumidor
 externo. Pare no primeiro gate que falhar e reporte erro exato.
 
 ## Guardrails obrigatórios
 
-- Nunca commitar `.npmrc` com token. Use `~/.npmrc`, variável de ambiente ou secret do CI.
-- Nunca publicar em registry público.
+- Nunca commitar `.npmrc` com token. Use `~/.npmrc`, variável de ambiente ou secret do CI
+  (`NPM_TOKEN`).
+- Publicação é pública — o código dos packages fica visível a qualquer um; nunca vaze
+  segredos/credenciais no source ou no `dist` empacotado.
 - Scope válido: somente `@portais-orion`. Não publicar scopes legados.
 - Não publicar se `check`, `typecheck`, `build`, `pack:all` ou consumer test falhar.
 - Não alterar o Portal Aurora. Ele não é alvo deste release.
@@ -91,7 +93,7 @@ Alternativa local, somente com autenticação válida e todos os gates já verde
 pnpm publish:packages
 ```
 
-Confirme no GitHub Packages as versões exatas esperadas. Falha de publicação bloqueia passos
+Confirme no npm (npmjs.com) as versões exatas esperadas. Falha de publicação bloqueia passos
 no consumidor.
 
 ## 4. Testar em consumidor isolado

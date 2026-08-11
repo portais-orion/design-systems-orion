@@ -22,8 +22,8 @@
 		"./themes/orion.css": "./src/themes/orion.css"
 	},
 	"publishConfig": {
-		"access": "restricted",
-		"registry": "https://npm.pkg.github.com",
+		"access": "public",
+		"registry": "https://registry.npmjs.org",
 		"exports": {
 			"./brands.json": "./brands.json",
 			"./index.css": "./dist/index.css",

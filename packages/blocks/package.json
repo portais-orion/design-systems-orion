@@ -82,8 +82,8 @@
 		"@portais-orion/ui": "workspace:*"
 	},
 	"publishConfig": {
-		"access": "restricted",
-		"registry": "https://npm.pkg.github.com",
+		"access": "public",
+		"registry": "https://registry.npmjs.org",
 		"main": "./dist/index.mjs",
 		"module": "./dist/index.mjs",
 		"types": "./dist/index.d.mts",

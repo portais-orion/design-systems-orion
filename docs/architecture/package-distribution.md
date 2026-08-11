@@ -5,7 +5,7 @@ Como o Orion empacota e distribui packages internos versionados.
 ## Decisão vigente
 
 - scope oficial: `@portais-orion`
-- registry privado: GitHub Packages
+- registry público: npm (registry.npmjs.org) — instalar não exige token
 - packages consumíveis: `tokens`, `ui` e `blocks`
 - packages internos: `tsconfig` e `biome-config`
 - dependências entre packages são resolvidas pela versão publicada no tarball
@@ -66,8 +66,10 @@ versões, dependências, scripts nem os source exports.
 
 ## Regras operacionais
 
-- Nunca commitar `.npmrc` com token; autenticação fica no ambiente, `~/.npmrc` ou CI.
-- Nunca publicar em registry público.
+- Nunca commitar `.npmrc` com token; autenticação (publish) fica no ambiente, `~/.npmrc` ou CI
+  (secret `NPM_TOKEN`).
+- Publicação é pública no npm — código dos packages fica visível a qualquer um; nunca vaze
+  segredos/credenciais no source ou no `dist` empacotado.
 - Nunca usar scopes legados em novos consumidores.
 - Nunca publicar se `check`, `typecheck`, `build` ou `pack:all` falhar.
 - Mudança consumível exige Changeset e teste em consumidor externo ao monorepo.

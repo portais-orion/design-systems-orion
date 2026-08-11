@@ -1,7 +1,7 @@
-# Modelo de .npmrc COM autenticação — NUNCA commite o arquivo real com token.
-# Copie para ~/.npmrc (recomendado) ou exporte GITHUB_PACKAGES_TOKEN no ambiente.
+# Pacotes @portais-orion sao publicos no npm (registry.npmjs.org).
+# Instalar/consumir NAO precisa de .npmrc nem de token.
 #
-# O token precisa de scope read:packages (instalar) e/ou write:packages (publicar).
-# PAT classic: https://github.com/settings/tokens
-@portais-orion:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${GITHUB_PACKAGES_TOKEN}
+# Este arquivo so importa para quem PUBLICA (mantenedores do Orion):
+# copie para ~/.npmrc e exporte NPM_TOKEN (token de automacao da conta/org npm "portais-orion",
+# https://www.npmjs.com/settings/<org>/tokens).
+//registry.npmjs.org/:_authToken=${NPM_TOKEN}

@@ -1,23 +1,17 @@
 # Consumer setup — adotando `@portais-orion` num novo portal
 
 Como configurar um portal (Next.js + Tailwind v4) para consumir o Orion `@portais-orion`
-(`tokens`, `ui`, `blocks`) via GitHub Packages. Referência viva: `portal-supertrans`.
+(`tokens`, `ui`, `blocks`), publicado público no npm (registry.npmjs.org). Referência viva:
+`portal-supertrans`.
 
-## 1. `.npmrc` (autenticação)
+## 1. Sem autenticação para instalar
 
-Scope oficial: **`@portais-orion`**. Registry: **GitHub Packages** (privado). Nunca commite token.
-
-`~/.npmrc` (ou `.npmrc` local, **gitignored**):
-
-```ini
-@portais-orion:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${GITHUB_PACKAGES_TOKEN}
-```
-
-PAT classic com `read:packages` (instalar) e, para publicar, `write:packages`. Alternativa:
-`npm login --scope=@portais-orion --auth-type=legacy --registry=https://npm.pkg.github.com`.
+Scope oficial: **`@portais-orion`**. Registry: **npm público** (registry.npmjs.org). Não precisa
+de `.npmrc`, token ou login — instala igual qualquer pacote público do npm.
 
 > Não use os scopes legados `@grupo`, `@mateusarcestr`, `@supertrans-transportes` (ver "Legados").
+> `.npmrc`/token só é necessário para quem **publica** novas versões (mantenedores do Orion) —
+> ver `.npmrc.example`.
 
 ## 2. Instalar os packages
 
