@@ -1,62 +1,52 @@
-import { readFileSync, readdirSync, writeFileSync } from "node:fs";
-import { dirname, join, relative, resolve } from "node:path";
+import { writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
 import {
 	synchronizePackageManifest,
 	validatePackageManifest,
 } from "./lib/package-distribution.mjs";
+import {
+	inventoryPackageFiles,
+	listDistributablePackages,
+	readManifest,
+} from "./lib/workspace.mjs";
+
+const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 
 const usage =
-	"uso: node scripts/gen-dist-exports.mjs [--check|--write] <package.json> [package.json ...]";
+	"uso: node scripts/gen-dist-exports.mjs [--check|--write] [package.json ...]\n" +
+	"sem caminhos, percorre os pacotes distribuíveis do workspace";
 
 function parseArguments(args) {
 	const first = args[0];
-	if (!first) {
-		throw new Error(usage);
-	}
-
 	if (first === "--check" || first === "--write") {
-		if (args.length === 1) {
-			throw new Error(usage);
-		}
 		return { mode: first.slice(2), packagePaths: args.slice(1) };
 	}
-	if (first.startsWith("--")) {
+	if (first?.startsWith("--")) {
 		throw new Error(`opção desconhecida: ${first}\n${usage}`);
 	}
 	return { mode: "write", packagePaths: args };
 }
 
-function collectSourceFiles(packageDirectory) {
-	const sourceDirectory = join(packageDirectory, "src");
-	const sourceFiles = new Set();
-	const pending = [sourceDirectory];
-
-	while (pending.length > 0) {
-		const directory = pending.pop();
-		for (const entry of readdirSync(directory, { withFileTypes: true })) {
-			const entryPath = join(directory, entry.name);
-			if (entry.isDirectory()) {
-				pending.push(entryPath);
-			} else if (entry.isFile()) {
-				sourceFiles.add(relative(packageDirectory, entryPath).replaceAll("\\", "/"));
-			}
-		}
+/** Sem caminhos explícitos, os pacotes saem do inventário do workspace. */
+function resolvePackagePaths(packagePaths) {
+	if (packagePaths.length > 0) {
+		return packagePaths.map((packagePath) => resolve(packagePath));
 	}
-
-	return sourceFiles;
+	return listDistributablePackages(ROOT).map((pkg) => pkg.manifestPath);
 }
 
-function processPackage(packagePath, mode) {
-	const resolvedPackagePath = resolve(packagePath);
-	const packageDirectory = dirname(resolvedPackagePath);
-	const manifest = JSON.parse(readFileSync(resolvedPackagePath, "utf8"));
+function processPackage(manifestPath, mode) {
+	const packageDirectory = dirname(manifestPath);
+	const manifest = readManifest(manifestPath);
 	const currentManifest = mode === "write" ? synchronizePackageManifest(manifest) : manifest;
 
 	if (mode === "write") {
-		writeFileSync(resolvedPackagePath, `${JSON.stringify(currentManifest, null, "\t")}\n`);
+		writeFileSync(manifestPath, `${JSON.stringify(currentManifest, null, "\t")}\n`);
 	}
 
-	return validatePackageManifest(currentManifest, collectSourceFiles(packageDirectory));
+	return validatePackageManifest(currentManifest, inventoryPackageFiles(packageDirectory, "src"));
 }
 
 function main() {
@@ -69,12 +59,19 @@ function main() {
 		return;
 	}
 
+	const manifestPaths = resolvePackagePaths(options.packagePaths);
+	if (manifestPaths.length === 0) {
+		console.error(`nenhum pacote distribuível encontrado\n${usage}`);
+		process.exitCode = 1;
+		return;
+	}
+
 	const diagnostics = [];
-	for (const packagePath of options.packagePaths) {
+	for (const manifestPath of manifestPaths) {
 		try {
-			diagnostics.push(...processPackage(packagePath, options.mode));
+			diagnostics.push(...processPackage(manifestPath, options.mode));
 		} catch (error) {
-			diagnostics.push(`${packagePath}: ${error.message}`);
+			diagnostics.push(`${manifestPath}: ${error.message}`);
 		}
 	}
 
@@ -87,7 +84,7 @@ function main() {
 	}
 
 	console.log(
-		`gen-dist-exports OK — ${options.packagePaths.length} manifest(s) ${
+		`gen-dist-exports OK — ${manifestPaths.length} manifest(s) ${
 			options.mode === "check" ? "sincronizado(s)" : "atualizado(s)"
 		}`,
 	);

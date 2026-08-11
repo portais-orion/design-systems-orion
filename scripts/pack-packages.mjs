@@ -3,11 +3,13 @@ import { existsSync, lstatSync, mkdirSync, readdirSync, rmSync } from "node:fs";
 import { isAbsolute, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { validatePackedArtifact } from "./lib/package-distribution.mjs";
+import { listPublishablePackages } from "./lib/workspace.mjs";
 
 const REPOSITORY_ROOT = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const REPOSITORY_TEMP = resolve(REPOSITORY_ROOT, ".tmp");
 const PACK_DIRECTORY = resolve(REPOSITORY_TEMP, "packages");
-const PACKAGE_DIRECTORIES = ["packages/tokens", "packages/ui", "packages/blocks"];
+/* Empacota o que vai para o registry — a mesma pergunta que o pnpm publish faz. */
+const PACKAGE_DIRECTORIES = listPublishablePackages(REPOSITORY_ROOT).map((pkg) => pkg.path);
 
 function assertOwnedPackDirectory() {
 	const expected = resolve(REPOSITORY_ROOT, ".tmp", "packages");

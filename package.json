@@ -17,7 +17,7 @@
 		"test:scripts": "node --test scripts/*.test.mjs",
 		"test:packages": "node --test \"packages/*/tests/**/*.test.ts\"",
 		"test:distribution": "node --test scripts/package-distribution.test.mjs",
-		"check:packages": "node scripts/gen-dist-exports.mjs --check packages/ui/package.json packages/blocks/package.json",
+		"check:packages": "node scripts/gen-dist-exports.mjs --check",
 		"storybook": "pnpm --filter @nucleo/storybook storybook",
 		"build:storybook": "pnpm --filter @nucleo/storybook build-storybook",
 		"changeset": "changeset",
