@@ -1,6 +1,6 @@
 # Issue tracker: GitHub
 
-Issues and PRDs for this repo live as GitHub issues in `portais-orion/nucleo-portais`. Use the `gh` CLI for all operations.
+Issues and PRDs for this repo live as GitHub issues in `portais-orion/design-systems-orion`. Use the `gh` CLI for all operations.
 
 ## Conventions
 

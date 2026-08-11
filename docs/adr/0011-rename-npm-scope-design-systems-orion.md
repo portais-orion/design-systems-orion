@@ -25,9 +25,13 @@ skills (`ai/skills/*`), regras/contexto/checklists de agente (`ai/rules`, `ai/co
 publicados sob ele não são apagados sem autorização.
 
 ## Fora de escopo desta ADR (mantido como estava)
-- Nome da pasta/repositório: `nucleo-portais`.
-- Org GitHub `portais-orion` (repositório continua em `portais-orion/nucleo-portais`) — o rename
-  aqui é só do scope/conta **npm**, não do GitHub.
+- Org GitHub `portais-orion` — o rename aqui é só do scope/conta **npm**, não da org GitHub.
+- Pasta local do checkout (`nucleo-portais` em disco) — cosmético, sem custo técnico renomear
+  depois; não afeta build/CI.
+
+> O repositório GitHub em si (`portais-orion/nucleo-portais` → `portais-orion/design-systems-orion`)
+> foi renomeado à parte, por pedido direto do dono do produto — ver commit que segue esta ADR.
+> O GitHub mantém redirect automático da URL antiga.
 - Nome da skill `portais-orion-adoption` e seu path — nome de skill não é scope npm; renomear
   quebraria referências cruzadas por um ganho cosmético.
 - Documentos históricos: ADRs já aceitas (0001–0010), `CHANGELOG.md` de cada package,

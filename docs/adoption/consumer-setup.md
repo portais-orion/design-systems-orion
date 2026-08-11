@@ -94,7 +94,7 @@ Confirmar que `Button`, `PageHeader`, `DataTable` etc. renderizam estilizados (t
 ## 8. Quando faltar API no Orion
 
 Não altere o package por preferência visual local. Abra backlog/issue no `nucleo-portais`
-(`portais-orion/nucleo-portais`) descrevendo o gap genérico. Correções no Orion seguem: fix →
+(`portais-orion/design-systems-orion`) descrevendo o gap genérico. Correções no Orion seguem: fix →
 story → gates → changeset → publish patch → atualizar consumidores.
 
 ## 9. Migrar telas existentes

@@ -160,7 +160,7 @@ Regra de corte entre camadas: se o componente conhece entidade de negócio, rota
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/portais-orion/nucleo-portais.git
+git clone https://github.com/portais-orion/design-systems-orion.git
 cd nucleo-portais
 pnpm install
 pnpm storybook        # abre o Storybook em http://localhost:6006

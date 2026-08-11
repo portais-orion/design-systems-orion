@@ -29,7 +29,7 @@ nunca criar produto dentro do nucleo-portais.
 ## Convenções que o portal herda
 
 - Domínio (rotas, APIs, permissões, entidades) é Camada 3 — vive só no portal.
-- Gap de API do Orion → issue em `portais-orion/nucleo-portais` (consumer-setup §8); nunca
+- Gap de API do Orion → issue em `portais-orion/design-systems-orion` (consumer-setup §8); nunca
   fork/patch local do package. Componente genérico novo → skill `contribute-to-nucleo`.
 - Telas novas: montar com blocks (`page-header`, `data-table`, `list-page-layout`,
   `empty-state`...) antes de escrever markup próprio — `ai/workflows/find-component.md`.

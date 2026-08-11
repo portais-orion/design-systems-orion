@@ -87,7 +87,7 @@ Teste rápido de `ai/rules/no-domain-in-shared-packages.md`: "este código faria
 
 ### Issue tracker
 
-Issues vivem no GitHub Issues de `portais-orion/nucleo-portais`, operadas pelo `gh` CLI. Veja `docs/agents/issue-tracker.md`.
+Issues vivem no GitHub Issues de `portais-orion/design-systems-orion`, operadas pelo `gh` CLI. Veja `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 

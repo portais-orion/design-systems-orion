@@ -83,8 +83,8 @@ pnpm pack:all
 Preferência: workflow manual, que empacota e inspeciona antes de publicar.
 
 ```powershell
-gh workflow run release-packages.yml --repo portais-orion/nucleo-portais -f dry-run=false
-gh run watch --repo portais-orion/nucleo-portais
+gh workflow run release-packages.yml --repo portais-orion/design-systems-orion -f dry-run=false
+gh run watch --repo portais-orion/design-systems-orion
 ```
 
 Alternativa local, somente com autenticação válida e todos os gates já verdes:
