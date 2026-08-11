@@ -17,7 +17,6 @@ export type FormMessageProps = {
 	id?: string;
 };
 
-
 /**
  * Mensagem de apoio ou validação sob um campo. Com `tone="error"` vira
  * `role="alert"` e é anunciada de imediato; ligue o `id` ao

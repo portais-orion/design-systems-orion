@@ -12,6 +12,7 @@ import {
 } from "@design-systems-orion/ui";
 
 import { useControllable } from "../_internal/use-controllable";
+import { useBlocksCopy } from "../copy";
 import {
 	type NavigationItem,
 	type RenderLink,
@@ -128,7 +129,8 @@ function ModuleHeader({
 	renderLink: RenderLink;
 	onNavigate?: () => void;
 }) {
-	const { name, icon: Icon, switchHref, switchLabel = "Trocar módulo" } = module;
+	const copy = useBlocksCopy();
+	const { name, icon: Icon, switchHref, switchLabel = copy.sidebar.switchModule } = module;
 
 	const switchLink =
 		switchHref &&
@@ -370,6 +372,7 @@ export function Sidebar({
 	footer,
 	className,
 }: SidebarProps) {
+	const copy = useBlocksCopy();
 	const [collapsed, setCollapsed] = useControllable(
 		collapsedProp,
 		defaultCollapsed,
@@ -399,7 +402,7 @@ export function Sidebar({
 					<button
 						type="button"
 						onClick={() => setCollapsed(!collapsed)}
-						aria-label={collapsed ? "Expandir navegação" : "Recolher navegação"}
+						aria-label={collapsed ? copy.sidebar.expandNavigation : copy.sidebar.collapseNavigation}
 						aria-expanded={!collapsed}
 						className="absolute -right-3 top-5 z-10 flex size-6 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md outline-none transition-colors hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-sidebar-ring"
 					>
@@ -424,7 +427,10 @@ export function Sidebar({
 						onNavigate={onNavigate}
 					/>
 				)}
-				<nav aria-label="Navegação principal" className="flex-1 space-y-2 overflow-y-auto p-2">
+				<nav
+					aria-label={copy.sidebar.mainNavigation}
+					className="flex-1 space-y-2 overflow-y-auto p-2"
+				>
 					{items.map((item) => (
 						<SidebarEntry
 							key={item.id}

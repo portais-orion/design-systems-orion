@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 
 import {
+	type NavigationItem,
 	containsActiveItem,
 	filterNavigation,
-	type NavigationItem,
 } from "../src/navigation/navigation.types.ts";
 
 const item = (id: string, extra: Partial<NavigationItem> = {}): NavigationItem => ({
@@ -30,12 +30,18 @@ test("filterNavigation remove item negado", () => {
 test("filterNavigation filtra filhos recursivamente", () => {
 	const items = [item("pai", { children: [item("filho-1"), item("filho-2")] })];
 	const result = filterNavigation(items, (i) => i.id !== "filho-2");
-	assert.deepEqual(result[0]?.children?.map((i) => i.id), ["filho-1"]);
+	assert.deepEqual(
+		result[0]?.children?.map((i) => i.id),
+		["filho-1"],
+	);
 });
 
 test("filterNavigation remove grupo sem href que ficou sem filhos", () => {
 	const items = [item("grupo", { children: [item("filho")] })];
-	assert.deepEqual(filterNavigation(items, (i) => i.id !== "filho"), []);
+	assert.deepEqual(
+		filterNavigation(items, (i) => i.id !== "filho"),
+		[],
+	);
 });
 
 test("filterNavigation preserva pai com href que ficou sem filhos", () => {

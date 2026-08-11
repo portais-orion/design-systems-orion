@@ -115,9 +115,7 @@ const Miolo = () => (
 
 export const Default: Story = {
 	render: () => (
-		<AppShell
-			sidebar={{ brand: <Marca />, navigation: NAV, activeItemId: "registros" }}
-		>
+		<AppShell sidebar={{ brand: <Marca />, navigation: NAV, activeItemId: "registros" }}>
 			<Miolo />
 		</AppShell>
 	),

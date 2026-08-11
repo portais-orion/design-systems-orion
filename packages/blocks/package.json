@@ -19,6 +19,7 @@
 		"./data-table": "./src/data-table/index.ts",
 		"./loading-overlay": "./src/loading-overlay/index.ts",
 		"./content-card": "./src/content-card/index.ts",
+		"./copy": "./src/copy/index.ts",
 		"./dashboard-page-layout": "./src/dashboard-page-layout/index.ts",
 		"./detail-page-layout": "./src/detail-page-layout/index.ts",
 		"./field-group": "./src/field-group/index.ts",
@@ -145,6 +146,10 @@
 			"./content-card": {
 				"types": "./dist/content-card/index.d.mts",
 				"import": "./dist/content-card/index.mjs"
+			},
+			"./copy": {
+				"types": "./dist/copy/index.d.mts",
+				"import": "./dist/copy/index.mjs"
 			},
 			"./dashboard-page-layout": {
 				"types": "./dist/dashboard-page-layout/index.d.mts",

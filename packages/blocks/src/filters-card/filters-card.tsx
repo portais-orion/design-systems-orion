@@ -5,6 +5,9 @@ import * as React from "react";
 
 import { Button, Card, CardContent, cn } from "@design-systems-orion/ui";
 
+import { BAND_TOP_CLASS } from "../_internal/page-regions";
+import { useBlocksCopy } from "../copy";
+
 /*
  * Card de filtros colapsável para listagens CRUD: título com ícone + toggle
  * Mostrar/Ocultar, corpo por slot (busca + selects) e footer com "Limpar filtros".
@@ -32,17 +35,18 @@ export type FiltersCardProps = {
  * não-controlado (`defaultOpen`) ou controlado (`open` + `onOpenChange`).
  */
 export function FiltersCard({
-	title = "Filtros",
+	title,
 	icon: Icon = Filter,
 	defaultOpen = true,
 	open,
 	onOpenChange,
 	onClear,
-	clearLabel = "Limpar filtros",
+	clearLabel,
 	children,
 	footer,
 	className,
 }: FiltersCardProps) {
+	const copy = useBlocksCopy();
 	const [internalOpen, setInternalOpen] = React.useState(defaultOpen);
 	const isControlled = open !== undefined;
 	const isOpen = isControlled ? open : internalOpen;
@@ -58,10 +62,10 @@ export function FiltersCard({
 			<div className="flex items-center justify-between gap-3 px-6 py-4">
 				<div className="flex items-center gap-2 text-sm font-semibold text-foreground">
 					<Icon className="size-4 text-muted-foreground" />
-					{title}
+					{title ?? copy.filters.title}
 				</div>
 				<Button variant="ghost" size="sm" onClick={toggle} aria-expanded={isOpen}>
-					{isOpen ? "Ocultar" : "Mostrar"}
+					{isOpen ? copy.filters.hide : copy.filters.show}
 					<ChevronDown className={cn("transition-transform", isOpen && "rotate-180")} />
 				</Button>
 			</div>
@@ -70,12 +74,12 @@ export function FiltersCard({
 				<>
 					<CardContent className="pt-0">{children}</CardContent>
 					{(onClear || footer) && (
-						<div className="flex items-center justify-end gap-2 border-t border-border px-6 py-3">
+						<div className={cn("flex items-center justify-end gap-2 px-6 py-3", BAND_TOP_CLASS)}>
 							{footer}
 							{onClear && (
 								<Button variant="ghost" size="sm" onClick={onClear}>
 									<X />
-									{clearLabel}
+									{clearLabel ?? copy.filters.clear}
 								</Button>
 							)}
 						</div>

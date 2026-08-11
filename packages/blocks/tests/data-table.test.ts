@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { columnId, nextSortOrder, resolveDataTableView } from "../src/data-table/data-table.logic.ts";
+import {
+	columnId,
+	nextSortOrder,
+	resolveDataTableView,
+} from "../src/data-table/data-table.logic.ts";
 
 test("erro vence carregamento e lista vazia", () => {
 	assert.equal(resolveDataTableView({ isError: true, isLoading: true, rowCount: 0 }), "error");

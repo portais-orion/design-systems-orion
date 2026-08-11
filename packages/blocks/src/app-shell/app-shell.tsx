@@ -14,6 +14,7 @@ import {
 
 import { useControllable } from "../_internal/use-controllable";
 import { Breadcrumbs } from "../breadcrumbs";
+import { useBlocksCopy } from "../copy";
 import { Sidebar } from "../sidebar";
 import type { AppShellProps, AppShellSidebarSlotProps } from "./app-shell.types";
 
@@ -51,6 +52,7 @@ export function AppShell({
 	className,
 	contentClassName,
 }: AppShellProps) {
+	const copy = useBlocksCopy();
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 	const [collapsed, setCollapsed] = useControllable(
 		collapsedProp,
@@ -98,7 +100,7 @@ export function AppShell({
 								<Button
 									variant="ghost"
 									size="icon-sm"
-									aria-label="Abrir menu de navegação"
+									aria-label={copy.appShell.openNavigation}
 									className="md:hidden"
 								>
 									<Menu />
@@ -106,7 +108,7 @@ export function AppShell({
 							}
 						/>
 						<SheetContent side="left" className="w-72 max-w-full p-0">
-							<SheetTitle className="sr-only">Menu de navegação</SheetTitle>
+							<SheetTitle className="sr-only">{copy.appShell.navigationMenu}</SheetTitle>
 							{renderNavigation({
 								isMobile: true,
 								onNavigate: () => setMobileOpen(false),

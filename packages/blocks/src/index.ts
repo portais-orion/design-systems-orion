@@ -3,6 +3,7 @@ export * from "./breadcrumbs";
 export * from "./navigation";
 export * from "./sidebar";
 export * from "./content-card";
+export * from "./copy";
 export * from "./dashboard-page-layout";
 export * from "./detail-page-layout";
 export * from "./field-group";

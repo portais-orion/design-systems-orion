@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { CardContent, cn } from "@design-systems-orion/ui";
 
-import { BAND_BOTTOM_CLASS, BAND_TOP_CLASS } from "../_internal/page-regions";
 import { PageShell } from "../_internal/page-parts";
+import { BAND_BOTTOM_CLASS, BAND_TOP_CLASS } from "../_internal/page-regions";
 import { SurfaceCard } from "../_internal/surface-card";
 import { LoadingOverlay } from "../loading-overlay";
 

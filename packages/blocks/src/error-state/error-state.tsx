@@ -3,6 +3,8 @@ import type * as React from "react";
 
 import { cn } from "@design-systems-orion/ui";
 
+import { useBlocksCopy } from "../copy";
+
 /*
  * Origem: portal-supertrans gestao-cadastros/shared.tsx (ErrorState).
  * Generalizado: textos com default genérico, ação vira slot (era onRetry fixo).
@@ -19,12 +21,11 @@ export type ErrorStateProps = {
  * `action` para a tentativa de recuperação. Quando não houve erro e a lista
  * apenas não tem registros, use `EmptyState`.
  */
-export function ErrorState({
-	title = "Não foi possível carregar os dados",
-	description = "Ocorreu um erro de comunicação. Tente novamente em alguns instantes.",
-	action,
-	className,
-}: ErrorStateProps) {
+export function ErrorState({ title, description, action, className }: ErrorStateProps) {
+	const copy = useBlocksCopy();
+	const errorTitle = title ?? copy.states.errorTitle;
+	const errorDescription = description ?? copy.states.errorDescription;
+
 	return (
 		<div
 			className={cn(
@@ -36,9 +37,9 @@ export function ErrorState({
 				<WifiOff className="size-6 text-destructive" />
 			</div>
 			<div>
-				<p className="text-base font-semibold text-foreground">{title}</p>
-				{description && (
-					<p className="mx-auto mt-1 max-w-xs text-sm text-muted-foreground">{description}</p>
+				<p className="text-base font-semibold text-foreground">{errorTitle}</p>
+				{errorDescription && (
+					<p className="mx-auto mt-1 max-w-xs text-sm text-muted-foreground">{errorDescription}</p>
 				)}
 			</div>
 			{action && <div className="flex gap-2">{action}</div>}

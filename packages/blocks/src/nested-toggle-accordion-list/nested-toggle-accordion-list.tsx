@@ -159,8 +159,8 @@ function SectionBlock({ section }: { section: NestedToggleSection }) {
 						<span className="text-sm font-medium text-foreground">{item.label}</span>
 						<OriginBadges badges={item.originBadges} />
 						{item.locked && (
-						<Lock className={cn("ml-auto size-3.5 shrink-0", toneClass("warning", "text"))} />
-					)}
+							<Lock className={cn("ml-auto size-3.5 shrink-0", toneClass("warning", "text"))} />
+						)}
 					</label>
 				))}
 			</div>

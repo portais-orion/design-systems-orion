@@ -22,6 +22,7 @@ import {
 
 import { BAND_BOTTOM_CLASS, BAND_TOP_CLASS } from "../_internal/page-regions";
 import { SurfaceCard } from "../_internal/surface-card";
+import { useBlocksCopy } from "../copy";
 import { EmptyState } from "../empty-state";
 import { ErrorState } from "../error-state";
 import { Pagination as PaginationBlock } from "../pagination";
@@ -89,6 +90,9 @@ function DataTableRoot<TData>({
 	children,
 	className,
 }: DataTableRootProps<TData>) {
+	const copy = useBlocksCopy();
+	const actionsLabel = copy.dataTable.actionsColumn;
+
 	const columnDefs = React.useMemo<ColumnDef<TData>[]>(() => {
 		const defs: ColumnDef<TData>[] = columns.map((col, index) => {
 			const accessor =
@@ -111,14 +115,14 @@ function DataTableRoot<TData>({
 		if (actions) {
 			defs.push({
 				id: ACTIONS_COL_ID,
-				header: () => <span className="sr-only">Ações</span>,
+				header: () => <span className="sr-only">{actionsLabel}</span>,
 				cell: (ctx) => actions(ctx.row.original, ctx.row.index),
 				enableSorting: false,
 				meta: { align: "right" } as DataTableColumn<TData>,
 			});
 		}
 		return defs;
-	}, [columns, actions]);
+	}, [columns, actions, actionsLabel]);
 
 	const sortingState = React.useMemo<SortingState>(
 		() => (sorting?.sortBy ? [{ id: sorting.sortBy, desc: sorting.sortOrder === "desc" }] : []),
@@ -181,14 +185,13 @@ function DataTableError({ title, description, action }: DataTableErrorProps) {
 	return <ErrorState title={title} description={description} action={action} />;
 }
 
-function DataTableEmpty({
-	title = "Nenhum registro encontrado",
-	description,
-	action,
-}: DataTableEmptyProps) {
+function DataTableEmpty({ title, description, action }: DataTableEmptyProps) {
 	const { view } = useDataTableContext();
+	const copy = useBlocksCopy();
 	if (view !== "empty") return null;
-	return <EmptyState title={title} description={description} action={action} />;
+	return (
+		<EmptyState title={title ?? copy.dataTable.empty} description={description} action={action} />
+	);
 }
 
 function DataTablePagination(props: DataTablePaginationProps) {
@@ -203,8 +206,7 @@ function DataTableContent<TData>({
 	rowClassName,
 	getRowDisabled,
 }: DataTableContentProps<TData>) {
-	const { table, view, columns, actions, sorting, handleSortClick } =
-		useDataTableContext<TData>();
+	const { table, view, columns, actions, sorting, handleSortClick } = useDataTableContext<TData>();
 
 	if (view !== "loading" && view !== "rows") return null;
 

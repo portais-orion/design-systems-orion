@@ -4,6 +4,7 @@ import type * as React from "react";
 import { Button, cn } from "@design-systems-orion/ui";
 
 import { toneClass } from "../_internal/tone";
+import { useBlocksCopy } from "../copy";
 
 /*
  * Extraído de registrar-demanda-form: estado de bloqueio quando cadastros
@@ -32,22 +33,28 @@ export type MissingPrerequisitesStateProps = {
  * `action` — este bloco não conhece rotas.
  */
 export function MissingPrerequisitesState({
-	title = "Cadastros incompletos",
-	description = "Para continuar, é necessário que os seguintes cadastros possuam pelo menos um registro no sistema:",
+	title,
+	description,
 	items,
 	onCancel,
-	cancelLabel = "Voltar",
+	cancelLabel,
 	className,
 }: MissingPrerequisitesStateProps) {
+	const copy = useBlocksCopy();
+
 	return (
-		<div className={cn("mx-auto max-w-2xl rounded-xl p-8", toneClass("warning", "surface"), className)}>
+		<div
+			className={cn("mx-auto max-w-2xl rounded-xl p-8", toneClass("warning", "surface"), className)}
+		>
 			<div className="flex items-start gap-4">
 				<div className={cn("mt-0.5 rounded-full p-2", toneClass("warning", "solid"))}>
 					<AlertTriangle className="size-5" />
 				</div>
 				<div className="flex-1">
-					<h3 className="text-lg font-semibold">{title}</h3>
-					<p className="mt-2">{description}</p>
+					<h3 className="text-lg font-semibold">
+						{title ?? copy.states.missingPrerequisitesTitle}
+					</h3>
+					<p className="mt-2">{description ?? copy.states.missingPrerequisitesDescription}</p>
 					<ul className="mt-4 list-disc space-y-2 pl-5">
 						{items.map((item) => (
 							<li key={item.label}>
@@ -64,7 +71,7 @@ export function MissingPrerequisitesState({
 								onClick={onCancel}
 								className={toneClass("warning", "border")}
 							>
-								{cancelLabel}
+								{cancelLabel ?? copy.states.back}
 							</Button>
 						</div>
 					)}
