@@ -1,6 +1,6 @@
 {
 	"name": "@design-systems-orion/blocks",
-	"version": "0.4.1",
+	"version": "0.5.0",
 	"description": "Composições genéricas do Design System Orion (Camada 2) — dados por props, sem domínio.",
 	"sideEffects": false,
 	"exports": {
@@ -65,7 +65,9 @@
 		"./onboarding-dialog": "./src/onboarding-dialog/index.ts",
 		"./permission-gate": "./src/permission-gate/index.ts"
 	},
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"build": "node ../../scripts/run-tsup-big-heap.mjs",
 		"typecheck": "tsc --noEmit",

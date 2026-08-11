@@ -1,5 +1,14 @@
 # docs
 
+## 0.0.9
+
+### Patch Changes
+
+- Updated dependencies [eafc477]
+  - @design-systems-orion/tokens@0.3.0
+  - @design-systems-orion/blocks@0.5.0
+  - @design-systems-orion/ui@0.4.0
+
 ## 0.0.8
 
 ### Patch Changes
