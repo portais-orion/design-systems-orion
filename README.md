@@ -1,8 +1,8 @@
 # 🏗️ Design System Orion
 
-![tokens version](https://img.shields.io/badge/@design--systems--orion/tokens-0.2.0-blue?style=flat-square)
-![ui version](https://img.shields.io/badge/@design--systems--orion/ui-0.3.1-blue?style=flat-square)
-![blocks version](https://img.shields.io/badge/@design--systems--orion/blocks-0.4.1-blue?style=flat-square)
+![tokens version](https://img.shields.io/badge/@design--systems--orion/tokens-0.3.1-blue?style=flat-square)
+![ui version](https://img.shields.io/badge/@design--systems--orion/ui-0.4.1-blue?style=flat-square)
+![blocks version](https://img.shields.io/badge/@design--systems--orion/blocks-0.5.1-blue?style=flat-square)
 <!-- Badge de CI: ativar junto com o workflow (ver docs/ci/README.md) -->
 ![build status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
 <!-- ![Storybook](https://img.shields.io/badge/Storybook-deployed-ff4785?style=flat-square&logo=storybook&logoColor=white) -->
@@ -57,9 +57,9 @@ Atualmente: **Supertrans** e **Aurora**. Adicionar uma nova marca = criar `theme
 
 | Camada | Package | Versão | Descrição |
 |---|---|---|---|
-| 0 — Tokens | `@design-systems-orion/tokens` | 0.2.0 | Tokens semânticos + temas por marca (CSS puro) |
-| 1 — UI | `@design-systems-orion/ui` | 0.3.1 | primitives (Base UI + Tailwind v4 + cva) |
-| 2 — Blocks | `@design-systems-orion/blocks` | 0.4.1 | composições genéricas (DataTable, AppShell, layouts…) |
+| 0 — Tokens | `@design-systems-orion/tokens` | 0.3.1 | Tokens semânticos + temas por marca (CSS puro) |
+| 1 — UI | `@design-systems-orion/ui` | 0.4.1 | primitives (Base UI + Tailwind v4 + cva) |
+| 2 — Blocks | `@design-systems-orion/blocks` | 0.5.1 | composições genéricas (DataTable, AppShell, layouts…) |
 | Infra | `@design-systems-orion/tsconfig` | privado | TSConfigs compartilhados (`base`, `react-library`, `nextjs`) |
 | Infra | `@design-systems-orion/biome-config` | privado | Config Biome compartilhada (tab, 100 col, double quotes) |
 
@@ -276,17 +276,17 @@ pnpm add @design-systems-orion/tokens @design-systems-orion/ui @design-systems-o
 <html lang="pt-BR" data-brand="supertrans">
 ```
 
-### 3. Tailwind `@source` + `transpilePackages`
+### 3. Tailwind `@source`
+
+Os packages publicam só `dist/` (ESM pré-compilado, sem `src/` no tarball) — aponte o
+`@source` para lá:
 
 ```css
-@source "../../node_modules/@design-systems-orion/ui/src";
-@source "../../node_modules/@design-systems-orion/blocks/src";
+@source "../../node_modules/@design-systems-orion/ui/dist";
+@source "../../node_modules/@design-systems-orion/blocks/dist";
 ```
 
-```ts
-// next.config.ts
-transpilePackages: ["@design-systems-orion/ui", "@design-systems-orion/blocks"]
-```
+`transpilePackages` não é necessário: o pacote já é ESM puro, sem JSX/TS pra transformar.
 
 ### 4. Usar componentes
 

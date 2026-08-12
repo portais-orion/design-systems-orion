@@ -39,28 +39,26 @@ No root layout, marque a marca no `<html>`:
 
 ## 4. Tailwind `@source` (v4)
 
-O Tailwind precisa escanear o código dos packages para gerar as classes usadas. Caminho
-**relativo ao `globals.css`**. Para `apps/web/src/app/globals.css`:
+O Tailwind precisa escanear o código dos packages para gerar as classes usadas. Os packages
+publicam só `dist/` no npm (tarball não inclui `src/` — `"files": ["dist"]` no `package.json`),
+então aponte pro `dist`. Caminho **relativo ao `globals.css`**. Para `apps/web/src/app/globals.css`:
 
 ```css
-@source "../../node_modules/@design-systems-orion/ui/src";     /* /dist após hardening dist */
-@source "../../node_modules/@design-systems-orion/blocks/src";
+@source "../../node_modules/@design-systems-orion/ui/dist";
+@source "../../node_modules/@design-systems-orion/blocks/dist";
 ```
 
 `../../node_modules` = `apps/web/node_modules` (onde o pnpm instala). Ajuste a profundidade se o
-`globals.css` estiver noutro nível.
+`globals.css` estiver noutro nível. As classes existem como string literal dentro dos `.mjs`
+compilados (`className: cn("space-y-6 p-6", ...)`), então o scanner de conteúdo do Tailwind as
+encontra normalmente.
 
-## 5. `transpilePackages` (enquanto source-based)
+## 5. `transpilePackages`
 
-Os packages 0.1.0 são source-based → o Next precisa transpilá-los:
-
-```ts
-// next.config.ts
-transpilePackages: ["@design-systems-orion/ui", "@design-systems-orion/blocks"]
-```
-
-> Após o hardening `dist` (ESM + `.d.ts`), teste **remover** `transpilePackages` e trocar o
-> `@source` para `.../dist`. Mantenha só se o build exigir; documente a decisão.
+Não é necessário. Os packages publicam ESM pré-compilado (`dist/*.mjs` + `.d.mts`), sem JSX/TS
+pra transformar — o Next importa como qualquer dependência ESM comum. Só adicione
+`transpilePackages` se o build reclamar de algo específico do seu setup; nesse caso, documente o
+motivo.
 
 ## 6. Importar componentes
 
