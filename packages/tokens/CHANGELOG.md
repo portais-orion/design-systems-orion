@@ -1,5 +1,11 @@
 # @portais-orion/tokens
 
+## 0.3.1
+
+### Patch Changes
+
+- Adiciona `README.md` e os campos `repository`/`homepage` do `package.json` — os três pacotes estavam publicados no npm sem nenhum dos dois, então a página do pacote em npmjs.com não mostrava descrição nem link pro repositório. Sem mudança de comportamento.
+
 ## 0.3.0
 
 ### Minor Changes

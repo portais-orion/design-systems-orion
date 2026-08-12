@@ -1,5 +1,13 @@
 # @portais-orion/blocks
 
+## 0.5.1
+
+### Patch Changes
+
+- Adiciona `README.md` e os campos `repository`/`homepage` do `package.json` — os três pacotes estavam publicados no npm sem nenhum dos dois, então a página do pacote em npmjs.com não mostrava descrição nem link pro repositório. Sem mudança de comportamento.
+- Updated dependencies
+  - @design-systems-orion/ui@0.4.1
+
 ## 0.5.0
 
 ### Minor Changes
