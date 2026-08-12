@@ -1,13 +1,15 @@
 {
 	"name": "@design-systems-orion/tokens",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Tokens semânticos e temas por marca do Design System Orion",
-	"sideEffects": [
-		"*.css"
-	],
-	"files": [
-		"dist"
-	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/portais-orion/design-systems-orion.git",
+		"directory": "packages/tokens"
+	},
+	"homepage": "https://github.com/portais-orion/design-systems-orion#readme",
+	"sideEffects": ["*.css"],
+	"files": ["dist"],
 	"scripts": {
 		"build": "node ../../scripts/brand-catalog.mjs --check && node scripts/build-tokens.mjs",
 		"prepack": "node ../../scripts/brand-catalog.mjs --check && node scripts/build-tokens.mjs"

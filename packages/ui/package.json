@@ -1,7 +1,13 @@
 {
 	"name": "@design-systems-orion/ui",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"description": "Primitives compartilhadas do Design System Orion (Base UI + Tailwind v4 + cva)",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/portais-orion/design-systems-orion.git",
+		"directory": "packages/ui"
+	},
+	"homepage": "https://github.com/portais-orion/design-systems-orion#readme",
 	"sideEffects": false,
 	"exports": {
 		".": "./src/index.ts",
@@ -34,9 +40,7 @@
 		"./combobox": "./src/combobox/index.ts",
 		"./multi-select": "./src/multi-select/index.ts"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"scripts": {
 		"build": "tsup",
 		"typecheck": "tsc --noEmit",

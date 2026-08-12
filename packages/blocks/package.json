@@ -1,7 +1,13 @@
 {
 	"name": "@design-systems-orion/blocks",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"description": "Composições genéricas do Design System Orion (Camada 2) — dados por props, sem domínio.",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/portais-orion/design-systems-orion.git",
+		"directory": "packages/blocks"
+	},
+	"homepage": "https://github.com/portais-orion/design-systems-orion#readme",
 	"sideEffects": false,
 	"exports": {
 		".": "./src/index.ts",
@@ -65,9 +71,7 @@
 		"./onboarding-dialog": "./src/onboarding-dialog/index.ts",
 		"./permission-gate": "./src/permission-gate/index.ts"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"scripts": {
 		"build": "node ../../scripts/run-tsup-big-heap.mjs",
 		"typecheck": "tsc --noEmit",
