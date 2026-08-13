@@ -166,7 +166,7 @@ Run: `pnpm check`, `pnpm typecheck`, `pnpm build`, `git diff --check`.
 Se `pnpm check` falhar somente por `.agents/mcp_config.json`, registrar como arquivo externo e
 executar verificações específicas dos arquivos da mudança.
 
-- [ ] **Step 4: Commit e push**
+- [x] **Step 4: Commit e push**
 
 ```bash
 git add .github/workflows/deploy-docs-pages.yml apps/docs/README.md docs/superpowers/plans/2026-08-13-github-pages-docs.md
@@ -174,7 +174,7 @@ git commit -m "ci: deploy docs to GitHub Pages"
 git push origin main
 ```
 
-- [ ] **Step 5: Habilitar e acompanhar Pages**
+- [x] **Step 5: Habilitar e acompanhar Pages**
 
 Consultar `gh api repos/portais-orion/design-systems-orion/pages`. Se ausente, criar com
 `POST` e `{"build_type":"workflow"}`; se existente, atualizar para `workflow`. Acompanhar
