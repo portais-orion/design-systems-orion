@@ -34,13 +34,13 @@
 - Consumes: manual local `docs/adoption/consumer-setup.md` quando estiver no repositório Orion.
 - Produces: duas pastas autocontidas, válidas para cópia em `$CODEX_HOME/skills/<nome>`.
 
-- [ ] **Step 1: Executar RED com cópias isoladas atuais**
+- [x] **Step 1: Executar RED com cópias isoladas atuais**
 
 Copiar cada pasta `ai/skills/<nome>` para diretório temporário e pedir a um agente sem contexto do
 monorepo para localizar todas as referências obrigatórias. Registrar falha esperada: links
 `../../../docs/...`, `ai/workflows/...` ou ADRs locais não resolvem dentro de `$CODEX_HOME/skills`.
 
-- [ ] **Step 2: Implementar resolução local/GitHub**
+- [x] **Step 2: Implementar resolução local/GitHub**
 
 Em ambas as skills, definir manual assim:
 
@@ -53,12 +53,12 @@ Remover dependências obrigatórias de ADRs, workflows ou outras skills por path
 o contrato operacional necessário dentro do `SKILL.md`. Não mudar frontmatter salvo necessidade
 demonstrada pelo teste.
 
-- [ ] **Step 3: Sincronizar stubs somente se frontmatter mudar**
+- [x] **Step 3: Sincronizar stubs somente se frontmatter mudar**
 
 Comparar `name` e `description` das fontes com `.agents` e `.claude`. Se idênticos, não tocar stubs.
 Se mudarem, copiar somente frontmatter e preservar corpo como ponteiro.
 
-- [ ] **Step 4: Executar GREEN isolado e validators**
+- [x] **Step 4: Executar GREEN isolado e validators**
 
 Copiar skills atualizadas para uma pasta temporária que não contenha `docs/`, `ai/` ou ADRs.
 Confirmar que links obrigatórios são URLs HTTPS ou arquivos presentes dentro da pasta. Executar:
@@ -71,7 +71,7 @@ python C:\Users\marce\.codex\skills\.system\skill-creator\scripts\quick_validate
 
 Expected: `Skill is valid!` duas vezes.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add ai/skills/new-portal/SKILL.md ai/skills/portais-orion-adoption/SKILL.md
@@ -94,7 +94,7 @@ git commit -m "docs(skill): make Orion skills standalone"
 - Consumes: paths GitHub estáveis produzidos pela Task 1.
 - Produces: instruções humanas e CLI; READMEs incluídos nos tarballs npm.
 
-- [ ] **Step 1: Executar RED de documentação**
+- [x] **Step 1: Executar RED de documentação**
 
 Run:
 
@@ -104,7 +104,7 @@ rg -n "install-skill-from-github|Skills para Codex|não.*npm install|reinicie o 
 
 Expected: ausência de instalação GitHub completa e explicação npm versus skill.
 
-- [ ] **Step 2: Destacar links no README raiz**
+- [x] **Step 2: Destacar links no README raiz**
 
 Adicionar próximo ao início link visível para `docs/adoption/consumer-setup.md`. Criar seção
 `## Skills para Codex` contendo:
@@ -131,13 +131,13 @@ python $installer --repo portais-orion/design-systems-orion --path ai/skills/new
 
 Incluir URLs individuais GitHub e exemplos de prompts que acionam cada skill.
 
-- [ ] **Step 3: Explicar separação runtime/skills no manual**
+- [x] **Step 3: Explicar separação runtime/skills no manual**
 
 Adicionar seção curta no manual: npm instala `tokens`, `ui`, `blocks`; skill-installer copia
 skills para Codex; nenhum `postinstall`; reinício necessário. Apontar para seção `Skills para
 Codex` no README GitHub.
 
-- [ ] **Step 4: Atualizar READMEs dos packages**
+- [x] **Step 4: Atualizar READMEs dos packages**
 
 Em cada `packages/{tokens,ui,blocks}/README.md`, manter link atual do manual e adicionar:
 
@@ -145,7 +145,7 @@ Em cada `packages/{tokens,ui,blocks}/README.md`, manter link atual do manual e a
 Skills opcionais para criar/migrar projetos: [instalação via GitHub](https://github.com/portais-orion/design-systems-orion#skills-para-codex).
 ```
 
-- [ ] **Step 5: Criar changeset patch**
+- [x] **Step 5: Criar changeset patch**
 
 Criar `.changeset/bright-orions-share.md`:
 
@@ -159,7 +159,7 @@ Criar `.changeset/bright-orions-share.md`:
 Documenta instalação das skills Orion pelo GitHub nas páginas dos packages no npm.
 ```
 
-- [ ] **Step 6: Validar cobertura e links**
+- [x] **Step 6: Validar cobertura e links**
 
 Run:
 
@@ -170,7 +170,7 @@ git diff --check
 
 Expected: todos os cinco destinos documentados; nenhum erro de whitespace.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add README.md docs/adoption/consumer-setup.md packages/tokens/README.md packages/ui/README.md packages/blocks/README.md .changeset
@@ -193,7 +193,7 @@ git commit -m "docs: document GitHub skill installation"
 - Consumes: skills standalone e documentação das Tasks 1–2.
 - Produces: evidência de instalação, tarballs válidos e gates verdes.
 
-- [ ] **Step 1: Testar instalador oficial contra GitHub**
+- [x] **Step 1: Testar instalador oficial contra GitHub**
 
 Criar destino temporário vazio em `$env:TEMP/orion-github-skill-install/skills` e executar
 `install-skill-from-github.py` com:
@@ -208,7 +208,7 @@ Confirmar as duas pastas e `SKILL.md`. Se o commit atual ainda não estiver no r
 esse teste valida acesso/path do GitHub, enquanto o teste isolado da Task 1 valida conteúdo local
 que ficará disponível após push.
 
-- [ ] **Step 2: Validar tarballs npm**
+- [x] **Step 2: Validar tarballs npm**
 
 Run:
 
@@ -219,7 +219,7 @@ pnpm pack:all
 Expected: tarballs de tokens/ui/blocks aprovados; READMEs incluídos; nenhuma skill ou arquivo `ai/`
 incluído.
 
-- [ ] **Step 3: Rodar gates obrigatórios**
+- [x] **Step 3: Rodar gates obrigatórios**
 
 Run:
 
@@ -231,7 +231,7 @@ pnpm build
 
 Expected: três exit codes 0.
 
-- [ ] **Step 4: Revisar estado final**
+- [x] **Step 4: Revisar estado final**
 
 Run:
 
@@ -242,7 +242,7 @@ git status --short
 
 Expected: somente este plano não rastreado antes do commit; nenhum artefato temporário rastreável.
 
-- [ ] **Step 5: Commit do plano**
+- [x] **Step 5: Commit do plano**
 
 ```bash
 git add docs/superpowers/plans/2026-08-13-github-skill-distribution.md

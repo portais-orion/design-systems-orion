@@ -10,7 +10,7 @@ leia-o. Fora do monorepo Orion, abra o [manual canônico no GitHub](https://gith
 Os packages npm são somente runtime: `npm install` não instala esta skill. Instale-a separadamente
 pelo GitHub/skill-installer e reinicie o Codex após instalar ou copiar a skill; ela não se instala
 sozinha.
-Ele define packages, peers, instalação, CSS, temas e exports públicos.
+O manual define packages, peers, instalação, CSS, temas e exports públicos.
 
 ## Escopo
 

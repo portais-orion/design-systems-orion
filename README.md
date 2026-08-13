@@ -312,7 +312,16 @@ portais-orion/design-systems-orion, nos paths ai/skills/new-portal e
 ai/skills/portais-orion-adoption.
 ```
 
-Ou execute no PowerShell:
+Ou execute no Bash:
+
+```bash
+CODEX_HOME="${CODEX_HOME:-"$HOME/.codex"}"
+python3 "$CODEX_HOME/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
+  --repo portais-orion/design-systems-orion \
+  --path ai/skills/new-portal ai/skills/portais-orion-adoption
+```
+
+Ou no PowerShell:
 
 ```powershell
 $codexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME ".codex" }
