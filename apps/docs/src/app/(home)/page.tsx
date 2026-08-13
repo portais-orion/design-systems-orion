@@ -24,7 +24,7 @@ const highlights = [
 
 export default function HomePage() {
   return (
-    <main className="relative flex flex-1 flex-col overflow-hidden">
+    <main className="relative flex min-h-0 flex-1 flex-col overflow-y-auto md:overflow-hidden">
       <div className="absolute inset-0 -z-10 h-full w-full bg-background">
         {/* Grade sutil; a cor vem do token de borda para acompanhar tema e modo. */}
         <div
@@ -39,13 +39,13 @@ export default function HomePage() {
         <div className="pointer-events-none absolute top-0 left-1/2 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-brand-primary/20 blur-[120px]" />
       </div>
 
-      <div className="container relative z-10 mx-auto flex flex-1 flex-col items-center justify-center px-4 pt-32 pb-20 text-center">
-        <div className="mb-8 inline-flex items-center rounded-full border border-border bg-muted/50 px-3 py-1 text-sm font-medium backdrop-blur-md">
+      <div className="container relative z-10 mx-auto flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-6 text-center md:py-8">
+        <div className="mb-4 inline-flex items-center rounded-full border border-border bg-muted/50 px-3 py-1 text-sm font-medium backdrop-blur-md">
           <span className="mr-2 flex size-2 rounded-full bg-brand-accent" />
           Design System Orion
         </div>
 
-        <h1 className="mb-6 text-5xl font-extrabold tracking-tighter md:text-7xl">
+        <h1 className="mb-4 text-5xl font-extrabold tracking-tighter md:text-7xl">
           Construa rápido.
           <br />
           <span className="bg-gradient-to-br from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-transparent">
@@ -53,7 +53,7 @@ export default function HomePage() {
           </span>
         </h1>
 
-        <p className="mb-12 max-w-[700px] text-lg leading-relaxed text-muted-foreground md:text-xl">
+        <p className="mb-8 max-w-[700px] text-lg leading-relaxed text-muted-foreground md:text-xl">
           Componentes acessíveis e multi-marca para os portais do ecossistema Orion. Uma base de
           código, qualquer marca.
         </p>
@@ -73,7 +73,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="mt-24 grid w-full max-w-5xl grid-cols-1 gap-6 text-left md:grid-cols-3">
+        <div className="mt-12 grid w-full max-w-5xl grid-cols-1 gap-6 text-left md:grid-cols-3">
           {highlights.map(({ icon: Icon, title, description }) => (
             <div
               key={title}
