@@ -1,24 +1,24 @@
 ---
 name: portais-orion-adoption
-description: Use esta skill quando precisar migrar uma tela de portal interno para consumir o Orion @design-systems-orion (tokens/ui/blocks), preservando regras de negócio, APIs, permissões, layout e gates de validação. Não use para redesign, CRUD complexo sem build real, ou migração em massa.
+description: Use esta skill para migrar gradualmente uma tela de aplicação React existente (Next.js ou Vite) de shadcn/Radix, MUI, Chakra ou biblioteca interna para o Orion @design-systems-orion, preservando contratos de negócio, APIs, permissões e layout.
 ---
 
 # Portais Orion Adoption Skill
 
-Guia operacional para migrar, com segurança, uma tela de um portal interno para consumir o
-Orion `@design-systems-orion`. Baseada nas migrações reais do `portal-supertrans` (Sprints 7–9).
+Guia operacional para migrar, com segurança, uma fatia vertical de uma aplicação React existente
+para o Orion `@design-systems-orion`. O [manual canônico de adoção](../../../docs/adoption/consumer-setup.md)
+define instalação, compatibilidade, CSS, temas e exports públicos; siga-o em vez de duplicar esse contrato.
 
 ## 1. Quando usar
 
-- O portal já consome (ou vai consumir) `@design-systems-orion/tokens`, `@design-systems-orion/ui`,
-  `@design-systems-orion/blocks` via `node_modules` (npm público, sem token), e você vai migrar **uma**
-  tela para os componentes do Orion.
+- A aplicação React existente usa Next.js ou Vite e você migrará **uma** tela ou fluxo pequeno.
+- A tela usa shadcn/Radix, MUI, Chakra ou uma biblioteca interna que será substituída gradualmente.
 
 ## 2. Quando NÃO usar
 
 - Redesign de UX; CRUD complexo (mutations/diálogos) sem build real para validar; fluxo
   destrutivo ou financeiro; migração de várias telas de uma vez; mexer em auth/permissões/
-  backend junto com a UI. Aurora é futuro e depende de preparo próprio (Turborepo) — não é alvo.
+  backend junto com a UI.
 
 ## 3. Regra de ouro
 
@@ -27,40 +27,27 @@ API, permissões, rotas, dados, validações e ações. Troque só a estrutura v
 
 ## 4. Ordem obrigatória
 
-1. Baseline (`typecheck`/`build`/`dev` verdes; tela alvo funcional).
-2. Auditar scopes (só `@design-systems-orion` ativo).
-3. Confirmar tokens + `@source` do Tailwind.
-4. Escolher tela de baixo risco (listagem).
-5. Migrar componentes visuais via adaptadores locais.
-6. Validar estados (loading/empty/error/busca).
-7. Rodar `typecheck`/`build`/`dev`.
-8. Documentar gaps do Orion (backlog).
+1. Pré-checar stack, package manager, React/React DOM e Tailwind contra o manual canônico.
+2. Fazer baseline de `typecheck`, testes e `build`, e capturar a tela alvo no navegador.
+3. Inventariar imports da biblioteca anterior e classificá-los em primitive, block ou domínio.
+4. Criar a matriz comportamento atual → subpath Orion → adaptação local necessária.
+5. Configurar Orion pelo manual e criar adaptadores neutros em `components/orion/*`.
+6. Migrar uma fatia vertical de baixo risco e validar estados/acessibilidade.
+7. Manter coexistência; buscar consumidores restantes antes de desinstalar a biblioteca anterior.
+8. Fazer rollback revertendo a fatia, sem alterar contratos de negócio.
 
 ## 5. Pré-checagem do projeto consumidor
 
-```bash
-grep -R "@grupo/\|@mateusarcestr\|@supertrans-transportes" apps/web -n   # deve dar vazio
-grep -R "@design-systems-orion" apps/web -n                                      # deps + globals + adaptadores
-```
-
-Confirmar: `apps/web/package.json` tem `@design-systems-orion/{tokens,ui,blocks}`; `next.config.ts` tem
-`transpilePackages` (enquanto os packages forem source-based); `tsconfig.json` **sem** aliases do
-Orion; **sem** caminho local para `nucleo-portais`.
+Confirme se o portal usa Next.js ou Vite, qual package manager já está em uso, as versões de
+React/React DOM e a configuração de Tailwind. Siga o manual canônico para peers, instalação e
+CSS. Não recrie o projeto nem introduza aliases locais para o repositório Orion.
 
 ## 6. Validar tokens + `@source` do Tailwind
 
-`apps/web/src/app/globals.css` deve ter:
-
-```css
-@import "@design-systems-orion/tokens/base.css";
-@import "@design-systems-orion/tokens/themes/supertrans.css";
-@source "../../node_modules/@design-systems-orion/ui/src";     /* ou /dist após hardening */
-@source "../../node_modules/@design-systems-orion/blocks/src";
-```
-
-O `@source` é **relativo ao globals.css**. De `apps/web/src/app/`, `../../node_modules` =
-`apps/web/node_modules` (correto). `../node_modules` aponta para `src/node_modules` (**errado**).
-E `data-brand="supertrans"` deve estar no `<html>` (ativa o tema da marca).
+No CSS global, importe Tailwind, tokens e o tema conforme o manual. Cada `@source` é relativo ao
+arquivo CSS e deve apontar para `ui/dist` e `blocks/dist`; alinhe `data-brand` ao tema selecionado.
+Em Vite, confirme o plugin `@tailwindcss/vite`. Para Next.js, acrescente configuração extra somente
+se houver um erro concreto que a justifique.
 
 ## 7. Escolher uma tela segura
 
@@ -69,6 +56,12 @@ mudança de API, fácil de validar. Bom modelo real: `/configurador/permissions`
 Evitar telas grandes/CRUD (ex.: `configurador/modules` = 823 linhas com mutations → **não**).
 
 ## 8. Mapear componentes locais → Orion
+
+Antes de editar, faça inventário de todos os imports de shadcn/Radix, MUI, Chakra ou biblioteca
+interna usados pela tela e classifique-os em primitives, blocks e domínio. Preserve hooks, queries,
+permissões, formatters específicos e ações como código do portal. A tabela é a matriz mínima de
+comportamento atual → subpath Orion → adaptação necessária; compare estados, eventos e
+acessibilidade, não só nomes ou aparência.
 
 | Padrão local | Preferir Orion (`@design-systems-orion/...`) |
 |---|---|
@@ -87,16 +80,25 @@ Evitar telas grandes/CRUD (ex.: `configurador/modules` = 823 linhas com mutation
 
 ## 9. Usar os adaptadores locais (não importar `@design-systems-orion` direto na tela)
 
-Importe SEMPRE dos barrels de adaptação, nunca de `@design-systems-orion/*` direto:
+Crie adaptadores neutros em `components/orion/*` e importe-os nas telas:
 
 ```tsx
-import { Badge, Button, Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/grupo-ui";
-import { PageHeader, SearchBar, DataTable, CodeBadge, EmptyState, type DataTableColumn }
-  from "@/components/grupo-blocks";
+// components/orion/ui.ts
+export { Badge } from "@design-systems-orion/ui/badge";
+export { Button } from "@design-systems-orion/ui/button";
+export { Tabs, TabsList, TabsTrigger, TabsContent } from "@design-systems-orion/ui/tabs";
+
+// components/orion/blocks.ts
+export { PageHeader } from "@design-systems-orion/blocks/page-header";
+export { SearchBar } from "@design-systems-orion/blocks/search-bar";
+export { DataTable } from "@design-systems-orion/blocks/data-table";
+export { CodeBadge } from "@design-systems-orion/blocks/code-badge";
+export { EmptyState } from "@design-systems-orion/blocks/empty-state";
 ```
 
-Se um componente ainda não estiver no barrel, adicione o re-export lá (subpath público apenas).
-Ver `portal-supertrans/docs/nucleo-adapters.md`.
+Use subpaths públicos reais nos adaptadores. Eles podem normalizar detalhes pequenos de API ou
+expor aliases temporários, mas não devem copiar código Orion, esconder lógica de negócio ou
+substituir integrações do portal.
 
 ## 10. Preservar hooks, APIs, permissões
 
@@ -134,9 +136,8 @@ rota escondida (fora do menu). Contrato:
 
 ```tsx
 import Link from "next/link";
-import { AppShell } from "@design-systems-orion/blocks/app-shell";
-import type { CanAccessNavigationItem, NavigationItem, RenderLink }
-  from "@design-systems-orion/blocks/navigation";
+import { AppShell, type CanAccessNavigationItem, type NavigationItem, type RenderLink }
+  from "@/components/orion/navigation";
 
 const renderLink: RenderLink = ({ href, children, className, onClick, ...p }) => (
   <Link href={href} className={className} onClick={onClick} {...p}>{children}</Link>
@@ -151,10 +152,13 @@ const canAccessItem: CanAccessNavigationItem = (item) => {
 Referência real: `portal-supertrans/apps/web/src/app/(admin)/configurador/app-shell-canary/page.tsx`,
 `docs/app-shell-permissions-map.md`. O Orion **nunca** importa Next nem conhece permissões.
 
-## 13. Evitar migração em massa
+## 13. Coexistência, remoção e rollback
 
-Uma tela por vez. Não troque todos os `components/ui` locais. Não remova o shadcn local. Não
-abra escopo além da tela escolhida.
+Uma tela por vez. Não remova shadcn/Radix, MUI, Chakra ou biblioteca interna durante a primeira
+fatia: as bibliotecas podem coexistir enquanto houver consumidores. Antes de desinstalar, busque
+todos os imports e usos restantes — inclusive em adaptadores, stories e testes — e só remova a
+dependência quando a busca estiver vazia e os gates passarem. Se a validação falhar, reverta apenas
+os commits da fatia migrada; não altere contratos de negócio para contornar incompatibilidades de UI.
 
 ## 14. Gates obrigatórios (antes de considerar pronto)
 
@@ -164,8 +168,8 @@ pnpm --filter <web> build           # passa
 pnpm --filter <web> dev             # sobe; validar a tela no navegador
 ```
 
-Critério: build/dev verdes; estados (loading/empty/error/busca) corretos; `@design-systems-orion` único
-scope ativo; nenhum caminho local para `nucleo-portais`.
+Critério: estados (loading/empty/error/busca) corretos, foco e teclado acessíveis, e baseline
+recuperado sem erros novos. Compare também a captura visual de referência com a tela migrada.
 
 ## 15. Proibições
 
@@ -175,13 +179,18 @@ efeitos colaterais; múltiplas telas de uma vez; permissões/auth/backend junto 
 ## 16. Checklist final
 
 - [ ] baseline verde antes de começar
-- [ ] só `@design-systems-orion` ativo; `@source` correto; `data-brand` no `<html>`
+- [ ] stack, package manager, React e Tailwind conferidos contra o manual canônico
+- [ ] baseline de typecheck/testes/build e captura visual registrados
+- [ ] imports anteriores inventariados e classificados em primitive, block ou domínio
+- [ ] matriz comportamento atual → subpath Orion → adaptação necessária preenchida
+- [ ] `@source` para `dist` correto; `data-brand` no `<html>`
 - [ ] tela de baixo risco (listagem) escolhida
-- [ ] imports via adaptadores `@/components/grupo-{ui,blocks}`
+- [ ] imports via adaptadores neutros em `components/orion/*`
 - [ ] hooks/API/permissões/rotas preservados
 - [ ] estados loading/empty/error/busca revisados
 - [ ] `typecheck`/`build`/`dev` verdes; tela validada no navegador
-- [ ] gaps de API do Orion registrados como backlog (não alterar o package por preferência visual)
+- [ ] coexistência mantida; consumidores restantes buscados antes de desinstalar a biblioteca anterior
+- [ ] rollback possível pela reversão da fatia; gaps de API registrados como backlog
 
 ## 17. Referências reais (Supertrans, primeiro consumidor)
 
