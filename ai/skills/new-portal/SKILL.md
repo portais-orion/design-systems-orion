@@ -7,6 +7,9 @@ description: Use quando for criar um projeto React NOVO que consome o Orion @des
 
 Se `docs/adoption/consumer-setup.md` existir no repositório atual, leia-o. Fora do monorepo Orion,
 abra o [manual canônico no GitHub](https://github.com/portais-orion/design-systems-orion/blob/main/docs/adoption/consumer-setup.md).
+Os packages npm são somente runtime: `npm install` não instala esta skill. Instale-a separadamente
+pelo GitHub/skill-installer e reinicie o Codex após instalar ou copiar a skill; ela não se instala
+sozinha.
 Esta skill define a ordem e o que validar. O portal vive em repo separado; nunca criar produto
 dentro do nucleo-portais.
 
@@ -37,7 +40,6 @@ dentro do nucleo-portais.
 
 - Domínio (rotas, APIs, permissões, entidades) é Camada 3 — vive só no portal.
 - Gap genérico de API do Orion → backlog/issue em `portais-orion/design-systems-orion`; nunca
-  fork/patch local do package. Necessidade de domínio permanece no consumidor. Para propor um
-  componente genérico novo, siga as instruções de contribuição do repositório Orion.
+  fork/patch local do package. Necessidade de domínio permanece no consumidor.
 - Telas novas: antes de escrever markup próprio, procure blocks compatíveis (`page-header`,
   `data-table`, `list-page-layout`, `empty-state`...) nos exports públicos do Orion.
