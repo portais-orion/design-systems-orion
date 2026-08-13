@@ -7,7 +7,12 @@ export function normalizeBasePath(value?: string) {
 
 export function withBasePathValue(pathname: string, value: string) {
   const normalized = normalizeBasePath(value);
-  if (!normalized || !pathname.startsWith("/") || pathname.startsWith(`${normalized}/`) || pathname === normalized) {
+  if (
+    !normalized ||
+    !pathname.startsWith("/") ||
+    pathname.startsWith(`${normalized}/`) ||
+    pathname === normalized
+  ) {
     return pathname;
   }
 
