@@ -9,13 +9,15 @@ os packages.
 
 O Orion requer React 19 e Tailwind CSS v4. Os packages são:
 
-- `@design-systems-orion/tokens`: tokens semânticos e temas CSS.
-- `@design-systems-orion/ui`: primitives compartilhadas.
-- `@design-systems-orion/blocks`: composições genéricas construídas sobre `ui`.
+- `@design-systems-orion/tokens`: sempre instale; fornece tokens semânticos e temas CSS.
+- `@design-systems-orion/ui`: instale quando usar primitives como `Button`, `Badge` ou `Tabs`.
+- `@design-systems-orion/blocks`: instale quando precisar de composições como `PageHeader` ou
+  `DataTable`. Ele traz `ui` como dependency, mas o consumidor ainda precisa satisfazer todos os
+  peers de `ui` e `blocks`.
 
-Os peers publicados são os seguintes. Gerenciadores modernos podem instalá-los
-automaticamente, mas as versões no portal precisam respeitar os ranges
-publicados.
+Os peers publicados são os seguintes. Mesmo quando o gerenciador os instala automaticamente,
+confirme que **todos os peers dos packages instalados** existem no consumidor e respeitam os
+ranges publicados.
 
 | Package | Peer dependencies |
 | --- | --- |
@@ -28,36 +30,71 @@ publicados.
 
 ## 2. Instalação pelo npm (npm, pnpm e Yarn)
 
-Escolha o gerenciador já usado pelo portal:
+Escolha o menor conjunto que atende ao portal. O caminho completo abaixo instala os três packages
+e a união de todos os peers. Em projeto novo, `create-next-app` e Vite já fornecem React e React
+DOM; se as versões instaladas satisfizerem `^19.0.0`, mantenha-as. Caso contrário, alinhe também
+`react@^19.0.0` e `react-dom@^19.0.0` com o comando correspondente.
+
+### Instalação completa
 
 ```bash
-npm install @design-systems-orion/tokens @design-systems-orion/ui @design-systems-orion/blocks
+npm install @design-systems-orion/tokens @design-systems-orion/ui @design-systems-orion/blocks @base-ui/react@^1.5.0 @tanstack/react-table@^8.20.0 class-variance-authority@^0.7.1 lucide-react@^1.16.0 react@^19.0.0 react-dom@^19.0.0 tailwind-merge@^3.6.0
 ```
 
 ```bash
-pnpm add @design-systems-orion/tokens @design-systems-orion/ui @design-systems-orion/blocks
+pnpm add @design-systems-orion/tokens @design-systems-orion/ui @design-systems-orion/blocks @base-ui/react@^1.5.0 @tanstack/react-table@^8.20.0 class-variance-authority@^0.7.1 lucide-react@^1.16.0 react@^19.0.0 react-dom@^19.0.0 tailwind-merge@^3.6.0
 ```
 
 ```bash
-yarn add @design-systems-orion/tokens @design-systems-orion/ui @design-systems-orion/blocks
+yarn add @design-systems-orion/tokens @design-systems-orion/ui @design-systems-orion/blocks @base-ui/react@^1.5.0 @tanstack/react-table@^8.20.0 class-variance-authority@^0.7.1 lucide-react@^1.16.0 react@^19.0.0 react-dom@^19.0.0 tailwind-merge@^3.6.0
 ```
 
-Se o gerenciador não resolver os peers automaticamente, instale os que forem
-usados pelo portal respeitando os ranges da seção anterior.
+### Instalação seletiva
+
+Somente tokens não têm peers:
+
+```bash
+npm install @design-systems-orion/tokens
+pnpm add @design-systems-orion/tokens
+yarn add @design-systems-orion/tokens
+```
+
+Para tokens + primitives, instale `ui` e **todos** os peers de `ui`:
+
+```bash
+npm install @design-systems-orion/tokens @design-systems-orion/ui @base-ui/react@^1.5.0 class-variance-authority@^0.7.1 lucide-react@^1.16.0 react@^19.0.0 react-dom@^19.0.0 tailwind-merge@^3.6.0
+pnpm add @design-systems-orion/tokens @design-systems-orion/ui @base-ui/react@^1.5.0 class-variance-authority@^0.7.1 lucide-react@^1.16.0 react@^19.0.0 react-dom@^19.0.0 tailwind-merge@^3.6.0
+yarn add @design-systems-orion/tokens @design-systems-orion/ui @base-ui/react@^1.5.0 class-variance-authority@^0.7.1 lucide-react@^1.16.0 react@^19.0.0 react-dom@^19.0.0 tailwind-merge@^3.6.0
+```
+
+Para tokens + composições, `blocks` traz `ui` como dependency; instale a união dos peers dos dois:
+
+```bash
+npm install @design-systems-orion/tokens @design-systems-orion/blocks @base-ui/react@^1.5.0 @tanstack/react-table@^8.20.0 class-variance-authority@^0.7.1 lucide-react@^1.16.0 react@^19.0.0 react-dom@^19.0.0 tailwind-merge@^3.6.0
+pnpm add @design-systems-orion/tokens @design-systems-orion/blocks @base-ui/react@^1.5.0 @tanstack/react-table@^8.20.0 class-variance-authority@^0.7.1 lucide-react@^1.16.0 react@^19.0.0 react-dom@^19.0.0 tailwind-merge@^3.6.0
+yarn add @design-systems-orion/tokens @design-systems-orion/blocks @base-ui/react@^1.5.0 @tanstack/react-table@^8.20.0 class-variance-authority@^0.7.1 lucide-react@^1.16.0 react@^19.0.0 react-dom@^19.0.0 tailwind-merge@^3.6.0
+```
+
+Se o portal também importar primitives diretamente, prefira declarar `ui` como dependency direta,
+usando a instalação completa. Não remova peers do comando com base apenas nos componentes usados:
+o contrato é por package instalado.
 
 ## 3. Projeto novo com Next.js
 
 Crie o app com TypeScript, Tailwind e App Router:
 
 ```bash
-npx create-next-app@latest meu-portal --typescript --tailwind --eslint --app
+npx create-next-app@latest meu-portal --typescript --tailwind --eslint --app --src-dir --use-npm
 cd meu-portal
-npm install @design-systems-orion/tokens @design-systems-orion/ui @design-systems-orion/blocks
 ```
 
-Em `apps/web/src/app/globals.css`, use os imports e sources abaixo. O caminho
-dos `@source` é relativo a esse arquivo; neste layout, `../../` alcança
-`apps/web/node_modules`.
+Use `--use-pnpm` ou `--use-yarn` no lugar de `--use-npm` quando esse for o gerenciador escolhido.
+O `--src-dir` torna o layout determinístico: o CSS global fica em `src/app/globals.css`. Depois do
+scaffold, execute uma das receitas da seção 2; o exemplo de primeiro componente usa a instalação
+completa.
+
+Em `src/app/globals.css`, use os imports e sources abaixo. Partindo desse arquivo, `../../` alcança
+o `node_modules` na raiz de `meu-portal`.
 
 ```css
 @import "tailwindcss";
@@ -66,6 +103,10 @@ dos `@source` é relativo a esse arquivo; neste layout, `../../` alcança
 @source "../../node_modules/@design-systems-orion/ui/dist";
 @source "../../node_modules/@design-systems-orion/blocks/dist";
 ```
+
+Se estiver configurando um projeto existente sem `src/`, com CSS em `app/globals.css`, use
+`../node_modules/...` nos `@source`. Omita o `@source` de um package que não foi instalado;
+`tokens` não precisa de `@source`.
 
 No layout raiz, aplique a marca que representa o portal:
 
@@ -89,8 +130,10 @@ npm create vite@latest meu-portal -- --template react-ts
 cd meu-portal
 npm install
 npm install tailwindcss @tailwindcss/vite
-npm install @design-systems-orion/tokens @design-systems-orion/ui @design-systems-orion/blocks
 ```
+
+Depois, execute uma das receitas da seção 2 com npm. Para pnpm ou Yarn, use o comando de scaffold
+equivalente do próprio Vite e a receita correspondente da seção 2.
 
 Configure o plugin do Tailwind em `vite.config.ts`:
 
@@ -122,9 +165,10 @@ import do tema.
 ## 5. Projeto existente
 
 Não recrie o projeto. Primeiro confirme React 19, Tailwind v4 e o gerenciador
-de pacotes já adotado. Instale os três packages, importe os tokens no CSS global
-existente e acrescente os dois `@source` apontando apenas para `dist`, com a
-profundidade relativa ao arquivo CSS real. Aplique `data-brand` no `<html>`
+de pacotes já adotado. Escolha packages e instale todos os peers correspondentes pela seção 2,
+importe os tokens no CSS global existente e acrescente somente os `@source` dos packages com
+componentes instalados, apontando para `dist` e com profundidade relativa ao arquivo CSS real.
+Aplique `data-brand` no `<html>`
 mantendo layout, rotas, autenticação, hooks e integrações do portal intactos.
 
 Para Next.js, `transpilePackages` continua desnecessário por padrão. Para Vite,
@@ -132,7 +176,7 @@ garanta que `@tailwindcss/vite` esteja configurado como na seção anterior.
 
 ## 6. Tokens, tema e Tailwind v4
 
-Sempre carregue nesta ordem no CSS global:
+Na instalação completa, carregue nesta ordem no CSS global:
 
 ```css
 @import "tailwindcss";
@@ -144,7 +188,8 @@ Sempre carregue nesta ordem no CSS global:
 
 Os caminhos acima ilustram um CSS um nível abaixo da raiz. Ajuste apenas a
 profundidade de `node_modules`: cada `@source` é relativo ao próprio arquivo
-CSS e deve apontar para `ui/dist` e `blocks/dist`, nunca para `src`.
+CSS e deve apontar para `ui/dist` e `blocks/dist`, nunca para `src`. Na instalação seletiva, omita
+o `@source` do package não instalado; `tokens` não precisa de `@source`.
 
 `base.css` define os tokens semânticos; o tema define seus valores por marca.
 Escolha o tema pelo CSS e pelo atributo `data-brand`, nunca por uma prop de
@@ -152,7 +197,8 @@ marca em componentes.
 
 ## 7. Primeiro componente
 
-Prefira imports por subpath para manter o consumo explícito:
+O exemplo abaixo pressupõe a instalação completa. Na instalação seletiva, renderize somente um
+componente de cada package escolhido. Prefira imports por subpath para manter o consumo explícito:
 
 ```tsx
 import { Button } from "@design-systems-orion/ui/button";
@@ -184,6 +230,8 @@ export { Button } from "@design-systems-orion/ui/button";
 export { PageHeader } from "@design-systems-orion/blocks/page-header";
 ```
 
+Crie somente o arquivo correspondente a cada package escolhido.
+
 Importe esses adaptadores locais nas telas. Eles podem normalizar pequenos
 detalhes de API ou expor aliases temporários, mas não devem copiar código do
 Orion nem esconder lógica de negócio. Quando uma API genérica faltar, abra uma
@@ -205,7 +253,7 @@ portal passarem. A skill `portais-orion-adoption` detalha o fluxo de migração.
 
 ## 10. Atualização de versão
 
-Leia as release notes e atualize os três packages de forma compatível. Revise
+Leia as release notes e atualize os packages instalados de forma compatível. Revise
 os peers após a atualização, execute typecheck e build do portal e faça smoke
 test das telas que consomem componentes alterados. Mantenha os adaptadores
 locais como o único ponto para absorver mudanças de API.
@@ -214,7 +262,7 @@ locais como o único ponto para absorver mudanças de API.
 
 | Sintoma | Verificação |
 | --- | --- |
-| Componentes sem estilo | Confirme `base.css`, o CSS do tema, `data-brand` e os dois `@source` para `dist`. |
+| Componentes sem estilo | Confirme `base.css`, o CSS do tema, `data-brand` e os `@source` dos packages instalados. |
 | Classes do Orion ausentes no CSS final | Confira se cada `@source` é relativo ao CSS global e termina em `ui/dist` ou `blocks/dist`. |
 | Aviso ou erro de peer dependency | Alinhe as versões instaladas aos ranges publicados na seção 1. |
 | Erro de compilação no Next.js | Não adicione `transpilePackages` automaticamente; investigue o erro específico e use-o apenas se necessário. |
@@ -222,11 +270,11 @@ locais como o único ponto para absorver mudanças de API.
 
 ## 12. Checklist final
 
-- [ ] React, React DOM e peers respeitam os ranges publicados.
-- [ ] `tokens`, `ui` e `blocks` estão instalados pelo gerenciador do portal.
+- [ ] Todos os peers dos packages instalados respeitam os ranges publicados.
+- [ ] `tokens` está instalado; `ui` e `blocks` foram adicionados somente quando necessários.
 - [ ] O CSS global importa Tailwind, `base.css` e o tema da marca.
 - [ ] `data-brand` corresponde ao tema importado.
-- [ ] Os `@source` são relativos ao CSS e apontam somente para `ui/dist` e `blocks/dist`.
+- [ ] Os `@source` são relativos ao CSS, apontam somente para `dist` e cobrem os packages instalados.
 - [ ] Os componentes são importados por subpath, preferencialmente via adaptadores locais.
 - [ ] Typecheck, build e smoke test do portal passaram.
 - [ ] Em uma migração, a dependência antiga só foi removida após não haver imports remanescentes.
