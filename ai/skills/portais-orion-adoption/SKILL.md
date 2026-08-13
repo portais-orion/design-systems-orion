@@ -132,9 +132,17 @@ const columns: DataTableColumn<TechnicalPermission>[] = [
 ## 12. Avaliar AppShell (opcional, controlado)
 
 Não substitua o shell global (`AdminShell`). Se for provar o `AppShell` do Orion, faça numa
-rota escondida (fora do menu). Contrato:
+rota escondida (fora do menu). Crie também o adaptador de navegação abaixo. O exemplo de
+`renderLink` com `next/link` é **somente Next.js**; em Vite, implemente `RenderLink` com o
+roteador já adotado pelo portal, sem importar `next/link`.
 
 ```tsx
+// components/orion/navigation.ts
+export { AppShell } from "@design-systems-orion/blocks/app-shell";
+export type { CanAccessNavigationItem, NavigationItem, RenderLink }
+  from "@design-systems-orion/blocks/navigation";
+
+// Somente Next.js: uso do adaptador na rota canário.
 import Link from "next/link";
 import { AppShell, type CanAccessNavigationItem, type NavigationItem, type RenderLink }
   from "@/components/orion/navigation";
@@ -164,6 +172,7 @@ os commits da fatia migrada; não altere contratos de negócio para contornar in
 
 ```bash
 pnpm --filter <web> run typecheck   # sem erros NOVOS nos arquivos tocados
+pnpm --filter <web> test            # ou o comando de testes já adotado pelo portal
 pnpm --filter <web> build           # passa
 pnpm --filter <web> dev             # sobe; validar a tela no navegador
 ```
@@ -188,7 +197,7 @@ efeitos colaterais; múltiplas telas de uma vez; permissões/auth/backend junto 
 - [ ] imports via adaptadores neutros em `components/orion/*`
 - [ ] hooks/API/permissões/rotas preservados
 - [ ] estados loading/empty/error/busca revisados
-- [ ] `typecheck`/`build`/`dev` verdes; tela validada no navegador
+- [ ] `typecheck`/testes/`build`/`dev` verdes; tela validada no navegador
 - [ ] coexistência mantida; consumidores restantes buscados antes de desinstalar a biblioteca anterior
 - [ ] rollback possível pela reversão da fatia; gaps de API registrados como backlog
 
