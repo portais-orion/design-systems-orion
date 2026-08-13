@@ -34,6 +34,25 @@ A `source.config.ts` config file has been included, you can customise different 
 
 Read the [Introduction](https://fumadocs.dev/docs/mdx) for further details.
 
+## GitHub Pages
+
+O site é publicado em
+[portais-orion.github.io/design-systems-orion](https://portais-orion.github.io/design-systems-orion/)
+pelo workflow `deploy-docs-pages.yml`. Pushes em `main` que alteram docs ou packages renderizados
+disparam novo deploy; também existe execução manual por `workflow_dispatch`.
+
+Build equivalente ao Pages no PowerShell:
+
+```powershell
+$env:NEXT_PUBLIC_BASE_PATH = "/design-systems-orion"
+$env:NEXT_PUBLIC_SITE_URL = "https://portais-orion.github.io/design-systems-orion"
+pnpm --filter docs build
+```
+
+O resultado estático fica em `apps/docs/out`. GitHub Pages não executa servidor Next.js: busca
+roda no navegador e recursos como proxy, rewrites, cookies, ISR e Server Actions não estão
+disponíveis.
+
 ## Learn More
 
 To learn more about Next.js and Fumadocs, take a look at the following

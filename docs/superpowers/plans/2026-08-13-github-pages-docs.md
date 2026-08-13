@@ -33,17 +33,17 @@
 - Produces: `normalizeBasePath(value?: string): string`, `withBasePath(pathname: string): string` e `basePath: string`.
 - Consumes: `NEXT_PUBLIC_BASE_PATH`, `NEXT_PUBLIC_SITE_URL`.
 
-- [ ] **Step 1: Escrever teste RED**
+- [x] **Step 1: Escrever teste RED**
 
 Cobrir base vazia, normalização de `/design-systems-orion/`, prefixo único de caminho interno e
 preservação de URL externa em `base-path.test.ts`.
 
-- [ ] **Step 2: Executar RED**
+- [x] **Step 2: Executar RED**
 
 Run: `node --test apps/docs/src/lib/base-path.test.ts`
 Expected: FAIL porque `base-path.ts` não existe.
 
-- [ ] **Step 3: Implementar helper e configuração**
+- [x] **Step 3: Implementar helper e configuração**
 
 Implementar normalização e prefixo. Configurar:
 
@@ -61,12 +61,12 @@ const config = {
 Aplicar `withBasePath()` somente às URLs manuais de Markdown/OG e usar URL pública completa em
 `metadataBase`. Manter `source.loader({ baseUrl: '/docs' })`, pois Next Link aplica `basePath`.
 
-- [ ] **Step 4: Executar GREEN**
+- [x] **Step 4: Executar GREEN**
 
 Run: `node --test apps/docs/src/lib/base-path.test.ts`
 Expected: 4 testes PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add apps/docs/src/lib/base-path.ts apps/docs/src/lib/base-path.test.ts apps/docs/next.config.mjs apps/docs/src/lib/source.ts apps/docs/src/app/layout.tsx
@@ -88,7 +88,7 @@ git commit -m "feat(docs): enable static export"
 - Consumes: `withBasePath('/api/search')`.
 - Produces: `Provider({ children })` com diálogo baseado em `oramaStaticClient`.
 
-- [ ] **Step 1: Executar build RED de export**
+- [x] **Step 1: Executar build RED de export**
 
 Run:
 
@@ -100,7 +100,7 @@ pnpm --filter docs build
 
 Expected: FAIL apontando busca/proxy/recurso server-only ainda incompatível.
 
-- [ ] **Step 2: Implementar busca estática**
+- [x] **Step 2: Implementar busca estática**
 
 Trocar rota para:
 
@@ -112,12 +112,12 @@ export const { staticGET: GET } = createFromSource(source, { language: 'english'
 Criar diálogo Fumadocs usando `useDocsSearch({ client: oramaStaticClient({ from: withBasePath('/api/search') }) })`
 e provider client que passa `SearchDialog` ao `RootProvider`.
 
-- [ ] **Step 3: Remover proxy**
+- [x] **Step 3: Remover proxy**
 
 Excluir `apps/docs/proxy.ts`. Markdown continuará acessível pelas rotas pré-geradas apontadas por
 `getPageMarkdownUrl()`.
 
-- [ ] **Step 4: Executar GREEN integrado**
+- [x] **Step 4: Executar GREEN integrado**
 
 Executar typecheck, lint e build com as variáveis Pages. Confirmar em `apps/docs/out`:
 
@@ -129,7 +129,7 @@ Test-Path apps/docs/out/llms.txt
 rg -n "/design-systems-orion/_next|/design-systems-orion/docs" apps/docs/out/index.html
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add apps/docs/src apps/docs/proxy.ts
@@ -149,18 +149,18 @@ git commit -m "feat(docs): make Fumadocs routes static"
 - Consumes: `apps/docs/out` da Task 2.
 - Produces: workflow Pages em push para `main` e `workflow_dispatch`.
 
-- [ ] **Step 1: Criar workflow oficial**
+- [x] **Step 1: Criar workflow oficial**
 
 Usar checkout v4, pnpm/action-setup v4, setup-node v4, `pnpm install --frozen-lockfile`, build com
 as duas variáveis públicas, configure-pages v5, upload-pages-artifact v4 e deploy-pages v4.
 Separar jobs build/deploy; environment `github-pages`; permissões mínimas e concurrency `pages`.
 
-- [ ] **Step 2: Documentar deploy**
+- [x] **Step 2: Documentar deploy**
 
 Registrar URL, comando local equivalente, diretório `out` e limitação do export estático no README
 do app.
 
-- [ ] **Step 3: Gates finais**
+- [x] **Step 3: Gates finais**
 
 Run: `pnpm check`, `pnpm typecheck`, `pnpm build`, `git diff --check`.
 Se `pnpm check` falhar somente por `.agents/mcp_config.json`, registrar como arquivo externo e
