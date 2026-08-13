@@ -4,4 +4,4 @@
 "@design-systems-orion/blocks": patch
 ---
 
-Documenta instalação das skills Orion pelo GitHub nas páginas dos packages no npm.
+Documenta instalação das skills Orion pelo GitHub para Codex e Claude Code nas páginas dos packages no npm.

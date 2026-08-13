@@ -79,12 +79,14 @@ Se o portal também importar primitives diretamente, prefira declarar `ui` como 
 usando a instalação completa. Não remova peers do comando com base apenas nos componentes usados:
 o contrato é por package instalado.
 
-## Skills opcionais para Codex
+## Skills opcionais para Codex e Claude Code
 
-O npm instala os packages de runtime `tokens`, `ui` e `blocks`. Já o `skill-installer` copia as
-skills de criação e migração para o Codex; elas não acompanham o `npm install` e não existe
-`postinstall` para instalá-las. Depois de instalar uma skill, reinicie o Codex. Veja as instruções
-e o comando PowerShell na seção [Skills para Codex do README](https://github.com/portais-orion/design-systems-orion#skills-para-codex).
+O npm instala os packages de runtime `tokens`, `ui` e `blocks`; as skills não acompanham o
+`npm install` e não existe `postinstall` para instalá-las. No Codex, use o `skill-installer` e
+reinicie o Codex. No Claude Code, copie as pastas oficiais completas de `ai/skills` para
+`~/.claude/skills` (pessoal) ou `.claude/skills` (projeto). Elas podem ser chamadas por
+`/new-portal` e `/portais-orion-adoption` ou ativadas automaticamente. Veja comandos Bash e
+PowerShell na seção [Skills para Codex e Claude Code do README](https://github.com/portais-orion/design-systems-orion#skills-para-codex-e-claude-code).
 
 ## 3. Projeto novo com Next.js
 

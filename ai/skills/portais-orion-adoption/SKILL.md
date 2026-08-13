@@ -7,9 +7,10 @@ description: Use esta skill para migrar gradualmente uma tela de aplicação Rea
 
 Migre uma fatia visual por vez. Se `docs/adoption/consumer-setup.md` existir no repositório atual,
 leia-o. Fora do monorepo Orion, abra o [manual canônico no GitHub](https://github.com/portais-orion/design-systems-orion/blob/main/docs/adoption/consumer-setup.md).
-Os packages npm são somente runtime: `npm install` não instala esta skill. Instale-a separadamente
-pelo GitHub/skill-installer e reinicie o Codex após instalar ou copiar a skill; ela não se instala
-sozinha.
+Os packages npm são somente runtime: `npm install` não instala esta skill. Ela segue Agent Skills
+e funciona no Codex e no Claude Code. No Codex, instale-a pelo GitHub/skill-installer e reinicie.
+No Claude Code, copie a pasta oficial completa para `~/.claude/skills` ou `.claude/skills`; reinicie
+somente se o diretório de skills não existia ao iniciar a sessão. Ela não se instala sozinha.
 O manual define packages, peers, instalação, CSS, temas e exports públicos.
 
 ## Escopo

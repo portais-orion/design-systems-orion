@@ -31,7 +31,7 @@ prop `brand` em componente nenhum.
 Guia de consumo e arquitetura de theming: [docs/adoption/consumer-setup.md](https://github.com/portais-orion/design-systems-orion/blob/main/docs/adoption/consumer-setup.md) ·
 [docs/architecture/theming.md](https://github.com/portais-orion/design-systems-orion/blob/main/docs/architecture/theming.md)
 
-Skills opcionais para criar/migrar projetos: [instalação via GitHub](https://github.com/portais-orion/design-systems-orion#skills-para-codex).
+Skills opcionais para Codex e Claude Code: [instalação via GitHub](https://github.com/portais-orion/design-systems-orion#skills-para-codex-e-claude-code).
 
 ## Repositório
 

@@ -300,9 +300,15 @@ import { PageHeader } from "@design-systems-orion/blocks/page-header";
 
 ---
 
-## Skills para Codex
+## Skills para Codex e Claude Code
 
-Skills não vêm com npm install. Instale pelo GitHub e reinicie Codex.
+Skills não vêm com `npm install`: os packages npm contêm somente o runtime. As mesmas pastas
+`ai/skills/new-portal` e `ai/skills/portais-orion-adoption` seguem o padrão Agent Skills e funcionam
+no Codex e no Claude Code.
+
+### Codex
+
+Instale pelo GitHub e reinicie o Codex.
 
 Prompt recomendado:
 
@@ -328,6 +334,54 @@ $codexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME ".c
 $installer = Join-Path $codexHome "skills/.system/skill-installer/scripts/install-skill-from-github.py"
 python $installer --repo portais-orion/design-systems-orion --path ai/skills/new-portal ai/skills/portais-orion-adoption
 ```
+
+### Claude Code
+
+Copie as pastas oficiais completas de `ai/skills`, não os stubs internos de `.claude/skills` deste
+monorepo. Para disponibilizá-las em todos os projetos, instale em `~/.claude/skills`. Para limitar
+ao portal atual, use `.claude/skills` na raiz dele. A skill pessoal prevalece sobre uma skill de
+projeto com o mesmo nome.
+
+Bash — instalação pessoal:
+
+```bash
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+git clone --depth 1 https://github.com/portais-orion/design-systems-orion.git "$tmp/orion"
+claude_skills="${CLAUDE_SKILLS_DIR:-"$HOME/.claude/skills"}"
+mkdir -p "$claude_skills"
+for skill in new-portal portais-orion-adoption; do
+  target="$claude_skills/$skill"
+  test ! -e "$target" || { echo "Skill já existe: $target" >&2; exit 1; }
+  cp -R "$tmp/orion/ai/skills/$skill" "$target"
+done
+```
+
+PowerShell — instalação pessoal:
+
+```powershell
+$tempRepo = Join-Path ([IO.Path]::GetTempPath()) ("orion-skills-" + [guid]::NewGuid())
+$claudeSkills = if ($env:CLAUDE_SKILLS_DIR) { $env:CLAUDE_SKILLS_DIR } else { Join-Path $HOME ".claude/skills" }
+try {
+  git clone --depth 1 https://github.com/portais-orion/design-systems-orion.git $tempRepo
+  New-Item -ItemType Directory -Force -Path $claudeSkills | Out-Null
+  foreach ($skill in @("new-portal", "portais-orion-adoption")) {
+    $target = Join-Path $claudeSkills $skill
+    if (Test-Path $target) { throw "Skill já existe: $target" }
+    Copy-Item -Recurse (Join-Path $tempRepo "ai/skills/$skill") $target
+  }
+} finally {
+  if (Test-Path $tempRepo) { Remove-Item -Recurse -Force $tempRepo }
+}
+```
+
+Para instalação por projeto, antes do bloco defina `CLAUDE_SKILLS_DIR="$PWD/.claude/skills"` no
+Bash ou `$env:CLAUDE_SKILLS_DIR = Join-Path (Get-Location) ".claude/skills"` no PowerShell. Os
+comandos recusam sobrescrever uma skill existente; revise ou remova conscientemente a versão
+anterior antes de reinstalar. Claude Code detecta mudanças em um
+diretório de skills já existente; reinicie apenas se `.claude/skills` foi criado depois de iniciar
+a sessão. Acione diretamente com `/new-portal` ou `/portais-orion-adoption`; Claude também pode
+ativá-las automaticamente pela descrição.
 
 - [new-portal](https://github.com/portais-orion/design-systems-orion/tree/main/ai/skills/new-portal): use o prompt “Crie um novo portal React consumindo o Design System Orion”.
 - [portais-orion-adoption](https://github.com/portais-orion/design-systems-orion/tree/main/ai/skills/portais-orion-adoption): use o prompt “Migre esta tela existente para o Design System Orion”.
