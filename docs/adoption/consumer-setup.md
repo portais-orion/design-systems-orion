@@ -79,6 +79,13 @@ Se o portal também importar primitives diretamente, prefira declarar `ui` como 
 usando a instalação completa. Não remova peers do comando com base apenas nos componentes usados:
 o contrato é por package instalado.
 
+## Skills opcionais para Codex
+
+O npm instala os packages de runtime `tokens`, `ui` e `blocks`. Já o `skill-installer` copia as
+skills de criação e migração para o Codex; elas não acompanham o `npm install` e não existe
+`postinstall` para instalá-las. Depois de instalar uma skill, reinicie o Codex. Veja as instruções
+e o comando PowerShell na seção [Skills para Codex do README](https://github.com/portais-orion/design-systems-orion#skills-para-codex).
+
 ## 3. Projeto novo com Next.js
 
 Crie o app com TypeScript, Tailwind e App Router:

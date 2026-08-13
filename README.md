@@ -11,6 +11,8 @@
 
 > **Não é** uma biblioteca da Supertrans nem uma cópia do Aurora — é a curadoria do melhor dos dois portais, mantida como plataforma para todas as empresas do grupo.
 
+Vai consumir os packages em um portal? Veja o [guia de adoção](docs/adoption/consumer-setup.md).
+
 ---
 
 ## 📖 Visão Geral
@@ -295,6 +297,31 @@ import { Button } from "@design-systems-orion/ui/button";
 import { DataTable } from "@design-systems-orion/blocks/data-table";
 import { PageHeader } from "@design-systems-orion/blocks/page-header";
 ```
+
+---
+
+## Skills para Codex
+
+Skills não vêm com npm install. Instale pelo GitHub e reinicie Codex.
+
+Prompt recomendado:
+
+```text
+Use o skill-installer para instalar new-portal e portais-orion-adoption do repositório
+portais-orion/design-systems-orion, nos paths ai/skills/new-portal e
+ai/skills/portais-orion-adoption.
+```
+
+Ou execute no PowerShell:
+
+```powershell
+$codexHome = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME ".codex" }
+$installer = Join-Path $codexHome "skills/.system/skill-installer/scripts/install-skill-from-github.py"
+python $installer --repo portais-orion/design-systems-orion --path ai/skills/new-portal ai/skills/portais-orion-adoption
+```
+
+- [new-portal](https://github.com/portais-orion/design-systems-orion/tree/main/ai/skills/new-portal): use o prompt “Crie um novo portal React consumindo o Design System Orion”.
+- [portais-orion-adoption](https://github.com/portais-orion/design-systems-orion/tree/main/ai/skills/portais-orion-adoption): use o prompt “Migre esta tela existente para o Design System Orion”.
 
 ---
 

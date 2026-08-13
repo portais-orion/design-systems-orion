@@ -26,6 +26,8 @@ guia de consumo abaixo pro `@source` correto.
 
 Guia de consumo: [docs/adoption/consumer-setup.md](https://github.com/portais-orion/design-systems-orion/blob/main/docs/adoption/consumer-setup.md)
 
+Skills opcionais para criar/migrar projetos: [instalação via GitHub](https://github.com/portais-orion/design-systems-orion#skills-para-codex).
+
 Catálogo de componentes com props e exemplos: site de docs do monorepo (`apps/docs`, Fumadocs) e
 Storybook (`apps/storybook`) — ambos rodados localmente a partir do repo.
 
