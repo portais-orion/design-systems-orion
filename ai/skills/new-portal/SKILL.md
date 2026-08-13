@@ -5,14 +5,14 @@ description: Use quando for criar um projeto React NOVO que consome o Orion @des
 
 # Criar portal novo consumindo o Orion
 
-Guia de setup: [manual canônico de adoção](../../../docs/adoption/consumer-setup.md) — seguir
-seção a seção.
-Esta skill define a ordem e o que validar. O portal vive em **repo separado** (ADR 0007);
-nunca criar produto dentro do nucleo-portais.
+Se `docs/adoption/consumer-setup.md` existir no repositório atual, leia-o. Fora do monorepo Orion,
+abra o [manual canônico no GitHub](https://github.com/portais-orion/design-systems-orion/blob/main/docs/adoption/consumer-setup.md).
+Esta skill define a ordem e o que validar. O portal vive em repo separado; nunca criar produto
+dentro do nucleo-portais.
 
 ## Sequência
 
-1. **Confirmar fronteira e scaffold**: o portal vive em repo separado (ADR 0007). Escolha
+1. **Confirmar fronteira e scaffold**: o portal vive em repo separado. Escolha
    Next.js com App Router ou Vite e gere o scaffold TypeScript + Tailwind v4 CSS-first, conforme
    as seções 3 ou 4 do manual; não crie `tailwind.config.ts`.
 2. **Escolher e instalar**: `tokens` é obrigatório; adicione `ui` para primitives e `blocks` para
@@ -37,7 +37,7 @@ nunca criar produto dentro do nucleo-portais.
 
 - Domínio (rotas, APIs, permissões, entidades) é Camada 3 — vive só no portal.
 - Gap genérico de API do Orion → backlog/issue em `portais-orion/design-systems-orion`; nunca
-  fork/patch local do package. Necessidade de domínio permanece no consumidor. Componente genérico
-  novo → skill `contribute-to-nucleo`.
-- Telas novas: montar com blocks (`page-header`, `data-table`, `list-page-layout`,
-  `empty-state`...) antes de escrever markup próprio — `ai/workflows/find-component.md`.
+  fork/patch local do package. Necessidade de domínio permanece no consumidor. Para propor um
+  componente genérico novo, siga as instruções de contribuição do repositório Orion.
+- Telas novas: antes de escrever markup próprio, procure blocks compatíveis (`page-header`,
+  `data-table`, `list-page-layout`, `empty-state`...) nos exports públicos do Orion.

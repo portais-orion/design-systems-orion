@@ -5,8 +5,9 @@ description: Use esta skill para migrar gradualmente uma tela de aplicação Rea
 
 # Adoção gradual do Orion
 
-Migre uma fatia visual por vez. O [manual canônico](../../../docs/adoption/consumer-setup.md) define
-packages, peers, instalação, CSS, temas e exports públicos; consulte-o para esses detalhes.
+Migre uma fatia visual por vez. Se `docs/adoption/consumer-setup.md` existir no repositório atual,
+leia-o. Fora do monorepo Orion, abra o [manual canônico no GitHub](https://github.com/portais-orion/design-systems-orion/blob/main/docs/adoption/consumer-setup.md).
+Ele define packages, peers, instalação, CSS, temas e exports públicos.
 
 ## Escopo
 
