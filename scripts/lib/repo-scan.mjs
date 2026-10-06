@@ -6,7 +6,7 @@
  * mora aqui — inclusive a lista de diretórios ignorados, que antes existia em
  * duas cópias divergentes.
  */
-import { readdirSync, statSync } from "node:fs";
+import { readdirSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 
 /*
@@ -24,6 +24,7 @@ export const IGNORED_DIRS = new Set([
 	"coverage",
 	"dist",
 	"node_modules",
+	"out",
 	"storybook-static",
 ]);
 
@@ -47,10 +48,14 @@ export function* walkFiles(rootDir, { includeFile }) {
 	const stack = [rootDir];
 	while (stack.length > 0) {
 		const dir = stack.pop();
-		for (const name of readdirSync(dir)) {
+		for (const entry of readdirSync(dir, { withFileTypes: true })) {
+			// Aliases can be dangling, cyclic or point outside this repository.
+			// Canonical files are scanned at their real workspace location.
+			if (entry.isSymbolicLink()) continue;
+			const { name } = entry;
 			if (IGNORED_DIRS.has(name)) continue;
 			const full = join(dir, name);
-			if (statSync(full).isDirectory()) {
+			if (entry.isDirectory()) {
 				stack.push(full);
 				continue;
 			}

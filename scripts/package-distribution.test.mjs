@@ -117,7 +117,11 @@ test("accepts complete dist inventory", () => {
 });
 
 test("real package catalogs expose their complete tsup entries", () => {
-	for (const path of ["packages/ui/package.json", "packages/blocks/package.json"]) {
+	for (const path of [
+		"packages/ui/package.json",
+		"packages/blocks/package.json",
+		"packages/motion/package.json",
+	]) {
 		const real = JSON.parse(readFileSync(path, "utf8"));
 		const result = derivePackageDistribution(real);
 		assert.equal(result.entries.length, Object.keys(real.exports).length);

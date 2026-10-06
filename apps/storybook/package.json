@@ -12,6 +12,7 @@
 		"chromatic": "chromatic --exit-zero-on-changes"
 	},
 	"dependencies": {
+		"@design-systems-orion/motion": "workspace:*",
 		"@design-systems-orion/tokens": "workspace:*",
 		"@design-systems-orion/ui": "workspace:*",
 		"react": "^19.0.0",

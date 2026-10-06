@@ -1,0 +1,62 @@
+{
+	"name": "@design-systems-orion/motion",
+	"version": "0.2.0",
+	"description": "Política e movimento acessível para componentes do Design System Orion",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/portais-orion/design-systems-orion.git",
+		"directory": "packages/motion"
+	},
+	"sideEffects": false,
+	"files": ["dist"],
+	"exports": {
+		".": "./src/index.ts",
+		"./react": "./src/react/index.ts",
+		"./motion": "./src/motion/index.ts"
+	},
+	"scripts": {
+		"build": "tsup",
+		"typecheck": "tsc --noEmit",
+		"lint": "biome check src"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"dependencies": {
+		"@design-systems-orion/tokens": "workspace:*",
+		"motion": "14.0.0",
+		"animejs": "4.5.0"
+	},
+	"devDependencies": {
+		"@design-systems-orion/tsconfig": "workspace:*",
+		"@storybook/react": "^10.4.1",
+		"@types/react": "^19.0.0",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"storybook": "^10.4.1",
+		"tsup": "^8.3.5",
+		"typescript": "^5.7.3"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org",
+		"main": "./dist/index.mjs",
+		"module": "./dist/index.mjs",
+		"types": "./dist/index.d.mts",
+		"exports": {
+			".": {
+				"types": "./dist/index.d.mts",
+				"import": "./dist/index.mjs"
+			},
+			"./react": {
+				"types": "./dist/react/index.d.mts",
+				"import": "./dist/react/index.mjs"
+			},
+			"./motion": {
+				"types": "./dist/motion/index.d.mts",
+				"import": "./dist/motion/index.mjs"
+			}
+		}
+	}
+}

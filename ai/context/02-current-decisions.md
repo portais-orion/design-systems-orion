@@ -8,6 +8,8 @@
 - 0006: camadas tokens→ui→blocks→apps; domínio só na Camada 3 (produtos); convenção sobre framework.
 - 0007: produtos em repos separados; consomem packages por versão.
 - 0008: repositório agent-first; rules curtas por assunto; exemplos certo/errado.
+- 0015: `motion` é suporte dependente de tokens; UI/Blocks podem consumi-lo. Política
+  React separada da engine; Anime instalado para futuro uso. Ver `docs/architecture/motion.md`.
 
 - Sprint 4.0: Storybook é o quality gate oficial (a11y + vitest + chromatic + MDX); páginas "Comece agora" e "Fundações/Tokens" são a doc de entrada.
 

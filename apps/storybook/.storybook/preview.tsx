@@ -1,3 +1,4 @@
+import { MotionProvider } from "@design-systems-orion/motion/react";
 import type { Decorator, Preview } from "@storybook/react";
 import React from "react";
 import { useGlobals } from "storybook/preview-api";
@@ -16,6 +17,7 @@ import "../src/styles.css";
 const withBrand: Decorator = (Story) => {
 	const [globals, updateGlobals] = useGlobals();
 	const brand = (globals.brand as string | undefined) ?? catalog.defaultBrand;
+	const motion = (globals.motion as string | undefined) ?? "full";
 	document.documentElement.setAttribute("data-brand", brand);
 	return (
 		<div className="bg-background p-6 text-foreground">
@@ -39,18 +41,37 @@ const withBrand: Decorator = (Story) => {
 					</button>
 				))}
 			</div>
-			<Story />
+			<MotionProvider
+				enabled={motion !== "off"}
+				reducedMotion={motion === "reduced" ? "always" : "user"}
+			>
+				<Story />
+			</MotionProvider>
 		</div>
 	);
 };
 
 const preview: Preview = {
 	globalTypes: {
+		motion: {
+			description: "Movimento dos componentes",
+			toolbar: {
+				title: "Movimento",
+				icon: "play",
+				dynamicTitle: true,
+				items: [
+					{ value: "full", title: "Ativado" },
+					{ value: "reduced", title: "Reduzido" },
+					{ value: "off", title: "Desativado" },
+				],
+			},
+		},
 		brand: {
 			description: "Marca ativa (tema de tokens)",
 		},
 	},
 	initialGlobals: {
+		motion: "full",
 		brand: catalog.defaultBrand,
 	},
 	decorators: [withBrand],

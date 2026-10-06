@@ -1,9 +1,11 @@
 "use client";
 
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
+import { useMotionMode } from "@design-systems-orion/motion/react";
 import { ChevronDown } from "lucide-react";
 import * as React from "react";
 
+import { surfaceMotionClasses } from "../_internal/motion";
 import { cn } from "../utils/cn";
 
 /*
@@ -52,36 +54,59 @@ AccordionItem.displayName = "AccordionItem";
 const AccordionTrigger = React.forwardRef<
 	React.ElementRef<typeof AccordionPrimitive.Trigger>,
 	React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
-	<AccordionPrimitive.Header className="flex">
-		<AccordionPrimitive.Trigger
-			ref={ref}
-			className={cn(
-				"group/accordion flex flex-1 items-center justify-between py-4 text-left text-sm font-medium outline-none transition-all hover:underline focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-				className,
-			)}
-			{...props}
-		>
-			{children}
-			<ChevronDown className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-data-[panel-open]/accordion:rotate-180" />
-		</AccordionPrimitive.Trigger>
-	</AccordionPrimitive.Header>
-));
+>(({ className, children, ...props }, ref) => {
+	const mode = useMotionMode();
+	return (
+		<AccordionPrimitive.Header className="flex">
+			<AccordionPrimitive.Trigger
+				ref={ref}
+				className={cn(
+					"group/accordion flex flex-1 items-center justify-between py-4 text-left text-sm font-medium outline-none transition-all hover:underline focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+					className,
+				)}
+				{...props}
+			>
+				{children}
+				<ChevronDown
+					className={cn(
+						"size-4 shrink-0 text-muted-foreground group-data-[panel-open]/accordion:rotate-180",
+						mode === "legacy"
+							? "transition-transform duration-200 motion-reduce:transition-none"
+							: mode === "full"
+								? "transition-transform duration-(--motion-duration-default) ease-motion-enter"
+								: "transition-none",
+					)}
+				/>
+			</AccordionPrimitive.Trigger>
+		</AccordionPrimitive.Header>
+	);
+});
 AccordionTrigger.displayName = "AccordionTrigger";
 
 /** Conteúdo revelado ao abrir o `AccordionItem`. */
 const AccordionContent = React.forwardRef<
 	React.ElementRef<typeof AccordionPrimitive.Panel>,
 	React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Panel>
->(({ className, children, ...props }, ref) => (
-	<AccordionPrimitive.Panel
-		ref={ref}
-		className={cn("overflow-hidden pb-4 text-sm text-muted-foreground", className)}
-		{...props}
-	>
-		{children}
-	</AccordionPrimitive.Panel>
-));
+>(({ className, children, ...props }, ref) => {
+	const mode = useMotionMode();
+	return (
+		<AccordionPrimitive.Panel
+			ref={ref}
+			className={cn(
+				"overflow-hidden pb-4 text-sm text-muted-foreground",
+				surfaceMotionClasses(
+					mode,
+					"",
+					"h-[var(--accordion-panel-height)] transition-[height,opacity,padding-bottom] duration-(--motion-duration-panel) data-[starting-style]:h-0 data-[ending-style]:h-0 data-[starting-style]:pb-0 data-[ending-style]:pb-0 data-[starting-style]:opacity-0 data-[ending-style]:opacity-0",
+				),
+				className,
+			)}
+			{...props}
+		>
+			{children}
+		</AccordionPrimitive.Panel>
+	);
+});
 AccordionContent.displayName = "AccordionContent";
 
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };

@@ -14,6 +14,7 @@ const config: StorybookConfig = {
 		"../stories/**/*.stories.@(ts|tsx)",
 		"../../../packages/ui/src/**/*.stories.@(ts|tsx)",
 		"../../../packages/blocks/src/**/*.stories.@(ts|tsx)",
+		"../../../packages/motion/src/**/*.stories.@(ts|tsx)",
 	],
 	// As logos de marca (fonte única em /assets) viram estáticos servidos em
 	// /brands — o switcher de marca e o comparativo referenciam /brands/<id>-logo.png.

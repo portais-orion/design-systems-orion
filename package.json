@@ -26,7 +26,7 @@
 		"test:storybook": "pnpm --filter @nucleo/storybook test-storybook",
 		"chromatic": "pnpm --filter @nucleo/storybook chromatic",
 		"pack:all": "node scripts/pack-packages.mjs",
-		"publish:packages": "pnpm --filter ./packages/tokens --filter ./packages/ui --filter ./packages/blocks publish --no-git-checks",
+		"publish:packages": "pnpm --filter ./packages/tokens --filter ./packages/motion --filter ./packages/ui --filter ./packages/blocks publish --no-git-checks",
 		"check:tokens": "pnpm check:brands"
 	},
 	"devDependencies": {

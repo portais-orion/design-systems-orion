@@ -3,6 +3,7 @@
 	"extends": ["./packages/biome-config/biome.json"],
 	"files": {
 		"ignore": [
+			".agents/mcp_config.json",
 			"node_modules",
 			"dist",
 			"build",

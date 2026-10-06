@@ -34,7 +34,7 @@ const RULES = [
 	[
 		"classe de marca (orange-*, blue-*, primary-600, brand-*)",
 		/\b(orange-\d|blue-\d|primary-600|bg-brand-primary|text-brand-primary)\b/,
-		(p) => /^packages\/(ui|blocks)\/src\/.*\.(tsx|ts)$/.test(p),
+		(p) => /^packages\/(ui|blocks|motion)\/src\/.*\.(tsx|ts)$/.test(p),
 		() => false,
 	],
 	[
@@ -46,13 +46,13 @@ const RULES = [
 	[
 		"import de next/* em package compartilhado",
 		/from\s+["']next(\/|["'])/,
-		(p) => /^packages\/(ui|blocks|tokens)\/src\//.test(p),
+		(p) => /^packages\/(ui|blocks|tokens|motion)\/src\//.test(p),
 		() => false,
 	],
 	[
 		"data-fetching em package compartilhado (axios/tanstack/fetch)",
 		/(from\s+["']axios["']|@tanstack\/react-query|\bfetch\s*\()/,
-		(p) => /^packages\/(ui|blocks|tokens)\/src\//.test(p),
+		(p) => /^packages\/(ui|blocks|tokens|motion)\/src\//.test(p),
 		() => false,
 	],
 ];

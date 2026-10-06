@@ -10,6 +10,10 @@ os packages.
 O Orion requer React 19 e Tailwind CSS v4. Os packages são:
 
 - `@design-systems-orion/tokens`: sempre instale; fornece tokens semânticos e temas CSS.
+- `@design-systems-orion/motion`: após a publicação da versão com movimento, declare
+  diretamente quando importar `MotionProvider`. React e React DOM `^19.0.0` são peers.
+  Envolva o portal com `<MotionProvider enabled>` num provider cliente para ativar
+  os componentes existentes. Veja [movimento compartilhado](../architecture/motion.md).
 - `@design-systems-orion/ui`: instale quando usar primitives como `Button`, `Badge` ou `Tabs`.
 - `@design-systems-orion/blocks`: instale quando precisar de composições como `PageHeader` ou
   `DataTable`. Ele traz `ui` como dependency, mas o consumidor ainda precisa satisfazer todos os

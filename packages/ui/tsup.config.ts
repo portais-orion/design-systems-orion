@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { defineConfig } from "tsup";
+import { preserveSourceClientBoundaries } from "../../scripts/lib/client-entrypoints.mjs";
 import { derivePackageDistribution } from "../../scripts/lib/package-distribution.mjs";
 
 const manifest = JSON.parse(readFileSync(new URL("./package.json", import.meta.url), "utf8"));
@@ -23,9 +24,11 @@ export default defineConfig({
 	outDir: "dist",
 	clean: true,
 	splitting: true,
-	treeshake: true,
+	treeshake: false,
+	metafile: true,
 	sourcemap: false,
 	external: [
+		"@design-systems-orion/motion",
 		"react",
 		"react-dom",
 		"@base-ui/react",
@@ -34,4 +37,7 @@ export default defineConfig({
 		"tailwind-merge",
 		"clsx",
 	],
+	async onSuccess() {
+		preserveSourceClientBoundaries(new URL(".", import.meta.url));
+	},
 });
