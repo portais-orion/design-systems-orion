@@ -1,0 +1,4 @@
+{
+	"extends": "@design-systems-orion/tsconfig/react-library.json",
+	"include": ["src"]
+}

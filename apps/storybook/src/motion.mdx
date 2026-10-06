@@ -1,0 +1,21 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundation/Motion" />
+
+# Movimento
+
+Ative `MotionProvider` de `@design-systems-orion/motion/react` no provider central
+do portal. Accordion, Dialog, Popover, Sheet, FiltersCard e LauncherCard existentes
+recebem o comportamento. O provider não cria um wrapper DOM.
+
+A toolbar oferece Full, Reduced e Off. A preferência do sistema é respeitada
+em Full. Reduced evita deslocamento e escala. Off desativa os componentes migrados.
+Use o seletor de marca para validar Supertrans, Aurora e Grupo Orion.
+
+Sem provider, os primitives preservam as transições anteriores e blocks não
+ativam movimento novo. Anime.js está instalado para efeitos futuros, sem uso
+nos componentes atuais.
+
+Confira as stories `Fundações/Motion/Existing components`, `Fundações/Motion/Policy`,
+`Blocks/FiltersCard` e `Blocks/LauncherCard` e o guia
+`docs/architecture/motion.md` para adoção e custos de bundle.

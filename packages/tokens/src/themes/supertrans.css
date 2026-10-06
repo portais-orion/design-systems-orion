@@ -6,6 +6,14 @@
 :root:not([data-brand]),
 :root[data-brand="supertrans"],
 [data-brand="supertrans"] {
+	--motion-duration-fast: 120ms;
+	--motion-duration-default: 180ms;
+	--motion-duration-panel: 240ms;
+	--motion-distance-short: 4px;
+	--motion-distance-default: 8px;
+	--motion-intensity: 1;
+	--motion-ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+	--motion-ease-exit: cubic-bezier(0.4, 0, 1, 1);
 	--primary: #00526b;
 	--primary-foreground: oklch(0.985 0 0);
 	--primary-hover: #005a75;

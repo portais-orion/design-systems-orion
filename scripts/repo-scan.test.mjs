@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -17,6 +17,30 @@ function makeTree(files) {
 }
 
 const scanAll = (root) => [...walkFiles(root, { includeFile: () => true })].map((f) => f.path);
+
+test("skips dangling directory aliases instead of aborting source checks", (t) => {
+	const root = makeTree({ "src/index.ts": "" });
+	t.after(() => rmSync(root, { recursive: true, force: true }));
+	symlinkSync(
+		path.join(root, "missing"),
+		path.join(root, "alias"),
+		process.platform === "win32" ? "junction" : "dir",
+	);
+	assert.deepEqual(scanAll(root), ["src/index.ts"]);
+});
+
+test("does not scan sources outside the repository through directory aliases", (t) => {
+	const root = makeTree({ "src/index.ts": "" });
+	const external = makeTree({ "external.ts": "" });
+	t.after(() => rmSync(root, { recursive: true, force: true }));
+	t.after(() => rmSync(external, { recursive: true, force: true }));
+	symlinkSync(
+		external,
+		path.join(root, "alias"),
+		process.platform === "win32" ? "junction" : "dir",
+	);
+	assert.deepEqual(scanAll(root), ["src/index.ts"]);
+});
 
 test("yields nested source files with repository-relative paths", (t) => {
 	const root = makeTree({
@@ -39,6 +63,7 @@ test("skips build output and caches at any depth", (t) => {
 		"packages/ui/dist/index.mjs": "",
 		"node_modules/react/index.js": "",
 		"apps/docs/.next/build.js": "",
+		"apps/docs/out/_next/chunks/build.js": "",
 		"apps/docs/.source/index.ts": "",
 		"coverage/report.json": "",
 		".turbo/log.txt": "",

@@ -45,6 +45,7 @@ jobs:
           pnpm check
           pnpm exec turbo typecheck build \
             --filter=@design-systems-orion/tokens \
+            --filter=@design-systems-orion/motion \
             --filter=@design-systems-orion/ui \
             --filter=@design-systems-orion/blocks
 

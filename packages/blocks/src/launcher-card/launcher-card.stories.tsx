@@ -1,5 +1,7 @@
+import { MotionProvider } from "@design-systems-orion/motion/react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Boxes, Truck } from "lucide-react";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 import { LauncherCard } from "./launcher-card";
 
 const meta: Meta<typeof LauncherCard> = {
@@ -47,4 +49,42 @@ export const Grade: Story = {
 			/>
 		</div>
 	),
+};
+
+export const MotionKeyboard: Story = {
+	args: { title: "Open item", description: "Keyboard interaction", onClick: fn() },
+	decorators: [
+		(Story) => (
+			<MotionProvider enabled reducedMotion="always">
+				<Story />
+			</MotionProvider>
+		),
+	],
+	parameters: { a11y: { test: "error" } },
+	play: async ({ canvasElement, args }) => {
+		const canvas = within(canvasElement);
+		const button = canvas.getByRole("button", { name: /Open item/ });
+		button.focus();
+		await userEvent.keyboard("{Enter}");
+		await expect(args.onClick).toHaveBeenCalledTimes(1);
+		await userEvent.hover(button);
+		await waitFor(() => expect(new DOMMatrix(getComputedStyle(button).transform).m42).toBe(0));
+		await expect(button).toHaveFocus();
+	},
+};
+
+export const MotionOff: Story = {
+	args: { title: "Motion off", onClick: fn() },
+	decorators: [
+		(Story) => (
+			<MotionProvider enabled={false}>
+				<Story />
+			</MotionProvider>
+		),
+	],
+	parameters: { a11y: { test: "error" } },
+	play: async ({ canvasElement }) => {
+		const button = within(canvasElement).getByRole("button", { name: "Motion off" });
+		await expect(getComputedStyle(button).transitionDuration).toBe("0s");
+	},
 };

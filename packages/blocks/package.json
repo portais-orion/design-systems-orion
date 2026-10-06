@@ -1,6 +1,6 @@
 {
 	"name": "@design-systems-orion/blocks",
-	"version": "0.5.1",
+	"version": "0.6.0",
 	"description": "Composições genéricas do Design System Orion (Camada 2) — dados por props, sem domínio.",
 	"repository": {
 		"type": "git",
@@ -84,6 +84,7 @@
 		"react-dom": "^19.0.0"
 	},
 	"dependencies": {
+		"@design-systems-orion/motion": "workspace:*",
 		"@design-systems-orion/ui": "workspace:*"
 	},
 	"publishConfig": {

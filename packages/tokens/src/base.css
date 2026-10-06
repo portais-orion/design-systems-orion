@@ -9,6 +9,14 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+	--ease-motion-enter: var(--motion-ease-enter);
+	--ease-motion-exit: var(--motion-ease-exit);
+	--spacing-motion-short: var(--motion-distance-short);
+	--spacing-motion-default: var(--motion-distance-default);
+	--motion-fast: var(--motion-duration-fast);
+	--motion-default: var(--motion-duration-default);
+	--motion-panel: var(--motion-duration-panel);
+	--motion-strength: var(--motion-intensity);
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--color-card: var(--card);
@@ -71,6 +79,14 @@
  * apenas os tokens de identidade (primary, ring, brand-*, sidebar-*).
  */
 :root {
+	--motion-duration-fast: 120ms;
+	--motion-duration-default: 180ms;
+	--motion-duration-panel: 240ms;
+	--motion-distance-short: 4px;
+	--motion-distance-default: 8px;
+	--motion-intensity: 1;
+	--motion-ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+	--motion-ease-exit: cubic-bezier(0.4, 0, 1, 1);
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.145 0 0);
 	--card: oklch(1 0 0);

@@ -1,8 +1,10 @@
 "use client";
 
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { useMotionMode } from "@design-systems-orion/motion/react";
 import * as React from "react";
 
+import { surfaceMotionClasses } from "../_internal/motion";
 import { cn } from "../utils/cn";
 
 /*
@@ -24,20 +26,28 @@ const PopoverContent = React.forwardRef<
 		sideOffset?: number;
 		align?: "start" | "center" | "end";
 	}
->(({ className, sideOffset = 6, align = "center", ...props }, ref) => (
-	<PopoverPrimitive.Portal>
-		<PopoverPrimitive.Positioner sideOffset={sideOffset} align={align} className="z-50">
-			<PopoverPrimitive.Popup
-				ref={ref}
-				className={cn(
-					"w-72 rounded-md border border-border bg-popover p-4 text-popover-foreground shadow-md outline-none animate-in fade-in-0 zoom-in-95",
-					className,
-				)}
-				{...props}
-			/>
-		</PopoverPrimitive.Positioner>
-	</PopoverPrimitive.Portal>
-));
+>(({ className, sideOffset = 6, align = "center", ...props }, ref) => {
+	const mode = useMotionMode();
+	return (
+		<PopoverPrimitive.Portal>
+			<PopoverPrimitive.Positioner sideOffset={sideOffset} align={align} className="z-50">
+				<PopoverPrimitive.Popup
+					ref={ref}
+					className={cn(
+						"w-72 rounded-md border border-border bg-popover p-4 text-popover-foreground shadow-md outline-none",
+						surfaceMotionClasses(
+							mode,
+							"animate-in fade-in-0 zoom-in-95",
+							"transition-[opacity,scale] data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[ending-style]:scale-95",
+						),
+						className,
+					)}
+					{...props}
+				/>
+			</PopoverPrimitive.Positioner>
+		</PopoverPrimitive.Portal>
+	);
+});
 PopoverContent.displayName = "PopoverContent";
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverClose };

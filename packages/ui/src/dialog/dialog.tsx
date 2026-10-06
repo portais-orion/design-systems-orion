@@ -1,8 +1,10 @@
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { useMotionMode } from "@design-systems-orion/motion/react";
 import { X } from "lucide-react";
 import * as React from "react";
+import { surfaceMotionClasses } from "../_internal/motion";
 import { cn } from "../utils/cn";
 
 /**
@@ -18,37 +20,56 @@ const DialogClose = DialogPrimitive.Close;
 const DialogOverlay = React.forwardRef<
 	React.ElementRef<typeof DialogPrimitive.Backdrop>,
 	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Backdrop>
->(({ className, ...props }, ref) => (
-	<DialogPrimitive.Backdrop
-		ref={ref}
-		className={cn("fixed inset-0 z-50 bg-black/40 animate-in fade-in-0", className)}
-		{...props}
-	/>
-));
+>(({ className, ...props }, ref) => {
+	const mode = useMotionMode();
+	return (
+		<DialogPrimitive.Backdrop
+			ref={ref}
+			className={cn(
+				"fixed inset-0 z-50 bg-black/40",
+				surfaceMotionClasses(
+					mode,
+					"animate-in fade-in-0",
+					"transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0",
+				),
+				className,
+			)}
+			{...props}
+		/>
+	);
+});
 DialogOverlay.displayName = "DialogOverlay";
 
 const DialogContent = React.forwardRef<
 	React.ElementRef<typeof DialogPrimitive.Popup>,
 	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Popup>
->(({ className, children, ...props }, ref) => (
-	<DialogPortal>
-		<DialogOverlay />
-		<DialogPrimitive.Popup
-			ref={ref}
-			className={cn(
-				"fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-border bg-background p-6 shadow-lg duration-200 animate-in fade-in-0 zoom-in-95 slide-in-from-left-1/2 slide-in-from-top-48 sm:rounded-xl",
-				className,
-			)}
-			{...props}
-		>
-			{children}
-			<DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
-				<X className="h-4 w-4" />
-				<span className="sr-only">Fechar</span>
-			</DialogPrimitive.Close>
-		</DialogPrimitive.Popup>
-	</DialogPortal>
-));
+>(({ className, children, ...props }, ref) => {
+	const mode = useMotionMode();
+	return (
+		<DialogPortal>
+			<DialogOverlay />
+			<DialogPrimitive.Popup
+				ref={ref}
+				className={cn(
+					"fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-border bg-background p-6 shadow-lg sm:rounded-xl",
+					surfaceMotionClasses(
+						mode,
+						"duration-200 animate-in fade-in-0 zoom-in-95 slide-in-from-left-1/2 slide-in-from-top-48",
+						"transition-[opacity,scale] data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[ending-style]:scale-95",
+					),
+					className,
+				)}
+				{...props}
+			>
+				{children}
+				<DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
+					<X className="h-4 w-4" />
+					<span className="sr-only">Fechar</span>
+				</DialogPrimitive.Close>
+			</DialogPrimitive.Popup>
+		</DialogPortal>
+	);
+});
 DialogContent.displayName = "DialogContent";
 
 const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (

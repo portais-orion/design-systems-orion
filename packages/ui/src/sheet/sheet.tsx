@@ -1,10 +1,12 @@
 "use client";
 
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { useMotionMode } from "@design-systems-orion/motion/react";
 import { type VariantProps, cva } from "class-variance-authority";
 import { X } from "lucide-react";
 import * as React from "react";
 
+import { surfaceMotionClasses } from "../_internal/motion";
 import { cn } from "../utils/cn";
 
 /*
@@ -25,13 +27,24 @@ const SheetPortal = DialogPrimitive.Portal;
 const SheetOverlay = React.forwardRef<
 	React.ElementRef<typeof DialogPrimitive.Backdrop>,
 	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Backdrop>
->(({ className, ...props }, ref) => (
-	<DialogPrimitive.Backdrop
-		ref={ref}
-		className={cn("fixed inset-0 z-50 bg-black/40 animate-in fade-in-0", className)}
-		{...props}
-	/>
-));
+>(({ className, ...props }, ref) => {
+	const mode = useMotionMode();
+	return (
+		<DialogPrimitive.Backdrop
+			ref={ref}
+			className={cn(
+				"fixed inset-0 z-50 bg-black/40",
+				surfaceMotionClasses(
+					mode,
+					"animate-in fade-in-0",
+					"transition-opacity data-[starting-style]:opacity-0 data-[ending-style]:opacity-0",
+				),
+				className,
+			)}
+			{...props}
+		/>
+	);
+});
 SheetOverlay.displayName = "SheetOverlay";
 
 const sheetVariants = cva(
@@ -52,21 +65,42 @@ const sheetVariants = cva(
 const SheetContent = React.forwardRef<
 	React.ElementRef<typeof DialogPrimitive.Popup>,
 	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Popup> & VariantProps<typeof sheetVariants>
->(({ className, children, side = "right", ...props }, ref) => (
-	<SheetPortal>
-		<SheetOverlay />
-		<DialogPrimitive.Popup ref={ref} className={cn(sheetVariants({ side }), className)} {...props}>
-			{children}
-			{/* z-10: o conteúdo do sheet pode ter superfícies próprias (uma sidebar inteira,
+>(({ className, children, side = "right", ...props }, ref) => {
+	const mode = useMotionMode();
+	const slide = {
+		right: "data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full",
+		left: "data-[starting-style]:-translate-x-full data-[ending-style]:-translate-x-full",
+		top: "data-[starting-style]:-translate-y-full data-[ending-style]:-translate-y-full",
+		bottom: "data-[starting-style]:translate-y-full data-[ending-style]:translate-y-full",
+	}[side ?? "right"];
+	return (
+		<SheetPortal>
+			<SheetOverlay />
+			<DialogPrimitive.Popup
+				ref={ref}
+				className={cn(
+					sheetVariants({ side }),
+					surfaceMotionClasses(
+						mode,
+						"animate-in duration-300",
+						`transition-[opacity,translate] duration-(--motion-duration-panel) data-[starting-style]:opacity-0 data-[ending-style]:opacity-0 ${slide}`,
+					),
+					className,
+				)}
+				{...props}
+			>
+				{children}
+				{/* z-10: o conteúdo do sheet pode ter superfícies próprias (uma sidebar inteira,
 			    por exemplo); o botão de fechar fica acima delas sem que o consumidor
 			    precise alcançar este elemento por seletor de filho. */}
-			<DialogPrimitive.Close className="absolute right-4 top-4 z-10 rounded-sm opacity-70 outline-none transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring">
-				<X className="size-4" />
-				<span className="sr-only">Fechar</span>
-			</DialogPrimitive.Close>
-		</DialogPrimitive.Popup>
-	</SheetPortal>
-));
+				<DialogPrimitive.Close className="absolute right-4 top-4 z-10 rounded-sm opacity-70 outline-none transition-opacity hover:opacity-100 focus-visible:ring-2 focus-visible:ring-ring">
+					<X className="size-4" />
+					<span className="sr-only">Fechar</span>
+				</DialogPrimitive.Close>
+			</DialogPrimitive.Popup>
+		</SheetPortal>
+	);
+});
 SheetContent.displayName = "SheetContent";
 
 const SheetHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
