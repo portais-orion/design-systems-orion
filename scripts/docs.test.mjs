@@ -59,6 +59,27 @@ test("extractStories devolve lista vazia sem fonte", () => {
 	assert.deepEqual(extractStories(""), []);
 });
 
+test("o snippet preserva o provider de uma story com args e decorator JSX", () => {
+	const source = `
+import { LauncherCard } from "./launcher-card";
+import { MotionProvider } from "@design-systems-orion/motion/react";
+export const MotionOff = {
+  args: { title: "Motion off" },
+  decorators: [(Story) => (
+    <MotionProvider enabled={false}><Story /></MotionProvider>
+  )],
+};`;
+	const [story] = extractStories(source);
+	const code = storyCodeSnippet(story, "LauncherCard", source, "blocks", "launcher-card", [
+		"LauncherCard",
+	]);
+	assert.match(code, /import \{ MotionProvider \} from "@design-systems-orion\/motion\/react"/);
+	assert.match(code, /^"use client";/);
+	assert.match(code, /<MotionProvider enabled=\{false\}>/);
+	assert.match(code, /<LauncherCard title="Motion off"/);
+	assert.doesNotMatch(code, /<Story\s*\/>/);
+});
+
 test("o snippet resolve o helper local por trás do render", () => {
 	const [defaultStory] = extractStories(STORY_SOURCE);
 	const code = storyCodeSnippet(defaultStory, "DataTable", STORY_SOURCE, "blocks", "data-table", [

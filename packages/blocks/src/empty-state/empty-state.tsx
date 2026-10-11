@@ -13,6 +13,11 @@ export type EmptyStateProps = {
 	description?: string;
 	icon?: React.ComponentType<{ className?: string }>;
 	action?: React.ReactNode;
+	/**
+	 * `default`: área grande e centralizada, com ícone. `inline`: caixa tracejada
+	 * compacta, sem ícone, para painéis laterais e cartões pequenos.
+	 */
+	variant?: "default" | "inline";
 	className?: string;
 };
 
@@ -26,8 +31,23 @@ export function EmptyState({
 	description,
 	icon: Icon = FolderOpen,
 	action,
+	variant = "default",
 	className,
 }: EmptyStateProps) {
+	if (variant === "inline") {
+		return (
+			<div
+				className={cn(
+					"rounded-xl border-2 border-dashed border-border p-4 text-center text-xs text-muted-foreground",
+					className,
+				)}
+			>
+				<p className="font-medium text-foreground">{title}</p>
+				{description && <p className="mt-0.5">{description}</p>}
+				{action && <div className="mt-2 flex justify-center gap-2">{action}</div>}
+			</div>
+		);
+	}
 	return (
 		<div
 			className={cn(

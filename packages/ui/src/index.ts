@@ -26,4 +26,5 @@ export * from "./sheet";
 export * from "./spinner";
 export * from "./combobox";
 export * from "./multi-select";
+export * from "./chip-group";
 export { cn } from "./utils/cn";

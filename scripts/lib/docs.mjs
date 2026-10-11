@@ -54,6 +54,7 @@ export function extractStories(storySource) {
 
 			let args = null;
 			let render = null;
+			let decorators = [];
 
 			for (const prop of decl.initializer.properties) {
 				if (!prop.name || !ts.isIdentifier(prop.name)) continue;
@@ -63,13 +64,51 @@ export function extractStories(storySource) {
 				if (prop.name.text === "render") {
 					render = prop.getText(sourceFile);
 				}
+				if (prop.name.text === "decorators" && ts.isPropertyAssignment(prop)) {
+					decorators = extractJsxDecorators(prop.initializer, sourceFile);
+				}
 			}
 
-			stories.push({ name, args, render });
+			stories.push({ name, args, render, ...(decorators.length ? { decorators } : {}) });
 		}
 	}
 
 	return stories;
+}
+
+// Snippets com args preservam decorators JSX simples, como um provider de movimento.
+function extractJsxDecorators(node, sourceFile) {
+	if (!ts.isArrayLiteralExpression(node)) return [];
+	const decorators = [];
+	for (const decorator of node.elements) {
+		if (
+			!ts.isArrowFunction(decorator) ||
+			!decorator.parameters[0] ||
+			!ts.isIdentifier(decorator.parameters[0].name)
+		) {
+			continue;
+		}
+		const storyName = decorator.parameters[0].name.text;
+		let body = decorator.body;
+		while (ts.isParenthesizedExpression(body)) body = body.expression;
+		if (!ts.isJsxElement(body) && !ts.isJsxFragment(body)) continue;
+		const placeholders = [];
+		const visit = (child) => {
+			if (
+				ts.isJsxSelfClosingElement(child) &&
+				ts.isIdentifier(child.tagName) &&
+				child.tagName.text === storyName &&
+				child.attributes.properties.length === 0
+			) {
+				placeholders.push(child.getText(sourceFile));
+			}
+			ts.forEachChild(child, visit);
+		};
+		visit(body);
+		if (placeholders.length !== 1) continue;
+		decorators.push({ template: dedent(body.getText(sourceFile)), placeholder: placeholders[0] });
+	}
+	return decorators;
 }
 
 /*
@@ -124,8 +163,11 @@ export function storyCodeSnippet(story, compName, storySource, pkg, name, export
 	}
 
 	if (!fnText && story.args) {
-		const jsx = parseArgsToJsx(story.args, compName);
+		let jsx = parseArgsToJsx(story.args, compName);
 		if (jsx) {
+			for (const decorator of [...(story.decorators ?? [])].reverse()) {
+				jsx = decorator.template.replace(decorator.placeholder, () => jsx);
+			}
 			fnText = `export function ${demoName}() {\n\treturn (\n${indentBlock(jsx, 2)}\n\t);\n}`;
 		}
 	}
@@ -142,7 +184,10 @@ export function storyCodeSnippet(story, compName, storySource, pkg, name, export
 	const importLines = buildImportLines(fnText, topImports, pkg, name, compName, exportNames);
 	// `(<T>)?` cobre hooks com generic explícito (`useState<Date | null>(...)`).
 	const usesHooks = /\buse[A-Z]\w*\b\s*(?:<[^>]*>)?\s*\(/.test(fnText);
-	const header = usesHooks ? '"use client";\n\n' : "";
+	const usesMotionProvider = importLines.some((line) =>
+		line.includes('"@design-systems-orion/motion/react"'),
+	);
+	const header = usesHooks || usesMotionProvider ? '"use client";\n\n' : "";
 	const importBlock = importLines.length ? `${importLines.join("\n")}\n\n` : "";
 
 	return `${header}${importBlock}${fnText}`;

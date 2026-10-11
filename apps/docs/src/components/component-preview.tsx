@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Check, Copy, Monitor, Smartphone, Tablet } from 'lucide-react';
-import type { StoryObj } from '@storybook/react';
-import { registry } from './registry.generated';
+import type { StoryContext, StoryObj } from "@storybook/react";
+import { Check, Copy, Monitor, Smartphone, Tablet } from "lucide-react";
+import { useState } from "react";
+import { registry } from "./registry.generated";
 
 function StoryRender({
   story,
@@ -15,15 +15,35 @@ function StoryRender({
   const entry = story as {
     render?: (args: Record<string, unknown>) => React.ReactNode;
     args?: Record<string, unknown>;
+    decorators?: StoryObj["decorators"];
+    parameters?: StoryObj["parameters"];
   };
   const args = entry.args ?? {};
 
-  if (typeof entry.render === 'function') {
-    return <>{entry.render(args)}</>;
+  let render = () => (
+    <>
+      {typeof entry.render === "function" ? (
+        entry.render(args)
+      ) : Component ? (
+        <Component {...args} />
+      ) : null}
+    </>
+  );
+  const context = {
+    args,
+    parameters: entry.parameters ?? {},
+    globals: {},
+  } as StoryContext;
+  const decorators = Array.isArray(entry.decorators)
+    ? entry.decorators
+    : entry.decorators
+      ? [entry.decorators]
+      : [];
+  for (const decorator of [...decorators].reverse()) {
+    const previous = render;
+    render = () => <>{decorator(previous, context)}</>;
   }
-
-  if (!Component) return null;
-  return <Component {...args} />;
+  return render();
 }
 
 function CopyCodeButton({ code }: { code: string }) {
@@ -41,18 +61,18 @@ function CopyCodeButton({ code }: { code: string }) {
       className="inline-flex items-center gap-1.5 rounded-md border border-fd-border bg-fd-background px-2.5 py-1 text-xs font-medium text-fd-muted-foreground transition-colors hover:text-fd-foreground"
     >
       {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
-      {copied ? 'Copiado' : 'Copiar'}
+      {copied ? "Copiado" : "Copiar"}
     </button>
   );
 }
 
 const VIEWPORTS = [
-  { id: 'desktop', label: 'Desktop', icon: Monitor, width: '100%' },
-  { id: 'tablet', label: 'Tablet', icon: Tablet, width: '768px' },
-  { id: 'mobile', label: 'Mobile', icon: Smartphone, width: '375px' },
+  { id: "desktop", label: "Desktop", icon: Monitor, width: "100%" },
+  { id: "tablet", label: "Tablet", icon: Tablet, width: "768px" },
+  { id: "mobile", label: "Mobile", icon: Smartphone, width: "375px" },
 ] as const;
 
-type ViewportId = (typeof VIEWPORTS)[number]['id'];
+type ViewportId = (typeof VIEWPORTS)[number]["id"];
 
 /**
  * Preview de um bloco/página inteira: ocupa a largura total do artigo (sem
@@ -70,14 +90,14 @@ function BlockPreview({
   Component?: React.ComponentType<Record<string, unknown>>;
   code?: string;
 }) {
-  const [tab, setTab] = useState<'preview' | 'code'>('preview');
-  const [viewport, setViewport] = useState<ViewportId>('desktop');
+  const [tab, setTab] = useState<"preview" | "code">("preview");
+  const [viewport, setViewport] = useState<ViewportId>("desktop");
 
   return (
     <div className="my-4">
       <div className="mb-2 flex flex-wrap items-center justify-between gap-2 border-b border-fd-border pb-2">
         <div className="flex gap-1">
-          {(['preview', 'code'] as const).map((value) => (
+          {(["preview", "code"] as const).map((value) => (
             <button
               key={value}
               type="button"
@@ -85,12 +105,12 @@ function BlockPreview({
               data-active={tab === value}
               className="-mb-px border-b-2 border-transparent px-3 py-1.5 text-sm font-medium text-fd-muted-foreground transition-colors hover:text-fd-foreground data-[active=true]:border-fd-primary data-[active=true]:text-fd-foreground"
             >
-              {value === 'preview' ? 'Preview' : 'Código'}
+              {value === "preview" ? "Preview" : "Código"}
             </button>
           ))}
         </div>
 
-        {tab === 'preview' ? (
+        {tab === "preview" ? (
           <div className="flex items-center gap-1 rounded-md border border-fd-border p-0.5">
             {VIEWPORTS.map(({ id, label, icon: Icon }) => (
               <button
@@ -111,7 +131,7 @@ function BlockPreview({
         ) : null}
       </div>
 
-      {tab === 'preview' ? (
+      {tab === "preview" ? (
         <div className="w-full overflow-x-auto rounded-xl border border-fd-border bg-fd-muted/30 p-4">
           <div
             className="mx-auto overflow-hidden rounded-lg border border-fd-border bg-fd-background shadow-sm transition-[width] duration-200"
@@ -139,7 +159,7 @@ export function ComponentPreview({
   /** Preview de página/bloco inteiro: largura total + seletor de viewport, em vez do card compacto centralizado. */
   block?: boolean;
 }) {
-  const [tab, setTab] = useState<'preview' | 'code'>('preview');
+  const [tab, setTab] = useState<"preview" | "code">("preview");
   const entry = registry[name];
   const storyObj = entry?.stories[story];
   const code = entry?.code[story];
@@ -147,20 +167,26 @@ export function ComponentPreview({
   if (!entry || !storyObj) {
     return (
       <div className="my-4 rounded-lg border border-fd-border bg-fd-muted p-4 text-sm text-fd-muted-foreground">
-        Story <code>{story}</code> não encontrada no registry para <code>{name}</code>. Rode{' '}
-        <code>node scripts/generate-docs.mjs</code>.
+        Story <code>{story}</code> não encontrada no registry para{" "}
+        <code>{name}</code>. Rode <code>node scripts/generate-docs.mjs</code>.
       </div>
     );
   }
 
   if (block) {
-    return <BlockPreview storyObj={storyObj} Component={entry.meta?.component} code={code} />;
+    return (
+      <BlockPreview
+        storyObj={storyObj}
+        Component={entry.meta?.component}
+        code={code}
+      />
+    );
   }
 
   return (
     <div className="my-4">
       <div className="mb-2 flex gap-1 border-b border-fd-border">
-        {(['preview', 'code'] as const).map((value) => (
+        {(["preview", "code"] as const).map((value) => (
           <button
             key={value}
             type="button"
@@ -168,12 +194,12 @@ export function ComponentPreview({
             data-active={tab === value}
             className="-mb-px border-b-2 border-transparent px-3 py-1.5 text-sm font-medium text-fd-muted-foreground transition-colors hover:text-fd-foreground data-[active=true]:border-fd-primary data-[active=true]:text-fd-foreground"
           >
-            {value === 'preview' ? 'Preview' : 'Código'}
+            {value === "preview" ? "Preview" : "Código"}
           </button>
         ))}
       </div>
 
-      {tab === 'preview' ? (
+      {tab === "preview" ? (
         <div className="flex min-h-[180px] w-full items-center justify-center overflow-x-auto rounded-xl border border-fd-border bg-fd-background p-6">
           <div className="flex w-full max-w-3xl justify-center">
             <StoryRender story={storyObj} Component={entry.meta?.component} />

@@ -69,7 +69,17 @@
 		"./module-icon": "./src/module-icon/index.ts",
 		"./impersonation-banner": "./src/impersonation-banner/index.ts",
 		"./onboarding-dialog": "./src/onboarding-dialog/index.ts",
-		"./permission-gate": "./src/permission-gate/index.ts"
+		"./permission-gate": "./src/permission-gate/index.ts",
+		"./bar-list": "./src/bar-list/index.ts",
+		"./proportion-bar": "./src/proportion-bar/index.ts",
+		"./conversation-list-item": "./src/conversation-list-item/index.ts",
+		"./conversation-header": "./src/conversation-header/index.ts",
+		"./message-bubble": "./src/message-bubble/index.ts",
+		"./message-thread": "./src/message-thread/index.ts",
+		"./message-composer": "./src/message-composer/index.ts",
+		"./thread-event": "./src/thread-event/index.ts",
+		"./inbox-layout": "./src/inbox-layout/index.ts",
+		"./description-list": "./src/description-list/index.ts"
 	},
 	"files": ["dist"],
 	"scripts": {
@@ -333,6 +343,46 @@
 			"./permission-gate": {
 				"types": "./dist/permission-gate/index.d.mts",
 				"import": "./dist/permission-gate/index.mjs"
+			},
+			"./bar-list": {
+				"types": "./dist/bar-list/index.d.mts",
+				"import": "./dist/bar-list/index.mjs"
+			},
+			"./proportion-bar": {
+				"types": "./dist/proportion-bar/index.d.mts",
+				"import": "./dist/proportion-bar/index.mjs"
+			},
+			"./conversation-list-item": {
+				"types": "./dist/conversation-list-item/index.d.mts",
+				"import": "./dist/conversation-list-item/index.mjs"
+			},
+			"./conversation-header": {
+				"types": "./dist/conversation-header/index.d.mts",
+				"import": "./dist/conversation-header/index.mjs"
+			},
+			"./message-bubble": {
+				"types": "./dist/message-bubble/index.d.mts",
+				"import": "./dist/message-bubble/index.mjs"
+			},
+			"./message-thread": {
+				"types": "./dist/message-thread/index.d.mts",
+				"import": "./dist/message-thread/index.mjs"
+			},
+			"./message-composer": {
+				"types": "./dist/message-composer/index.d.mts",
+				"import": "./dist/message-composer/index.mjs"
+			},
+			"./thread-event": {
+				"types": "./dist/thread-event/index.d.mts",
+				"import": "./dist/thread-event/index.mjs"
+			},
+			"./inbox-layout": {
+				"types": "./dist/inbox-layout/index.d.mts",
+				"import": "./dist/inbox-layout/index.mjs"
+			},
+			"./description-list": {
+				"types": "./dist/description-list/index.d.mts",
+				"import": "./dist/description-list/index.mjs"
 			}
 		}
 	},

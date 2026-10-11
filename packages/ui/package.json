@@ -38,7 +38,8 @@
 		"./sheet": "./src/sheet/index.ts",
 		"./spinner": "./src/spinner/index.ts",
 		"./combobox": "./src/combobox/index.ts",
-		"./multi-select": "./src/multi-select/index.ts"
+		"./multi-select": "./src/multi-select/index.ts",
+		"./chip-group": "./src/chip-group/index.ts"
 	},
 	"files": ["dist"],
 	"scripts": {
@@ -180,6 +181,10 @@
 			"./multi-select": {
 				"types": "./dist/multi-select/index.d.mts",
 				"import": "./dist/multi-select/index.mjs"
+			},
+			"./chip-group": {
+				"types": "./dist/chip-group/index.d.mts",
+				"import": "./dist/chip-group/index.mjs"
 			}
 		}
 	},

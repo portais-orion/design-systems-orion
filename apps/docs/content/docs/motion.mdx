@@ -1,0 +1,108 @@
+---
+title: Movimento e atualização
+description: Como atualizar um portal que já usa Orion e ativar as animações dos componentes existentes.
+---
+
+Atualize as dependências do frontend e configure `MotionProvider` uma vez na árvore
+da aplicação. As instâncias que já importam os componentes Orion recebem o novo
+comportamento, preservando suas props e callbacks.
+
+## 1. Atualizar os packages
+
+Esta entrega está disponível em `tokens@0.4.0`, `ui@0.5.0`, `blocks@0.6.0` e
+`motion@0.2.0`. Execute **na pasta do frontend consumidor**, onde está o seu
+`package.json`, usando o gerenciador já adotado pelo portal:
+
+```bash
+pnpm add @design-systems-orion/tokens@0.4.0 @design-systems-orion/ui@0.5.0 @design-systems-orion/blocks@0.6.0 @design-systems-orion/motion@0.2.0
+```
+
+```bash
+npm install @design-systems-orion/tokens@0.4.0 @design-systems-orion/ui@0.5.0 @design-systems-orion/blocks@0.6.0 @design-systems-orion/motion@0.2.0
+```
+
+Em workspace pnpm, também é possível executar na raiz com
+`pnpm --filter <nome-do-frontend> add ...`. Use o nome real do package frontend.
+Versione as alterações do `package.json` e do lockfile no repositório consumidor.
+
+React e React DOM devem satisfazer `^19.0.0`, e o CSS do Orion usa Tailwind v4.
+Confira os demais peers, tokens, tema e `@source` no
+[manual de instalação dos consumidores](https://github.com/portais-orion/design-systems-orion/blob/main/docs/adoption/consumer-setup.md).
+Os `@source` de UI e Blocks devem apontar para `dist`, com caminhos relativos ao
+CSS global do portal. Mantenha os imports de base e tema que já funcionam.
+
+## 2. Ativar movimento
+
+Adicione o provider ao componente que já reúne os providers do portal. Em Next.js,
+esse componente precisa ser cliente:
+
+```tsx
+"use client";
+
+import type { ReactNode } from "react";
+import { MotionProvider } from "@design-systems-orion/motion/react";
+
+export function Providers({ children }: { children: ReactNode }) {
+  return <MotionProvider enabled>{children}</MotionProvider>;
+}
+```
+
+No layout, envolva o conteúdo com esse `Providers`, mantendo os demais providers
+existentes. Em Vite, use `MotionProvider` na árvore React principal.
+
+O provider não adiciona um elemento ao DOM. Não é necessário editar cada uso de
+`Dialog`, `FiltersCard` ou dos outros componentes abaixo.
+
+## Componentes que recebem movimento
+
+| Componente | Comportamento |
+| --- | --- |
+| [Accordion](/docs/ui/accordion) | Expansão e recolhimento com duração e easing dos tokens. |
+| [Dialog](/docs/ui/dialog) | Transições de abertura e fechamento. |
+| [Popover](/docs/ui/popover) | Transições de abertura e fechamento. |
+| [Sheet](/docs/ui/sheet) | Transições de entrada e saída. |
+| [FiltersCard](/docs/blocks/filters-card) | Abertura e fechamento do painel de filtros. |
+| [LauncherCard](/docs/blocks/launcher-card) | Entrada curta e feedback de hover. |
+
+Imports por subpath continuam iguais. Um wrapper local que reexporta ou compõe
+o componente Orion recebe a atualização quando renderiza dentro do provider.
+Uma cópia local de código, shadcn ou componente de outra biblioteca exige migração
+para o import Orion correspondente; atualizar o package não altera essa cópia.
+
+## Movimento reduzido e desativação
+
+`enabled` ativa a política; o padrão de `reducedMotion` é `"user"`, respeitando
+`prefers-reduced-motion`, inclusive quando a preferência muda durante o uso.
+Durante SSR, a preferência desconhecida é tratada como movimento reduzido.
+
+```tsx
+<MotionProvider enabled reducedMotion="always">{children}</MotionProvider>
+```
+
+Para desativar o movimento dos componentes migrados:
+
+```tsx
+<MotionProvider enabled={false}>{children}</MotionProvider>
+```
+
+Sem provider, os primitives mantêm suas transições legadas e os blocks não ativam
+o movimento novo. Fechar `FiltersCard` desmonta seu conteúdo após a saída; valores
+internos não persistem entre fechamento e reabertura, conforme seu contrato.
+
+## 3. Validar no portal
+
+Rode os scripts de tipos, lint, testes e build que o frontend já possui. Reinicie
+o servidor de desenvolvimento após atualizar os packages. Confira tema, layout,
+foco, Escape, abertura e fechamento, ações e preferência de movimento reduzido.
+Valide nos navegadores e no pipeline de build realmente usados pelo consumidor.
+
+Os previews deste site usam o código atual do workspace. As stories com movimento
+dos blocks configuram seu próprio provider; no Storybook, a toolbar permite
+comparar Full, Reduced e Off junto das marcas.
+
+## Anime.js
+
+Anime.js está instalado no package de suporte para uso futuro, mas os componentes
+desta entrega não o importam e não existe adapter público Anime no Orion.
+Se o portal for importar `animejs` diretamente, declare essa dependência no seu
+frontend. Efeitos próprios precisam implementar cleanup e respeitar movimento reduzido.

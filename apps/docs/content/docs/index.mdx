@@ -3,8 +3,8 @@ title: Introdução
 description: Componentes e blocos multi-marca do ecossistema Orion.
 ---
 
-O **Design System Orion** reúne os componentes compartilhados dos portais do Grupo em dois
-pacotes que você instala do monorepo:
+O **Design System Orion** reúne componentes compartilhados, tokens e política de movimento
+em packages versionados publicados no npm:
 
 <Cards>
   <Card
@@ -16,6 +16,11 @@ pacotes que você instala do monorepo:
     title="Blocks"
     description="Composições prontas: DataTable, AppShell, FormPageLayout…"
     href="/docs/blocks/data-table"
+  />
+  <Card
+    title="Movimento e atualização"
+    description="Atualize componentes existentes e ative movimento acessível no portal."
+    href="/docs/motion"
   />
 </Cards>
 
@@ -33,6 +38,10 @@ como este site e o Storybook.
 @import "@design-systems-orion/tokens/base.css";
 @import "@design-systems-orion/tokens/themes/supertrans.css";
 ```
+
+Para atualizar um portal que já usa Orion e ativar as animações, siga o
+[guia de movimento e atualização](/docs/motion). O provider é configurado uma vez;
+os componentes Orion existentes passam a usar a política compartilhada.
 
 ## Marcas
 
