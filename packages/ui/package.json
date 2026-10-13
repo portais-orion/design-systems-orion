@@ -1,6 +1,6 @@
 {
 	"name": "@design-systems-orion/ui",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"description": "Primitives compartilhadas do Design System Orion (Base UI + Tailwind v4 + cva)",
 	"repository": {
 		"type": "git",

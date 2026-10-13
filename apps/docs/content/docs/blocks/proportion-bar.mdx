@@ -1,0 +1,60 @@
+---
+title: ProportionBar
+description: "Barra horizontal dividida em segmentos proporcionais, com legenda."
+---
+
+Use para mostrar como um total se reparte (aprovadas × rejeitadas × pendentes). Os segmentos de valor zero ficam fora da barra, mas continuam na legenda. Para comparar itens independentes entre si use `BarList`.
+
+Disponível em `@design-systems-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
+```
+
+## Import
+
+```tsx
+import { ProportionBar } from "@design-systems-orion/blocks/proportion-bar";
+```
+
+O import por subpath traz só `proportion-bar`. Importar de `@design-systems-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/proportion-bar" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `segments`\* | `ProportionBarSegment[]` | — | — |
+| `total` | `number` | — | Total de referência dos percentuais. Padrão: soma dos segmentos. |
+| `emptyMessage` | `string` | `Sem dados para exibir.` | Texto exibido quando não há nada a distribuir (total zero). |
+| `showLegend` | `boolean` | `true` | Mostra a legenda com contagem e percentual. Padrão: `true`. |
+| `formatPercent` | `(percent: number) => any` | `(percent) => `${percent}%`` | Formata o percentual (já arredondado) da legenda. |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `ProportionBar` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Sem legenda
+
+<ComponentPreview name="blocks/proportion-bar" story="SemLegenda" />
+
+### Vazio
+
+<ComponentPreview name="blocks/proportion-bar" story="Vazio" />
+
+## Storybook
+
+Todas as variações de `ProportionBar`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

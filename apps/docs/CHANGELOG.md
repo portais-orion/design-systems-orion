@@ -1,5 +1,13 @@
 # docs
 
+## 0.0.12
+
+### Patch Changes
+
+- Updated dependencies [dca3298]
+  - @design-systems-orion/ui@0.6.0
+  - @design-systems-orion/blocks@0.7.0
+
 ## 0.0.11
 
 ### Patch Changes

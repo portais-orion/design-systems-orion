@@ -1,0 +1,57 @@
+---
+title: DescriptionList
+description: "Lista de pares rótulo/valor em texto pequeno, para painéis laterais e resumos."
+---
+
+Renderiza uma `<dl>` semântica. Para campos editáveis use `ViewEditField`; para formulários, `FormField`.
+
+Disponível em `@design-systems-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
+```
+
+## Import
+
+```tsx
+import { DescriptionList } from "@design-systems-orion/blocks/description-list";
+```
+
+O import por subpath traz só `description-list`. Importar de `@design-systems-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/description-list" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `items`\* | `DescriptionListItem[]` | — | — |
+| `layout` | `"inline" \| "stacked"` | `inline` | `inline`: rótulo à esquerda, valor à direita. `stacked`: rótulo acima do valor, para valores longos. Padrão: `inline`. |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `DescriptionList` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Empilhada
+
+<ComponentPreview name="blocks/description-list" story="Empilhada" />
+
+### Item oculto
+
+<ComponentPreview name="blocks/description-list" story="ItemOculto" />
+
+## Storybook
+
+Todas as variações de `DescriptionList`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

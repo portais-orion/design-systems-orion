@@ -10,84 +10,95 @@ import * as s4 from '../../../../packages/ui/src/badge/badge.stories';
 import * as s5 from '../../../../packages/ui/src/button/button.stories';
 import * as s6 from '../../../../packages/ui/src/card/card.stories';
 import * as s7 from '../../../../packages/ui/src/checkbox/checkbox.stories';
-import * as s8 from '../../../../packages/ui/src/combobox/combobox.stories';
-import * as s9 from '../../../../packages/ui/src/dialog/dialog.stories';
-import * as s10 from '../../../../packages/ui/src/dropdown-menu/dropdown-menu.stories';
-import * as s11 from '../../../../packages/ui/src/input/input.stories';
-import * as s12 from '../../../../packages/ui/src/label/label.stories';
-import * as s13 from '../../../../packages/ui/src/multi-select/multi-select.stories';
-import * as s14 from '../../../../packages/ui/src/popover/popover.stories';
-import * as s15 from '../../../../packages/ui/src/progress/progress.stories';
-import * as s16 from '../../../../packages/ui/src/radio-group/radio-group.stories';
-import * as s17 from '../../../../packages/ui/src/scroll-area/scroll-area.stories';
-import * as s18 from '../../../../packages/ui/src/select/select.stories';
-import * as s19 from '../../../../packages/ui/src/separator/separator.stories';
-import * as s20 from '../../../../packages/ui/src/sheet/sheet.stories';
-import * as s21 from '../../../../packages/ui/src/skeleton/skeleton.stories';
-import * as s22 from '../../../../packages/ui/src/spinner/spinner.stories';
-import * as s23 from '../../../../packages/ui/src/switch/switch.stories';
-import * as s24 from '../../../../packages/ui/src/table/table.stories';
-import * as s25 from '../../../../packages/ui/src/tabs/tabs.stories';
-import * as s26 from '../../../../packages/ui/src/textarea/textarea.stories';
-import * as s27 from '../../../../packages/ui/src/tooltip/tooltip.stories';
-import * as s28 from '../../../../packages/blocks/src/activity-timeline/activity-timeline.stories';
-import * as s29 from '../../../../packages/blocks/src/app-shell/app-shell.stories';
-import * as s30 from '../../../../packages/blocks/src/attachment-list/attachment-list.stories';
-import * as s31 from '../../../../packages/blocks/src/breadcrumbs/breadcrumbs.stories';
-import * as s32 from '../../../../packages/blocks/src/code-badge/code-badge.stories';
-import * as s33 from '../../../../packages/blocks/src/comparison-diff-view/comparison-diff-view.stories';
-import * as s34 from '../../../../packages/blocks/src/confirm-dialog/confirm-dialog.stories';
-import * as s35 from '../../../../packages/blocks/src/content-card/content-card.stories';
-import * as s36 from '../../../../packages/blocks/src/crud-modal-frame/crud-modal-frame.stories';
-import * as s37 from '../../../../packages/blocks/src/crud-modal-header/crud-modal-header.stories';
-import * as s38 from '../../../../packages/blocks/src/dashboard-page-layout/dashboard-page-layout.stories';
-import * as s39 from '../../../../packages/blocks/src/data-table/data-table.stories';
-import * as s40 from '../../../../packages/blocks/src/detail-page-layout/detail-page-layout.stories';
-import * as s41 from '../../../../packages/blocks/src/dynamic-field-list-rows/dynamic-field-list-rows.stories';
-import * as s42 from '../../../../packages/blocks/src/empty-state/empty-state.stories';
-import * as s43 from '../../../../packages/blocks/src/entity-assignment-panel/entity-assignment-panel.stories';
-import * as s44 from '../../../../packages/blocks/src/error-state/error-state.stories';
-import * as s45 from '../../../../packages/blocks/src/field-group/field-group.stories';
-import * as s46 from '../../../../packages/blocks/src/file-dropzone/file-dropzone.stories';
-import * as s47 from '../../../../packages/blocks/src/file-list-item/file-list-item.stories';
-import * as s48 from '../../../../packages/blocks/src/filter-pill/filter-pill.stories';
-import * as s49 from '../../../../packages/blocks/src/filterable-tree-list/filterable-tree-list.stories';
-import * as s50 from '../../../../packages/blocks/src/filters-card/filters-card.stories';
-import * as s51 from '../../../../packages/blocks/src/form-actions/form-actions.stories';
-import * as s52 from '../../../../packages/blocks/src/form-field/form-field.stories';
-import * as s53 from '../../../../packages/blocks/src/form-message/form-message.stories';
-import * as s54 from '../../../../packages/blocks/src/form-page-layout/form-page-layout.stories';
-import * as s55 from '../../../../packages/blocks/src/form-section/form-section.stories';
-import * as s56 from '../../../../packages/blocks/src/gantt-chart/gantt-chart.stories';
-import * as s57 from '../../../../packages/blocks/src/impact-analysis-dialog/impact-analysis-dialog.stories';
-import * as s58 from '../../../../packages/blocks/src/impersonation-banner/impersonation-banner.stories';
-import * as s59 from '../../../../packages/blocks/src/inline-confirm-action/inline-confirm-action.stories';
-import * as s60 from '../../../../packages/blocks/src/json-diff-dialog/json-diff-dialog.stories';
-import * as s61 from '../../../../packages/blocks/src/kanban-board/kanban-board.stories';
-import * as s62 from '../../../../packages/blocks/src/kiosk-mode-toggle/kiosk-mode-toggle.stories';
-import * as s63 from '../../../../packages/blocks/src/launcher-card/launcher-card.stories';
-import * as s64 from '../../../../packages/blocks/src/list-page-layout/list-page-layout.stories';
-import * as s65 from '../../../../packages/blocks/src/loading-overlay/loading-overlay.stories';
-import * as s66 from '../../../../packages/blocks/src/metric-gauge-card/metric-gauge-card.stories';
-import * as s67 from '../../../../packages/blocks/src/missing-prerequisites-state/missing-prerequisites-state.stories';
-import * as s68 from '../../../../packages/blocks/src/module-icon/module-icon.stories';
-import * as s69 from '../../../../packages/blocks/src/month-calendar/month-calendar.stories';
-import * as s70 from '../../../../packages/blocks/src/nested-toggle-accordion-list/nested-toggle-accordion-list.stories';
-import * as s71 from '../../../../packages/blocks/src/onboarding-dialog/onboarding-dialog.stories';
-import * as s72 from '../../../../packages/blocks/src/page-examples/page-examples.stories';
-import * as s73 from '../../../../packages/blocks/src/page-header/page-header.stories';
-import * as s74 from '../../../../packages/blocks/src/page-layout/page-layout.stories';
-import * as s75 from '../../../../packages/blocks/src/pagination/pagination.stories';
-import * as s76 from '../../../../packages/blocks/src/permission-gate/permission-gate.stories';
-import * as s77 from '../../../../packages/blocks/src/presence-avatar-stack/presence-avatar-stack.stories';
-import * as s78 from '../../../../packages/blocks/src/search-bar/search-bar.stories';
-import * as s79 from '../../../../packages/blocks/src/section-header/section-header.stories';
-import * as s80 from '../../../../packages/blocks/src/sidebar/sidebar.stories';
-import * as s81 from '../../../../packages/blocks/src/status-cards/status-cards.stories';
-import * as s82 from '../../../../packages/blocks/src/status-dot/status-dot.stories';
-import * as s83 from '../../../../packages/blocks/src/table-skeleton-rows/table-skeleton-rows.stories';
-import * as s84 from '../../../../packages/blocks/src/table-toggle/table-toggle.stories';
-import * as s85 from '../../../../packages/blocks/src/view-edit-field/view-edit-field.stories';
+import * as s8 from '../../../../packages/ui/src/chip-group/chip-group.stories';
+import * as s9 from '../../../../packages/ui/src/combobox/combobox.stories';
+import * as s10 from '../../../../packages/ui/src/dialog/dialog.stories';
+import * as s11 from '../../../../packages/ui/src/dropdown-menu/dropdown-menu.stories';
+import * as s12 from '../../../../packages/ui/src/input/input.stories';
+import * as s13 from '../../../../packages/ui/src/label/label.stories';
+import * as s14 from '../../../../packages/ui/src/multi-select/multi-select.stories';
+import * as s15 from '../../../../packages/ui/src/popover/popover.stories';
+import * as s16 from '../../../../packages/ui/src/progress/progress.stories';
+import * as s17 from '../../../../packages/ui/src/radio-group/radio-group.stories';
+import * as s18 from '../../../../packages/ui/src/scroll-area/scroll-area.stories';
+import * as s19 from '../../../../packages/ui/src/select/select.stories';
+import * as s20 from '../../../../packages/ui/src/separator/separator.stories';
+import * as s21 from '../../../../packages/ui/src/sheet/sheet.stories';
+import * as s22 from '../../../../packages/ui/src/skeleton/skeleton.stories';
+import * as s23 from '../../../../packages/ui/src/spinner/spinner.stories';
+import * as s24 from '../../../../packages/ui/src/switch/switch.stories';
+import * as s25 from '../../../../packages/ui/src/table/table.stories';
+import * as s26 from '../../../../packages/ui/src/tabs/tabs.stories';
+import * as s27 from '../../../../packages/ui/src/textarea/textarea.stories';
+import * as s28 from '../../../../packages/ui/src/tooltip/tooltip.stories';
+import * as s29 from '../../../../packages/blocks/src/activity-timeline/activity-timeline.stories';
+import * as s30 from '../../../../packages/blocks/src/app-shell/app-shell.stories';
+import * as s31 from '../../../../packages/blocks/src/attachment-list/attachment-list.stories';
+import * as s32 from '../../../../packages/blocks/src/bar-list/bar-list.stories';
+import * as s33 from '../../../../packages/blocks/src/breadcrumbs/breadcrumbs.stories';
+import * as s34 from '../../../../packages/blocks/src/code-badge/code-badge.stories';
+import * as s35 from '../../../../packages/blocks/src/comparison-diff-view/comparison-diff-view.stories';
+import * as s36 from '../../../../packages/blocks/src/confirm-dialog/confirm-dialog.stories';
+import * as s37 from '../../../../packages/blocks/src/content-card/content-card.stories';
+import * as s38 from '../../../../packages/blocks/src/conversation-header/conversation-header.stories';
+import * as s39 from '../../../../packages/blocks/src/conversation-list-item/conversation-list-item.stories';
+import * as s40 from '../../../../packages/blocks/src/crud-modal-frame/crud-modal-frame.stories';
+import * as s41 from '../../../../packages/blocks/src/crud-modal-header/crud-modal-header.stories';
+import * as s42 from '../../../../packages/blocks/src/dashboard-page-layout/dashboard-page-layout.stories';
+import * as s43 from '../../../../packages/blocks/src/data-table/data-table.stories';
+import * as s44 from '../../../../packages/blocks/src/description-list/description-list.stories';
+import * as s45 from '../../../../packages/blocks/src/detail-page-layout/detail-page-layout.stories';
+import * as s46 from '../../../../packages/blocks/src/dynamic-field-list-rows/dynamic-field-list-rows.stories';
+import * as s47 from '../../../../packages/blocks/src/empty-state/empty-state.stories';
+import * as s48 from '../../../../packages/blocks/src/entity-assignment-panel/entity-assignment-panel.stories';
+import * as s49 from '../../../../packages/blocks/src/error-state/error-state.stories';
+import * as s50 from '../../../../packages/blocks/src/field-group/field-group.stories';
+import * as s51 from '../../../../packages/blocks/src/file-dropzone/file-dropzone.stories';
+import * as s52 from '../../../../packages/blocks/src/file-list-item/file-list-item.stories';
+import * as s53 from '../../../../packages/blocks/src/filter-pill/filter-pill.stories';
+import * as s54 from '../../../../packages/blocks/src/filterable-tree-list/filterable-tree-list.stories';
+import * as s55 from '../../../../packages/blocks/src/filters-card/filters-card.stories';
+import * as s56 from '../../../../packages/blocks/src/form-actions/form-actions.stories';
+import * as s57 from '../../../../packages/blocks/src/form-field/form-field.stories';
+import * as s58 from '../../../../packages/blocks/src/form-message/form-message.stories';
+import * as s59 from '../../../../packages/blocks/src/form-page-layout/form-page-layout.stories';
+import * as s60 from '../../../../packages/blocks/src/form-section/form-section.stories';
+import * as s61 from '../../../../packages/blocks/src/gantt-chart/gantt-chart.stories';
+import * as s62 from '../../../../packages/blocks/src/impact-analysis-dialog/impact-analysis-dialog.stories';
+import * as s63 from '../../../../packages/blocks/src/impersonation-banner/impersonation-banner.stories';
+import * as s64 from '../../../../packages/blocks/src/inbox-layout/inbox-layout.stories';
+import * as s65 from '../../../../packages/blocks/src/inline-confirm-action/inline-confirm-action.stories';
+import * as s66 from '../../../../packages/blocks/src/json-diff-dialog/json-diff-dialog.stories';
+import * as s67 from '../../../../packages/blocks/src/kanban-board/kanban-board.stories';
+import * as s68 from '../../../../packages/blocks/src/kiosk-mode-toggle/kiosk-mode-toggle.stories';
+import * as s69 from '../../../../packages/blocks/src/launcher-card/launcher-card.stories';
+import * as s70 from '../../../../packages/blocks/src/list-page-layout/list-page-layout.stories';
+import * as s71 from '../../../../packages/blocks/src/loading-overlay/loading-overlay.stories';
+import * as s72 from '../../../../packages/blocks/src/message-bubble/message-bubble.stories';
+import * as s73 from '../../../../packages/blocks/src/message-composer/message-composer.stories';
+import * as s74 from '../../../../packages/blocks/src/message-thread/message-thread.stories';
+import * as s75 from '../../../../packages/blocks/src/metric-gauge-card/metric-gauge-card.stories';
+import * as s76 from '../../../../packages/blocks/src/missing-prerequisites-state/missing-prerequisites-state.stories';
+import * as s77 from '../../../../packages/blocks/src/module-icon/module-icon.stories';
+import * as s78 from '../../../../packages/blocks/src/month-calendar/month-calendar.stories';
+import * as s79 from '../../../../packages/blocks/src/nested-toggle-accordion-list/nested-toggle-accordion-list.stories';
+import * as s80 from '../../../../packages/blocks/src/onboarding-dialog/onboarding-dialog.stories';
+import * as s81 from '../../../../packages/blocks/src/page-examples/page-examples.stories';
+import * as s82 from '../../../../packages/blocks/src/page-header/page-header.stories';
+import * as s83 from '../../../../packages/blocks/src/page-layout/page-layout.stories';
+import * as s84 from '../../../../packages/blocks/src/pagination/pagination.stories';
+import * as s85 from '../../../../packages/blocks/src/permission-gate/permission-gate.stories';
+import * as s86 from '../../../../packages/blocks/src/presence-avatar-stack/presence-avatar-stack.stories';
+import * as s87 from '../../../../packages/blocks/src/proportion-bar/proportion-bar.stories';
+import * as s88 from '../../../../packages/blocks/src/search-bar/search-bar.stories';
+import * as s89 from '../../../../packages/blocks/src/section-header/section-header.stories';
+import * as s90 from '../../../../packages/blocks/src/sidebar/sidebar.stories';
+import * as s91 from '../../../../packages/blocks/src/status-cards/status-cards.stories';
+import * as s92 from '../../../../packages/blocks/src/status-dot/status-dot.stories';
+import * as s93 from '../../../../packages/blocks/src/table-skeleton-rows/table-skeleton-rows.stories';
+import * as s94 from '../../../../packages/blocks/src/table-toggle/table-toggle.stories';
+import * as s95 from '../../../../packages/blocks/src/thread-event/thread-event.stories';
+import * as s96 from '../../../../packages/blocks/src/view-edit-field/view-edit-field.stories';
 
 export type RegistryEntry = {
   // O componente-alvo vive no meta (default export), não na story:
@@ -176,9 +187,19 @@ export const registry: Record<string, RegistryEntry> = {
       "Disabled": "import { Checkbox } from \"@design-systems-orion/ui/checkbox\";\nimport { Label } from \"@design-systems-orion/ui/label\";\n\nexport function CheckboxDisabled() {\n\treturn (\n\t\t<div className=\"flex items-center space-x-2\">\n\t\t\t<Checkbox id=\"disabled\" {...args} />\n\t\t\t<Label htmlFor=\"disabled\">Disabled checkbox</Label>\n\t\t</div>\n\t);\n}",
     },
   },
-  "ui/combobox": {
+  "ui/chip-group": {
     meta: s8.default as RegistryEntry['meta'],
     stories: s8 as unknown as Record<string, StoryObj>,
+    code: {
+      "Default": "\"use client\";\n\nimport { ChipGroup, ChipGroupItem } from \"@design-systems-orion/ui/chip-group\";\nimport * as React from \"react\";\n\nexport function Render() {\n\t\tconst [value, setValue] = React.useState(\"all\");\n\t\treturn (\n\t\t\t<ChipGroup value={value} onValueChange={setValue} aria-label=\"Canal\">\n\t\t\t\t<ChipGroupItem value=\"all\">Todas</ChipGroupItem>\n\t\t\t\t<ChipGroupItem value=\"whatsapp\">WhatsApp</ChipGroupItem>\n\t\t\t\t<ChipGroupItem value=\"email\">E-mail</ChipGroupItem>\n\t\t\t</ChipGroup>\n\t\t);\n\t}",
+      "ComPontoEContador": "\"use client\";\n\nimport { ChipGroup, ChipGroupItem } from \"@design-systems-orion/ui/chip-group\";\nimport * as React from \"react\";\n\nexport function Render() {\n\t\tconst [value, setValue] = React.useState(\"mine\");\n\t\treturn (\n\t\t\t<ChipGroup value={value} onValueChange={setValue} aria-label=\"Visão\">\n\t\t\t\t<ChipGroupItem value=\"all\" tone=\"neutral\" dot>\n\t\t\t\t\tTodas\n\t\t\t\t</ChipGroupItem>\n\t\t\t\t<ChipGroupItem value=\"mine\" tone=\"brand\" dot count={4}>\n\t\t\t\t\tMinha fila\n\t\t\t\t</ChipGroupItem>\n\t\t\t\t<ChipGroupItem value=\"unassigned\" tone=\"danger\" dot count={12}>\n\t\t\t\t\tNão atribuídas\n\t\t\t\t</ChipGroupItem>\n\t\t\t\t<ChipGroupItem value=\"waiting\" tone=\"warning\" dot count={0}>\n\t\t\t\t\tEm espera\n\t\t\t\t</ChipGroupItem>\n\t\t\t\t<ChipGroupItem value=\"closed\" tone=\"success\" dot count={31}>\n\t\t\t\t\tEncerradas\n\t\t\t\t</ChipGroupItem>\n\t\t\t</ChipGroup>\n\t\t);\n\t}",
+      "Medio": "\"use client\";\n\nimport { ChipGroup, ChipGroupItem } from \"@design-systems-orion/ui/chip-group\";\nimport * as React from \"react\";\n\nexport function Render() {\n\t\tconst [value, setValue] = React.useState(\"USER\");\n\t\treturn (\n\t\t\t<ChipGroup value={value} onValueChange={setValue} aria-label=\"Destino\">\n\t\t\t\t<ChipGroupItem value=\"USER\" size=\"md\">\n\t\t\t\t\tAtendente\n\t\t\t\t</ChipGroupItem>\n\t\t\t\t<ChipGroupItem value=\"QUEUE\" size=\"md\">\n\t\t\t\t\tFila\n\t\t\t\t</ChipGroupItem>\n\t\t\t</ChipGroup>\n\t\t);\n\t}",
+      "ItemDesabilitado": "\"use client\";\n\nimport { ChipGroup, ChipGroupItem } from \"@design-systems-orion/ui/chip-group\";\nimport * as React from \"react\";\n\nexport function Render() {\n\t\tconst [value, setValue] = React.useState(\"QUEUE\");\n\t\treturn (\n\t\t\t<ChipGroup value={value} onValueChange={setValue} aria-label=\"Destino\">\n\t\t\t\t<ChipGroupItem value=\"USER\" size=\"md\" disabled>\n\t\t\t\t\tAtendente\n\t\t\t\t</ChipGroupItem>\n\t\t\t\t<ChipGroupItem value=\"QUEUE\" size=\"md\">\n\t\t\t\t\tFila\n\t\t\t\t</ChipGroupItem>\n\t\t\t</ChipGroup>\n\t\t);\n\t}",
+    },
+  },
+  "ui/combobox": {
+    meta: s9.default as RegistryEntry['meta'],
+    stories: s9 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { Combobox } from \"@design-systems-orion/ui/combobox\";\nimport * as React from \"react\";\n\nfunction Controlado(props: Partial<React.ComponentProps<typeof Combobox>>) {\n\tconst [value, setValue] = React.useState<string | null>(props.value ?? null);\n\treturn (\n\t\t<Combobox\n\t\t\toptions={simpleOptions}\n\t\t\t{...props}\n\t\t\tvalue={value}\n\t\t\tonValueChange={(v) => {\n\t\t\t\tsetValue(v);\n\t\t\t\tprops.onValueChange?.(v);\n\t\t\t}}\n\t\t/>\n\t);\n}\n\nexport function ComboboxDemo() {\n\treturn (\n\t\t<Controlado onValueChange={args.onValueChange} />\n\t);\n}",
       "WithSearch": "\"use client\";\n\nimport { Combobox } from \"@design-systems-orion/ui/combobox\";\nimport * as React from \"react\";\n\nfunction Controlado(props: Partial<React.ComponentProps<typeof Combobox>>) {\n\tconst [value, setValue] = React.useState<string | null>(props.value ?? null);\n\treturn (\n\t\t<Combobox\n\t\t\toptions={simpleOptions}\n\t\t\t{...props}\n\t\t\tvalue={value}\n\t\t\tonValueChange={(v) => {\n\t\t\t\tsetValue(v);\n\t\t\t\tprops.onValueChange?.(v);\n\t\t\t}}\n\t\t/>\n\t);\n}\n\nexport function ComboboxWithSearch() {\n\treturn (\n\t\t<Controlado\n\t\t\tonValueChange={args.onValueChange}\n\t\t\toptions={Array.from({ length: 12 }).map((_, i) => ({\n\t\t\t\tlabel: `Registro ${i + 1}`,\n\t\t\t\tvalue: `reg-${i + 1}`,\n\t\t\t}))}\n\t\t\tplaceholder=\"Buscar registro...\"\n\t\t/>\n\t);\n}",
@@ -193,23 +214,23 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/dialog": {
-    meta: s9.default as RegistryEntry['meta'],
-    stories: s9 as unknown as Record<string, StoryObj>,
+    meta: s10.default as RegistryEntry['meta'],
+    stories: s10 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import {\n\tDialog,\n\tDialogTrigger,\n\tDialogContent,\n\tDialogHeader,\n\tDialogFooter,\n\tDialogTitle,\n\tDialogDescription,\n} from \"@design-systems-orion/ui/dialog\";\nimport { Button } from \"@design-systems-orion/ui/button\";\nimport { Input } from \"@design-systems-orion/ui/input\";\nimport { Label } from \"@design-systems-orion/ui/label\";\n\nexport function DialogDemo() {\n\treturn (\n\t\t<Dialog>\n\t\t\t<DialogTrigger render={<Button variant=\"outline\">Edit Profile</Button>} />\n\t\t\t<DialogContent className=\"sm:max-w-[425px]\">\n\t\t\t\t<DialogHeader>\n\t\t\t\t\t<DialogTitle>Edit profile</DialogTitle>\n\t\t\t\t\t<DialogDescription>\n\t\t\t\t\t\tMake changes to your profile here. Click save when you're done.\n\t\t\t\t\t</DialogDescription>\n\t\t\t\t</DialogHeader>\n\t\t\t\t<div className=\"grid gap-4 py-4\">\n\t\t\t\t\t<div className=\"grid grid-cols-4 items-center gap-4\">\n\t\t\t\t\t\t<Label htmlFor=\"name\" className=\"text-right\">\n\t\t\t\t\t\t\tName\n\t\t\t\t\t\t</Label>\n\t\t\t\t\t\t<Input id=\"name\" defaultValue=\"Pedro Duarte\" className=\"col-span-3\" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div className=\"grid grid-cols-4 items-center gap-4\">\n\t\t\t\t\t\t<Label htmlFor=\"username\" className=\"text-right\">\n\t\t\t\t\t\t\tUsername\n\t\t\t\t\t\t</Label>\n\t\t\t\t\t\t<Input id=\"username\" defaultValue=\"@peduarte\" className=\"col-span-3\" />\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<DialogFooter>\n\t\t\t\t\t<Button type=\"submit\">Save changes</Button>\n\t\t\t\t</DialogFooter>\n\t\t\t</DialogContent>\n\t\t</Dialog>\n\t);\n}",
     },
   },
   "ui/dropdown-menu": {
-    meta: s10.default as RegistryEntry['meta'],
-    stories: s10 as unknown as Record<string, StoryObj>,
+    meta: s11.default as RegistryEntry['meta'],
+    stories: s11 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import {\n\tDropdownMenu,\n\tDropdownMenuTrigger,\n\tDropdownMenuContent,\n\tDropdownMenuItem,\n\tDropdownMenuLabel,\n\tDropdownMenuSeparator,\n\tDropdownMenuShortcut,\n} from \"@design-systems-orion/ui/dropdown-menu\";\nimport { LogOut, Settings, User } from \"lucide-react\";\nimport { Button } from \"@design-systems-orion/ui/button\";\n\nexport function DropdownMenuDemo() {\n\treturn (\n\t\t<DropdownMenu>\n\t\t\t<DropdownMenuTrigger render={<Button variant=\"outline\">Abrir menu</Button>} />\n\t\t\t<DropdownMenuContent className=\"w-56\">\n\t\t\t\t<DropdownMenuLabel>Minha conta</DropdownMenuLabel>\n\t\t\t\t<DropdownMenuSeparator />\n\t\t\t\t<DropdownMenuItem>\n\t\t\t\t\t<User /> Perfil\n\t\t\t\t\t<DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>\n\t\t\t\t</DropdownMenuItem>\n\t\t\t\t<DropdownMenuItem>\n\t\t\t\t\t<Settings /> Configurações\n\t\t\t\t</DropdownMenuItem>\n\t\t\t\t<DropdownMenuSeparator />\n\t\t\t\t<DropdownMenuItem disabled>Item desabilitado</DropdownMenuItem>\n\t\t\t\t<DropdownMenuSeparator />\n\t\t\t\t<DropdownMenuItem>\n\t\t\t\t\t<LogOut /> Sair\n\t\t\t\t</DropdownMenuItem>\n\t\t\t</DropdownMenuContent>\n\t\t</DropdownMenu>\n\t);\n}",
       "ComCheckboxESubmenu": "import {\n\tDropdownMenu,\n\tDropdownMenuTrigger,\n\tDropdownMenuContent,\n\tDropdownMenuItem,\n\tDropdownMenuCheckboxItem,\n\tDropdownMenuSeparator,\n\tDropdownMenuSub,\n\tDropdownMenuSubContent,\n\tDropdownMenuSubTrigger,\n} from \"@design-systems-orion/ui/dropdown-menu\";\nimport { Button } from \"@design-systems-orion/ui/button\";\n\nexport function DropdownMenuComCheckboxESubmenu() {\n\treturn (\n\t\t<DropdownMenu>\n\t\t\t<DropdownMenuTrigger render={<Button variant=\"outline\">Exibir colunas</Button>} />\n\t\t\t<DropdownMenuContent className=\"w-56\">\n\t\t\t\t<DropdownMenuCheckboxItem defaultChecked>Nome</DropdownMenuCheckboxItem>\n\t\t\t\t<DropdownMenuCheckboxItem defaultChecked>Status</DropdownMenuCheckboxItem>\n\t\t\t\t<DropdownMenuCheckboxItem>Criado em</DropdownMenuCheckboxItem>\n\t\t\t\t<DropdownMenuSeparator />\n\t\t\t\t<DropdownMenuSub>\n\t\t\t\t\t<DropdownMenuSubTrigger>Exportar</DropdownMenuSubTrigger>\n\t\t\t\t\t<DropdownMenuSubContent>\n\t\t\t\t\t\t<DropdownMenuItem>Excel</DropdownMenuItem>\n\t\t\t\t\t\t<DropdownMenuItem>PDF</DropdownMenuItem>\n\t\t\t\t\t</DropdownMenuSubContent>\n\t\t\t\t</DropdownMenuSub>\n\t\t\t</DropdownMenuContent>\n\t\t</DropdownMenu>\n\t);\n}",
     },
   },
   "ui/input": {
-    meta: s11.default as RegistryEntry['meta'],
-    stories: s11 as unknown as Record<string, StoryObj>,
+    meta: s12.default as RegistryEntry['meta'],
+    stories: s12 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { Input } from \"@design-systems-orion/ui/input\";\n\nexport function InputDemo() {\n\treturn (\n\t\t<Input placeholder=\"Type something...\" />\n\t);\n}",
       "Password": "import { Input } from \"@design-systems-orion/ui/input\";\n\nexport function InputPassword() {\n\treturn (\n\t\t<Input type=\"password\" placeholder=\"Enter password\" />\n\t);\n}",
@@ -218,15 +239,15 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/label": {
-    meta: s12.default as RegistryEntry['meta'],
-    stories: s12 as unknown as Record<string, StoryObj>,
+    meta: s13.default as RegistryEntry['meta'],
+    stories: s13 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { Label } from \"@design-systems-orion/ui/label\";\nimport { Input } from \"@design-systems-orion/ui/input\";\n\nexport function LabelDemo() {\n\treturn (\n\t\t<div>\n\t\t\t<Label htmlFor=\"email\">Email address</Label>\n\t\t\t<Input type=\"email\" id=\"email\" placeholder=\"Email\" className=\"mt-2\" />\n\t\t</div>\n\t);\n}",
     },
   },
   "ui/multi-select": {
-    meta: s13.default as RegistryEntry['meta'],
-    stories: s13 as unknown as Record<string, StoryObj>,
+    meta: s14.default as RegistryEntry['meta'],
+    stories: s14 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { MultiSelect } from \"@design-systems-orion/ui/multi-select\";\nimport * as React from \"react\";\n\nfunction Controlado(\n\tprops: Partial<React.ComponentProps<typeof MultiSelect>> & { initial?: string[] },\n) {\n\tconst [value, setValue] = React.useState<string[]>(props.initial ?? props.value ?? []);\n\treturn (\n\t\t<MultiSelect\n\t\t\toptions={simpleOptions}\n\t\t\t{...props}\n\t\t\tvalue={value}\n\t\t\tonValueChange={(v) => {\n\t\t\t\tsetValue(v);\n\t\t\t\tprops.onValueChange?.(v);\n\t\t\t}}\n\t\t/>\n\t);\n}\n\nexport function MultiSelectDemo() {\n\treturn (\n\t\t<Controlado onValueChange={args.onValueChange} />\n\t);\n}",
       "WithSearch": "\"use client\";\n\nimport { MultiSelect } from \"@design-systems-orion/ui/multi-select\";\nimport * as React from \"react\";\n\nfunction Controlado(\n\tprops: Partial<React.ComponentProps<typeof MultiSelect>> & { initial?: string[] },\n) {\n\tconst [value, setValue] = React.useState<string[]>(props.initial ?? props.value ?? []);\n\treturn (\n\t\t<MultiSelect\n\t\t\toptions={simpleOptions}\n\t\t\t{...props}\n\t\t\tvalue={value}\n\t\t\tonValueChange={(v) => {\n\t\t\t\tsetValue(v);\n\t\t\t\tprops.onValueChange?.(v);\n\t\t\t}}\n\t\t/>\n\t);\n}\n\nexport function MultiSelectWithSearch() {\n\treturn (\n\t\t<Controlado\n\t\t\tonValueChange={args.onValueChange}\n\t\t\toptions={Array.from({ length: 15 }).map((_, i) => ({\n\t\t\t\tlabel: `Registro ${i + 1}`,\n\t\t\t\tvalue: `reg-${i + 1}`,\n\t\t\t}))}\n\t\t\tplaceholder=\"Buscar e selecionar...\"\n\t\t/>\n\t);\n}",
@@ -243,8 +264,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/popover": {
-    meta: s14.default as RegistryEntry['meta'],
-    stories: s14 as unknown as Record<string, StoryObj>,
+    meta: s15.default as RegistryEntry['meta'],
+    stories: s15 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import {\n\tPopover,\n\tPopoverTrigger,\n\tPopoverContent,\n} from \"@design-systems-orion/ui/popover\";\nimport { Button } from \"@design-systems-orion/ui/button\";\n\nexport function Exemplo() {\n\treturn (\n\t\t<Popover>\n\t\t\t<PopoverTrigger render={<Button variant=\"outline\">Abrir popover</Button>} />\n\t\t\t<PopoverContent>\n\t\t\t\t<p className=\"text-sm text-foreground\">Conteúdo do popover com tokens do tema ativo.</p>\n\t\t\t</PopoverContent>\n\t\t</Popover>\n\t);\n}",
       "WithForm": "import {\n\tPopover,\n\tPopoverTrigger,\n\tPopoverContent,\n} from \"@design-systems-orion/ui/popover\";\nimport { Button } from \"@design-systems-orion/ui/button\";\nimport { Input } from \"@design-systems-orion/ui/input\";\nimport { Label } from \"@design-systems-orion/ui/label\";\n\nexport function PopoverWithForm() {\n\treturn (\n\t\t<Popover>\n\t\t\t<PopoverTrigger render={<Button variant=\"outline\">Ajustar dimensões</Button>} />\n\t\t\t<PopoverContent className=\"w-80\">\n\t\t\t\t<div className=\"grid gap-3\">\n\t\t\t\t\t<p className=\"text-sm font-medium\">Dimensões</p>\n\t\t\t\t\t<div className=\"grid grid-cols-3 items-center gap-2\">\n\t\t\t\t\t\t<Label htmlFor=\"pop-largura\">Largura</Label>\n\t\t\t\t\t\t<Input id=\"pop-largura\" defaultValue=\"100%\" className=\"col-span-2 h-8\" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div className=\"grid grid-cols-3 items-center gap-2\">\n\t\t\t\t\t\t<Label htmlFor=\"pop-altura\">Altura</Label>\n\t\t\t\t\t\t<Input id=\"pop-altura\" defaultValue=\"25px\" className=\"col-span-2 h-8\" />\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</PopoverContent>\n\t\t</Popover>\n\t);\n}",
@@ -254,8 +275,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/progress": {
-    meta: s15.default as RegistryEntry['meta'],
-    stories: s15 as unknown as Record<string, StoryObj>,
+    meta: s16.default as RegistryEntry['meta'],
+    stories: s16 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { Progress } from \"@design-systems-orion/ui/progress\";\n\nexport function ProgressDemo() {\n\treturn (\n\t\t<Progress value={60} className=\"w-80\" />\n\t);\n}",
       "DifferentValues": "import { Progress } from \"@design-systems-orion/ui/progress\";\n\nexport function ProgressDifferentValues() {\n\treturn (\n\t\t<div className=\"w-80 space-y-3\">\n\t\t\t{[0, 25, 50, 75, 100].map((v) => (\n\t\t\t\t<Progress key={v} value={v} />\n\t\t\t))}\n\t\t</div>\n\t);\n}",
@@ -264,8 +285,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/radio-group": {
-    meta: s16.default as RegistryEntry['meta'],
-    stories: s16 as unknown as Record<string, StoryObj>,
+    meta: s17.default as RegistryEntry['meta'],
+    stories: s17 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { RadioGroup, RadioGroupItem } from \"@design-systems-orion/ui/radio-group\";\nimport * as React from \"react\";\nimport { Label } from \"@design-systems-orion/ui/label\";\n\nexport function Controlado() {\n\t\tconst [value, setValue] = React.useState<unknown>(\"sim\");\n\t\treturn (\n\t\t\t<RadioGroup value={value} onValueChange={setValue}>\n\t\t\t\t<div className=\"flex items-center gap-2\">\n\t\t\t\t\t<RadioGroupItem value=\"sim\" id=\"rg-sim\" />\n\t\t\t\t\t<Label htmlFor=\"rg-sim\">Sim</Label>\n\t\t\t\t</div>\n\t\t\t\t<div className=\"flex items-center gap-2\">\n\t\t\t\t\t<RadioGroupItem value=\"nao\" id=\"rg-nao\" />\n\t\t\t\t\t<Label htmlFor=\"rg-nao\">Não</Label>\n\t\t\t\t</div>\n\t\t\t</RadioGroup>\n\t\t);\n\t}",
       "Disabled": "import { RadioGroup, RadioGroupItem } from \"@design-systems-orion/ui/radio-group\";\nimport { Label } from \"@design-systems-orion/ui/label\";\n\nexport function RadioGroupDisabled() {\n\treturn (\n\t\t<RadioGroup defaultValue=\"a\" disabled>\n\t\t\t<div className=\"flex items-center gap-2\">\n\t\t\t\t<RadioGroupItem value=\"a\" id=\"rg-a\" />\n\t\t\t\t<Label htmlFor=\"rg-a\">Opção A (grupo desabilitado)</Label>\n\t\t\t</div>\n\t\t\t<div className=\"flex items-center gap-2\">\n\t\t\t\t<RadioGroupItem value=\"b\" id=\"rg-b\" />\n\t\t\t\t<Label htmlFor=\"rg-b\">Opção B</Label>\n\t\t\t</div>\n\t\t</RadioGroup>\n\t);\n}",
@@ -274,8 +295,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/scroll-area": {
-    meta: s17.default as RegistryEntry['meta'],
-    stories: s17 as unknown as Record<string, StoryObj>,
+    meta: s18.default as RegistryEntry['meta'],
+    stories: s18 as unknown as Record<string, StoryObj>,
     code: {
       "Vertical": "import { ScrollArea } from \"@design-systems-orion/ui/scroll-area\";\nimport { Separator } from \"@design-systems-orion/ui/separator\";\n\nexport function ScrollAreaVertical() {\n\treturn (\n\t\t<ScrollArea className=\"h-72 w-56 rounded-md border border-border\">\n\t\t\t<div className=\"p-4\">\n\t\t\t\t<p className=\"mb-3 text-sm font-medium\">Itens</p>\n\t\t\t\t{itens.map((item) => (\n\t\t\t\t\t<div key={item}>\n\t\t\t\t\t\t<p className=\"py-1.5 text-sm\">{item}</p>\n\t\t\t\t\t\t<Separator />\n\t\t\t\t\t</div>\n\t\t\t\t))}\n\t\t\t</div>\n\t\t</ScrollArea>\n\t);\n}",
       "Horizontal": "import { ScrollArea } from \"@design-systems-orion/ui/scroll-area\";\n\nexport function ScrollAreaHorizontal() {\n\treturn (\n\t\t<ScrollArea className=\"w-96 rounded-md border border-border\">\n\t\t\t<div className=\"flex gap-4 p-4\">\n\t\t\t\t{Array.from({ length: 12 }).map((_, i) => (\n\t\t\t\t\t<div\n\t\t\t\t\t\tkey={`col-${i + 1}`}\n\t\t\t\t\t\tclassName=\"flex h-24 w-32 shrink-0 items-center justify-center rounded-md bg-muted text-sm text-muted-foreground\"\n\t\t\t\t\t>\n\t\t\t\t\t\tBloco {i + 1}\n\t\t\t\t\t</div>\n\t\t\t\t))}\n\t\t\t</div>\n\t\t</ScrollArea>\n\t);\n}",
@@ -284,24 +305,24 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/select": {
-    meta: s18.default as RegistryEntry['meta'],
-    stories: s18 as unknown as Record<string, StoryObj>,
+    meta: s19.default as RegistryEntry['meta'],
+    stories: s19 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import {\n\tSelect,\n\tSelectValue,\n\tSelectTrigger,\n\tSelectContent,\n\tSelectItem,\n} from \"@design-systems-orion/ui/select\";\n\nexport function SelectDemo() {\n\treturn (\n\t\t<Select defaultValue=\"apple\">\n\t\t\t<SelectTrigger className=\"w-45\">\n\t\t\t\t<SelectValue placeholder=\"Select a fruit\" />\n\t\t\t</SelectTrigger>\n\t\t\t<SelectContent>\n\t\t\t\t<SelectItem value=\"apple\">Apple</SelectItem>\n\t\t\t\t<SelectItem value=\"banana\">Banana</SelectItem>\n\t\t\t\t<SelectItem value=\"blueberry\">Blueberry</SelectItem>\n\t\t\t\t<SelectItem value=\"grapes\">Grapes</SelectItem>\n\t\t\t\t<SelectItem value=\"pineapple\">Pineapple</SelectItem>\n\t\t\t</SelectContent>\n\t\t</Select>\n\t);\n}",
       "WithItemsArray": "import {\n\tSelect,\n\tSelectValue,\n\tSelectTrigger,\n\tSelectContent,\n\tSelectItem,\n} from \"@design-systems-orion/ui/select\";\n\nexport function SelectWithItemsArray() {\n\tconst fruits = [\n\t\t{ value: \"apple\", label: \"Apple\" },\n\t\t{ value: \"banana\", label: \"Banana\" },\n\t\t{ value: \"orange\", label: \"Orange\" },\n\t];\n\treturn (\n\t\t<Select>\n\t\t\t<SelectTrigger className=\"w-45\">\n\t\t\t\t<SelectValue placeholder=\"Select a fruit\" items={fruits} />\n\t\t\t</SelectTrigger>\n\t\t\t<SelectContent>\n\t\t\t\t{fruits.map((f) => (\n\t\t\t\t\t<SelectItem key={f.value} value={f.value}>\n\t\t\t\t\t\t{f.label}\n\t\t\t\t\t</SelectItem>\n\t\t\t\t))}\n\t\t\t</SelectContent>\n\t\t</Select>\n\t);\n}",
     },
   },
   "ui/separator": {
-    meta: s19.default as RegistryEntry['meta'],
-    stories: s19 as unknown as Record<string, StoryObj>,
+    meta: s20.default as RegistryEntry['meta'],
+    stories: s20 as unknown as Record<string, StoryObj>,
     code: {
       "Horizontal": "import { Separator } from \"@design-systems-orion/ui/separator\";\n\nexport function SeparatorHorizontal() {\n\treturn (\n\t\t<div className=\"w-64 space-y-3\">\n\t\t\t<p className=\"text-sm\">Seção A</p>\n\t\t\t<Separator />\n\t\t\t<p className=\"text-sm\">Seção B</p>\n\t\t</div>\n\t);\n}",
       "Vertical": "import { Separator } from \"@design-systems-orion/ui/separator\";\n\nexport function SeparatorVertical() {\n\treturn (\n\t\t<div className=\"flex h-6 items-center gap-3 text-sm\">\n\t\t\t<span>Item 1</span>\n\t\t\t<Separator orientation=\"vertical\" />\n\t\t\t<span>Item 2</span>\n\t\t\t<Separator orientation=\"vertical\" />\n\t\t\t<span>Item 3</span>\n\t\t</div>\n\t);\n}",
     },
   },
   "ui/sheet": {
-    meta: s20.default as RegistryEntry['meta'],
-    stories: s20 as unknown as Record<string, StoryObj>,
+    meta: s21.default as RegistryEntry['meta'],
+    stories: s21 as unknown as Record<string, StoryObj>,
     code: {
       "Right": "import {\n\tSheet,\n\tSheetTrigger,\n\tSheetContent,\n\tSheetHeader,\n\tSheetTitle,\n\tSheetDescription,\n} from \"@design-systems-orion/ui/sheet\";\nimport { Button } from \"@design-systems-orion/ui/button\";\n\nfunction Painel({ side }: { side: \"right\" | \"left\" | \"top\" | \"bottom\" }) {\n\treturn (\n\t\t<Sheet>\n\t\t\t<SheetTrigger render={<Button variant=\"outline\">Abrir ({side})</Button>} />\n\t\t\t<SheetContent side={side}>\n\t\t\t\t<SheetHeader>\n\t\t\t\t\t<SheetTitle>Detalhes</SheetTitle>\n\t\t\t\t\t<SheetDescription>Informações complementares do registro.</SheetDescription>\n\t\t\t\t</SheetHeader>\n\t\t\t\t<p className=\"text-sm text-muted-foreground\">Conteúdo do painel.</p>\n\t\t\t</SheetContent>\n\t\t</Sheet>\n\t);\n}\n\nexport function SheetRight() {\n\treturn (\n\t\t<Painel side=\"right\" />\n\t);\n}",
       "Left": "import {\n\tSheet,\n\tSheetTrigger,\n\tSheetContent,\n\tSheetHeader,\n\tSheetTitle,\n\tSheetDescription,\n} from \"@design-systems-orion/ui/sheet\";\nimport { Button } from \"@design-systems-orion/ui/button\";\n\nfunction Painel({ side }: { side: \"right\" | \"left\" | \"top\" | \"bottom\" }) {\n\treturn (\n\t\t<Sheet>\n\t\t\t<SheetTrigger render={<Button variant=\"outline\">Abrir ({side})</Button>} />\n\t\t\t<SheetContent side={side}>\n\t\t\t\t<SheetHeader>\n\t\t\t\t\t<SheetTitle>Detalhes</SheetTitle>\n\t\t\t\t\t<SheetDescription>Informações complementares do registro.</SheetDescription>\n\t\t\t\t</SheetHeader>\n\t\t\t\t<p className=\"text-sm text-muted-foreground\">Conteúdo do painel.</p>\n\t\t\t</SheetContent>\n\t\t</Sheet>\n\t);\n}\n\nexport function SheetLeft() {\n\treturn (\n\t\t<Painel side=\"left\" />\n\t);\n}",
@@ -311,16 +332,16 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/skeleton": {
-    meta: s21.default as RegistryEntry['meta'],
-    stories: s21 as unknown as Record<string, StoryObj>,
+    meta: s22.default as RegistryEntry['meta'],
+    stories: s22 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { Skeleton } from \"@design-systems-orion/ui/skeleton\";\n\nexport function SkeletonDemo() {\n\treturn (\n\t\t<Skeleton className=\"h-4 w-48\" />\n\t);\n}",
       "CardPlaceholder": "import { Skeleton } from \"@design-systems-orion/ui/skeleton\";\n\nexport function SkeletonCardPlaceholder() {\n\treturn (\n\t\t<div className=\"w-72 space-y-3 rounded-lg border border-border p-4\">\n\t\t\t<Skeleton className=\"h-5 w-2/3\" />\n\t\t\t<Skeleton className=\"h-4 w-full\" />\n\t\t\t<Skeleton className=\"h-4 w-5/6\" />\n\t\t\t<div className=\"flex items-center gap-2 pt-2\">\n\t\t\t\t<Skeleton className=\"size-9 rounded-full\" />\n\t\t\t\t<Skeleton className=\"h-4 w-24\" />\n\t\t\t</div>\n\t\t</div>\n\t);\n}",
     },
   },
   "ui/spinner": {
-    meta: s22.default as RegistryEntry['meta'],
-    stories: s22 as unknown as Record<string, StoryObj>,
+    meta: s23.default as RegistryEntry['meta'],
+    stories: s23 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { Spinner } from \"@design-systems-orion/ui/spinner\";\n\nexport function SpinnerDemo() {\n\treturn <Spinner />;\n}",
       "Sizes": "import { Spinner } from \"@design-systems-orion/ui/spinner\";\n\nexport function SpinnerSizes() {\n\treturn (\n\t\t<div className=\"flex items-center gap-6\">\n\t\t\t<Spinner size=\"sm\" />\n\t\t\t<Spinner size=\"md\" />\n\t\t\t<Spinner size=\"lg\" />\n\t\t</div>\n\t);\n}",
@@ -329,8 +350,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/switch": {
-    meta: s23.default as RegistryEntry['meta'],
-    stories: s23 as unknown as Record<string, StoryObj>,
+    meta: s24.default as RegistryEntry['meta'],
+    stories: s24 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { Switch } from \"@design-systems-orion/ui/switch\";\n\nexport function SwitchDemo() {\n\treturn <Switch />;\n}",
       "Checked": "import { Switch } from \"@design-systems-orion/ui/switch\";\n\nexport function SwitchChecked() {\n\treturn (\n\t\t<Switch defaultChecked />\n\t);\n}",
@@ -340,15 +361,15 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/table": {
-    meta: s24.default as RegistryEntry['meta'],
-    stories: s24 as unknown as Record<string, StoryObj>,
+    meta: s25.default as RegistryEntry['meta'],
+    stories: s25 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import {\n\tTable,\n\tTableHeader,\n\tTableBody,\n\tTableFooter,\n\tTableHead,\n\tTableRow,\n\tTableCell,\n\tTableCaption,\n} from \"@design-systems-orion/ui/table\";\n\nexport function TableDemo() {\n\treturn (\n\t\t<Table>\n\t\t\t<TableCaption>A list of your recent invoices.</TableCaption>\n\t\t\t<TableHeader>\n\t\t\t\t<TableRow>\n\t\t\t\t\t<TableHead className=\"w-25\">Invoice</TableHead>\n\t\t\t\t\t<TableHead>Status</TableHead>\n\t\t\t\t\t<TableHead>Method</TableHead>\n\t\t\t\t\t<TableHead className=\"text-right\">Amount</TableHead>\n\t\t\t\t</TableRow>\n\t\t\t</TableHeader>\n\t\t\t<TableBody>\n\t\t\t\t{invoices.map((invoice) => (\n\t\t\t\t\t<TableRow key={invoice.invoice}>\n\t\t\t\t\t\t<TableCell className=\"font-medium\">{invoice.invoice}</TableCell>\n\t\t\t\t\t\t<TableCell>{invoice.paymentStatus}</TableCell>\n\t\t\t\t\t\t<TableCell>{invoice.paymentMethod}</TableCell>\n\t\t\t\t\t\t<TableCell className=\"text-right\">{invoice.totalAmount}</TableCell>\n\t\t\t\t\t</TableRow>\n\t\t\t\t))}\n\t\t\t</TableBody>\n\t\t\t<TableFooter>\n\t\t\t\t<TableRow>\n\t\t\t\t\t<TableCell colSpan={3}>Total</TableCell>\n\t\t\t\t\t<TableCell className=\"text-right\">$750.00</TableCell>\n\t\t\t\t</TableRow>\n\t\t\t</TableFooter>\n\t\t</Table>\n\t);\n}",
     },
   },
   "ui/tabs": {
-    meta: s25.default as RegistryEntry['meta'],
-    stories: s25 as unknown as Record<string, StoryObj>,
+    meta: s26.default as RegistryEntry['meta'],
+    stories: s26 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { Tabs, TabsList, TabsTrigger, TabsContent } from \"@design-systems-orion/ui/tabs\";\nimport {\n\tCard,\n\tCardContent,\n\tCardDescription,\n\tCardHeader,\n\tCardTitle,\n} from \"@design-systems-orion/ui/card\";\n\nexport function TabsDemo() {\n\treturn (\n\t\t<Tabs defaultValue=\"geral\" className=\"w-[400px]\">\n\t\t\t<TabsList>\n\t\t\t\t<TabsTrigger value=\"geral\">Geral</TabsTrigger>\n\t\t\t\t<TabsTrigger value=\"detalhes\">Detalhes</TabsTrigger>\n\t\t\t\t<TabsTrigger value=\"historico\" disabled>\n\t\t\t\t\tHistórico\n\t\t\t\t</TabsTrigger>\n\t\t\t</TabsList>\n\t\t\t<TabsContent value=\"geral\">\n\t\t\t\t<Card>\n\t\t\t\t\t<CardHeader>\n\t\t\t\t\t\t<CardTitle>Geral</CardTitle>\n\t\t\t\t\t\t<CardDescription>Informações gerais do registro.</CardDescription>\n\t\t\t\t\t</CardHeader>\n\t\t\t\t\t<CardContent className=\"text-sm text-muted-foreground\">\n\t\t\t\t\t\tConteúdo da aba Geral.\n\t\t\t\t\t</CardContent>\n\t\t\t\t</Card>\n\t\t\t</TabsContent>\n\t\t\t<TabsContent value=\"detalhes\">\n\t\t\t\t<Card>\n\t\t\t\t\t<CardHeader>\n\t\t\t\t\t\t<CardTitle>Detalhes</CardTitle>\n\t\t\t\t\t</CardHeader>\n\t\t\t\t\t<CardContent className=\"text-sm text-muted-foreground\">\n\t\t\t\t\t\tConteúdo da aba Detalhes.\n\t\t\t\t\t</CardContent>\n\t\t\t\t</Card>\n\t\t\t</TabsContent>\n\t\t</Tabs>\n\t);\n}",
       "Line": "import { Tabs, TabsList, TabsTrigger, TabsContent } from \"@design-systems-orion/ui/tabs\";\nimport {\n\tCard,\n\tCardContent,\n\tCardDescription,\n\tCardHeader,\n\tCardTitle,\n} from \"@design-systems-orion/ui/card\";\n\nexport function TabsLine() {\n\treturn (\n\t\t<Tabs defaultValue=\"geral\" className=\"w-[400px]\">\n\t\t\t<TabsList variant=\"line\">\n\t\t\t\t<TabsTrigger value=\"geral\">Geral</TabsTrigger>\n\t\t\t\t<TabsTrigger value=\"detalhes\">Detalhes</TabsTrigger>\n\t\t\t\t<TabsTrigger value=\"historico\" disabled>\n\t\t\t\t\tHistórico\n\t\t\t\t</TabsTrigger>\n\t\t\t</TabsList>\n\t\t\t<TabsContent value=\"geral\">\n\t\t\t\t<Card className=\"mt-4 border-none shadow-none\">\n\t\t\t\t\t<CardHeader className=\"p-0 pb-2\">\n\t\t\t\t\t\t<CardTitle>Geral</CardTitle>\n\t\t\t\t\t\t<CardDescription>Variante linha (line).</CardDescription>\n\t\t\t\t\t</CardHeader>\n\t\t\t\t\t<CardContent className=\"p-0 text-sm text-muted-foreground\">\n\t\t\t\t\t\tEstilo com borda inferior destacando a aba ativa.\n\t\t\t\t\t</CardContent>\n\t\t\t\t</Card>\n\t\t\t</TabsContent>\n\t\t\t<TabsContent value=\"detalhes\">\n\t\t\t\t<Card className=\"mt-4 border-none shadow-none\">\n\t\t\t\t\t<CardHeader className=\"p-0 pb-2\">\n\t\t\t\t\t\t<CardTitle>Detalhes</CardTitle>\n\t\t\t\t\t</CardHeader>\n\t\t\t\t\t<CardContent className=\"p-0 text-sm text-muted-foreground\">\n\t\t\t\t\t\tConteúdo da aba Detalhes.\n\t\t\t\t\t</CardContent>\n\t\t\t\t</Card>\n\t\t\t</TabsContent>\n\t\t</Tabs>\n\t);\n}",
@@ -357,8 +378,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/textarea": {
-    meta: s26.default as RegistryEntry['meta'],
-    stories: s26 as unknown as Record<string, StoryObj>,
+    meta: s27.default as RegistryEntry['meta'],
+    stories: s27 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { Textarea } from \"@design-systems-orion/ui/textarea\";\n\nexport function TextareaDemo() {\n\treturn (\n\t\t<Textarea placeholder=\"Type your message here.\" />\n\t);\n}",
       "WithLabel": "import { Textarea } from \"@design-systems-orion/ui/textarea\";\nimport { Label } from \"@design-systems-orion/ui/label\";\n\nexport function TextareaWithLabel() {\n\treturn (\n\t\t<div className=\"grid w-full gap-1.5\">\n\t\t\t<Label htmlFor=\"message\">Your message</Label>\n\t\t\t<Textarea placeholder=\"Type your message here.\" id=\"message\" />\n\t\t</div>\n\t);\n}",
@@ -366,23 +387,23 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "ui/tooltip": {
-    meta: s27.default as RegistryEntry['meta'],
-    stories: s27 as unknown as Record<string, StoryObj>,
+    meta: s28.default as RegistryEntry['meta'],
+    stories: s28 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import {\n\tTooltip,\n\tTooltipTrigger,\n\tTooltipContent,\n\tTooltipProvider,\n} from \"@design-systems-orion/ui/tooltip\";\nimport { Button } from \"@design-systems-orion/ui/button\";\n\nexport function TooltipDemo() {\n\treturn (\n\t\t<TooltipProvider>\n\t\t\t<Tooltip>\n\t\t\t\t<TooltipTrigger render={<Button variant=\"outline\">Hover me</Button>} />\n\t\t\t\t<TooltipContent>\n\t\t\t\t\t<p>Add to library</p>\n\t\t\t\t</TooltipContent>\n\t\t\t</Tooltip>\n\t\t</TooltipProvider>\n\t);\n}",
     },
   },
   "blocks/activity-timeline": {
-    meta: s28.default as RegistryEntry['meta'],
-    stories: s28 as unknown as Record<string, StoryObj>,
+    meta: s29.default as RegistryEntry['meta'],
+    stories: s29 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { ActivityTimeline } from \"@design-systems-orion/blocks/activity-timeline\";\nimport { CheckCircle2, PlusCircle } from \"lucide-react\";\n\nexport function ActivityTimelineDemo() {\n\treturn (\n\t\t<ActivityTimeline items={[\n\t\t\t\t\t{\n\t\t\t\t\t\tid: \"1\",\n\t\t\t\t\t\ticon: PlusCircle,\n\t\t\t\t\t\ttone: \"info\",\n\t\t\t\t\t\ttitle: \"Criado manualmente\",\n\t\t\t\t\t\ttimestampLabel: \"18/07/2026 às 09:12\",\n\t\t\t\t\t\tmeta: \"Responsável: Sistema\",\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\tid: \"2\",\n\t\t\t\t\t\ticon: CheckCircle2,\n\t\t\t\t\t\ttone: \"success\",\n\t\t\t\t\t\ttitle: \"Inspeção finalizada\",\n\t\t\t\t\t\ttimestampLabel: \"19/07/2026 às 14:30\",\n\t\t\t\t\t\tdescription: \"Status alterado de Em Andamento para Concluído.\",\n\t\t\t\t\t\tmeta: \"Responsável: Usuário Web\",\n\t\t\t\t\t},\n\t\t\t\t]} />\n\t);\n}",
       "Vazio": "import { ActivityTimeline } from \"@design-systems-orion/blocks/activity-timeline\";\n\nexport function ActivityTimelineVazio() {\n\treturn (\n\t\t<ActivityTimeline items={[]} />\n\t);\n}",
     },
   },
   "blocks/app-shell": {
-    meta: s29.default as RegistryEntry['meta'],
-    stories: s29 as unknown as Record<string, StoryObj>,
+    meta: s30.default as RegistryEntry['meta'],
+    stories: s30 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { AppShell } from \"@design-systems-orion/blocks/app-shell\";\nimport { ContentCard } from \"@design-systems-orion/blocks/content-card\";\n\nconst Miolo = () => (\n\t<ContentCard title=\"Conteúdo\" className=\"m-6\">\n\t\t<p className=\"text-sm text-muted-foreground\">O miolo da página entra como children.</p>\n\t</ContentCard>\n);\n\nconst Marca = () => <span className=\"text-sm font-bold tracking-wide\">NÚCLEO</span>;\n\nexport function AppShellDemo() {\n\treturn (\n\t\t<AppShell sidebar={{ brand: <Marca />, navigation: NAV, activeItemId: \"registros\" }}>\n\t\t\t<Miolo />\n\t\t</AppShell>\n\t);\n}",
       "WithBreadcrumbs": "import { AppShell } from \"@design-systems-orion/blocks/app-shell\";\nimport { ContentCard } from \"@design-systems-orion/blocks/content-card\";\n\nconst Miolo = () => (\n\t<ContentCard title=\"Conteúdo\" className=\"m-6\">\n\t\t<p className=\"text-sm text-muted-foreground\">O miolo da página entra como children.</p>\n\t</ContentCard>\n);\n\nconst Marca = () => <span className=\"text-sm font-bold tracking-wide\">NÚCLEO</span>;\n\nexport function AppShellWithBreadcrumbs() {\n\treturn (\n\t\t<AppShell\n\t\t\tbreadcrumbs={TRILHA}\n\t\t\tsidebar={{ brand: <Marca />, navigation: NAV, activeItemId: \"registros\" }}\n\t\t>\n\t\t\t<Miolo />\n\t\t</AppShell>\n\t);\n}",
@@ -398,16 +419,26 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/attachment-list": {
-    meta: s30.default as RegistryEntry['meta'],
-    stories: s30 as unknown as Record<string, StoryObj>,
+    meta: s31.default as RegistryEntry['meta'],
+    stories: s31 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { AttachmentList } from \"@design-systems-orion/blocks/attachment-list\";\n\nexport function AttachmentListDemo() {\n\treturn (\n\t\t<AttachmentList items={[\n\t\t\t\t\t{\n\t\t\t\t\t\tid: \"1\",\n\t\t\t\t\t\tname: \"planilha.xlsx\",\n\t\t\t\t\t\textension: \"xlsx\",\n\t\t\t\t\t\tdateLabel: \"20/07/2026\",\n\t\t\t\t\t\ttone: \"success\",\n\t\t\t\t\t},\n\t\t\t\t\t{ id: \"2\", name: \"contrato.docx\", extension: \"docx\", dateLabel: \"18/07/2026\", tone: \"info\" },\n\t\t\t\t\t{\n\t\t\t\t\t\tid: \"3\",\n\t\t\t\t\t\tname: \"nota-fiscal.pdf\",\n\t\t\t\t\t\textension: \"pdf\",\n\t\t\t\t\t\tdateLabel: \"15/07/2026\",\n\t\t\t\t\t\ttone: \"danger\",\n\t\t\t\t\t},\n\t\t\t\t]} onSelect={(item) => console.log(\"abrir preview\", item)} onRemove={(item) => console.log(\"remover\", item)} />\n\t);\n}",
       "Vazio": "import { AttachmentList } from \"@design-systems-orion/blocks/attachment-list\";\n\nexport function AttachmentListVazio() {\n\treturn (\n\t\t<AttachmentList items={[]} />\n\t);\n}",
     },
   },
+  "blocks/bar-list": {
+    meta: s32.default as RegistryEntry['meta'],
+    stories: s32 as unknown as Record<string, StoryObj>,
+    code: {
+      "Default": "import { BarList } from \"@design-systems-orion/blocks/bar-list\";\n\nexport function BarListDemo() {\n\treturn (\n\t\t<BarList items={[\n\t\t\t\t\t{ label: \"WhatsApp\", value: 128 },\n\t\t\t\t\t{ label: \"E-mail\", value: 64 },\n\t\t\t\t\t{ label: \"Telefone\", value: 12 },\n\t\t\t\t]} />\n\t);\n}",
+      "TonsPorItem": "import { BarList } from \"@design-systems-orion/blocks/bar-list\";\n\nexport function BarListTonsPorItem() {\n\treturn (\n\t\t<BarList items={[\n\t\t\t\t\t{ label: \"Resolvido\", value: 40, tone: \"success\" },\n\t\t\t\t\t{ label: \"Sem retorno do cliente\", value: 18, tone: \"warning\" },\n\t\t\t\t\t{ label: \"Cancelado\", value: 7, tone: \"muted\" },\n\t\t\t\t]} />\n\t);\n}",
+      "ValorFormatado": "import { BarList } from \"@design-systems-orion/blocks/bar-list\";\n\nexport function BarListValorFormatado() {\n\treturn (\n\t\t<BarList items={[\n\t\t\t\t\t{ label: \"Ana Souza\", value: 42 },\n\t\t\t\t\t{ label: \"Bruno Lima\", value: 17 },\n\t\t\t\t]} formatValue={(value) => `${value} atend.`} />\n\t);\n}",
+      "Vazio": "import { BarList } from \"@design-systems-orion/blocks/bar-list\";\n\nexport function BarListVazio() {\n\treturn (\n\t\t<BarList items={[]} emptyMessage=\"Nenhum atendimento encerrado no período.\" />\n\t);\n}",
+    },
+  },
   "blocks/breadcrumbs": {
-    meta: s31.default as RegistryEntry['meta'],
-    stories: s31 as unknown as Record<string, StoryObj>,
+    meta: s33.default as RegistryEntry['meta'],
+    stories: s33 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { Breadcrumbs } from \"@design-systems-orion/blocks/breadcrumbs\";\n\nexport function BreadcrumbsDemo() {\n\treturn (\n\t\t<Breadcrumbs items={[{ label: \"Início\", href: \"#\" }, { label: \"Registros\" }]} />\n\t);\n}",
       "WithLinks": "import { Breadcrumbs } from \"@design-systems-orion/blocks/breadcrumbs\";\n\nexport function BreadcrumbsWithLinks() {\n\treturn (\n\t\t<Breadcrumbs items={[\n\t\t\t\t\t{ label: \"Início\", href: \"#\" },\n\t\t\t\t\t{ label: \"Registros\", href: \"#\" },\n\t\t\t\t\t{ label: \"Detalhes\", current: true },\n\t\t\t\t]} />\n\t);\n}",
@@ -417,23 +448,23 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/code-badge": {
-    meta: s32.default as RegistryEntry['meta'],
-    stories: s32 as unknown as Record<string, StoryObj>,
+    meta: s34.default as RegistryEntry['meta'],
+    stories: s34 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { CodeBadge } from \"@design-systems-orion/blocks/code-badge\";\n\nexport function CodeBadgeDemo() {\n\treturn (\n\t\t<CodeBadge>CNT-001</CodeBadge>\n\t);\n}",
       "EmTexto": "import { CodeBadge } from \"@design-systems-orion/blocks/code-badge\";\n\nexport function CodeBadgeEmTexto() {\n\treturn (\n\t\t<p className=\"text-sm text-foreground\">\n\t\t\tA chave <CodeBadge>VISUALIZAR_REGISTRO</CodeBadge> controla o acesso à listagem.\n\t\t</p>\n\t);\n}",
     },
   },
   "blocks/comparison-diff-view": {
-    meta: s33.default as RegistryEntry['meta'],
-    stories: s33 as unknown as Record<string, StoryObj>,
+    meta: s35.default as RegistryEntry['meta'],
+    stories: s35 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { ComparisonDiffView } from \"@design-systems-orion/blocks/comparison-diff-view\";\n\nexport function ComparisonDiffViewDemo() {\n\treturn (\n\t\t<ComparisonDiffView groups={[\n\t\t\t\t\t{\n\t\t\t\t\t\ttitle: \"Diferenças de Permissões\",\n\t\t\t\t\t\tdescription: \"Permissões que um usuário possui e o outro não.\",\n\t\t\t\t\t\tcolumns: [\n\t\t\t\t\t\t\t{ label: \"Somente Usuário A possui\", tone: \"danger\", items: [\"CRIAR_DEMANDA\"] },\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\tlabel: \"Somente Usuário B possui\",\n\t\t\t\t\t\t\t\ttone: \"info\",\n\t\t\t\t\t\t\t\titems: [\"APROVAR_DEMANDA\", \"EXCLUIR_DEMANDA\"],\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t],\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\ttitle: \"Módulos\",\n\t\t\t\t\t\tcolumns: [\n\t\t\t\t\t\t\t{ label: \"Comuns (Ambos)\", items: [\"Gestão de Demandas\"] },\n\t\t\t\t\t\t\t{ label: \"Somente Usuário A\", tone: \"danger\", items: [] },\n\t\t\t\t\t\t\t{ label: \"Somente Usuário B\", tone: \"info\", items: [\"Governança\"] },\n\t\t\t\t\t\t],\n\t\t\t\t\t},\n\t\t\t\t]} />\n\t);\n}",
     },
   },
   "blocks/confirm-dialog": {
-    meta: s34.default as RegistryEntry['meta'],
-    stories: s34 as unknown as Record<string, StoryObj>,
+    meta: s36.default as RegistryEntry['meta'],
+    stories: s36 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { ConfirmDialog } from \"@design-systems-orion/blocks/confirm-dialog\";\nimport { Button } from \"@design-systems-orion/ui\";\nimport * as React from \"react\";\n\nexport function DemoDefault() {\n\tconst [open, setOpen] = React.useState(false);\n\treturn (\n\t\t<>\n\t\t\t<Button variant=\"outline\" onClick={() => setOpen(true)}>\n\t\t\t\tAprovar item\n\t\t\t</Button>\n\t\t\t<ConfirmDialog\n\t\t\t\topen={open}\n\t\t\t\tonOpenChange={setOpen}\n\t\t\t\ttitle=\"Confirmar aprovação\"\n\t\t\t\tdescription=\"O item será enviado para a próxima etapa.\"\n\t\t\t\tconfirmLabel=\"Aprovar\"\n\t\t\t\tonConfirm={() => {}}\n\t\t\t/>\n\t\t</>\n\t);\n}",
       "Danger": "\"use client\";\n\nimport { ConfirmDialog } from \"@design-systems-orion/blocks/confirm-dialog\";\nimport { Button } from \"@design-systems-orion/ui\";\nimport * as React from \"react\";\n\nexport function DemoDanger() {\n\tconst [open, setOpen] = React.useState(false);\n\treturn (\n\t\t<>\n\t\t\t<Button variant=\"destructive\" onClick={() => setOpen(true)}>\n\t\t\t\tExcluir item\n\t\t\t</Button>\n\t\t\t<ConfirmDialog\n\t\t\t\topen={open}\n\t\t\t\tonOpenChange={setOpen}\n\t\t\t\ttitle=\"Excluir registro?\"\n\t\t\t\tdescription=\"Esta ação não poderá ser desfeita.\"\n\t\t\t\tconfirmLabel=\"Excluir\"\n\t\t\t\tvariant=\"danger\"\n\t\t\t\tonConfirm={() => new Promise((r) => setTimeout(r, 1200))}\n\t\t\t/>\n\t\t</>\n\t);\n}",
@@ -441,8 +472,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/content-card": {
-    meta: s35.default as RegistryEntry['meta'],
-    stories: s35 as unknown as Record<string, StoryObj>,
+    meta: s37.default as RegistryEntry['meta'],
+    stories: s37 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { ContentCard } from \"@design-systems-orion/blocks/content-card\";\n\nexport function ContentCardDemo() {\n\treturn (\n\t\t<ContentCard className=\"w-96\">\n\t\t\t<p className=\"text-sm text-muted-foreground\">Conteúdo simples sem cabeçalho.</p>\n\t\t</ContentCard>\n\t);\n}",
       "WithHeader": "import { ContentCard } from \"@design-systems-orion/blocks/content-card\";\n\nexport function ContentCardWithHeader() {\n\treturn (\n\t\t<ContentCard className=\"w-96\" title=\"Resumo\" description=\"Informações principais\">\n\t\t\t<p className=\"text-sm text-muted-foreground\">Conteúdo do card.</p>\n\t\t</ContentCard>\n\t);\n}",
@@ -450,25 +481,42 @@ export const registry: Record<string, RegistryEntry> = {
       "NestedSections": "import { ContentCard } from \"@design-systems-orion/blocks/content-card\";\nimport { FormSection } from \"@design-systems-orion/blocks/form-section\";\n\nexport function ContentCardNestedSections() {\n\treturn (\n\t\t<ContentCard className=\"w-[32rem]\" title=\"Configurações\">\n\t\t\t<div className=\"space-y-6\">\n\t\t\t\t<FormSection title=\"Geral\">\n\t\t\t\t\t<p className=\"text-sm text-muted-foreground\">Campos gerais⬦</p>\n\t\t\t\t</FormSection>\n\t\t\t\t<FormSection title=\"Avançado\">\n\t\t\t\t\t<p className=\"text-sm text-muted-foreground\">Campos avançados⬦</p>\n\t\t\t\t</FormSection>\n\t\t\t</div>\n\t\t</ContentCard>\n\t);\n}",
     },
   },
+  "blocks/conversation-header": {
+    meta: s38.default as RegistryEntry['meta'],
+    stories: s38 as unknown as Record<string, StoryObj>,
+    code: {
+      "Default": "import { ConversationHeader } from \"@design-systems-orion/blocks/conversation-header\";\n\nexport function ConversationHeaderDemo() {\n\treturn <ConversationHeader />;\n}",
+      "ComAcoes": "import { ConversationHeader } from \"@design-systems-orion/blocks/conversation-header\";\n\nexport function ConversationHeaderComAcoes() {\n\treturn <ConversationHeader />;\n}",
+    },
+  },
+  "blocks/conversation-list-item": {
+    meta: s39.default as RegistryEntry['meta'],
+    stories: s39 as unknown as Record<string, StoryObj>,
+    code: {
+      "Default": "import {\n\tConversationListItem,\n} from \"@design-systems-orion/blocks/conversation-list-item\";\nimport { Mail, MessageCircle } from \"lucide-react\";\n\nexport function ConversationListItemDemo() {\n\treturn (\n\t\t<ConversationListItem title=\"Marina Costa\" avatarFallback={getInitials(\"Marina Costa\")} timestamp=\"14:32\" preview=\"Bom dia, consegue confirmar a janela de retirada?\" previewIcon={MessageCircle} />\n\t);\n}",
+      "NaoLidaComMeta": "import {\n\tConversationListItem,\n} from \"@design-systems-orion/blocks/conversation-list-item\";\nimport { Mail, MessageCircle } from \"lucide-react\";\nimport { StatusDot } from \"@design-systems-orion/blocks/status-dot\";\n\nexport function ConversationListItemNaoLidaComMeta() {\n\treturn (\n\t\t<ConversationListItem title=\"Operações Porto Norte\" avatarFallback={getInitials(\"Operações Porto Norte\")} timestamp=\"Ontem\" preview=\"Re: Agendamento de gate\" previewIcon={Mail} unread meta={<StatusDot tone} warning={label=\"Aguardando cliente\" />} />\n\t);\n}",
+      "Selecionada": "import {\n\tConversationListItem,\n} from \"@design-systems-orion/blocks/conversation-list-item\";\n\nexport function ConversationListItemSelecionada() {\n\treturn (\n\t\t<ConversationListItem selected />\n\t);\n}",
+    },
+  },
   "blocks/crud-modal-frame": {
-    meta: s36.default as RegistryEntry['meta'],
-    stories: s36 as unknown as Record<string, StoryObj>,
+    meta: s40.default as RegistryEntry['meta'],
+    stories: s40 as unknown as Record<string, StoryObj>,
     code: {
       "Criar": "\"use client\";\n\nimport { CrudModalFrame } from \"@design-systems-orion/blocks/crud-modal-frame\";\nimport { Truck } from \"lucide-react\";\nimport * as React from \"react\";\nimport { Badge, Button } from \"@design-systems-orion/ui\";\n\nexport function DemoCriar() {\n\tconst [open, setOpen] = React.useState(false);\n\treturn (\n\t\t<>\n\t\t\t<Button onClick={() => setOpen(true)}>Nova carga</Button>\n\t\t\t<CrudModalFrame\n\t\t\t\topen={open}\n\t\t\t\tonOpenChange={setOpen}\n\t\t\t\ttitle=\"Cadastrar carga\"\n\t\t\t\tdescription=\"Preencha os dados básicos da carga.\"\n\t\t\t\ticon={Truck}\n\t\t\t\tsize=\"md\"\n\t\t\t\tfooter={\n\t\t\t\t\t<>\n\t\t\t\t\t\t<Button variant=\"outline\" onClick={() => setOpen(false)}>\n\t\t\t\t\t\t\tCancelar\n\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t<Button onClick={() => setOpen(false)}>Salvar</Button>\n\t\t\t\t\t</>\n\t\t\t\t}\n\t\t\t>\n\t\t\t\t<p className=\"text-sm text-muted-foreground\">Formulário do consumidor entra aqui.</p>\n\t\t\t</CrudModalFrame>\n\t\t</>\n\t);\n}",
       "Detalhe": "\"use client\";\n\nimport { CrudModalFrame } from \"@design-systems-orion/blocks/crud-modal-frame\";\nimport { Truck } from \"lucide-react\";\nimport * as React from \"react\";\nimport { Badge, Button } from \"@design-systems-orion/ui\";\n\nexport function DemoDetalhe() {\n\tconst [open, setOpen] = React.useState(false);\n\treturn (\n\t\t<>\n\t\t\t<Button variant=\"outline\" onClick={() => setOpen(true)}>\n\t\t\t\tVer detalhe\n\t\t\t</Button>\n\t\t\t<CrudModalFrame\n\t\t\t\topen={open}\n\t\t\t\tonOpenChange={setOpen}\n\t\t\t\ttitle=\"Carga Nº 4821\"\n\t\t\t\tdescription=\"Detalhes da carga em trânsito.\"\n\t\t\t\ticon={Truck}\n\t\t\t\ttone=\"info\"\n\t\t\t\tsize=\"lg\"\n\t\t\t\tbadges={<Badge variant=\"secondary\">Em trânsito</Badge>}\n\t\t\t>\n\t\t\t\t<p className=\"text-sm text-muted-foreground\">Conteúdo rolável do consumidor entra aqui.</p>\n\t\t\t</CrudModalFrame>\n\t\t</>\n\t);\n}",
     },
   },
   "blocks/crud-modal-header": {
-    meta: s37.default as RegistryEntry['meta'],
-    stories: s37 as unknown as Record<string, StoryObj>,
+    meta: s41.default as RegistryEntry['meta'],
+    stories: s41 as unknown as Record<string, StoryObj>,
     code: {
       "Criar": "import { CrudModalHeader } from \"@design-systems-orion/blocks/crud-modal-header\";\nimport { Pencil, Plus } from \"lucide-react\";\n\nexport function CrudModalHeaderCriar() {\n\treturn (\n\t\t<CrudModalHeader icon={Plus} title=\"Novo módulo\" description=\"Preencha os dados para cadastrar um módulo.\" />\n\t);\n}",
       "EditarComBadges": "import { CrudModalHeader } from \"@design-systems-orion/blocks/crud-modal-header\";\n\nexport function CrudModalHeaderEditarComBadges() {\n\treturn <CrudModalHeader />;\n}",
     },
   },
   "blocks/dashboard-page-layout": {
-    meta: s38.default as RegistryEntry['meta'],
-    stories: s38 as unknown as Record<string, StoryObj>,
+    meta: s42.default as RegistryEntry['meta'],
+    stories: s42 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { DashboardPageLayout } from \"@design-systems-orion/blocks/dashboard-page-layout\";\nimport { ContentCard } from \"@design-systems-orion/blocks/content-card\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\n\nconst Bloco = ({ titulo }: { titulo: string }) => (\n\t<ContentCard title={titulo}>\n\t\t<div className=\"flex h-40 items-center justify-center rounded bg-muted/40 text-sm text-muted-foreground\">\n\t\t\tárea de conteúdo/gráfico\n\t\t</div>\n\t</ContentCard>\n);\n\nexport function DashboardPageLayoutDemo() {\n\treturn (\n\t\t<DashboardPageLayout\n\t\t\theader={<PageHeader title=\"Painel\" />}\n\t\t\tcontent={<Bloco titulo=\"Visão geral\" />}\n\t\t/>\n\t);\n}",
       "WithStats": "import { DashboardPageLayout } from \"@design-systems-orion/blocks/dashboard-page-layout\";\nimport { AlertTriangle, CheckCircle, Clock, FileText } from \"lucide-react\";\nimport { ContentCard } from \"@design-systems-orion/blocks/content-card\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\nimport { StatusCards } from \"@design-systems-orion/blocks/status-cards\";\n\nconst Bloco = ({ titulo }: { titulo: string }) => (\n\t<ContentCard title={titulo}>\n\t\t<div className=\"flex h-40 items-center justify-center rounded bg-muted/40 text-sm text-muted-foreground\">\n\t\t\tárea de conteúdo/gráfico\n\t\t</div>\n\t</ContentCard>\n);\n\nconst Stats = () => (\n\t<StatusCards>\n\t\t<StatusCards.Item tone=\"default\">\n\t\t\t<StatusCards.Icon as={FileText} />\n\t\t\t<StatusCards.Content>\n\t\t\t\t<StatusCards.Label>Total</StatusCards.Label>\n\t\t\t\t<StatusCards.Value>128</StatusCards.Value>\n\t\t\t</StatusCards.Content>\n\t\t</StatusCards.Item>\n\t\t<StatusCards.Item tone=\"warning\">\n\t\t\t<StatusCards.Icon as={Clock} />\n\t\t\t<StatusCards.Content>\n\t\t\t\t<StatusCards.Label>Pendentes</StatusCards.Label>\n\t\t\t\t<StatusCards.Value>12</StatusCards.Value>\n\t\t\t</StatusCards.Content>\n\t\t</StatusCards.Item>\n\t\t<StatusCards.Item tone=\"success\">\n\t\t\t<StatusCards.Icon as={CheckCircle} />\n\t\t\t<StatusCards.Content>\n\t\t\t\t<StatusCards.Label>Concluídos</StatusCards.Label>\n\t\t\t\t<StatusCards.Value>98</StatusCards.Value>\n\t\t\t</StatusCards.Content>\n\t\t</StatusCards.Item>\n\t\t<StatusCards.Item tone=\"danger\">\n\t\t\t<StatusCards.Icon as={AlertTriangle} />\n\t\t\t<StatusCards.Content>\n\t\t\t\t<StatusCards.Label>Com erro</StatusCards.Label>\n\t\t\t\t<StatusCards.Value>18</StatusCards.Value>\n\t\t\t</StatusCards.Content>\n\t\t</StatusCards.Item>\n\t</StatusCards>\n);\n\nexport function DashboardPageLayoutWithStats() {\n\treturn (\n\t\t<DashboardPageLayout\n\t\t\theader={<PageHeader title=\"Painel\" />}\n\t\t\tstats={<Stats />}\n\t\t\tcontent={<Bloco titulo=\"Visão geral\" />}\n\t\t/>\n\t);\n}",
@@ -477,8 +525,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/data-table": {
-    meta: s39.default as RegistryEntry['meta'],
-    stories: s39 as unknown as Record<string, StoryObj>,
+    meta: s43.default as RegistryEntry['meta'],
+    stories: s43 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { DataTable } from \"@design-systems-orion/blocks/data-table\";\n\nexport function DataTableDemo() {\n\treturn (\n\t\t<DataTable data={PROCESSOS.slice(0, 6)} columns={columns} keyExtractor={(r: Processo) => r.id}>\n\t\t\t<DataTable.Card>\n\t\t\t\t<DataTable.Empty />\n\t\t\t\t<DataTable.Content />\n\t\t\t</DataTable.Card>\n\t\t</DataTable>\n\t);\n}",
       "Loading": "import { DataTable } from \"@design-systems-orion/blocks/data-table\";\n\nexport function DataTableLoading() {\n\treturn (\n\t\t<DataTable data={[]} columns={columns} keyExtractor={(r: Processo) => r.id} isLoading>\n\t\t\t<DataTable.Card>\n\t\t\t\t<DataTable.Empty />\n\t\t\t\t<DataTable.Content loadingRows={5} />\n\t\t\t</DataTable.Card>\n\t\t</DataTable>\n\t);\n}",
@@ -494,9 +542,18 @@ export const registry: Record<string, RegistryEntry> = {
       "AuroraInspiredExample": "\"use client\";\n\nimport { DataTable } from \"@design-systems-orion/blocks/data-table\";\nimport {\n\tBadge,\n\tButton,\n\tDropdownMenu,\n\tDropdownMenuContent,\n\tDropdownMenuItem,\n\tDropdownMenuSeparator,\n\tDropdownMenuTrigger,\n} from \"@design-systems-orion/ui\";\nimport { Download, Eye, MoreHorizontal, Pencil, Plus, Trash2 } from \"lucide-react\";\nimport * as React from \"react\";\nimport { StatusCards } from \"@design-systems-orion/blocks/status-cards\";\n\nexport function Operacional() {\n\t\tconst [status, setStatus] = React.useState<string>(\"Todos\");\n\t\tconst dados =\n\t\t\tstatus === \"Todos\"\n\t\t\t\t? PROCESSOS\n\t\t\t\t: PROCESSOS.filter((p) => STATUS_LABEL[p.status].label === status);\n\t\tconst contagem = (s: Processo[\"status\"]) => PROCESSOS.filter((p) => p.status === s).length;\n\t\treturn (\n\t\t\t<div className=\"space-y-4\">\n\t\t\t\t<StatusCards columns={4}>\n\t\t\t\t\t<StatusCards.Item onClick={() => setStatus(\"Todos\")} active={status === \"Todos\"}>\n\t\t\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t\t\t<StatusCards.Label>Todos</StatusCards.Label>\n\t\t\t\t\t\t\t<StatusCards.Value>{PROCESSOS.length}</StatusCards.Value>\n\t\t\t\t\t\t</StatusCards.Content>\n\t\t\t\t\t</StatusCards.Item>\n\t\t\t\t\t<StatusCards.Item\n\t\t\t\t\t\ttone=\"warning\"\n\t\t\t\t\t\tonClick={() => setStatus(\"Pendente\")}\n\t\t\t\t\t\tactive={status === \"Pendente\"}\n\t\t\t\t\t>\n\t\t\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t\t\t<StatusCards.Label>Pendente</StatusCards.Label>\n\t\t\t\t\t\t\t<StatusCards.Value>{contagem(\"pendente\")}</StatusCards.Value>\n\t\t\t\t\t\t</StatusCards.Content>\n\t\t\t\t\t</StatusCards.Item>\n\t\t\t\t\t<StatusCards.Item\n\t\t\t\t\t\ttone=\"info\"\n\t\t\t\t\t\tonClick={() => setStatus(\"Em andamento\")}\n\t\t\t\t\t\tactive={status === \"Em andamento\"}\n\t\t\t\t\t>\n\t\t\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t\t\t<StatusCards.Label>Em andamento</StatusCards.Label>\n\t\t\t\t\t\t\t<StatusCards.Value>{contagem(\"em_andamento\")}</StatusCards.Value>\n\t\t\t\t\t\t</StatusCards.Content>\n\t\t\t\t\t</StatusCards.Item>\n\t\t\t\t\t<StatusCards.Item\n\t\t\t\t\t\ttone=\"success\"\n\t\t\t\t\t\tonClick={() => setStatus(\"Concluído\")}\n\t\t\t\t\t\tactive={status === \"Concluído\"}\n\t\t\t\t\t>\n\t\t\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t\t\t<StatusCards.Label>Concluído</StatusCards.Label>\n\t\t\t\t\t\t\t<StatusCards.Value>{contagem(\"concluido\")}</StatusCards.Value>\n\t\t\t\t\t\t</StatusCards.Content>\n\t\t\t\t\t</StatusCards.Item>\n\t\t\t\t</StatusCards>\n\t\t\t\t<DataTable data={dados} columns={columns} keyExtractor={(r: Processo) => r.id}>\n\t\t\t\t\t<DataTable.Card>\n\t\t\t\t\t\t<DataTable.Toolbar>\n\t\t\t\t\t\t\t<div className=\"flex items-center justify-between gap-3\">\n\t\t\t\t\t\t\t\t<span className=\"text-sm text-muted-foreground\">{dados.length} processo(s)</span>\n\t\t\t\t\t\t\t\t<Button variant=\"outline\" size=\"sm\">\n\t\t\t\t\t\t\t\t\t<Download /> Exportar\n\t\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</DataTable.Toolbar>\n\t\t\t\t\t\t<DataTable.Empty />\n\t\t\t\t\t\t<DataTable.Content onRowClick={() => {}} />\n\t\t\t\t\t</DataTable.Card>\n\t\t\t\t</DataTable>\n\t\t\t</div>\n\t\t);\n\t}",
     },
   },
+  "blocks/description-list": {
+    meta: s44.default as RegistryEntry['meta'],
+    stories: s44 as unknown as Record<string, StoryObj>,
+    code: {
+      "Default": "import { DescriptionList } from \"@design-systems-orion/blocks/description-list\";\n\nexport function DescriptionListDemo() {\n\treturn (\n\t\t<DescriptionList items={[\n\t\t\t\t\t{ label: \"Status\", value: \"Em atendimento\" },\n\t\t\t\t\t{ label: \"Responsável\", value: \"Ana Souza\" },\n\t\t\t\t\t{ label: \"Fila\", value: \"Operações\" },\n\t\t\t\t\t{ label: \"Início\", value: \"há 12 min\" },\n\t\t\t\t]} />\n\t);\n}",
+      "Empilhada": "import { DescriptionList } from \"@design-systems-orion/blocks/description-list\";\n\nexport function DescriptionListEmpilhada() {\n\treturn (\n\t\t<DescriptionList layout=\"stacked\" items={[\n\t\t\t\t\t{ label: \"Cliente\", value: \"Porto Norte Logística Ltda.\" },\n\t\t\t\t\t{ label: \"Motivo da espera\", value: \"Aguardando Operações confirmar a janela de retirada\" },\n\t\t\t\t]} />\n\t);\n}",
+      "ItemOculto": "import { DescriptionList } from \"@design-systems-orion/blocks/description-list\";\n\nexport function DescriptionListItemOculto() {\n\treturn (\n\t\t<DescriptionList items={[\n\t\t\t\t\t{ label: \"Responsável\", value: \"Ana Souza\" },\n\t\t\t\t\t{ label: \"Fila\", value: \"Operações\", hidden: true },\n\t\t\t\t]} />\n\t);\n}",
+    },
+  },
   "blocks/detail-page-layout": {
-    meta: s40.default as RegistryEntry['meta'],
-    stories: s40 as unknown as Record<string, StoryObj>,
+    meta: s45.default as RegistryEntry['meta'],
+    stories: s45 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { DetailPageLayout } from \"@design-systems-orion/blocks/detail-page-layout\";\nimport { Badge, Button, Tabs, TabsContent, TabsList, TabsTrigger } from \"@design-systems-orion/ui\";\nimport { ContentCard } from \"@design-systems-orion/blocks/content-card\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\n\nconst Cabecalho = () => (\n\t<PageHeader\n\t\teyebrow=\"Registros\"\n\t\ttitle=\"Registro REG-042\"\n\t\tactions={<Button variant=\"outline\">Editar</Button>}\n\t/>\n);\n\nexport function DetailPageLayoutDemo() {\n\treturn (\n\t\t<DetailPageLayout>\n\t\t\t<Cabecalho />\n\t\t\t<DetailPageLayout.Content>\n\t\t\t\t<ContentCard>\n\t\t\t\t\t<p className=\"text-sm text-muted-foreground\">Conteúdo do detalhe.</p>\n\t\t\t\t</ContentCard>\n\t\t\t</DetailPageLayout.Content>\n\t\t</DetailPageLayout>\n\t);\n}",
       "WithSummary": "import { DetailPageLayout } from \"@design-systems-orion/blocks/detail-page-layout\";\nimport { Badge, Button, Tabs, TabsContent, TabsList, TabsTrigger } from \"@design-systems-orion/ui\";\nimport { CodeBadge } from \"@design-systems-orion/blocks/code-badge\";\nimport { ContentCard } from \"@design-systems-orion/blocks/content-card\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\nimport { StatusDot } from \"@design-systems-orion/blocks/status-dot\";\n\nconst Abas = () => (\n\t<Tabs defaultValue=\"geral\">\n\t\t<TabsList>\n\t\t\t<TabsTrigger value=\"geral\">Geral</TabsTrigger>\n\t\t\t<TabsTrigger value=\"historico\">Histórico</TabsTrigger>\n\t\t</TabsList>\n\t\t<TabsContent value=\"geral\">\n\t\t\t<ContentCard>\n\t\t\t\t<p className=\"text-sm text-muted-foreground\">Conteúdo da aba Geral.</p>\n\t\t\t</ContentCard>\n\t\t</TabsContent>\n\t\t<TabsContent value=\"historico\">\n\t\t\t<ContentCard>\n\t\t\t\t<p className=\"text-sm text-muted-foreground\">Eventos do registro.</p>\n\t\t\t</ContentCard>\n\t\t</TabsContent>\n\t</Tabs>\n);\n\nconst Resumo = () => (\n\t<ContentCard title=\"Resumo\">\n\t\t<div className=\"flex flex-wrap items-center gap-4 text-sm\">\n\t\t\t<CodeBadge>REG-042</CodeBadge>\n\t\t\t<StatusDot tone=\"success\" label=\"Ativo\" />\n\t\t\t<span className=\"text-muted-foreground\">Criado em 01/07/2026</span>\n\t\t\t<Badge variant=\"secondary\">Categoria X</Badge>\n\t\t</div>\n\t</ContentCard>\n);\n\nconst Cabecalho = () => (\n\t<PageHeader\n\t\teyebrow=\"Registros\"\n\t\ttitle=\"Registro REG-042\"\n\t\tactions={<Button variant=\"outline\">Editar</Button>}\n\t/>\n);\n\nexport function DetailPageLayoutWithSummary() {\n\treturn (\n\t\t<DetailPageLayout>\n\t\t\t<Cabecalho />\n\t\t\t<DetailPageLayout.Content>\n\t\t\t\t<Resumo />\n\t\t\t\t<Abas />\n\t\t\t</DetailPageLayout.Content>\n\t\t</DetailPageLayout>\n\t);\n}",
@@ -505,15 +562,15 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/dynamic-field-list-rows": {
-    meta: s41.default as RegistryEntry['meta'],
-    stories: s41 as unknown as Record<string, StoryObj>,
+    meta: s46.default as RegistryEntry['meta'],
+    stories: s46 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport {\n\tDynamicFieldListRows,\n} from \"@design-systems-orion/blocks/dynamic-field-list-rows\";\nimport * as React from \"react\";\n\nexport function DynamicFieldListRowsDemo() {\n\tconst [rows, setRows] = React.useState([\"\", \"\"]);\n\treturn (\n\t\t<DynamicFieldListRows\n\t\t\tcount={rows.length}\n\t\t\trenderRow={(index) => (\n\t\t\t\t<input\n\t\t\t\t\tclassName=\"h-9 w-full rounded-md border px-3 text-sm\"\n\t\t\t\t\tplaceholder={`Container ${index + 1}`}\n\t\t\t\t\tvalue={rows[index]}\n\t\t\t\t\tonChange={(e) =>\n\t\t\t\t\t\tsetRows((prev) => prev.map((v, i) => (i === index ? e.target.value : v)))\n\t\t\t\t\t}\n\t\t\t\t/>\n\t\t\t)}\n\t\t\tonAdd={() => setRows((prev) => [...prev, \"\"])}\n\t\t\tonRemove={(index) => setRows((prev) => prev.filter((_, i) => i !== index))}\n\t\t\tcanRemove={() => rows.length > 1}\n\t\t/>\n\t);\n}",
     },
   },
   "blocks/empty-state": {
-    meta: s42.default as RegistryEntry['meta'],
-    stories: s42 as unknown as Record<string, StoryObj>,
+    meta: s47.default as RegistryEntry['meta'],
+    stories: s47 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { EmptyState } from \"@design-systems-orion/blocks/empty-state\";\n\nexport function EmptyStateDemo() {\n\treturn (\n\t\t<EmptyState title=\"Nenhum registro encontrado\" description=\"Tente ajustar os filtros ou criar um novo registro.\" />\n\t);\n}",
       "ComAcao": "import { EmptyState } from \"@design-systems-orion/blocks/empty-state\";\n\nexport function EmptyStateComAcao() {\n\treturn <EmptyState />;\n}",
@@ -522,15 +579,15 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/entity-assignment-panel": {
-    meta: s43.default as RegistryEntry['meta'],
-    stories: s43 as unknown as Record<string, StoryObj>,
+    meta: s48.default as RegistryEntry['meta'],
+    stories: s48 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport {\n\tEntityAssignmentPanel,\n} from \"@design-systems-orion/blocks/entity-assignment-panel\";\nimport { Users } from \"lucide-react\";\nimport * as React from \"react\";\n\nexport function EntityAssignmentPanelDemo() {\n\tconst [assigned, setAssigned] = React.useState<AssignmentCandidate[]>([FIRST_USER]);\n\tconst [query, setQuery] = React.useState(\"\");\n\tconst assignedIds = new Set(assigned.map((u) => u.id));\n\tconst candidates = ALL_USERS.filter(\n\t\t(u) => !assignedIds.has(u.id) && u.label.toLowerCase().includes(query.toLowerCase()),\n\t);\n\n\treturn (\n\t\t<EntityAssignmentPanel\n\t\t\ttitle=\"Usuários com este perfil\"\n\t\t\ticon={Users}\n\t\t\tassignedItems={assigned}\n\t\t\tsearchQuery={query}\n\t\t\tonSearchQueryChange={setQuery}\n\t\t\tcandidates={query.length >= 1 ? candidates : []}\n\t\t\tonAssign={(c) => {\n\t\t\t\tsetAssigned((prev) => [...prev, c]);\n\t\t\t\tsetQuery(\"\");\n\t\t\t}}\n\t\t\tonUnassign={(item) => setAssigned((prev) => prev.filter((u) => u.id !== item.id))}\n\t\t/>\n\t);\n}",
     },
   },
   "blocks/error-state": {
-    meta: s44.default as RegistryEntry['meta'],
-    stories: s44 as unknown as Record<string, StoryObj>,
+    meta: s49.default as RegistryEntry['meta'],
+    stories: s49 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { ErrorState } from \"@design-systems-orion/blocks/error-state\";\n\nexport function ErrorStateDemo() {\n\treturn <ErrorState />;\n}",
       "ComRetry": "import { ErrorState } from \"@design-systems-orion/blocks/error-state\";\nimport { Button } from \"@design-systems-orion/ui\";\n\nexport function ErrorStateComRetry() {\n\treturn (\n\t\t<ErrorState action={(\n\t\t\t\t\t<Button variant=\"outline\"} />\n\t);\n}",
@@ -538,8 +595,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/field-group": {
-    meta: s45.default as RegistryEntry['meta'],
-    stories: s45 as unknown as Record<string, StoryObj>,
+    meta: s50.default as RegistryEntry['meta'],
+    stories: s50 as unknown as Record<string, StoryObj>,
     code: {
       "OneColumn": "import { FieldGroup } from \"@design-systems-orion/blocks/field-group\";\n\nexport function FieldGroupOneColumn() {\n\treturn (\n\t\t<FieldGroup columns={1} className=\"w-80\">\n\t\t\t{[1, 2].map(campo)}\n\t\t</FieldGroup>\n\t);\n}",
       "TwoColumns": "import { FieldGroup } from \"@design-systems-orion/blocks/field-group\";\n\nexport function FieldGroupTwoColumns() {\n\treturn (\n\t\t<FieldGroup columns={2} className=\"w-[36rem]\">\n\t\t\t{[1, 2, 3, 4].map(campo)}\n\t\t</FieldGroup>\n\t);\n}",
@@ -549,24 +606,24 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/file-dropzone": {
-    meta: s46.default as RegistryEntry['meta'],
-    stories: s46 as unknown as Record<string, StoryObj>,
+    meta: s51.default as RegistryEntry['meta'],
+    stories: s51 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { FileDropzone } from \"@design-systems-orion/blocks/file-dropzone\";\n\nexport function FileDropzoneDemo() {\n\treturn (\n\t\t<FileDropzone title=\"Clique para fazer upload\" description=\"Formato suportado: .xlsx\" accept=\".xlsx,.csv\" onFilesSelected={(files) => console.log(files)} />\n\t);\n}",
       "Desabilitado": "import { FileDropzone } from \"@design-systems-orion/blocks/file-dropzone\";\n\nexport function FileDropzoneDesabilitado() {\n\treturn (\n\t\t<FileDropzone disabled onFilesSelected={() => {}} />\n\t);\n}",
     },
   },
   "blocks/file-list-item": {
-    meta: s47.default as RegistryEntry['meta'],
-    stories: s47 as unknown as Record<string, StoryObj>,
+    meta: s52.default as RegistryEntry['meta'],
+    stories: s52 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { FileListItem } from \"@design-systems-orion/blocks/file-list-item\";\n\nexport function FileListItemDemo() {\n\treturn (\n\t\t<FileListItem name=\"planilha-containers.xlsx\" size={143_360} onRemove={() => {}} />\n\t);\n}",
       "SomenteLeitura": "import { FileListItem } from \"@design-systems-orion/blocks/file-list-item\";\n\nexport function FileListItemSomenteLeitura() {\n\treturn (\n\t\t<FileListItem name=\"comprovante.pdf\" size=\"812 KB\" />\n\t);\n}",
     },
   },
   "blocks/filter-pill": {
-    meta: s48.default as RegistryEntry['meta'],
-    stories: s48 as unknown as Record<string, StoryObj>,
+    meta: s53.default as RegistryEntry['meta'],
+    stories: s53 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { FilterPill } from \"@design-systems-orion/blocks/filter-pill\";\n\nexport function FilterPillDemo() {\n\treturn (\n\t\t<FilterPill label=\"Status\" value=\"Ativo\" onRemove={() => {}} />\n\t);\n}",
       "SemValor": "import { FilterPill } from \"@design-systems-orion/blocks/filter-pill\";\n\nexport function FilterPillSemValor() {\n\treturn (\n\t\t<FilterPill label=\"Somente pendentes\" onRemove={() => {}} />\n\t);\n}",
@@ -575,15 +632,15 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/filterable-tree-list": {
-    meta: s49.default as RegistryEntry['meta'],
-    stories: s49 as unknown as Record<string, StoryObj>,
+    meta: s54.default as RegistryEntry['meta'],
+    stories: s54 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { FilterableTreeList } from \"@design-systems-orion/blocks/filterable-tree-list\";\nimport * as React from \"react\";\n\nexport function FilterableTreeListDemo() {\n\tconst [openIds, setOpenIds] = React.useState(new Set<string>());\n\treturn (\n\t\t<FilterableTreeList\n\t\t\tnodes={NODES}\n\t\t\topenIds={openIds}\n\t\t\tonToggle={(id) =>\n\t\t\t\tsetOpenIds((prev) => {\n\t\t\t\t\tconst next = new Set(prev);\n\t\t\t\t\tnext.has(id) ? next.delete(id) : next.add(id);\n\t\t\t\t\treturn next;\n\t\t\t\t})\n\t\t\t}\n\t\t\tonSelectNode={(node) => console.log(\"detalhes\", node)}\n\t\t/>\n\t);\n}",
     },
   },
   "blocks/filters-card": {
-    meta: s50.default as RegistryEntry['meta'],
-    stories: s50 as unknown as Record<string, StoryObj>,
+    meta: s55.default as RegistryEntry['meta'],
+    stories: s55 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { FiltersCard } from \"@design-systems-orion/blocks/filters-card\";\nimport { Input } from \"@design-systems-orion/ui\";\n\nexport function FiltersCardDemo() {\n\treturn (\n\t\t<FiltersCard onClear={() => {}} Buscar...={/>\n\t\t\t\t\t\t<Input} Categoria={/>\n\t\t\t\t\t</div>}>{(\n\t\t\t\t\t<div className=\"grid gap-3 sm:grid-cols-3\">\n\t\t\t\t\t\t<Input placeholder}</FiltersCard>\n\t);\n}",
       "Fechado": "import { FiltersCard } from \"@design-systems-orion/blocks/filters-card\";\nimport { Input } from \"@design-systems-orion/ui\";\n\nexport function FiltersCardFechado() {\n\treturn (\n\t\t<FiltersCard defaultOpen={false} Buscar...={/>,}>{<Input placeholder}</FiltersCard>\n\t);\n}",
@@ -591,8 +648,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/form-actions": {
-    meta: s51.default as RegistryEntry['meta'],
-    stories: s51 as unknown as Record<string, StoryObj>,
+    meta: s56.default as RegistryEntry['meta'],
+    stories: s56 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { FormActions } from \"@design-systems-orion/blocks/form-actions\";\n\nexport function FormActionsDemo() {\n\treturn (\n\t\t<FormActions {...Botoes()} className=\"w-96\" />\n\t);\n}",
       "LeftAligned": "import { FormActions } from \"@design-systems-orion/blocks/form-actions\";\n\nexport function FormActionsLeftAligned() {\n\treturn (\n\t\t<FormActions {...Botoes()} align=\"left\" className=\"w-96\" />\n\t);\n}",
@@ -602,8 +659,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/form-field": {
-    meta: s52.default as RegistryEntry['meta'],
-    stories: s52 as unknown as Record<string, StoryObj>,
+    meta: s57.default as RegistryEntry['meta'],
+    stories: s57 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { FormField } from \"@design-systems-orion/blocks/form-field\";\nimport { Checkbox, Combobox, Input, MultiSelect, Textarea } from \"@design-systems-orion/ui\";\n\nexport function FormFieldDemo() {\n\treturn (\n\t\t<FormField label=\"Nome\" htmlFor=\"ff-nome\" className=\"w-72\">\n\t\t\t<Input id=\"ff-nome\" placeholder=\"Nome de exibição\" />\n\t\t</FormField>\n\t);\n}",
       "WithDescription": "import { FormField } from \"@design-systems-orion/blocks/form-field\";\nimport { Checkbox, Combobox, Input, MultiSelect, Textarea } from \"@design-systems-orion/ui\";\n\nexport function FormFieldWithDescription() {\n\treturn (\n\t\t<FormField\n\t\t\tlabel=\"Código\"\n\t\t\thtmlFor=\"ff-cod\"\n\t\t\tdescription=\"Identificador único, sem espaços.\"\n\t\t\tclassName=\"w-72\"\n\t\t>\n\t\t\t<Input id=\"ff-cod\" aria-describedby=\"ff-cod-description\" />\n\t\t</FormField>\n\t);\n}",
@@ -616,8 +673,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/form-message": {
-    meta: s53.default as RegistryEntry['meta'],
-    stories: s53 as unknown as Record<string, StoryObj>,
+    meta: s58.default as RegistryEntry['meta'],
+    stories: s58 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { FormMessage } from \"@design-systems-orion/blocks/form-message\";\n\nexport function FormMessageDemo() {\n\treturn (\n\t\t<FormMessage>Texto de apoio do campo.</FormMessage>\n\t);\n}",
       "ErrorStory": "import { FormMessage } from \"@design-systems-orion/blocks/form-message\";\n\nexport function FormMessageErrorStory() {\n\treturn (\n\t\t<FormMessage tone=\"error\">Campo obrigatório</FormMessage>\n\t);\n}",
@@ -626,8 +683,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/form-page-layout": {
-    meta: s54.default as RegistryEntry['meta'],
-    stories: s54 as unknown as Record<string, StoryObj>,
+    meta: s59.default as RegistryEntry['meta'],
+    stories: s59 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { FormPageLayout } from \"@design-systems-orion/blocks/form-page-layout\";\nimport { Button, Input } from \"@design-systems-orion/ui\";\nimport { FieldGroup } from \"@design-systems-orion/blocks/field-group\";\nimport { FormActions } from \"@design-systems-orion/blocks/form-actions\";\nimport { FormField } from \"@design-systems-orion/blocks/form-field\";\nimport { FormSection } from \"@design-systems-orion/blocks/form-section\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\n\nconst Formulario = ({ sticky = false }: { sticky?: boolean }) => (\n\t<form className=\"space-y-8\" onSubmit={(e) => e.preventDefault()}>\n\t\t<FormSection title=\"Dados gerais\">\n\t\t\t<FieldGroup columns={2}>\n\t\t\t\t<FormField label=\"Nome\" htmlFor=\"fp-nome\" required>\n\t\t\t\t\t<Input id=\"fp-nome\" />\n\t\t\t\t</FormField>\n\t\t\t\t<FormField label=\"Código\" htmlFor=\"fp-cod\">\n\t\t\t\t\t<Input id=\"fp-cod\" />\n\t\t\t\t</FormField>\n\t\t\t</FieldGroup>\n\t\t</FormSection>\n\t\t<FormActions\n\t\t\tsticky={sticky}\n\t\t\tprimary={<Button onClick={fn()}>Salvar</Button>}\n\t\t\tsecondary={\n\t\t\t\t<Button variant=\"outline\" onClick={fn()}>\n\t\t\t\t\tCancelar\n\t\t\t\t</Button>\n\t\t\t}\n\t\t/>\n\t</form>\n);\n\nexport function FormPageLayoutDemo() {\n\treturn (\n\t\t<FormPageLayout>\n\t\t\t<PageHeader title=\"Novo registro\" />\n\t\t\t<FormPageLayout.Content>\n\t\t\t\t<Formulario />\n\t\t\t</FormPageLayout.Content>\n\t\t</FormPageLayout>\n\t);\n}",
       "WithAside": "import { FormPageLayout } from \"@design-systems-orion/blocks/form-page-layout\";\nimport { Button, Input } from \"@design-systems-orion/ui\";\nimport { ContentCard } from \"@design-systems-orion/blocks/content-card\";\nimport { FieldGroup } from \"@design-systems-orion/blocks/field-group\";\nimport { FormActions } from \"@design-systems-orion/blocks/form-actions\";\nimport { FormField } from \"@design-systems-orion/blocks/form-field\";\nimport { FormSection } from \"@design-systems-orion/blocks/form-section\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\n\nconst Formulario = ({ sticky = false }: { sticky?: boolean }) => (\n\t<form className=\"space-y-8\" onSubmit={(e) => e.preventDefault()}>\n\t\t<FormSection title=\"Dados gerais\">\n\t\t\t<FieldGroup columns={2}>\n\t\t\t\t<FormField label=\"Nome\" htmlFor=\"fp-nome\" required>\n\t\t\t\t\t<Input id=\"fp-nome\" />\n\t\t\t\t</FormField>\n\t\t\t\t<FormField label=\"Código\" htmlFor=\"fp-cod\">\n\t\t\t\t\t<Input id=\"fp-cod\" />\n\t\t\t\t</FormField>\n\t\t\t</FieldGroup>\n\t\t</FormSection>\n\t\t<FormActions\n\t\t\tsticky={sticky}\n\t\t\tprimary={<Button onClick={fn()}>Salvar</Button>}\n\t\t\tsecondary={\n\t\t\t\t<Button variant=\"outline\" onClick={fn()}>\n\t\t\t\t\tCancelar\n\t\t\t\t</Button>\n\t\t\t}\n\t\t/>\n\t</form>\n);\n\nexport function FormPageLayoutWithAside() {\n\treturn (\n\t\t<FormPageLayout>\n\t\t\t<PageHeader title=\"Editar registro\" />\n\t\t\t<FormPageLayout.Content\n\t\t\t\taside={\n\t\t\t\t\t<ContentCard title=\"Dicas\">\n\t\t\t\t\t\t<p className=\"text-sm text-muted-foreground\">O código não pode ser alterado depois.</p>\n\t\t\t\t\t</ContentCard>\n\t\t\t\t}\n\t\t\t>\n\t\t\t\t<Formulario />\n\t\t\t</FormPageLayout.Content>\n\t\t</FormPageLayout>\n\t);\n}",
@@ -636,8 +693,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/form-section": {
-    meta: s55.default as RegistryEntry['meta'],
-    stories: s55 as unknown as Record<string, StoryObj>,
+    meta: s60.default as RegistryEntry['meta'],
+    stories: s60 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { FormSection } from \"@design-systems-orion/blocks/form-section\";\nimport { Button, Input } from \"@design-systems-orion/ui\";\nimport { FormField } from \"@design-systems-orion/blocks/form-field\";\n\nconst Campos = () => (\n\t<>\n\t\t<FormField label=\"Nome\" htmlFor=\"fs-nome\">\n\t\t\t<Input id=\"fs-nome\" />\n\t\t</FormField>\n\t\t<FormField label=\"Código\" htmlFor=\"fs-cod\">\n\t\t\t<Input id=\"fs-cod\" />\n\t\t</FormField>\n\t</>\n);\n\nexport function FormSectionDemo() {\n\treturn (\n\t\t<FormSection title=\"Dados gerais\" className=\"w-96\">\n\t\t\t<Campos />\n\t\t</FormSection>\n\t);\n}",
       "WithDescription": "import { FormSection } from \"@design-systems-orion/blocks/form-section\";\nimport { Button, Input } from \"@design-systems-orion/ui\";\nimport { FormField } from \"@design-systems-orion/blocks/form-field\";\n\nconst Campos = () => (\n\t<>\n\t\t<FormField label=\"Nome\" htmlFor=\"fs-nome\">\n\t\t\t<Input id=\"fs-nome\" />\n\t\t</FormField>\n\t\t<FormField label=\"Código\" htmlFor=\"fs-cod\">\n\t\t\t<Input id=\"fs-cod\" />\n\t\t</FormField>\n\t</>\n);\n\nexport function FormSectionWithDescription() {\n\treturn (\n\t\t<FormSection\n\t\t\ttitle=\"Dados gerais\"\n\t\t\tdescription=\"Informações principais do registro.\"\n\t\t\tclassName=\"w-96\"\n\t\t>\n\t\t\t<Campos />\n\t\t</FormSection>\n\t);\n}",
@@ -646,58 +703,66 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/gantt-chart": {
-    meta: s56.default as RegistryEntry['meta'],
-    stories: s56 as unknown as Record<string, StoryObj>,
+    meta: s61.default as RegistryEntry['meta'],
+    stories: s61 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { GanttChart } from \"@design-systems-orion/blocks/gantt-chart\";\n\nexport function GanttChartDemo() {\n\treturn (\n\t\t<GanttChart rangeStart={new Date(2026, 0, 1)} rangeEnd={new Date(2026, 11, 1)} todayDate={new Date(2026, 6, 20)} rows={[\n\t\t\t\t\t{ id: \"1\", label: \"Épico A\", startDate: \"2026-01-15\", endDate: \"2026-04-10\", tone: \"info\" },\n\t\t\t\t\t{\n\t\t\t\t\t\tid: \"2\",\n\t\t\t\t\t\tlabel: \"Épico B\",\n\t\t\t\t\t\tstartDate: \"2026-03-01\",\n\t\t\t\t\t\tendDate: \"2026-07-20\",\n\t\t\t\t\t\ttone: \"success\",\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\tid: \"3\",\n\t\t\t\t\t\tlabel: \"Épico C\",\n\t\t\t\t\t\tstartDate: \"2026-08-01\",\n\t\t\t\t\t\tendDate: \"2026-11-30\",\n\t\t\t\t\t\ttone: \"warning\",\n\t\t\t\t\t},\n\t\t\t\t]} />\n\t);\n}",
     },
   },
   "blocks/impact-analysis-dialog": {
-    meta: s57.default as RegistryEntry['meta'],
-    stories: s57 as unknown as Record<string, StoryObj>,
+    meta: s62.default as RegistryEntry['meta'],
+    stories: s62 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport {\n\tImpactAnalysisDialog,\n} from \"@design-systems-orion/blocks/impact-analysis-dialog\";\nimport { Activity, Box } from \"lucide-react\";\nimport * as React from \"react\";\nimport { Badge, Button } from \"@design-systems-orion/ui\";\n\nexport function ImpactAnalysisDialogDemo() {\n\tconst [open, setOpen] = React.useState(false);\n\treturn (\n\t\t<>\n\t\t\t<Button onClick={() => setOpen(true)}>Ver análise de impacto</Button>\n\t\t\t<ImpactAnalysisDialog\n\t\t\t\topen={open}\n\t\t\t\tonOpenChange={setOpen}\n\t\t\t\tsubject={<Badge className=\"font-mono text-sm\">CRIAR_DEMANDA</Badge>}\n\t\t\t\tsubjectDescription=\"Permite criar novas demandas.\"\n\t\t\t\tlastChange={[\n\t\t\t\t\t{ label: \"Por\", value: \"Maria Silva\" },\n\t\t\t\t\t{ label: \"Data\", value: \"20/07/2026\" },\n\t\t\t\t\t{ label: \"Ação\", value: \"GRANT\" },\n\t\t\t\t]}\n\t\t\t\tcategories={[\n\t\t\t\t\t{ id: \"activities\", title: \"Funcionalidades\", icon: Activity, items: [\"Demandas\"] },\n\t\t\t\t\t{ id: \"modules\", title: \"Módulos\", icon: Box, items: [\"Gestão de Demandas\"] },\n\t\t\t\t]}\n\t\t\t/>\n\t\t</>\n\t);\n}",
     },
   },
   "blocks/impersonation-banner": {
-    meta: s58.default as RegistryEntry['meta'],
-    stories: s58 as unknown as Record<string, StoryObj>,
+    meta: s63.default as RegistryEntry['meta'],
+    stories: s63 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { ImpersonationBanner } from \"@design-systems-orion/blocks/impersonation-banner\";\n\nexport function ImpersonationBannerDemo() {\n\treturn (\n\t\t<ImpersonationBanner {...args} onStop={() => {}} />\n\t);\n}",
       "MensagemCustomizada": "import { ImpersonationBanner } from \"@design-systems-orion/blocks/impersonation-banner\";\n\nexport function ImpersonationBannerMensagemCustomizada() {\n\treturn (\n\t\t<ImpersonationBanner\n\t\t\tuserLabel=\"joao@supertrans.com\"\n\t\t\tonStop={() => {}}\n\t\t\tmessage={(userLabel) => <>Sessão de suporte ativa como {userLabel}.</>}\n\t\t\tstopLabel=\"Sair do modo suporte\"\n\t\t/>\n\t);\n}",
     },
   },
+  "blocks/inbox-layout": {
+    meta: s64.default as RegistryEntry['meta'],
+    stories: s64 as unknown as Record<string, StoryObj>,
+    code: {
+      "Default": "import { InboxLayout } from \"@design-systems-orion/blocks/inbox-layout\";\nimport { SearchBar } from \"@design-systems-orion/blocks/search-bar\";\n\nexport function InboxLayoutDemo() {\n\treturn (\n\t\t<InboxLayout list={(\n\t\t\t\t\t<>\n\t\t\t\t\t\t<div className=\"border-b border-border p-4\">\n\t\t\t\t\t\t\t<SearchBar value} />\n\t);\n}",
+      "SemPainelDeContexto": "import { InboxLayout } from \"@design-systems-orion/blocks/inbox-layout\";\n\nexport function InboxLayoutSemPainelDeContexto() {\n\treturn (\n\t\t<InboxLayout aside={undefined} />\n\t);\n}",
+    },
+  },
   "blocks/inline-confirm-action": {
-    meta: s59.default as RegistryEntry['meta'],
-    stories: s59 as unknown as Record<string, StoryObj>,
+    meta: s65.default as RegistryEntry['meta'],
+    stories: s65 as unknown as Record<string, StoryObj>,
     code: {
       "Destrutiva": "import { InlineConfirmAction } from \"@design-systems-orion/blocks/inline-confirm-action\";\nimport { Trash2 } from \"lucide-react\";\n\nexport function InlineConfirmActionDestrutiva() {\n\treturn (\n\t\t<InlineConfirmAction triggerLabel=\"Purgar órfãs\" triggerIcon={Trash2} confirmQuestion=\"Confirmar remoção?\" tone=\"danger\" onConfirm={() => console.log(\"confirmado\")} />\n\t);\n}",
     },
   },
   "blocks/json-diff-dialog": {
-    meta: s60.default as RegistryEntry['meta'],
-    stories: s60 as unknown as Record<string, StoryObj>,
+    meta: s66.default as RegistryEntry['meta'],
+    stories: s66 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { JsonDiffDialog } from \"@design-systems-orion/blocks/json-diff-dialog\";\nimport * as React from \"react\";\nimport { Button } from \"@design-systems-orion/ui\";\n\nexport function JsonDiffDialogDemo() {\n\tconst [open, setOpen] = React.useState(false);\n\treturn (\n\t\t<>\n\t\t\t<Button onClick={() => setOpen(true)}>Visualizar alteração</Button>\n\t\t\t<JsonDiffDialog\n\t\t\t\topen={open}\n\t\t\t\tonOpenChange={setOpen}\n\t\t\t\tbeforeValue={{ status: \"PENDENTE\", assignedTo: null }}\n\t\t\t\tafterValue={{ status: \"APROVADA\", assignedTo: \"usr_123\" }}\n\t\t\t/>\n\t\t</>\n\t);\n}",
     },
   },
   "blocks/kanban-board": {
-    meta: s61.default as RegistryEntry['meta'],
-    stories: s61 as unknown as Record<string, StoryObj>,
+    meta: s67.default as RegistryEntry['meta'],
+    stories: s67 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { KanbanBoard } from \"@design-systems-orion/blocks/kanban-board\";\n\nexport function KanbanBoardDemo() {\n\treturn (\n\t\t<KanbanBoard>\n\t\t\t<KanbanBoard.Column title=\"Impedido\" tone=\"danger\">\n\t\t\t\t<KanbanBoard.Card tone=\"danger\">\n\t\t\t\t\t<p className=\"text-sm font-medium text-foreground\">Tarefa A</p>\n\t\t\t\t\t<p className=\"mt-0.5 text-xs text-muted-foreground\">Aguardando terceiros</p>\n\t\t\t\t</KanbanBoard.Card>\n\t\t\t</KanbanBoard.Column>\n\n\t\t\t<KanbanBoard.Column title=\"Em progresso\" tone=\"info\">\n\t\t\t\t<KanbanBoard.Card tone=\"info\">\n\t\t\t\t\t<p className=\"text-sm font-medium text-foreground\">Tarefa B</p>\n\t\t\t\t\t<p className=\"mt-0.5 text-xs text-muted-foreground\">Responsável: Maria</p>\n\t\t\t\t</KanbanBoard.Card>\n\t\t\t\t<KanbanBoard.Card tone=\"info\">\n\t\t\t\t\t<p className=\"text-sm font-medium text-foreground\">Tarefa C</p>\n\t\t\t\t</KanbanBoard.Card>\n\t\t\t</KanbanBoard.Column>\n\n\t\t\t<KanbanBoard.Column title=\"Concluído\" tone=\"success\">\n\t\t\t\t<KanbanBoard.Card tone=\"success\">\n\t\t\t\t\t<p className=\"text-sm font-medium text-foreground\">Tarefa D</p>\n\t\t\t\t</KanbanBoard.Card>\n\t\t\t</KanbanBoard.Column>\n\t\t</KanbanBoard>\n\t);\n}",
     },
   },
   "blocks/kiosk-mode-toggle": {
-    meta: s62.default as RegistryEntry['meta'],
-    stories: s62 as unknown as Record<string, StoryObj>,
+    meta: s68.default as RegistryEntry['meta'],
+    stories: s68 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { KioskModeToggle } from \"@design-systems-orion/blocks/kiosk-mode-toggle\";\n\nexport function KioskModeToggleDemo() {\n\treturn <KioskModeToggle />;\n}",
     },
   },
   "blocks/launcher-card": {
-    meta: s63.default as RegistryEntry['meta'],
-    stories: s63 as unknown as Record<string, StoryObj>,
+    meta: s69.default as RegistryEntry['meta'],
+    stories: s69 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { LauncherCard } from \"@design-systems-orion/blocks/launcher-card\";\nimport { Boxes, Truck } from \"lucide-react\";\n\nexport function LauncherCardDemo() {\n\treturn (\n\t\t<LauncherCard icon={Boxes} title=\"Gestão de Demandas\" description=\"Acompanhe e programe as demandas operacionais.\" cta=\"Abrir →\" />\n\t);\n}",
       "Clicavel": "import { LauncherCard } from \"@design-systems-orion/blocks/launcher-card\";\nimport { Boxes, Truck } from \"lucide-react\";\n\nexport function LauncherCardClicavel() {\n\treturn (\n\t\t<LauncherCard icon={Truck} title=\"Acompanhamento de Cargas\" description=\"Monitoramento de cargas em trânsito.\" cta=\"Abrir →\" onClick={() => {}} />\n\t);\n}",
@@ -707,8 +772,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/list-page-layout": {
-    meta: s64.default as RegistryEntry['meta'],
-    stories: s64 as unknown as Record<string, StoryObj>,
+    meta: s70.default as RegistryEntry['meta'],
+    stories: s70 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { ListPageLayout } from \"@design-systems-orion/blocks/list-page-layout\";\nimport { Button } from \"@design-systems-orion/ui\";\nimport { Clock, FileText, Plus } from \"lucide-react\";\nimport { DataTable } from \"@design-systems-orion/blocks/data-table\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\n\nconst TabelaConteudo = (p: { data?: Registro[] }) => (\n\t<DataTable data={p.data ?? dados} columns={colunas} keyExtractor={(r) => r.id}>\n\t\t<DataTable.Card>\n\t\t\t<DataTable.Empty />\n\t\t\t<DataTable.Content />\n\t\t</DataTable.Card>\n\t</DataTable>\n);\n\nconst Cabecalho = () => (\n\t<PageHeader\n\t\ttitle=\"Registros\"\n\t\tactions={\n\t\t\t<Button>\n\t\t\t\t<Plus /> Novo\n\t\t\t</Button>\n\t\t}\n\t/>\n);\n\nexport function ListPageLayoutDemo() {\n\treturn (\n\t\t<ListPageLayout>\n\t\t\t<Cabecalho />\n\t\t\t<ListPageLayout.Content>\n\t\t\t\t<TabelaConteudo />\n\t\t\t</ListPageLayout.Content>\n\t\t</ListPageLayout>\n\t);\n}",
       "WithStats": "import { ListPageLayout } from \"@design-systems-orion/blocks/list-page-layout\";\nimport { Button } from \"@design-systems-orion/ui\";\nimport { Clock, FileText, Plus } from \"lucide-react\";\nimport { DataTable } from \"@design-systems-orion/blocks/data-table\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\nimport { StatusCards } from \"@design-systems-orion/blocks/status-cards\";\n\nconst TabelaConteudo = (p: { data?: Registro[] }) => (\n\t<DataTable data={p.data ?? dados} columns={colunas} keyExtractor={(r) => r.id}>\n\t\t<DataTable.Card>\n\t\t\t<DataTable.Empty />\n\t\t\t<DataTable.Content />\n\t\t</DataTable.Card>\n\t</DataTable>\n);\n\nconst Cabecalho = () => (\n\t<PageHeader\n\t\ttitle=\"Registros\"\n\t\tactions={\n\t\t\t<Button>\n\t\t\t\t<Plus /> Novo\n\t\t\t</Button>\n\t\t}\n\t/>\n);\n\nexport function ListPageLayoutWithStats() {\n\treturn (\n\t\t<ListPageLayout>\n\t\t\t<Cabecalho />\n\t\t\t<StatusCards columns={2}>\n\t\t\t\t<StatusCards.Item>\n\t\t\t\t\t<StatusCards.Icon as={FileText} />\n\t\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t\t<StatusCards.Label>Total</StatusCards.Label>\n\t\t\t\t\t\t<StatusCards.Value>128</StatusCards.Value>\n\t\t\t\t\t</StatusCards.Content>\n\t\t\t\t</StatusCards.Item>\n\t\t\t\t<StatusCards.Item tone=\"warning\">\n\t\t\t\t\t<StatusCards.Icon as={Clock} />\n\t\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t\t<StatusCards.Label>Pendentes</StatusCards.Label>\n\t\t\t\t\t\t<StatusCards.Value>12</StatusCards.Value>\n\t\t\t\t\t</StatusCards.Content>\n\t\t\t\t</StatusCards.Item>\n\t\t\t</StatusCards>\n\t\t\t<ListPageLayout.Content>\n\t\t\t\t<TabelaConteudo />\n\t\t\t</ListPageLayout.Content>\n\t\t</ListPageLayout>\n\t);\n}",
@@ -722,8 +787,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/loading-overlay": {
-    meta: s65.default as RegistryEntry['meta'],
-    stories: s65 as unknown as Record<string, StoryObj>,
+    meta: s71.default as RegistryEntry['meta'],
+    stories: s71 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { LoadingOverlay } from \"@design-systems-orion/blocks/loading-overlay\";\nimport { Button, Card, CardContent, CardHeader, CardTitle } from \"@design-systems-orion/ui\";\nimport * as React from \"react\";\n\nfunction Demo({ label }: { label?: string }) {\n\tconst [loading, setLoading] = React.useState(true);\n\treturn (\n\t\t<div className=\"space-y-3\">\n\t\t\t<Button variant=\"outline\" size=\"sm\" onClick={() => setLoading((l) => !l)}>\n\t\t\t\tloading: {String(loading)}\n\t\t\t</Button>\n\t\t\t<LoadingOverlay loading={loading} label={label}>\n\t\t\t\t<Card className=\"w-80\">\n\t\t\t\t\t<CardHeader>\n\t\t\t\t\t\t<CardTitle>Resumo</CardTitle>\n\t\t\t\t\t</CardHeader>\n\t\t\t\t\t<CardContent className=\"text-sm text-muted-foreground\">\n\t\t\t\t\t\tConteúdo permanece montado sob o overlay.\n\t\t\t\t\t</CardContent>\n\t\t\t\t</Card>\n\t\t\t</LoadingOverlay>\n\t\t</div>\n\t);\n}\n\nexport function LoadingOverlayDemo() {\n\treturn (\n\t\t<Demo label=\"Salvando...\" />\n\t);\n}",
       "WithCard": "\"use client\";\n\nimport { LoadingOverlay } from \"@design-systems-orion/blocks/loading-overlay\";\nimport { Button, Card, CardContent, CardHeader, CardTitle } from \"@design-systems-orion/ui\";\nimport * as React from \"react\";\n\nfunction Demo({ label }: { label?: string }) {\n\tconst [loading, setLoading] = React.useState(true);\n\treturn (\n\t\t<div className=\"space-y-3\">\n\t\t\t<Button variant=\"outline\" size=\"sm\" onClick={() => setLoading((l) => !l)}>\n\t\t\t\tloading: {String(loading)}\n\t\t\t</Button>\n\t\t\t<LoadingOverlay loading={loading} label={label}>\n\t\t\t\t<Card className=\"w-80\">\n\t\t\t\t\t<CardHeader>\n\t\t\t\t\t\t<CardTitle>Resumo</CardTitle>\n\t\t\t\t\t</CardHeader>\n\t\t\t\t\t<CardContent className=\"text-sm text-muted-foreground\">\n\t\t\t\t\t\tConteúdo permanece montado sob o overlay.\n\t\t\t\t\t</CardContent>\n\t\t\t\t</Card>\n\t\t\t</LoadingOverlay>\n\t\t</div>\n\t);\n}\n\nexport function LoadingOverlayWithCard() {\n\treturn (\n\t\t<Demo label=\"Atualizando resumo...\" />\n\t);\n}",
@@ -731,23 +796,48 @@ export const registry: Record<string, RegistryEntry> = {
       "WithoutLabel": "import { LoadingOverlay } from \"@design-systems-orion/blocks/loading-overlay\";\nimport { Button, Card, CardContent, CardHeader, CardTitle } from \"@design-systems-orion/ui\";\n\nexport function LoadingOverlayWithoutLabel() {\n\treturn (\n\t\t<LoadingOverlay loading>\n\t\t\t<Card className=\"w-80\">\n\t\t\t\t<CardContent className=\"py-10 text-center text-sm text-muted-foreground\">\n\t\t\t\t\tOverlay sem label (spinner aria-hidden).\n\t\t\t\t</CardContent>\n\t\t\t</Card>\n\t\t</LoadingOverlay>\n\t);\n}",
     },
   },
+  "blocks/message-bubble": {
+    meta: s72.default as RegistryEntry['meta'],
+    stories: s72 as unknown as Record<string, StoryObj>,
+    code: {
+      "Recebida": "import { MessageBubble } from \"@design-systems-orion/blocks/message-bubble\";\n\nexport function MessageBubbleRecebida() {\n\treturn (\n\t\t<MessageBubble direction=\"incoming\" timestamp=\"14:32\">Bom dia! Pode confirmar a janela?</MessageBubble>\n\t);\n}",
+      "Enviada": "import { MessageBubble } from \"@design-systems-orion/blocks/message-bubble\";\n\nexport function MessageBubbleEnviada() {\n\treturn (\n\t\t<MessageBubble direction=\"outgoing\" timestamp=\"14:35\">Confirmado para amanhã, às 9h.\n\t\tQualquer ajuste, avise por aqui.</MessageBubble>\n\t);\n}",
+      "ComStatus": "import { MessageBubble } from \"@design-systems-orion/blocks/message-bubble\";\n\nexport function MessageBubbleComStatus() {\n\treturn (\n\t\t<MessageBubble direction=\"outgoing\" timestamp=\"14:36\" status=\"Enviando...\">Um instante.</MessageBubble>\n\t);\n}",
+    },
+  },
+  "blocks/message-composer": {
+    meta: s73.default as RegistryEntry['meta'],
+    stories: s73 as unknown as Record<string, StoryObj>,
+    code: {
+      "Default": "\"use client\";\n\nimport { MessageComposer } from \"@design-systems-orion/blocks/message-composer\";\nimport * as React from \"react\";\n\nexport function Render() {\n\t\tconst [value, setValue] = React.useState(\"\");\n\t\tconst [sent, setSent] = React.useState<string[]>([]);\n\t\treturn (\n\t\t\t<div className=\"w-[560px] border border-border\">\n\t\t\t\t<ul className=\"min-h-12 p-3 text-sm text-muted-foreground\">\n\t\t\t\t\t{sent.map((text, index) => (\n\t\t\t\t\t\t// biome-ignore lint/suspicious/noArrayIndexKey: demo estática\n\t\t\t\t\t\t<li key={index}>{text}</li>\n\t\t\t\t\t))}\n\t\t\t\t</ul>\n\t\t\t\t<MessageComposer\n\t\t\t\t\tvalue={value}\n\t\t\t\t\tonValueChange={setValue}\n\t\t\t\t\tonSend={() => {\n\t\t\t\t\t\tsetSent((current) => [...current, value.trim()]);\n\t\t\t\t\t\tsetValue(\"\");\n\t\t\t\t\t}}\n\t\t\t\t/>\n\t\t\t</div>\n\t\t);\n\t}",
+      "Enviando": "import { MessageComposer } from \"@design-systems-orion/blocks/message-composer\";\n\nexport function MessageComposerEnviando() {\n\treturn (\n\t\t<div className=\"w-[560px] border border-border\">\n\t\t\t<MessageComposer value=\"Confirmado para amanhã.\" sending onValueChange={() => {}} onSend={() => {}} />\n\t\t</div>\n\t);\n}",
+      "Desabilitado": "import { MessageComposer } from \"@design-systems-orion/blocks/message-composer\";\n\nexport function MessageComposerDesabilitado() {\n\treturn (\n\t\t<div className=\"w-[560px] border border-border\">\n\t\t\t<MessageComposer value=\"\" disabled onValueChange={() => {}} onSend={() => {}} />\n\t\t</div>\n\t);\n}",
+    },
+  },
+  "blocks/message-thread": {
+    meta: s74.default as RegistryEntry['meta'],
+    stories: s74 as unknown as Record<string, StoryObj>,
+    code: {
+      "Default": "import { MessageThread } from \"@design-systems-orion/blocks/message-thread\";\n\nexport function MessageThreadDemo() {\n\treturn <MessageThread />;\n}",
+    },
+  },
   "blocks/metric-gauge-card": {
-    meta: s66.default as RegistryEntry['meta'],
-    stories: s66 as unknown as Record<string, StoryObj>,
+    meta: s75.default as RegistryEntry['meta'],
+    stories: s75 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { MetricGaugeCard } from \"@design-systems-orion/blocks/metric-gauge-card\";\n\nexport function MetricGaugeCardDemo() {\n\treturn (\n\t\t<div className=\"grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3\">\n\t\t\t<MetricGaugeCard\n\t\t\t\tlabel=\"Latência\"\n\t\t\t\tvalue=\"12\"\n\t\t\t\tunit=\"ms\"\n\t\t\t\ttone=\"success\"\n\t\t\t\ttooltip=\"P95 das últimas 24h.\"\n\t\t\t/>\n\t\t\t<MetricGaugeCard label=\"Hit rate\" value=\"87\" unit=\"%\" tone=\"warning\" progress={87} />\n\t\t\t<MetricGaugeCard label=\"Erros\" value=\"248\" tone=\"danger\" />\n\t\t</div>\n\t);\n}",
     },
   },
   "blocks/missing-prerequisites-state": {
-    meta: s67.default as RegistryEntry['meta'],
-    stories: s67 as unknown as Record<string, StoryObj>,
+    meta: s76.default as RegistryEntry['meta'],
+    stories: s76 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import {\n\tMissingPrerequisitesState,\n} from \"@design-systems-orion/blocks/missing-prerequisites-state\";\n\nexport function MissingPrerequisitesStateDemo() {\n\treturn (\n\t\t<MissingPrerequisitesState items={[\n\t\t\t\t\t{ label: \"Clientes\", action: <a href=\"/admin/clientes\">Cadastrar agora</a>} />\n\t);\n}",
     },
   },
   "blocks/module-icon": {
-    meta: s68.default as RegistryEntry['meta'],
-    stories: s68 as unknown as Record<string, StoryObj>,
+    meta: s77.default as RegistryEntry['meta'],
+    stories: s77 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { ModuleIcon } from \"@design-systems-orion/blocks/module-icon\";\n\nexport function ModuleIconDemo() {\n\treturn (\n\t\t<ModuleIcon icon=\"truck\" size=\"md\" />\n\t);\n}",
       "Fallback": "import { ModuleIcon } from \"@design-systems-orion/blocks/module-icon\";\n\nexport function ModuleIconFallback() {\n\treturn (\n\t\t<ModuleIcon icon=\"chave-inexistente\" size=\"md\" />\n\t);\n}",
@@ -755,30 +845,30 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/month-calendar": {
-    meta: s69.default as RegistryEntry['meta'],
-    stories: s69 as unknown as Record<string, StoryObj>,
+    meta: s78.default as RegistryEntry['meta'],
+    stories: s78 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { MonthCalendar } from \"@design-systems-orion/blocks/month-calendar\";\nimport * as React from \"react\";\nimport { StatusDot } from \"@design-systems-orion/blocks/status-dot\";\n\nexport function MonthCalendarDemo() {\n\tconst [selected, setSelected] = React.useState<Date | null>(null);\n\treturn (\n\t\t<MonthCalendar\n\t\t\tmonth={SAMPLE_MONTH}\n\t\t\tgetDayBadges={getDayBadges}\n\t\t\tisToday={isSampleToday}\n\t\t\tselectedDate={selected}\n\t\t\tonSelectDate={setSelected}\n\t\t\tonPrevMonth={() => {}}\n\t\t\tonNextMonth={() => {}}\n\t\t\tlegend={\n\t\t\t\t<>\n\t\t\t\t\t<StatusDot tone=\"success\" label=\"Realizada\" />\n\t\t\t\t\t<StatusDot tone=\"info\" label=\"Programada\" />\n\t\t\t\t\t<StatusDot tone=\"warning\" label=\"Pendente\" />\n\t\t\t\t\t<StatusDot tone=\"danger\" label=\"Atrasada\" />\n\t\t\t\t</>\n\t\t\t}\n\t\t\tfooterHint=\"Clique em um dia para ver as programações.\"\n\t\t/>\n\t);\n}",
       "SemNavegacao": "import { MonthCalendar } from \"@design-systems-orion/blocks/month-calendar\";\n\nexport function MonthCalendarSemNavegacao() {\n\treturn (\n\t\t<MonthCalendar month={SAMPLE_MONTH} getDayBadges={getDayBadges} isToday={isSampleToday} />\n\t);\n}",
     },
   },
   "blocks/nested-toggle-accordion-list": {
-    meta: s70.default as RegistryEntry['meta'],
-    stories: s70 as unknown as Record<string, StoryObj>,
+    meta: s79.default as RegistryEntry['meta'],
+    stories: s79 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport {\n\tNestedToggleAccordionList,\n} from \"@design-systems-orion/blocks/nested-toggle-accordion-list\";\nimport * as React from \"react\";\n\nexport function NestedToggleAccordionListDemo() {\n\tconst [expandedIds, setExpandedIds] = React.useState(new Set([\"mod-1\"]));\n\tconst groups: NestedToggleGroup[] = [\n\t\t{\n\t\t\tid: \"mod-1\",\n\t\t\ttitle: \"Gestão de Demandas\",\n\t\t\tenabled: true,\n\t\t\tactiveCount: 2,\n\t\t\ttotalCount: 3,\n\t\t\tonToggleEnabled: () => {},\n\t\t\tsections: [\n\t\t\t\t{\n\t\t\t\t\tid: \"sec-1\",\n\t\t\t\t\ttitle: \"Sub-páginas no Sidebar\",\n\t\t\t\t\titems: [\n\t\t\t\t\t\t{ id: \"a\", label: \"Demandas\", checked: true, onToggle: () => {} },\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\tid: \"b\",\n\t\t\t\t\t\t\tlabel: \"Registrar Demanda\",\n\t\t\t\t\t\t\tchecked: true,\n\t\t\t\t\t\t\toriginBadges: [{ label: \"Perfil: Operador\", tone: \"info\" }],\n\t\t\t\t\t\t\tonToggle: () => {},\n\t\t\t\t\t\t},\n\t\t\t\t\t\t{ id: \"c\", label: \"Relatórios\", checked: false, onToggle: () => {} },\n\t\t\t\t\t],\n\t\t\t\t},\n\t\t\t],\n\t\t},\n\t\t{\n\t\t\tid: \"mod-2\",\n\t\t\ttitle: \"Governança\",\n\t\t\tenabled: false,\n\t\t\tactiveCount: 0,\n\t\t\ttotalCount: 0,\n\t\t\tonToggleEnabled: () => {},\n\t\t\tsections: [],\n\t\t},\n\t];\n\n\treturn (\n\t\t<NestedToggleAccordionList\n\t\t\tgroups={groups}\n\t\t\texpandedIds={expandedIds}\n\t\t\tonToggleExpand={(id) =>\n\t\t\t\tsetExpandedIds((prev) => {\n\t\t\t\t\tconst next = new Set(prev);\n\t\t\t\t\tnext.has(id) ? next.delete(id) : next.add(id);\n\t\t\t\t\treturn next;\n\t\t\t\t})\n\t\t\t}\n\t\t/>\n\t);\n}",
     },
   },
   "blocks/onboarding-dialog": {
-    meta: s71.default as RegistryEntry['meta'],
-    stories: s71 as unknown as Record<string, StoryObj>,
+    meta: s80.default as RegistryEntry['meta'],
+    stories: s80 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { OnboardingDialog } from \"@design-systems-orion/blocks/onboarding-dialog\";\nimport { Sparkles } from \"lucide-react\";\nimport * as React from \"react\";\nimport { Button } from \"@design-systems-orion/ui\";\n\nexport function Demo() {\n\tconst [open, setOpen] = React.useState(false);\n\treturn (\n\t\t<>\n\t\t\t<Button onClick={() => setOpen(true)}>Reabrir onboarding</Button>\n\t\t\t<OnboardingDialog\n\t\t\t\topen={open}\n\t\t\t\tonOpenChange={setOpen}\n\t\t\t\ttitle=\"Bem-vindo ao novo Configurador\"\n\t\t\t\tdescription=\"Uma experiência simplificada para gestão de acessos e permissões.\"\n\t\t\t\ticon={Sparkles}\n\t\t\t\tonConfirm={() => setOpen(false)}\n\t\t\t\tsteps={[\n\t\t\t\t\t{\n\t\t\t\t\t\ttitle: \"Modo simplificado\",\n\t\t\t\t\t\tdescription:\n\t\t\t\t\t\t\t\"Oculte a complexidade técnica e foque apenas no que importa: conceder acessos e perfis.\",\n\t\t\t\t\t\ttone: \"info\",\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\ttitle: \"Linguagem de negócio\",\n\t\t\t\t\t\tdescription: \"Termos técnicos agora usam a linguagem do dia a dia do usuário.\",\n\t\t\t\t\t\ttone: \"success\",\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\ttitle: \"Alternância fácil\",\n\t\t\t\t\t\tdescription:\n\t\t\t\t\t\t\t\"Precisa de recursos avançados? Alterne pelo menu lateral a qualquer momento.\",\n\t\t\t\t\t\ttone: \"warning\",\n\t\t\t\t\t},\n\t\t\t\t]}\n\t\t\t/>\n\t\t</>\n\t);\n}",
     },
   },
   "blocks/page-examples": {
-    meta: s72.default as RegistryEntry['meta'],
-    stories: s72 as unknown as Record<string, StoryObj>,
+    meta: s81.default as RegistryEntry['meta'],
+    stories: s81 as unknown as Record<string, StoryObj>,
     code: {
       "ListPageExample": "\"use client\";\n\nimport {\n\tBadge,\n\tButton,\n\tCombobox,\n\tInput,\n\tMultiSelect,\n\tTabs,\n\tTabsContent,\n\tTabsList,\n\tTabsTrigger,\n} from \"@design-systems-orion/ui\";\nimport { CheckCircle, Clock, Download, FileText, Pencil, Plus } from \"lucide-react\";\nimport * as React from \"react\";\nimport { CodeBadge } from \"@design-systems-orion/blocks/code-badge\";\nimport { DataTable } from \"@design-systems-orion/blocks/data-table\";\nimport { FilterPill } from \"@design-systems-orion/blocks/filter-pill\";\nimport { ListPageLayout } from \"@design-systems-orion/blocks/list-page-layout\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\nimport { SearchBar } from \"@design-systems-orion/blocks/search-bar\";\nimport { StatusCards } from \"@design-systems-orion/blocks/status-cards\";\nimport { StatusDot } from \"@design-systems-orion/blocks/status-dot\";\n\nexport function Lista() {\n\t\tconst [busca, setBusca] = React.useState(\"\");\n\t\tconst [page, setPage] = React.useState(1);\n\t\tconst dados = REGISTROS.filter((r) => r.nome.toLowerCase().includes(busca.toLowerCase()));\n\t\treturn (\n\t\t\t<ListPageLayout>\n\t\t\t\t<PageHeader\n\t\t\t\t\ttitle=\"Registros\"\n\t\t\t\t\tdescription=\"Gerencie os registros e acompanhe seus status.\"\n\t\t\t\t\tactions={\n\t\t\t\t\t\t<Button onClick={() => {}}>\n\t\t\t\t\t\t\t<Plus /> Novo registro\n\t\t\t\t\t\t</Button>\n\t\t\t\t\t}\n\t\t\t\t/>\n\t\t\t\t<StatusCards columns={3}>\n\t\t\t\t\t<StatusCards.Item>\n\t\t\t\t\t\t<StatusCards.Icon as={FileText} />\n\t\t\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t\t\t<StatusCards.Label>Total</StatusCards.Label>\n\t\t\t\t\t\t\t<StatusCards.Value>{REGISTROS.length}</StatusCards.Value>\n\t\t\t\t\t\t</StatusCards.Content>\n\t\t\t\t\t</StatusCards.Item>\n\t\t\t\t\t<StatusCards.Item tone=\"success\">\n\t\t\t\t\t\t<StatusCards.Icon as={CheckCircle} />\n\t\t\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t\t\t<StatusCards.Label>Ativos</StatusCards.Label>\n\t\t\t\t\t\t\t<StatusCards.Value>\n\t\t\t\t\t\t\t\t{REGISTROS.filter((r) => r.status === \"ativo\").length}\n\t\t\t\t\t\t\t</StatusCards.Value>\n\t\t\t\t\t\t</StatusCards.Content>\n\t\t\t\t\t</StatusCards.Item>\n\t\t\t\t\t<StatusCards.Item tone=\"warning\">\n\t\t\t\t\t\t<StatusCards.Icon as={Clock} />\n\t\t\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t\t\t<StatusCards.Label>Pendentes</StatusCards.Label>\n\t\t\t\t\t\t\t<StatusCards.Value>\n\t\t\t\t\t\t\t\t{REGISTROS.filter((r) => r.status === \"pendente\").length}\n\t\t\t\t\t\t\t</StatusCards.Value>\n\t\t\t\t\t\t</StatusCards.Content>\n\t\t\t\t\t</StatusCards.Item>\n\t\t\t\t</StatusCards>\n\t\t\t\t<SearchBar className=\"w-72\" value={busca} onChange={setBusca} />\n\t\t\t\t<ListPageLayout.Filters>\n\t\t\t\t\t<FilterPill label=\"Período\" value=\"Jul/2026\" onRemove={() => {}} />\n\t\t\t\t</ListPageLayout.Filters>\n\t\t\t\t<ListPageLayout.Content>\n\t\t\t\t\t<DataTable\n\t\t\t\t\t\tdata={dados.slice((page - 1) * 5, page * 5)}\n\t\t\t\t\t\tcolumns={[\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\theader: \"Código\",\n\t\t\t\t\t\t\t\tcell: (r: Registro) => <CodeBadge>{r.codigo}</CodeBadge>,\n\t\t\t\t\t\t\t\twidth: 110,\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t{ header: \"Nome\", accessorKey: \"nome\" },\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\theader: \"Status\",\n\t\t\t\t\t\t\t\tcell: (r: Registro) =>\n\t\t\t\t\t\t\t\t\tr.status === \"ativo\" ? (\n\t\t\t\t\t\t\t\t\t\t<StatusDot tone=\"success\" label=\"Ativo\" />\n\t\t\t\t\t\t\t\t\t) : (\n\t\t\t\t\t\t\t\t\t\t<StatusDot tone=\"warning\" label=\"Pendente\" />\n\t\t\t\t\t\t\t\t\t),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t{ header: \"Qtd.\", accessorKey: \"qtd\", align: \"right\", width: 80 },\n\t\t\t\t\t\t]}\n\t\t\t\t\t\tkeyExtractor={(r: Registro) => r.id}\n\t\t\t\t\t>\n\t\t\t\t\t\t<DataTable.Card>\n\t\t\t\t\t\t\t<DataTable.Empty title=\"Nenhum registro para a busca\" />\n\t\t\t\t\t\t\t<DataTable.Content onRowClick={() => {}} />\n\t\t\t\t\t\t</DataTable.Card>\n\t\t\t\t\t\t<DataTable.Pagination\n\t\t\t\t\t\t\tpage={page}\n\t\t\t\t\t\t\tlimit={5}\n\t\t\t\t\t\t\ttotal={dados.length}\n\t\t\t\t\t\t\tonPageChange={setPage}\n\t\t\t\t\t\t/>\n\t\t\t\t\t</DataTable>\n\t\t\t\t</ListPageLayout.Content>\n\t\t\t</ListPageLayout>\n\t\t);\n\t}",
       "FormPageExample": "\"use client\";\n\nimport {\n\tBadge,\n\tButton,\n\tCombobox,\n\tInput,\n\tMultiSelect,\n\tTabs,\n\tTabsContent,\n\tTabsList,\n\tTabsTrigger,\n} from \"@design-systems-orion/ui\";\nimport * as React from \"react\";\nimport { FieldGroup } from \"@design-systems-orion/blocks/field-group\";\nimport { FormActions } from \"@design-systems-orion/blocks/form-actions\";\nimport { FormField } from \"@design-systems-orion/blocks/form-field\";\nimport { FormPageLayout } from \"@design-systems-orion/blocks/form-page-layout\";\nimport { FormSection } from \"@design-systems-orion/blocks/form-section\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\n\nexport function Formulario() {\n\t\tconst [nome, setNome] = React.useState(\"\");\n\t\tconst [categoria, setCategoria] = React.useState<string | null>(null);\n\t\tconst [tags, setTags] = React.useState<string[]>([]);\n\t\tconst [erros, setErros] = React.useState<{ nome?: string }>({});\n\t\tconst salvar = () => {};\n\t\treturn (\n\t\t\t<FormPageLayout>\n\t\t\t\t<PageHeader title=\"Novo registro\" description=\"Preencha os dados abaixo.\" />\n\t\t\t\t<FormPageLayout.Content>\n\t\t\t\t\t<form\n\t\t\t\t\t\tclassName=\"space-y-8\"\n\t\t\t\t\t\tonSubmit={(e) => {\n\t\t\t\t\t\t\te.preventDefault();\n\t\t\t\t\t\t\tif (!nome.trim()) {\n\t\t\t\t\t\t\t\tsetErros({ nome: \"O nome é obrigatório\" });\n\t\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\tsetErros({});\n\t\t\t\t\t\t\tsalvar({ nome, categoria, tags });\n\t\t\t\t\t\t}}\n\t\t\t\t\t>\n\t\t\t\t\t\t<FormSection title=\"Dados gerais\" description=\"Informações principais do registro.\">\n\t\t\t\t\t\t\t<FieldGroup columns={2}>\n\t\t\t\t\t\t\t\t<FormField label=\"Nome\" htmlFor=\"ex-nome\" required error={erros.nome}>\n\t\t\t\t\t\t\t\t\t<Input\n\t\t\t\t\t\t\t\t\t\tid=\"ex-nome\"\n\t\t\t\t\t\t\t\t\t\tvalue={nome}\n\t\t\t\t\t\t\t\t\t\tonChange={(e) => setNome(e.target.value)}\n\t\t\t\t\t\t\t\t\t\taria-invalid={!!erros.nome}\n\t\t\t\t\t\t\t\t\t\taria-describedby=\"ex-nome-error\"\n\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label=\"Categoria\" htmlFor=\"ex-cat\">\n\t\t\t\t\t\t\t\t\t<Combobox\n\t\t\t\t\t\t\t\t\t\tid=\"ex-cat\"\n\t\t\t\t\t\t\t\t\t\tclassName=\"w-full\"\n\t\t\t\t\t\t\t\t\t\toptions={[\n\t\t\t\t\t\t\t\t\t\t\t{ label: \"Categoria A\", value: \"a\" },\n\t\t\t\t\t\t\t\t\t\t\t{ label: \"Categoria B\", value: \"b\" },\n\t\t\t\t\t\t\t\t\t\t]}\n\t\t\t\t\t\t\t\t\t\tvalue={categoria}\n\t\t\t\t\t\t\t\t\t\tonValueChange={setCategoria}\n\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t\t<FormField label=\"Marcadores\" htmlFor=\"ex-tags\" className=\"sm:col-span-2\">\n\t\t\t\t\t\t\t\t\t<MultiSelect\n\t\t\t\t\t\t\t\t\t\tid=\"ex-tags\"\n\t\t\t\t\t\t\t\t\t\tclassName=\"w-full\"\n\t\t\t\t\t\t\t\t\t\toptions={[\n\t\t\t\t\t\t\t\t\t\t\t{ label: \"Urgente\", value: \"urgente\" },\n\t\t\t\t\t\t\t\t\t\t\t{ label: \"Revisão\", value: \"revisao\" },\n\t\t\t\t\t\t\t\t\t\t\t{ label: \"Interno\", value: \"interno\" },\n\t\t\t\t\t\t\t\t\t\t]}\n\t\t\t\t\t\t\t\t\t\tvalue={tags}\n\t\t\t\t\t\t\t\t\t\tonValueChange={setTags}\n\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t</FormField>\n\t\t\t\t\t\t\t</FieldGroup>\n\t\t\t\t\t\t</FormSection>\n\t\t\t\t\t\t<FormActions\n\t\t\t\t\t\t\tprimary={<Button type=\"submit\">Salvar</Button>}\n\t\t\t\t\t\t\tsecondary={\n\t\t\t\t\t\t\t\t<Button type=\"button\" variant=\"outline\" onClick={() => {}}>\n\t\t\t\t\t\t\t\t\tCancelar\n\t\t\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t/>\n\t\t\t\t\t</form>\n\t\t\t\t</FormPageLayout.Content>\n\t\t\t</FormPageLayout>\n\t\t);\n\t}",
@@ -787,8 +877,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/page-header": {
-    meta: s73.default as RegistryEntry['meta'],
-    stories: s73 as unknown as Record<string, StoryObj>,
+    meta: s82.default as RegistryEntry['meta'],
+    stories: s82 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { PageHeader } from \"@design-systems-orion/blocks/page-header\";\n\nexport function PageHeaderDemo() {\n\treturn (\n\t\t<PageHeader title=\"Registros\" description=\"Gerencie os registros e acompanhe seus status.\" />\n\t);\n}",
       "ComAcoes": "import { PageHeader } from \"@design-systems-orion/blocks/page-header\";\nimport { Button } from \"@design-systems-orion/ui\";\nimport { Download, Plus } from \"lucide-react\";\n\nexport function PageHeaderComAcoes() {\n\treturn (\n\t\t<PageHeader title=\"Registros\" description=\"Gerencie os registros e acompanhe seus status.\" actions={(\n\t\t\t\t\t<>\n\t\t\t\t\t\t<Button variant=\"outline\">\n\t\t\t\t\t\t\t<Download /> Exportar\n\t\t\t\t\t\t</Button>\n\t\t\t\t\t\t<Button>\n\t\t\t\t\t\t\t<Plus /> Novo registro\n\t\t\t\t\t\t</Button>\n\t\t\t\t\t</>} />\n\t);\n}",
@@ -797,8 +887,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/page-layout": {
-    meta: s74.default as RegistryEntry['meta'],
-    stories: s74 as unknown as Record<string, StoryObj>,
+    meta: s83.default as RegistryEntry['meta'],
+    stories: s83 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { PageLayout } from \"@design-systems-orion/blocks/page-layout\";\nimport { ContentCard } from \"@design-systems-orion/blocks/content-card\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\n\nconst Conteudo = () => (\n\t<ContentCard title=\"Bloco de conteúdo\">\n\t\t<p className=\"text-sm text-muted-foreground\">Qualquer conteúdo de página.</p>\n\t</ContentCard>\n);\n\nexport function PageLayoutDemo() {\n\treturn (\n\t\t<PageLayout header={<PageHeader title=\"Registros\" />}>\n\t\t\t<Conteudo />\n\t\t</PageLayout>\n\t);\n}",
       "WithFooter": "import { PageLayout } from \"@design-systems-orion/blocks/page-layout\";\nimport { ContentCard } from \"@design-systems-orion/blocks/content-card\";\nimport { PageHeader } from \"@design-systems-orion/blocks/page-header\";\n\nconst Conteudo = () => (\n\t<ContentCard title=\"Bloco de conteúdo\">\n\t\t<p className=\"text-sm text-muted-foreground\">Qualquer conteúdo de página.</p>\n\t</ContentCard>\n);\n\nexport function PageLayoutWithFooter() {\n\treturn (\n\t\t<PageLayout\n\t\t\theader={<PageHeader title=\"Registros\" />}\n\t\t\tfooter={<p className=\"text-xs text-muted-foreground\">Atualizado há 5 minutos</p>}\n\t\t>\n\t\t\t<Conteudo />\n\t\t</PageLayout>\n\t);\n}",
@@ -807,8 +897,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/pagination": {
-    meta: s75.default as RegistryEntry['meta'],
-    stories: s75 as unknown as Record<string, StoryObj>,
+    meta: s84.default as RegistryEntry['meta'],
+    stories: s84 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { Pagination } from \"@design-systems-orion/blocks/pagination\";\nimport * as React from \"react\";\n\nexport function Demo({ total = 137 }: { total?: number }) {\n\tconst [page, setPage] = React.useState(1);\n\tconst [limit, setLimit] = React.useState(20);\n\treturn (\n\t\t<Pagination\n\t\t\tpage={page}\n\t\t\tlimit={limit}\n\t\t\ttotal={total}\n\t\t\tonPageChange={setPage}\n\t\t\tonLimitChange={setLimit}\n\t\t/>\n\t);\n}",
       "SemTrocaDeLimite": "\"use client\";\n\nimport { Pagination } from \"@design-systems-orion/blocks/pagination\";\nimport * as React from \"react\";\n\nexport function SemLimite() {\n\t\tconst [page, setPage] = React.useState(3);\n\t\treturn <Pagination page={page} limit={10} total={57} onPageChange={setPage} />;\n\t}",
@@ -818,8 +908,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/permission-gate": {
-    meta: s76.default as RegistryEntry['meta'],
-    stories: s76 as unknown as Record<string, StoryObj>,
+    meta: s85.default as RegistryEntry['meta'],
+    stories: s85 as unknown as Record<string, StoryObj>,
     code: {
       "Permitido": "import {\n\tPermissionGate,\n\tPermissionProvider,\n} from \"@design-systems-orion/blocks/permission-gate\";\nimport { Button } from \"@design-systems-orion/ui\";\n\nexport function PermissionGatePermitido() {\n\treturn (\n\t\t<PermissionProvider value={demoResolver}>\n\t\t\t<PermissionGate requires=\"CRIAR_DEMANDA\">\n\t\t\t\t<Button>Nova demanda</Button>\n\t\t\t</PermissionGate>\n\t\t</PermissionProvider>\n\t);\n}",
       "Negado": "import {\n\tPermissionGate,\n\tPermissionProvider,\n} from \"@design-systems-orion/blocks/permission-gate\";\nimport { Button } from \"@design-systems-orion/ui\";\n\nexport function PermissionGateNegado() {\n\treturn (\n\t\t<PermissionProvider value={demoResolver}>\n\t\t\t<PermissionGate\n\t\t\t\trequires=\"EXCLUIR_DEMANDA\"\n\t\t\t\tfallback={\n\t\t\t\t\t<span className=\"text-sm text-muted-foreground\">Sem permissão para excluir.</span>\n\t\t\t\t}\n\t\t\t>\n\t\t\t\t<Button variant=\"destructive\">Excluir demanda</Button>\n\t\t\t</PermissionGate>\n\t\t</PermissionProvider>\n\t);\n}",
@@ -827,23 +917,32 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/presence-avatar-stack": {
-    meta: s77.default as RegistryEntry['meta'],
-    stories: s77 as unknown as Record<string, StoryObj>,
+    meta: s86.default as RegistryEntry['meta'],
+    stories: s86 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { PresenceAvatarStack } from \"@design-systems-orion/blocks/presence-avatar-stack\";\n\nexport function PresenceAvatarStackDemo() {\n\treturn (\n\t\t<PresenceAvatarStack users={[\n\t\t\t\t\t{ id: \"1\", label: \"Você\", sublabel: \"Vendo: Gestão de Demandas\", isSelf: true },\n\t\t\t\t\t{ id: \"2\", label: \"Maria Silva\", sublabel: \"Vendo: Grade de Programação\" },\n\t\t\t\t]} />\n\t);\n}",
     },
   },
+  "blocks/proportion-bar": {
+    meta: s87.default as RegistryEntry['meta'],
+    stories: s87 as unknown as Record<string, StoryObj>,
+    code: {
+      "Default": "import { ProportionBar } from \"@design-systems-orion/blocks/proportion-bar\";\n\nexport function ProportionBarDemo() {\n\treturn (\n\t\t<ProportionBar segments={[\n\t\t\t\t\t{ id: \"approved\", label: \"Aprovadas\", value: 24, tone: \"success\" },\n\t\t\t\t\t{ id: \"rejected\", label: \"Rejeitadas\", value: 6, tone: \"danger\" },\n\t\t\t\t\t{ id: \"pending\", label: \"Pendentes\", value: 9, tone: \"warning\" },\n\t\t\t\t\t{ id: \"canceled\", label: \"Canceladas\", value: 0, tone: \"muted\" },\n\t\t\t\t]} />\n\t);\n}",
+      "SemLegenda": "import { ProportionBar } from \"@design-systems-orion/blocks/proportion-bar\";\n\nexport function ProportionBarSemLegenda() {\n\treturn (\n\t\t<ProportionBar showLegend={false} segments={[\n\t\t\t\t\t{ id: \"a\", label: \"Dentro do prazo\", value: 80, tone: \"success\" },\n\t\t\t\t\t{ id: \"b\", label: \"Atrasado\", value: 20, tone: \"danger\" },\n\t\t\t\t]} />\n\t);\n}",
+      "Vazio": "import { ProportionBar } from \"@design-systems-orion/blocks/proportion-bar\";\n\nexport function ProportionBarVazio() {\n\treturn (\n\t\t<ProportionBar segments={[{ id: \"a\", label: \"Aprovadas\", value: 0, tone: \"success\" }]} emptyMessage=\"Nenhuma demanda no período.\" />\n\t);\n}",
+    },
+  },
   "blocks/search-bar": {
-    meta: s78.default as RegistryEntry['meta'],
-    stories: s78 as unknown as Record<string, StoryObj>,
+    meta: s88.default as RegistryEntry['meta'],
+    stories: s88 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { SearchBar } from \"@design-systems-orion/blocks/search-bar\";\nimport * as React from \"react\";\n\nexport function Demo() {\n\tconst [value, setValue] = React.useState(\"\");\n\tconst [debounced, setDebounced] = React.useState(\"\");\n\treturn (\n\t\t<div className=\"w-80 space-y-2\">\n\t\t\t<SearchBar value={value} onChange={setValue} onDebouncedChange={setDebounced} />\n\t\t\t<p className=\"text-xs text-muted-foreground\">\n\t\t\t\tvalor: “{value}” · debounced (300ms): “{debounced}”\n\t\t\t</p>\n\t\t</div>\n\t);\n}",
       "ComPlaceholderCustom": "\"use client\";\n\nimport { SearchBar } from \"@design-systems-orion/blocks/search-bar\";\nimport * as React from \"react\";\n\nexport function Custom() {\n\t\tconst [value, setValue] = React.useState(\"\");\n\t\treturn (\n\t\t\t<SearchBar\n\t\t\t\tclassName=\"w-80\"\n\t\t\t\tvalue={value}\n\t\t\t\tonChange={setValue}\n\t\t\t\tplaceholder=\"Buscar por código ou nome...\"\n\t\t\t/>\n\t\t);\n\t}",
     },
   },
   "blocks/section-header": {
-    meta: s79.default as RegistryEntry['meta'],
-    stories: s79 as unknown as Record<string, StoryObj>,
+    meta: s89.default as RegistryEntry['meta'],
+    stories: s89 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { SectionHeader } from \"@design-systems-orion/blocks/section-header\";\n\nexport function SectionHeaderDemo() {\n\treturn (\n\t\t<SectionHeader title=\"Histórico\" />\n\t);\n}",
       "WithDescription": "import { SectionHeader } from \"@design-systems-orion/blocks/section-header\";\n\nexport function SectionHeaderWithDescription() {\n\treturn (\n\t\t<SectionHeader title=\"Histórico\" description=\"Eventos recentes do registro.\" />\n\t);\n}",
@@ -851,8 +950,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/sidebar": {
-    meta: s80.default as RegistryEntry['meta'],
-    stories: s80 as unknown as Record<string, StoryObj>,
+    meta: s90.default as RegistryEntry['meta'],
+    stories: s90 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { Sidebar } from \"@design-systems-orion/blocks/sidebar\";\n\nconst Marca = () => <span className=\"text-sm font-bold tracking-wide\">NÚCLEO</span>;\n\nexport function SidebarDemo() {\n\treturn (\n\t\t<Sidebar brand={<Marca />, navigation: NAV, activeItemId: \"registros\"} />\n\t);\n}",
       "Collapsed": "import { Sidebar } from \"@design-systems-orion/blocks/sidebar\";\n\nconst Marca = () => <span className=\"text-sm font-bold tracking-wide\">NÚCLEO</span>;\n\nexport function SidebarCollapsed() {\n\treturn (\n\t\t<Sidebar brand={<Marca />, navigation: NAV, activeItemId: \"registros\", defaultCollapsed: true} />\n\t);\n}",
@@ -870,8 +969,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/status-cards": {
-    meta: s81.default as RegistryEntry['meta'],
-    stories: s81 as unknown as Record<string, StoryObj>,
+    meta: s91.default as RegistryEntry['meta'],
+    stories: s91 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { StatusCards } from \"@design-systems-orion/blocks/status-cards\";\nimport { AlertTriangle, CheckCircle, Clock, FileText } from \"lucide-react\";\n\nexport function StatusCardsDemo() {\n\treturn (\n\t\t<StatusCards columns={4}>\n\t\t\t<StatusCards.Item tone=\"default\">\n\t\t\t\t<StatusCards.Icon as={FileText} />\n\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t<StatusCards.Label>Total</StatusCards.Label>\n\t\t\t\t\t<StatusCards.Value>128</StatusCards.Value>\n\t\t\t\t</StatusCards.Content>\n\t\t\t</StatusCards.Item>\n\n\t\t\t<StatusCards.Item tone=\"warning\">\n\t\t\t\t<StatusCards.Icon as={Clock} />\n\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t<StatusCards.Label>Pendentes</StatusCards.Label>\n\t\t\t\t\t<StatusCards.Value>12</StatusCards.Value>\n\t\t\t\t\t<StatusCards.Description>Aguardando análise</StatusCards.Description>\n\t\t\t\t</StatusCards.Content>\n\t\t\t</StatusCards.Item>\n\n\t\t\t<StatusCards.Item tone=\"success\">\n\t\t\t\t<StatusCards.Icon as={CheckCircle} />\n\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t<StatusCards.Label>Concluídos</StatusCards.Label>\n\t\t\t\t\t<StatusCards.Value>98</StatusCards.Value>\n\t\t\t\t</StatusCards.Content>\n\t\t\t</StatusCards.Item>\n\n\t\t\t<StatusCards.Item tone=\"danger\">\n\t\t\t\t<StatusCards.Icon as={AlertTriangle} />\n\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t<StatusCards.Label>Com erro</StatusCards.Label>\n\t\t\t\t\t<StatusCards.Value>18</StatusCards.Value>\n\t\t\t\t</StatusCards.Content>\n\t\t\t</StatusCards.Item>\n\t\t</StatusCards>\n\t);\n}",
       "SemIcones": "import { StatusCards } from \"@design-systems-orion/blocks/status-cards\";\n\nexport function StatusCardsSemIcones() {\n\treturn (\n\t\t<StatusCards columns={3}>\n\t\t\t<StatusCards.Item>\n\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t<StatusCards.Label>Abertos</StatusCards.Label>\n\t\t\t\t\t<StatusCards.Value>42</StatusCards.Value>\n\t\t\t\t</StatusCards.Content>\n\t\t\t</StatusCards.Item>\n\t\t\t<StatusCards.Item tone=\"info\">\n\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t<StatusCards.Label>Em andamento</StatusCards.Label>\n\t\t\t\t\t<StatusCards.Value>7</StatusCards.Value>\n\t\t\t\t</StatusCards.Content>\n\t\t\t</StatusCards.Item>\n\t\t\t<StatusCards.Item tone=\"muted\">\n\t\t\t\t<StatusCards.Content>\n\t\t\t\t\t<StatusCards.Label>Arquivados</StatusCards.Label>\n\t\t\t\t\t<StatusCards.Value>315</StatusCards.Value>\n\t\t\t\t</StatusCards.Content>\n\t\t\t</StatusCards.Item>\n\t\t</StatusCards>\n\t);\n}",
@@ -879,8 +978,8 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/status-dot": {
-    meta: s82.default as RegistryEntry['meta'],
-    stories: s82 as unknown as Record<string, StoryObj>,
+    meta: s92.default as RegistryEntry['meta'],
+    stories: s92 as unknown as Record<string, StoryObj>,
     code: {
       "ComLabel": "import { StatusDot } from \"@design-systems-orion/blocks/status-dot\";\n\nexport function StatusDotComLabel() {\n\treturn (\n\t\t<StatusDot tone=\"success\" label=\"Ativo\" />\n\t);\n}",
       "ApenasDot": "import { StatusDot } from \"@design-systems-orion/blocks/status-dot\";\n\nexport function StatusDotApenasDot() {\n\treturn (\n\t\t<StatusDot tone=\"warning\" />\n\t);\n}",
@@ -888,24 +987,32 @@ export const registry: Record<string, RegistryEntry> = {
     },
   },
   "blocks/table-skeleton-rows": {
-    meta: s83.default as RegistryEntry['meta'],
-    stories: s83 as unknown as Record<string, StoryObj>,
+    meta: s93.default as RegistryEntry['meta'],
+    stories: s93 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "import { TableSkeletonRows } from \"@design-systems-orion/blocks/table-skeleton-rows\";\nimport { Table, TableBody, TableHead, TableHeader, TableRow } from \"@design-systems-orion/ui\";\n\nexport function TableSkeletonRowsDemo() {\n\treturn (\n\t\t<Table>\n\t\t\t<TableHeader>\n\t\t\t\t<TableRow>\n\t\t\t\t\t<TableHead>Código</TableHead>\n\t\t\t\t\t<TableHead>Nome</TableHead>\n\t\t\t\t\t<TableHead>Status</TableHead>\n\t\t\t\t\t<TableHead>Criado em</TableHead>\n\t\t\t\t</TableRow>\n\t\t\t</TableHeader>\n\t\t\t<TableBody>\n\t\t\t\t<TableSkeletonRows rows={5} columns={4} />\n\t\t\t</TableBody>\n\t\t</Table>\n\t);\n}",
       "ComColunaDeAcoes": "import { TableSkeletonRows } from \"@design-systems-orion/blocks/table-skeleton-rows\";\nimport { Table, TableBody, TableHead, TableHeader, TableRow } from \"@design-systems-orion/ui\";\n\nexport function TableSkeletonRowsComColunaDeAcoes() {\n\treturn (\n\t\t<Table>\n\t\t\t<TableBody>\n\t\t\t\t<TableSkeletonRows rows={3} columns={3} withActionsColumn />\n\t\t\t</TableBody>\n\t\t</Table>\n\t);\n}",
     },
   },
   "blocks/table-toggle": {
-    meta: s84.default as RegistryEntry['meta'],
-    stories: s84 as unknown as Record<string, StoryObj>,
+    meta: s94.default as RegistryEntry['meta'],
+    stories: s94 as unknown as Record<string, StoryObj>,
     code: {
       "Default": "\"use client\";\n\nimport { TableToggle } from \"@design-systems-orion/blocks/table-toggle\";\nimport * as React from \"react\";\n\nexport function Demo() {\n\tconst [checked, setChecked] = React.useState(true);\n\treturn (\n\t\t<TableToggle\n\t\t\tchecked={checked}\n\t\t\tonToggle={() => setChecked((v) => !v)}\n\t\t\taria-label=\"Ativar módulo\"\n\t\t/>\n\t);\n}",
       "Disabled": "import { TableToggle } from \"@design-systems-orion/blocks/table-toggle\";\n\nexport function TableToggleDisabled() {\n\treturn (\n\t\t<TableToggle checked={false} onToggle={() => {}} disabled aria-label=\"Indisponível\" />\n\t);\n}",
     },
   },
+  "blocks/thread-event": {
+    meta: s95.default as RegistryEntry['meta'],
+    stories: s95 as unknown as Record<string, StoryObj>,
+    code: {
+      "Default": "import { ThreadEvent } from \"@design-systems-orion/blocks/thread-event\";\n\nexport function ThreadEventDemo() {\n\treturn (\n\t\t<ThreadEvent timestamp=\"14:40\" title=\"Atendimento assumido por Ana Souza\" />\n\t);\n}",
+      "ComDetalhe": "import { ThreadEvent } from \"@design-systems-orion/blocks/thread-event\";\n\nexport function ThreadEventComDetalhe() {\n\treturn (\n\t\t<ThreadEvent timestamp=\"15:02\" title=\"Transferido para a fila Operações\" detail=\"Cliente pediu confirmação de janela de retirada\" />\n\t);\n}",
+    },
+  },
   "blocks/view-edit-field": {
-    meta: s85.default as RegistryEntry['meta'],
-    stories: s85 as unknown as Record<string, StoryObj>,
+    meta: s96.default as RegistryEntry['meta'],
+    stories: s96 as unknown as Record<string, StoryObj>,
     code: {
       "Leitura": "import { ViewEditField } from \"@design-systems-orion/blocks/view-edit-field\";\n\nexport function ViewEditFieldLeitura() {\n\treturn (\n\t\t<ViewEditField label=\"Cliente\" editing={false} viewValue=\"Transportes ABC Ltda.\">\n\t\t\t<input className=\"h-9 w-full rounded-md border px-3 text-sm\" />\n\t\t</ViewEditField>\n\t);\n}",
       "Edicao": "\"use client\";\n\nimport { ViewEditField } from \"@design-systems-orion/blocks/view-edit-field\";\nimport * as React from \"react\";\n\nexport function ViewEditFieldEdicao() {\n\tconst [value, setValue] = React.useState(\"Transportes ABC Ltda.\");\n\treturn (\n\t\t<ViewEditField label=\"Cliente\" editing viewValue={value}>\n\t\t\t<input\n\t\t\t\tclassName=\"h-9 w-full rounded-md border px-3 text-sm\"\n\t\t\t\tvalue={value}\n\t\t\t\tonChange={(e) => setValue(e.target.value)}\n\t\t\t/>\n\t\t</ViewEditField>\n\t);\n}",

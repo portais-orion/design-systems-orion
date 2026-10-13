@@ -1,0 +1,59 @@
+---
+title: MessageBubble
+description: "Balão de mensagem de uma conversa."
+---
+
+Mensagens enviadas ficam à direita na cor primária; recebidas, à esquerda sobre o card. O estado de entrega é livre (`status`): o bloco não conhece o ciclo de envio do canal.
+
+Disponível em `@design-systems-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
+```
+
+## Import
+
+```tsx
+import { MessageBubble } from "@design-systems-orion/blocks/message-bubble";
+```
+
+O import por subpath traz só `message-bubble`. Importar de `@design-systems-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/message-bubble" story="Recebida" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `direction`\* | `"incoming" \| "outgoing"` | — | `incoming` = do interlocutor (esquerda); `outgoing` = nossa (direita). |
+| `children`\* | `any` | — | Conteúdo da mensagem. Quebras de linha são preservadas. |
+| `timestamp` | `string` | — | Horário já formatado. |
+| `status` | `any` | — | Texto de estado ao lado do horário (ex.: "Enviando...", "Falha ao enviar"). |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `MessageBubble` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Enviada
+
+<ComponentPreview name="blocks/message-bubble" story="Enviada" />
+
+### Com status
+
+<ComponentPreview name="blocks/message-bubble" story="ComStatus" />
+
+## Storybook
+
+Todas as variações de `MessageBubble`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

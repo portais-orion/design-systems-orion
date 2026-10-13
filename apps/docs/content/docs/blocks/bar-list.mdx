@@ -1,0 +1,63 @@
+---
+title: BarList
+description: "Lista de barras horizontais, cada uma proporcional ao maior valor da lista."
+---
+
+Serve para rankings e distribuições curtas (motivos, canais, responsáveis). A barra é decorativa: rótulo e valor ficam em texto, então leitores de tela recebem a mesma informação. Para partes de um todo use `ProportionBar`.
+
+Disponível em `@design-systems-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
+```
+
+## Import
+
+```tsx
+import { BarList } from "@design-systems-orion/blocks/bar-list";
+```
+
+O import por subpath traz só `bar-list`. Importar de `@design-systems-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/bar-list" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `items`\* | `BarListItem[]` | — | — |
+| `tone` | `"default" \| "brand" \| "success" \| "warning" \| "danger" \| "info" \| "muted"` | `brand` | Tom das barras que não definem o próprio. Padrão: `brand`. |
+| `emptyMessage` | `string` | `Sem dados para exibir.` | Texto exibido quando `items` está vazio. |
+| `formatValue` | `(value: number) => any` | `(value) => value` | Formata o valor mostrado à direita do rótulo. Padrão: número cru. |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `BarList` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Tons por item
+
+<ComponentPreview name="blocks/bar-list" story="TonsPorItem" />
+
+### Valor formatado
+
+<ComponentPreview name="blocks/bar-list" story="ValorFormatado" />
+
+### Vazio
+
+<ComponentPreview name="blocks/bar-list" story="Vazio" />
+
+## Storybook
+
+Todas as variações de `BarList`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

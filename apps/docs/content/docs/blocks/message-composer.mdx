@@ -1,0 +1,62 @@
+---
+title: MessageComposer
+description: "Campo de resposta de uma conversa, controlado."
+---
+
+Enter envia, Shift+Enter quebra linha, e a composição por IME (acentos, CJK) não dispara envio. Quem limpa o texto depois de enviar é o consumidor, ao confirmar o sucesso.
+
+Disponível em `@design-systems-orion/blocks`, na categoria **Formulários**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
+```
+
+## Import
+
+```tsx
+import { MessageComposer } from "@design-systems-orion/blocks/message-composer";
+```
+
+O import por subpath traz só `message-composer`. Importar de `@design-systems-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/message-composer" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `value`\* | `string` | — | — |
+| `onValueChange`\* | `(value: string) => void` | — | — |
+| `onSend`\* | `() => void` | — | Disparado ao enviar com Enter ou pelo botão. Não dispara com texto vazio ou `sending`. |
+| `sending` | `boolean` | `false` | Envio em andamento: bloqueia novo envio. |
+| `disabled` | `boolean` | `false` | — |
+| `placeholder` | `string` | `Escreva uma mensagem... (Enter envia, Shift+Enter quebra linha)` | — |
+| `sendLabel` | `string` | `Enviar` | — |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `MessageComposer` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Enviando
+
+<ComponentPreview name="blocks/message-composer" story="Enviando" />
+
+### Desabilitado
+
+<ComponentPreview name="blocks/message-composer" story="Desabilitado" />
+
+## Storybook
+
+Todas as variações de `MessageComposer`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

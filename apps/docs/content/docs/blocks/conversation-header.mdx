@@ -1,0 +1,53 @@
+---
+title: ConversationHeader
+description: "Cabeçalho da conversa aberta: identifica o interlocutor e abriga ações."
+---
+
+Disponível em `@design-systems-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
+```
+
+## Import
+
+```tsx
+import { ConversationHeader } from "@design-systems-orion/blocks/conversation-header";
+```
+
+O import por subpath traz só `conversation-header`. Importar de `@design-systems-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/conversation-header" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `title`\* | `string` | — | — |
+| `avatarFallback`\* | `string` | — | Iniciais do avatar. Veja `getInitials` em `ConversationListItem`. |
+| `subtitle` | `any` | — | Linha sob o nome (canal, cliente, endereço). |
+| `actions` | `any` | — | Slot à direita (status de canal, botões). |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `ConversationHeader` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Com acoes
+
+<ComponentPreview name="blocks/conversation-header" story="ComAcoes" />
+
+## Storybook
+
+Todas as variações de `ConversationHeader`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

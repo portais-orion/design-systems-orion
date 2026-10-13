@@ -1,0 +1,54 @@
+---
+title: InboxLayout
+description: "Layout de caixa de entrada em três colunas que ocupa toda a altura do contêiner pai (que precisa ter altura definida)."
+---
+
+A lista tem largura fixa de 300px, o painel de contexto 260px, e a conversa ocupa o restante. Cada coluna rola por conta própria; o bloco só distribui o espaço.
+
+Disponível em `@design-systems-orion/blocks`, na categoria **Layout**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
+```
+
+## Import
+
+```tsx
+import { InboxLayout } from "@design-systems-orion/blocks/inbox-layout";
+```
+
+O import por subpath traz só `inbox-layout`. Importar de `@design-systems-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/inbox-layout" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `list`\* | `any` | — | Coluna esquerda: busca, filtros e lista de conversas. |
+| `children`\* | `any` | — | Coluna central: a conversa aberta. |
+| `aside` | `any` | — | Coluna direita: contexto da conversa. Oculta abaixo de `lg`. |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `InboxLayout` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Sem painel de contexto
+
+<ComponentPreview name="blocks/inbox-layout" story="SemPainelDeContexto" />
+
+## Storybook
+
+Todas as variações de `InboxLayout`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

@@ -1,0 +1,66 @@
+---
+title: ConversationListItem
+description: "Linha de uma lista de conversas."
+---
+
+É um botão: `selected` marca a conversa aberta (`aria-current`) e `unread` destaca as pendentes de leitura. Os dados chegam prontos por props; o bloco não conhece mensagens nem canais.
+
+Disponível em `@design-systems-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
+```
+
+## Import
+
+```tsx
+import {
+	ConversationListItem,
+} from "@design-systems-orion/blocks/conversation-list-item";
+```
+
+O import por subpath traz só `conversation-list-item`. Importar de `@design-systems-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/conversation-list-item" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `title`\* | `string` | — | Nome do contato ou título da conversa. |
+| `avatarFallback`\* | `string` | — | Iniciais exibidas no avatar. Veja `getInitials`. |
+| `timestamp` | `string` | — | Horário já formatado da última mensagem (ex.: "14:32", "Ontem"). |
+| `preview` | `any` | — | Última mensagem ou assunto. |
+| `previewIcon` | `ComponentType<{ className?: string; }>` | — | Ícone pequeno antes da prévia (ex.: canal da conversa). |
+| `meta` | `any` | — | Conteúdo livre sob a prévia (status, vínculos, etiquetas). |
+| `unread` | `boolean` | `false` | Não lida: título em negrito e ponto indicador. |
+| `selected` | `boolean` | `false` | — |
+| `onSelect` | `() => void` | — | — |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `ConversationListItem` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Nao lida com meta
+
+<ComponentPreview name="blocks/conversation-list-item" story="NaoLidaComMeta" />
+
+### Selecionada
+
+<ComponentPreview name="blocks/conversation-list-item" story="Selecionada" />
+
+## Storybook
+
+Todas as variações de `ConversationListItem`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

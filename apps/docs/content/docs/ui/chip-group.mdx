@@ -1,0 +1,73 @@
+---
+title: ChipGroup
+description: "Grupo de chips de escolha única: filtros rápidos, abas de canal, seletores de destino."
+---
+
+Sempre há um chip selecionado — clicar no atual não o desmarca. Componha com `ChipGroupItem`. Para alternar painéis de conteúdo use `Tabs`.
+
+Disponível em `@design-systems-orion/ui`, na categoria **Formulários**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+pnpm add @design-systems-orion/ui
+```
+
+## Import
+
+```tsx
+import { ChipGroup, ChipGroupItem } from "@design-systems-orion/ui/chip-group";
+```
+
+O import por subpath traz só `chip-group`. Importar de `@design-systems-orion/ui` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="ui/chip-group" story="Default" />
+
+## API Reference
+
+### ChipGroup
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `value`\* | `string` | — | Valor do chip selecionado. |
+| `onValueChange`\* | `(value: Value) => void` | — | Disparado ao escolher outro chip. Clicar no chip já selecionado não dispara. |
+
+\* Prop obrigatória.
+
+### ChipGroupItem
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `value`\* | `string` | — | — |
+| `dot` | `boolean` | — | Mostra um ponto na cor do `tone` antes do rótulo. |
+| `count` | `number` | — | Contador à direita do rótulo; ocultado quando `0`, `null` ou ausente. |
+| `tone` | `"neutral" \| "brand" \| "info" \| "success" \| "warning" \| "danger"` | — | — |
+| `size` | `"sm" \| "md"` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `ChipGroup` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Com ponto econtador
+
+<ComponentPreview name="ui/chip-group" story="ComPontoEContador" />
+
+### Medio
+
+<ComponentPreview name="ui/chip-group" story="Medio" />
+
+### Item desabilitado
+
+<ComponentPreview name="ui/chip-group" story="ItemDesabilitado" />
+
+## Storybook
+
+Todas as variações de `ChipGroup`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

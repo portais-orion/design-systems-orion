@@ -1,0 +1,54 @@
+---
+title: ThreadEvent
+description: "Nota de sistema no meio de uma conversa."
+---
+
+Diferente de `MessageBubble`, não pertence a nenhum dos lados: registra um fato do atendimento. Para uma linha do tempo independente da conversa use `ActivityTimeline`.
+
+Disponível em `@design-systems-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
+```
+
+## Import
+
+```tsx
+import { ThreadEvent } from "@design-systems-orion/blocks/thread-event";
+```
+
+O import por subpath traz só `thread-event`. Importar de `@design-systems-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/thread-event" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `title`\* | `any` | — | O que aconteceu. |
+| `timestamp` | `string` | — | Horário já formatado, exibido antes do título. |
+| `detail` | `any` | — | Complemento em itálico (motivo, destino). |
+| `className` | `string` | — | — |
+
+\* Prop obrigatória.
+
+Além destas, `ThreadEvent` aceita as props do elemento/primitivo que envolve.
+
+## Exemplos
+
+### Com detalhe
+
+<ComponentPreview name="blocks/thread-event" story="ComDetalhe" />
+
+## Storybook
+
+Todas as variações de `ThreadEvent`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+

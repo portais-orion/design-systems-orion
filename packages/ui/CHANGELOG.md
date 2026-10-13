@@ -1,5 +1,15 @@
 # @portais-orion/ui
 
+## 0.6.0
+
+### Minor Changes
+
+- dca3298: Componentes extraídos da Central de Atendimento do portal-supertrans.
+
+  - ui: `ChipGroup`/`ChipGroupItem` (chips de escolha única com ponto e contador); `Alert` ganha a variant `warning`.
+  - blocks: `BarList`, `ProportionBar`, `ConversationListItem` (+ `getInitials`), `ConversationHeader`, `MessageBubble`, `MessageThread`, `MessageComposer`, `ThreadEvent`, `InboxLayout`, `DescriptionList`.
+  - blocks: `SectionHeader` ganha `size="sm"` (rótulo em caixa alta) e `EmptyState` ganha `variant="inline"` (caixa tracejada compacta).
+
 ## 0.5.0
 
 ### Minor Changes

@@ -1,0 +1,45 @@
+---
+title: MessageThread
+description: "Container rolável das mensagens de uma conversa, com fundo sutil."
+---
+
+Componha com `MessageBubble` e `ThreadEvent`. Rola até o fim sempre que `scrollKey` muda; não rola por re-render sem mudança.
+
+Disponível em `@design-systems-orion/blocks`, na categoria **Exibição de dados**.
+
+## Instalação
+
+```bash
+# Primitives e blocks são packages separados: instale só o que for usar.
+# Os blocks compõem as primitives, então este já traz @design-systems-orion/ui junto.
+pnpm add @design-systems-orion/blocks
+```
+
+## Import
+
+```tsx
+import { MessageThread } from "@design-systems-orion/blocks/message-thread";
+```
+
+O import por subpath traz só `message-thread`. Importar de `@design-systems-orion/blocks` também
+funciona e dá no mesmo bundle — os packages são `sideEffects: false`.
+
+## Uso
+
+<ComponentPreview name="blocks/message-thread" story="Default" />
+
+## API Reference
+
+| Prop | Tipo | Padrão | Descrição |
+| --- | --- | --- | --- |
+| `scrollKey` | `Key` | — | Quando este valor muda, a área rola até o fim. Passe algo que mude com o conteúdo (número de itens, id da conversa aberta). |
+| `label` | `string` | `Mensagens` | Rótulo acessível da região de mensagens. |
+| `className` | `string` | — | — |
+
+Além destas, `MessageThread` aceita as props do elemento/primitivo que envolve.
+
+## Storybook
+
+Todas as variações de `MessageThread`, com controles interativos, vivem no
+[Storybook](http://localhost:6006) do monorepo.
+
